@@ -7,3 +7,6 @@ bookdown::gitbook:
         <li><a href="./">Programación en R</a></li>
       after: |
         <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+    sharing:
+      github: yes
+      all: ['facebook', 'twitter', 'github', 'linkedin', 'weibo', 'instapaper']

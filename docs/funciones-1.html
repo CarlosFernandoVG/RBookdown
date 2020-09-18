@@ -10,10 +10,10 @@
 
   <meta property="og:title" content="3.5 Funciones | Programación en R" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:url" content="https://github.com/CarlosFernandoVG/RBookdown" />
   
   <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
-  
+  <meta name="github-repo" content="CarlosFernandoVG/RBookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.5 Funciones | Programación en R" />
@@ -218,6 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -692,7 +693,7 @@ z 7.176597 51.50355   1  25    14.5             2</code></pre>
     else stopifnot(is.atomic(y))
     .Call(C_cov, x, y, na.method, FALSE)
 }
-&lt;bytecode: 0x7fbf4beb6c68&gt;
+&lt;bytecode: 0x7ffd33de0f58&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 <p>La función anterior calcula la varianza de una variable, en este caso un vector. Véase que al final de la descripción se menciona la palabra <code>bytecode</code>, la cual resulta familiar cuando ya se trabajo en el lenguaje de programación Java. A partir de la versión 2.14 de R, todas las funciones estándar y paquetes fueron pre compilados en bytecode, lo cual otorga rapidez.</p>
 <ul>
@@ -759,14 +760,14 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
+"github": true,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",

@@ -11,7 +11,8 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 css: styles.css
-# github-repo: alberto-mateos-mo/seminario_est_libro
+github-repo: CarlosFernandoVG/RBookdown
+url: 'https\://github.com/CarlosFernandoVG/RBookdown'
 description: "Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias,  Universidad Nacional Autónoma de México"
 ---
 

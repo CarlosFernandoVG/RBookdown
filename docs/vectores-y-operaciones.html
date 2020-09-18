@@ -10,10 +10,10 @@
 
   <meta property="og:title" content="3.2 Vectores y operaciones | Programación en R" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:url" content="https://github.com/CarlosFernandoVG/RBookdown" />
   
   <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
-  
+  <meta name="github-repo" content="CarlosFernandoVG/RBookdown" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.2 Vectores y operaciones | Programación en R" />
@@ -218,6 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -516,7 +517,7 @@ Levels: Little &lt; Medium &lt; Big &lt; Jumbo</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="vectores-y-operaciones.html#cb42-1" aria-hidden="true"></a>integer</span></code></pre></div>
 <pre><code>function (length = 0L) 
 .Internal(vector(&quot;integer&quot;, length))
-&lt;bytecode: 0x7fbf4329ace0&gt;
+&lt;bytecode: 0x7ffd2a1470f0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 <p>¿Cómo están hechos los constructores para double, character, boolean y raw?
 ¿Cómo están hechos los constructores para un complejo y un factor?</p>
@@ -682,14 +683,14 @@ Levels: Little &lt; Medium &lt; Big &lt; Jumbo</code></pre>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
+"github": true,
 "facebook": true,
 "twitter": true,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
