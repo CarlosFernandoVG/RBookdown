@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.4 Sentencias de control, ciclos y funciones | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.4 Sentencias de control, ciclos y funciones | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.4 Sentencias de control, ciclos y funciones | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estructuras-de-datos.html"/>
+<link rel="next" href="funciones-1.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sentencias-de-control-ciclos-y-funciones" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Sentencias de control, ciclos y funciones</h2>
+<p>Todo el conocimiento ya obtenido no sería útil a largo plazo si no se tiene alguna manera de controlar el comportamiento del código bajo ciertas circunstancias, ya sea permitiendo ciertos bloques de código, repitiendo o ejecutando una cantidad determinada o indeterminada de veces un cierto proceso o aplicar ciertas transformaciones a los resultados. Por todas estas razones comenzaremos con la estructura de control más básica.</p>
+<hr />
+<div id="if-if-else" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> If &amp; If-else</h3>
+<p>La estructura <code>if()</code> permite la ejecución de un cierto bloque de código si el parámetro booleano que recibe tiene por valor <code>TRUE</code>, lo cual indicaría que la condición necesaria para la ejecución del bloque es válida. Recordemos que un valor <code>TRUE</code>, y en general un booleano, se puede obtener mediante diferentes expresiones usando operadores lógicos.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb125-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb125-1" aria-hidden="true"></a><span class="kw">if</span>(<span class="dt">boolean</span>) {</span>
+<span id="cb125-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb125-2" aria-hidden="true"></a>  código</span>
+<span id="cb125-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb125-3" aria-hidden="true"></a>} </span></code></pre></div>
+<p>Ahora, suponiendo que se desea tratar el simple problema de determinar si un usuario, de acuerdo a su edad, puede ver cierto contenido. Se puede actuar de la siguiente manera</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb126-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
+<span id="cb126-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-2" aria-hidden="true"></a>  Permitir_contenido</span>
+<span id="cb126-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-3" aria-hidden="true"></a>}</span>
+<span id="cb126-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-4" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">17</span>){</span>
+<span id="cb126-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-5" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb126-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-6" aria-hidden="true"></a>}</span>
+<span id="cb126-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-7" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">16</span>){</span>
+<span id="cb126-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-8" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb126-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-9" aria-hidden="true"></a>}</span>
+<span id="cb126-10"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-10" aria-hidden="true"></a>.</span>
+<span id="cb126-11"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-11" aria-hidden="true"></a>.</span>
+<span id="cb126-12"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-12" aria-hidden="true"></a>.</span>
+<span id="cb126-13"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-13" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">0</span>){</span>
+<span id="cb126-14"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-14" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb126-15"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-15" aria-hidden="true"></a>}</span></code></pre></div>
+<p>O bien de la siguiente manera</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb127-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
+<span id="cb127-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-2" aria-hidden="true"></a>  Permitir_contenido</span>
+<span id="cb127-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-3" aria-hidden="true"></a>}</span>
+<span id="cb127-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-4" aria-hidden="true"></a><span class="kw">if</span>(edad &lt; <span class="dv">18</span>){</span>
+<span id="cb127-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-5" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb127-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-6" aria-hidden="true"></a>}</span></code></pre></div>
+<p>En cualquiera de los dos casos es necesario tratar el complemento con otra sentencia <code>if()</code> lo cual no es recomendable cuando no se tenga certeza de todos los casos contrarios a la condición en el primer <code>if</code>. Por lo cual, para tomar el complemento, se tiene la sentencia <code>if-else</code>; donde si sucede la condición, se ejecuta el código dentro de los delimitadores del <code>if</code> y en caso contrario (<code>else</code>) se ejecuta lo correspondiente para el complemento de la condición.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb128-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
+<span id="cb128-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-2" aria-hidden="true"></a>  Permitir_contenido</span>
+<span id="cb128-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-3" aria-hidden="true"></a>}<span class="kw">else</span>{</span>
+<span id="cb128-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-4" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb128-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-5" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Existe en R la función <code>ifelse()</code> la cual permite trabajar de manera vectorial. Véase el siguiente ejemplo</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-1" aria-hidden="true"></a><span class="co">#Se crea un vector con 15 edades de personas de manera &quot;aleatoria&quot;</span></span>
+<span id="cb129-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-2" aria-hidden="true"></a>(edades &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">90</span>, <span class="dt">replace =</span> T, <span class="dt">size =</span> <span class="dv">15</span>))</span></code></pre></div>
+<pre><code> [1]  9 90 11 45 57 22 89 27  3 30 88 68 36 11 74</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb131-1" aria-hidden="true"></a><span class="kw">ifelse</span>(edades<span class="op">&lt;</span><span class="dv">18</span>, <span class="dt">yes =</span> <span class="st">&quot;Menor de edad&quot;</span>, <span class="dt">no =</span> <span class="st">&quot;Mayor de edad&quot;</span>)</span></code></pre></div>
+<pre><code> [1] &quot;Menor de edad&quot; &quot;Mayor de edad&quot; &quot;Menor de edad&quot; &quot;Mayor de edad&quot;
+ [5] &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot;
+ [9] &quot;Menor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot;
+[13] &quot;Mayor de edad&quot; &quot;Menor de edad&quot; &quot;Mayor de edad&quot;</code></pre>
+<p>Es decir, que en cada entrada del vector evalúa la expresión dada y en caso de ser cierta la condición, se devuelve, en este caso, el caracter “Menor de edad” y en caso contrario “Mayor de edad”. Véase que la función <code>ifelse()</code> regresa un vector.</p>
+<hr />
+</div>
+<div id="for-while-y-repeat" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> For, While y Repeat</h3>
+<p>Cuando un programador ve que un proceso se debe repetir una cantidad de veces, automáticamente piensa en un bucle. En el caso de R se tienen los ciclos <code>for()</code>, <code>while()</code> y <code>repeat()</code>.</p>
+<p>Recordando que en Java los primeros dos bucles tenían una estructura similar a la siguiente:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb133-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-1" aria-hidden="true"></a><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++){</span>
+<span id="cb133-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-2" aria-hidden="true"></a>  Ejecución del código n veces</span>
+<span id="cb133-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-3" aria-hidden="true"></a>}</span>
+<span id="cb133-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-4" aria-hidden="true"></a></span>
+<span id="cb133-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-5" aria-hidden="true"></a><span class="kw">while</span>(<span class="dt">boolean</span>){</span>
+<span id="cb133-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-6" aria-hidden="true"></a>  Ejecución del código hasta que el booleano sea <span class="kw">false</span></span>
+<span id="cb133-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-7" aria-hidden="true"></a>}</span></code></pre></div>
+<p>En el caso de R se tendrá una estructura un poco diferente ya que se iterará directamente sobre un objeto y no usando una variable auxiliar que evalué una expresión para obtener un booleano y determine si el ciclo termino. En el caso del ciclo while se tiene la misma sintaxis.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb134-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-1" aria-hidden="true"></a><span class="kw">for</span>(elementos in objeto){</span>
+<span id="cb134-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-2" aria-hidden="true"></a>  Ejecución_del_código</span>
+<span id="cb134-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-3" aria-hidden="true"></a>}</span>
+<span id="cb134-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-4" aria-hidden="true"></a></span>
+<span id="cb134-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-5" aria-hidden="true"></a><span class="kw">while</span>(<span class="dt">boolean</span>){</span>
+<span id="cb134-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-6" aria-hidden="true"></a>  Ejecución_del_código</span>
+<span id="cb134-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-7" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Véase los siguientes ejemplos</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-1" aria-hidden="true"></a><span class="cf">for</span>(number <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
+<span id="cb135-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-2" aria-hidden="true"></a>  <span class="kw">print</span>(number <span class="op">+</span><span class="st"> </span><span class="dv">1</span>);</span>
+<span id="cb135-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-3" aria-hidden="true"></a>}</span></code></pre></div>
+<pre><code>[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6</code></pre>
+<p>Se esta usando directamente cada elemento dentro del vector para ejecutar un cierto bloque de código. Hay que aclarar que no es necesario usar el elemento con el que se está iterando aunque es común hacerlo.</p>
+<ul>
+<li>¿Funcionará con una lista o una matriz?</li>
+</ul>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb137-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]){</span>
+<span id="cb137-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb137-2" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Letra &quot;</span>, letra))</span>
+<span id="cb137-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb137-3" aria-hidden="true"></a>}</span></code></pre></div>
+<pre><code>[1] &quot;Letra  a&quot;
+[1] &quot;Letra  b&quot;
+[1] &quot;Letra  c&quot;
+[1] &quot;Letra  d&quot;
+[1] &quot;Letra  e&quot;</code></pre>
+<p>En el anterior código se esta usando otro vector, el cual es no numérico, dando un mejor ejemplo de que el iterador no esta dependiendo de valores numéricos.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-1" aria-hidden="true"></a>edad &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">41</span>,<span class="dv">17</span>,<span class="dv">20</span>)</span>
+<span id="cb139-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-2" aria-hidden="true"></a>n_cliente &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb139-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-3" aria-hidden="true"></a>control_parental &lt;-<span class="st"> </span><span class="ot">TRUE</span></span>
+<span id="cb139-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-4" aria-hidden="true"></a><span class="cf">while</span>(control_parental){</span>
+<span id="cb139-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-5" aria-hidden="true"></a>  <span class="cf">if</span>(edad[n_cliente]<span class="op">&gt;=</span><span class="dv">18</span>){</span>
+<span id="cb139-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-6" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;Apto para la película&quot;</span>)</span>
+<span id="cb139-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-7" aria-hidden="true"></a>    n_cliente &lt;-<span class="st"> </span>n_cliente<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb139-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-8" aria-hidden="true"></a>  }<span class="cf">else</span>{</span>
+<span id="cb139-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-9" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;Menor de edad&quot;</span>)</span>
+<span id="cb139-10"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-10" aria-hidden="true"></a>    control_parental &lt;-<span class="st"> </span>F</span>
+<span id="cb139-11"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-11" aria-hidden="true"></a>  }</span>
+<span id="cb139-12"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-12" aria-hidden="true"></a>}</span></code></pre></div>
+<pre><code>[1] &quot;Apto para la película&quot;
+[1] &quot;Apto para la película&quot;
+[1] &quot;Apto para la película&quot;
+[1] &quot;Menor de edad&quot;</code></pre>
+<p>Aquí se están usando expresiones de control para determinar la salida del bucle.</p>
+<p>Hay que recordar que en un ciclo <code>while</code> se corre el peligro de entrar en un ciclo infinito, el cual sería lo deseado en algunos casos. Un ciclo que se trata con un bucle tipo <code>for</code> siempre puede ser tratado como uno tipo <code>while</code> pero no siempre el caso contrario. Y que la elección entre un ciclo <code>while</code> y uno <code>for</code> depende de si se conoce el número de veces que se ejecutará un bloque o no.</p>
+<ul>
+<li>¿Existe algo equivalente al <code>switch-case</code> visto en Java?</li>
+</ul>
+<p>Para estos dos ciclos se puede hacer uso de las sentencias <code>break</code> y <code>next</code>, las cuales permiten la interrupción de un ciclo y la exclusión de alguna iteración.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters){</span>
+<span id="cb141-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-2" aria-hidden="true"></a>  <span class="cf">if</span>(letra <span class="op">==</span><span class="st"> &quot;f&quot;</span>) <span class="cf">break</span></span>
+<span id="cb141-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-3" aria-hidden="true"></a>  <span class="kw">print</span>(letra)</span>
+<span id="cb141-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-4" aria-hidden="true"></a>}</span></code></pre></div>
+<pre><code>[1] &quot;a&quot;
+[1] &quot;b&quot;
+[1] &quot;c&quot;
+[1] &quot;d&quot;
+[1] &quot;e&quot;</code></pre>
+<p>Cuando se ejecuta <code>repeat</code> el ciclo termina sin importar la existencia de más iteraciones sobre el objeto.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters){</span>
+<span id="cb143-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-2" aria-hidden="true"></a>  <span class="cf">if</span>(<span class="kw">any</span>(letra <span class="op">==</span><span class="st"> </span>letters[<span class="dv">4</span><span class="op">:</span><span class="dv">24</span>])) <span class="cf">next</span></span>
+<span id="cb143-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-3" aria-hidden="true"></a>  <span class="kw">print</span>(letra)</span>
+<span id="cb143-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-4" aria-hidden="true"></a>}</span></code></pre></div>
+<pre><code>[1] &quot;a&quot;
+[1] &quot;b&quot;
+[1] &quot;c&quot;
+[1] &quot;y&quot;
+[1] &quot;z&quot;</code></pre>
+<p>Para el caso de <code>next</code>, véase que se saltó ciertas iteraciones más no termino el ciclo.</p>
+<p>Finalmente, R proporciona la estructura <code>break</code>, en la cual puede encontrarse cierta similitud con un ciclo <code>while</code> o <code>do-while</code>.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-1" aria-hidden="true"></a>repeat{</span>
+<span id="cb145-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-2" aria-hidden="true"></a>  .</span>
+<span id="cb145-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-3" aria-hidden="true"></a>  .</span>
+<span id="cb145-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-4" aria-hidden="true"></a>  ejecución_código</span>
+<span id="cb145-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-5" aria-hidden="true"></a>  .</span>
+<span id="cb145-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-6" aria-hidden="true"></a>  .</span>
+<span id="cb145-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-7" aria-hidden="true"></a>  <span class="cf">break</span></span>
+<span id="cb145-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-8" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Este bucle se detiene cuando se encuentra a la sentencia <code>break</code>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-1" aria-hidden="true"></a>n_saludos &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb146-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-2" aria-hidden="true"></a><span class="cf">repeat</span>{</span>
+<span id="cb146-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-3" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">rep</span>(<span class="st">&quot;Hola&quot;</span>, n_saludos))</span>
+<span id="cb146-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-4" aria-hidden="true"></a>  <span class="co">#Se detiene el repeat cuando n_saludos sea igual a 1</span></span>
+<span id="cb146-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-5" aria-hidden="true"></a>  <span class="cf">if</span>(n_saludos<span class="op">==</span><span class="dv">1</span>){</span>
+<span id="cb146-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-6" aria-hidden="true"></a>    <span class="cf">break</span></span>
+<span id="cb146-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-7" aria-hidden="true"></a>  }</span>
+<span id="cb146-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-8" aria-hidden="true"></a>  n_saludos &lt;-<span class="st"> </span>n_saludos<span class="dv">-1</span></span>
+<span id="cb146-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-9" aria-hidden="true"></a>}</span></code></pre></div>
+<pre><code>[1] &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot;
+[1] &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot;
+[1] &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot;
+[1] &quot;Hola&quot; &quot;Hola&quot;
+[1] &quot;Hola&quot;</code></pre>
+<p>Existe un “problema” con los ciclos en R debido a las configuraciones internas para el almacenamiento de objetos. Por el momento es suficiente saber que trabajar de manera vectorial o aplicar funciones que están en R de manera predeterminada es una mejor y más rápida forma de trabajar. Más adelante se verá en que casos los ciclos pueden ser “lentos” además de otros problemas que pueden surgir, por ejemplo en la recursión, y cuando será la mejor opción usar un ciclo que alguna función que trabaje de manera vectorial.</p>
+<hr />
+</div>
+<div id="funciones" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Funciones</h3>
+<p>Como ya se había mencionado, R es un lenguaje de programación orientado a objetos aunque también tiene ciertas características de un lenguaje funcional ya que las funciones en R pueden considerarse <a href="https://en.wikipedia.org/wiki/First-class_function">funciones de primera clase</a>; es decir que pueden ser asignadas a variables, ser almacenadas en ciertas estructuras como las listas, servir como parámetros de otras funciones y ser el retorno de otras funciones. Aunque estas no pueden ser consideradas, como bien dice Handley Wickham en su libro RAdvance, puras; es decir <a href="https://en.wikipedia.org/wiki/Higher-order_function">funciones de orden superior</a> ya que, para que una función sea considerada de orden superior, de acuerdo a un input dado, se debe tener una única salida (inyectividad) lo cual no sucede con muchas funciones en R como <code>sample()</code>, <code>runif()</code>, <code>print()</code> y hasta en <code>&lt;-()</code>.</p>
+<p>Sin importar que las funciones no sean de orden superior, lo cual otorga cierta flexibilidad, es indudable la importancia de crear funciones para optimizar el trabajo, dar estructura, limpieza e incluso claridad; ya que al usar una función, el resultado será algo esperado sin importar su comportamiento interno; en cambio al visualizar un ciclo, este puede no quedar claro en su funcionamiento.</p>
+<p>La creación de funciones es sencilla</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb148-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb148-1" aria-hidden="true"></a>nombre_function &lt;- <span class="fu">function</span>(parámetros){</span>
+<span id="cb148-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb148-2" aria-hidden="true"></a>  código</span>
+<span id="cb148-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb148-3" aria-hidden="true"></a>}</span></code></pre></div>
+<ul>
+<li>Los parámetros pueden ser cualquier objeto e incluso funciones. En este último caso, a estas funciones se les llama <strong><em>funcionales</em></strong>.</li>
+<li>El retorno de una función puede quedar explícitamente dado con la función <code>return()</code> aunque si no se utiliza esta función, la última línea de código en la función es considerada como el retorno de la función. El retorno puede ser cualquier tipo de objeto e incluso pueden devolver funciones. En este último caso, a estas funciones se les llama <strong><em>function factory</em></strong>.</li>
+<li>Cuando una función tiene como valor de retorno un booleano, a esta función se le conoce como <strong><em>predicate</em></strong> y cuando una función acepta una o más funciones como parámetros y a su vez regresa funciones, se les conoce a estas funciones como <strong><em>function operator</em></strong>.</li>
+</ul>
+<p>Los parámetros de una función pueden tener valores por defecto, los cuales pueden ser reescritos cuando se den explícitamente otros valores.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-1" aria-hidden="true"></a>suma &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)){</span>
+<span id="cb149-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-2" aria-hidden="true"></a>  <span class="kw">sum</span>(v1, v2)</span>
+<span id="cb149-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-3" aria-hidden="true"></a>}</span>
+<span id="cb149-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-4" aria-hidden="true"></a><span class="kw">suma</span>()</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb151-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="dt">v1 =</span> <span class="dv">4</span>, <span class="dt">v2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span></code></pre></div>
+<pre><code>[1] 214</code></pre>
+<p>Algo interesante de las funciones en R, al igual que en Python, es que se pueden dar una cantidad indeterminada de parámetros si así se indica en la función con el argumento <code>...</code>. Véase el siguiente ejemplo.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-1" aria-hidden="true"></a><span class="co">#v1 y v2 vectores numéricos</span></span>
+<span id="cb153-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-2" aria-hidden="true"></a>suma &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2, ...){</span>
+<span id="cb153-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-3" aria-hidden="true"></a>  <span class="kw">sum</span>(v1, v2, ...)</span>
+<span id="cb153-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-4" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Es decir, que se está considerando <code>...</code> como un parámetro más de la función aunque nótese que no es necesario agregar más de dos variables en la función.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb154-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>[1] 13</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb156-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span></code></pre></div>
+<pre><code>[1] 223</code></pre>
+<hr />
+<div id="ejercicios-2" class="section level4 unnumbered">
+<h4>Ejercicios</h4>
+<ol start="31" style="list-style-type: decimal">
+<li><p>Crear un nuevo operando y utilizarlo con dos vectores.</p></li>
+<li><p>En el siguiente enlace se puede encontrar información sobre la función <a href="https://aosmith.rbind.io/2018/06/05/a-closer-look-at-replicate-and-purrr/#the-replicate-function"><code>replicate</code></a>. Teniendo en mente que la anterior función puede remplazar a un ciclo for, realice el ejercicio <a href="estructuras-de-datos.html#16">16</a> utilizando dicha función. Vea que sucede al utilizar el parámetro <code>simplify</code> con los valores <code>FALSE</code> y <code>TRUE</code>.</p></li>
+<li><p>Aplicar las funciones <code>min()</code> y <code>max()</code> en la matriz del ejercicio <a href="estructuras-de-datos.html#22">22</a> sobre los renglones y columnas.</p></li>
+<li><p>Con la lista creada al momento de explicar la función <code>lapply()</code>: <code>list(a = seq_matrix, b = seq_matrix+1, c = seq_matrix+3)</code>, utilizar tal lista, la función <code>lapply()</code> y una función anónima, para sumarle 5 al elemento [2,3] de cada matriz.</p></li>
+<li><p>Con base en el ejercicio anterior, hacer una función que acepte una lista (como la del anterior ejercicio), un parámetro tipo String; los posibles valores de este serán “suma”, “resta”, “mutl”, “div”; también debe aceptar tres parámetros numéricos, el primero servirá como operando de las operaciones anteriores y los siguientes como coordenadas para ubicar el elemento en las matrices. De acuerdo a las operaciones anteriores, realizar pora cada caso con la función <code>lapply</code> y una función anónima la operación correspondiente al elemento designado por los parámetros de la función.</p></li>
+<li><p>Observese que sucede al ejecutar <code>(1:10)[-1]</code>. Obtener de la lista del ejercicio <a href="vectores-y-operaciones.html#13">13</a> los últimos 5 elementos de cada vector.</p></li>
+<li><p>Crear una función que, dada una lista, se determine que tipo de datos son sus elementos.</p></li>
+<li><p>Imprimir una sequencia de vectores con <code>sapply()</code>.</p></li>
+<li><p>Crear un nuevo operando que sea capaz de concatenar un número con una letra.</p></li>
+<li><p>Utilizar la función del ejercicio anterior para concatenar a los elementos de una matriz de caracteres un número.</p></li>
+<li><p>Utilizar el operando anterior para concatenar un número a todos los elementos de la matriz del ejercicio <a href="estructuras-de-datos.html#26">26</a>.</p></li>
+<li><p>Usando la función <code>which()</code>, obtener los resultados solicitados del ejercicio <a href="vectores-y-operaciones.html#11">11</a>.</p></li>
+<li><p>Usando alguna función de la familia <code>apply</code> y una función anónima, obtener los resultados solicitados del ejercicio <a href="vectores-y-operaciones.html#11">11</a>.</p></li>
+<li><p>Obtener el máximo y mínimo de cada uno de los elementos en la lista del ejercicio <a href="vectores-y-operaciones.html#13">13</a>.</p></li>
+<li><p><a id="45"></a>Crear una función que acepte una matriz y devuleva una lista con dos elementos: “StatsColumns” y “StatsRows”; los cuales deben ser listas y contener los resultados de aplicar las funciones <code>sum()</code>, <code>prod()</code>, <code>sqrt(sum())</code> y <code>cumsum()</code> por renglones y columnas.</p></li>
+</ol>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estructuras-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="funciones-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

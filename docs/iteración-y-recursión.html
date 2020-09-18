@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.6 Iteración y Recursión | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.6 Iteración y Recursión | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.6 Iteración y Recursión | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="funciones-1.html"/>
+<link rel="next" href="graficación.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="iteración-y-recursión" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Iteración y Recursión</h2>
+<p>¿Los ciclos son lentos en R? Sí y no. Todo depende de como se utilice.</p>
+<p>Para comprender lo anterior, primero hay que entender como R almacena sus objetos. Para tener un entendimiento completo sobre todas las estructuras, es recomendable leer el capitulo 2 de <a href="https://adv-r.hadley.nz/names-values.html">Advance R</a>; por el momento sólo se dará una introducción sobre como se comportan los vectores y las listas.</p>
+<p>Como ya se habia mencionado, cuando se hace algún objeto en R, como un vector o una lista, a estos se les asigna un nombre para poder identificarlos posteriormente. Véase los siguientes resultados.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="iteración-y-recursión.html#cb213-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb213-2"><a href="iteración-y-recursión.html#cb213-2" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fbf4558e4a8&gt;&quot;</code></pre>
+<p>El resultado anterior es un identificador de la dirección en formato hexadecimal del vector <code>x</code> en memoria.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="iteración-y-recursión.html#cb215-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span>x</span>
+<span id="cb215-2"><a href="iteración-y-recursión.html#cb215-2" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fbf4558e4a8&gt;&quot;</code></pre>
+<p>Ahora el nombre “y” esta asociado con la variable <code>x</code>, aunque en realidad los nombres “y” y “x” apuntan hacia un mismo objeto y eso puede verse con los anteriores resultados.</p>
+<p>¿Qué sucederá cuando se modifique algún valor en la variable <code>y</code>? ¿Se modificará en esa posición <code>x</code>?</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="iteración-y-recursión.html#cb217-1" aria-hidden="true"></a>trace_vec &lt;-<span class="st"> </span><span class="kw">capture.output</span>(y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="dv">10</span>)</span>
+<span id="cb217-2"><a href="iteración-y-recursión.html#cb217-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">strsplit</span>(trace_vec[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],  <span class="kw">strsplit</span>(trace_vec[<span class="dv">2</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>tracemem[0x7fbf4558e4a8 -&gt; 0x7fbf4a5c3738]
+tracemem[0x7fbf4a5c3738 -&gt; 0x7fbf4b0e1198]</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="iteración-y-recursión.html#cb219-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(x[[<span class="dv">3</span>]], y[[<span class="dv">3</span>]]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>3
+10</code></pre>
+<p>Los valores del vector <code>x</code> no se modificaron, solo los de <code>y</code> y las anteriores salidas al modificar el tercer elemento en el vector <code>y</code> son por lo que en R se conoce como <strong><em>Copy-on-modify</em></strong> donde básicamente los vectores no son copiados hasta que estos sean modificados. La primera salida es debido a que se realizo una copia de <strong>todos</strong> los elementos de <code>x</code> y posteriormente se modifico en <code>y</code> el tercer elemento. Véase que <code>x</code> no fue alterado en la ubicación o el identificador en memoria de este.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="iteración-y-recursión.html#cb221-1" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fbf4558e4a8&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="iteración-y-recursión.html#cb223-1" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fbf4b0e1198&gt;&quot;</code></pre>
+<ul>
+<li>¿Si se hubiera modificado algún elemento de <code>x</code> en lugar de <code>y</code>, qué hubiera sucedido?</li>
+</ul>
+<p>Ahora, véase el caso con las listas</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="iteración-y-recursión.html#cb225-1" aria-hidden="true"></a>list_mem &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">uno =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">dos =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>)</span>
+<span id="cb225-2"><a href="iteración-y-recursión.html#cb225-2" aria-hidden="true"></a>list_mem_copy &lt;-<span class="st"> </span>list_mem</span>
+<span id="cb225-3"><a href="iteración-y-recursión.html#cb225-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fbf48f9ef88&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="iteración-y-recursión.html#cb227-1" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fbf48f9ef88&gt;&quot;</code></pre>
+<p>Las listas creadas anteriormente tienen la misma dirección y no sólo eso, si no que cada uno de los elementos de la lista también son los mismos</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="iteración-y-recursión.html#cb229-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
+<span id="cb229-2"><a href="iteración-y-recursión.html#cb229-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
+<span id="cb229-3"><a href="iteración-y-recursión.html#cb229-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
+<span id="cb229-4"><a href="iteración-y-recursión.html#cb229-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>&lt;0x7fbf49bf04a8&gt;
+&lt;0x7fbf49bf04a8&gt;
+&lt;0x7fbf49bec678&gt;
+&lt;0x7fbf49bec678&gt;</code></pre>
+<p>¿Qué sucedera cuando se modifique algún elemento en <code>list_mem</code>? ¿Sucederá lo mismo que en los vectores?</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="iteración-y-recursión.html#cb231-1" aria-hidden="true"></a>trace_list &lt;-<span class="st"> </span><span class="kw">capture.output</span>(list_mem[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb231-2"><a href="iteración-y-recursión.html#cb231-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">strsplit</span>(trace_list[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>tracemem[0x7fbf48f9ef88 -&gt; 0x7fbf49a252c8]</code></pre>
+<p>Solo se hizo un cambio en dirección de memoria, ya que en el caso de las listas no se copia todos los elementos, solo se cambia el puntero hacia otro objeto. Véase que en los elementos que no se realizo algúna modificación se sigue apuntando hacia el mismo objeto.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="iteración-y-recursión.html#cb233-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
+<span id="cb233-2"><a href="iteración-y-recursión.html#cb233-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
+<span id="cb233-3"><a href="iteración-y-recursión.html#cb233-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
+<span id="cb233-4"><a href="iteración-y-recursión.html#cb233-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>&lt;0x7fbf49bf04a8&gt;
+&lt;0x7fbf49bf04a8&gt;
+&lt;0x7fbf48a3b350&gt;
+&lt;0x7fbf49bec678&gt;</code></pre>
+<ul>
+<li>¿Las direcciones de las listas <code>list_mem</code> y <code>list_mem_copy</code> ahora son diferentes?</li>
+</ul>
+<p>En resumen, al modificar algún elemento dentro de un vector, se creó una copia de todos los valores teniendo así dos vectores con diferentes nombres y, cuando se modifica algún elemento en las listas, solo se cambia de dirección el punto correspondiente a ese objeto y los demás enlaces permanecen.</p>
+<p>Cuando se hace algún ciclo donde se este agregando o modificando algún vector, internamente se realizarán copias de todo el vector aunque sólo un elemento sea alterado; en ese caso los ciclos iterativos son lentos, pero cuando se utiliza una lista en lugar de un vector el rendimiento mejora bastante. Hay que recordar que R no fue diseñado para ser rápido, aunque usando listas el rendimiento obtenido será mejor al usar un ciclo.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="iteración-y-recursión.html#cb235-1" aria-hidden="true"></a><span class="kw">library</span>(bench)</span>
+<span id="cb235-2"><a href="iteración-y-recursión.html#cb235-2" aria-hidden="true"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb235-3"><a href="iteración-y-recursión.html#cb235-3" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100000</span>, <span class="dt">ncol =</span> <span class="dv">100</span>))</span>
+<span id="cb235-4"><a href="iteración-y-recursión.html#cb235-4" aria-hidden="true"></a>plus2_byVector &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb235-5"><a href="iteración-y-recursión.html#cb235-5" aria-hidden="true"></a>  <span class="co">#Al usar m[[n]] cuando m es un data.frame, véase que se estan tomando vectores</span></span>
+<span id="cb235-6"><a href="iteración-y-recursión.html#cb235-6" aria-hidden="true"></a>  <span class="cf">for</span>(item <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</span>
+<span id="cb235-7"><a href="iteración-y-recursión.html#cb235-7" aria-hidden="true"></a>    x[[item]] &lt;-<span class="st"> </span>x[[item]]<span class="op">+</span><span class="dv">2</span></span>
+<span id="cb235-8"><a href="iteración-y-recursión.html#cb235-8" aria-hidden="true"></a>  }</span>
+<span id="cb235-9"><a href="iteración-y-recursión.html#cb235-9" aria-hidden="true"></a>  x</span>
+<span id="cb235-10"><a href="iteración-y-recursión.html#cb235-10" aria-hidden="true"></a>}</span>
+<span id="cb235-11"><a href="iteración-y-recursión.html#cb235-11" aria-hidden="true"></a><span class="kw">kable</span>(bench<span class="op">::</span><span class="kw">mark</span>(<span class="kw">plus2_byVector</span>(data))[<span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;mem_alloc&quot;</span>, <span class="st">&quot;total_time&quot;</span>)], <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">min</th>
+<th align="right">median</th>
+<th align="right">mem_alloc</th>
+<th align="right">total_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1.33ms</td>
+<td align="right">1.68ms</td>
+<td align="right">1.3MB</td>
+<td align="right">385ms</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="iteración-y-recursión.html#cb236-1" aria-hidden="true"></a>plus2_byList &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb236-2"><a href="iteración-y-recursión.html#cb236-2" aria-hidden="true"></a>  <span class="co">#Al convertir un data.frame en una lista, se agrega un elemento por columna</span></span>
+<span id="cb236-3"><a href="iteración-y-recursión.html#cb236-3" aria-hidden="true"></a>  x &lt;-<span class="st"> </span><span class="kw">as.list</span>(x)</span>
+<span id="cb236-4"><a href="iteración-y-recursión.html#cb236-4" aria-hidden="true"></a>  <span class="cf">for</span>(item <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</span>
+<span id="cb236-5"><a href="iteración-y-recursión.html#cb236-5" aria-hidden="true"></a>    x[[item]] &lt;-<span class="st"> </span>x[[item]]<span class="op">+</span><span class="dv">2</span></span>
+<span id="cb236-6"><a href="iteración-y-recursión.html#cb236-6" aria-hidden="true"></a>  }</span>
+<span id="cb236-7"><a href="iteración-y-recursión.html#cb236-7" aria-hidden="true"></a>  x</span>
+<span id="cb236-8"><a href="iteración-y-recursión.html#cb236-8" aria-hidden="true"></a>}</span>
+<span id="cb236-9"><a href="iteración-y-recursión.html#cb236-9" aria-hidden="true"></a><span class="kw">kable</span>(bench<span class="op">::</span><span class="kw">mark</span>(<span class="kw">plus2_byList</span>(data))[<span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;mem_alloc&quot;</span>, <span class="st">&quot;total_time&quot;</span>)], <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">min</th>
+<th align="right">median</th>
+<th align="right">mem_alloc</th>
+<th align="right">total_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">150µs</td>
+<td align="right">208µs</td>
+<td align="right">813KB</td>
+<td align="right">337ms</td>
+</tr>
+</tbody>
+</table>
+<p>Otro punto que hay que considerar es que no siempre existirá una manera sencilla de usar algún funcional para remplazar a un ciclo, ya sea al modificar en algún lugar un objeto o al usar recursión, ya que en este último caso se depende de índices o de elementos anteriores que con un funcional no sería sencillo de resolver.</p>
+<p>En general, hay ocasiones en las que un ciclo debe permanecer explícitamente para dar solución a un problema, tal es el caso de un modificación en una estructura en cada iteración; esto se puede remplazar con algún funcional aunque el código puede perder legibilidad. Otra circunstancia donde los ciclos no deben ser remplazados por un funcional son las relaciones recursivas ya que estas dependen de las posiciones dentro de una estructura, lo cual si puede ser difícil de plasmar en un funcional. Finalmente, cuando se tenga una solución implementada con un ciclo <code>while</code>, será complicado remplazar este por funciones como de la familia <code>apply</code>.</p>
+<p>En el ámbito de la recursión, se pueden tener varios problemas y uno de los principales son la manera en que estos son tratados dentro de los lenguajes no funcionales, ya que el almacenamiento en este tipo de instrucciones puede ser demasiado. La manera en que trabajan las funciones recursivas es llamando internamente a las mismas funciones hasta llegar a un caso base, y mientras se opere con los resultados de las funciones internas, estos deben ser almacenados en la memoria y la forma en que estos son almacenados es en una pila conocida como <em><em>Call Stack</em></em>.</p>
+<p>Dependiendo del lenguaje de programación la administración de la pila de llamadas puede cambiar, aunque esta siempre tendrá un límite de almacenamiento. En el caso de la recursión puede ser sencillo llenar esta y obtener una excepción indicando esta situación. Para tales casos, se puede remplazar la implementación de las funciones con diferentes técnicas; una de ellas se llama <em><em>Memoization</em></em> en la cual se guarda, en un ambiente fuera de la pila de llamadas, los resultados que se han obtenido de las funciones recursivas. Por ejemplo, si se esta tratando el problema de tener los primeros <span class="math inline">\(n\)</span> números de fibonacci y previamente se corrió <code>fibonacci(m)</code> donde <span class="math inline">\(m&lt;n\)</span>, al momento de hacer <code>fibonacci(n)</code> está buscará si existen registros de llamadas previas y comenzará desde ese punto, por lo que <code>fibonacci(n)</code> no tendrá que calcular los <span class="math inline">\(n-1\)</span> nuevamente, si no, solo los faltantes; por lo que, si se tiene el suficiente espacio, el problema del límite de memoria en la <em><em>Call Stack</em></em> quedará resuelto. En los siguientes enlaces se dejan algunos ejemplos de esto.</p>
+<ul>
+<li><a href="https://www.inwt-statistics.com/read-blog/optimize-your-r-code-using-memoization.html">Optimize your R Code using Memoization</a></li>
+<li><a href="https://stackoverflow.com/questions/41322982/factorial-memoization-in-r">StackOverFlow:Factorial Memoization in R</a></li>
+</ul>
+<p>Otra forma de solucionar el problema de la recursión, es llevar un proceso recursivo a uno iterativo, esto puede ser complicado algunas veces y más aún cuando ya se tenga el proceso de manera recursiva implementado, por lo que una solución es tomar dicha implementación y tratarla de manera iterativa dentro de una función, a dicha técnica se le conoce como <em><em>trampoline</em></em>. Este término esta relacionado con el lenguaje Lisp, pero se utiliza para identificar dicha técnica. En el siguiente enlace se deja un ejemplo de esto en R.</p>
+<ul>
+<li><a href="https://tailrecursion.com/wondr/posts/tail-recursion-in-r.html">Tail Recursion in R with Trampolines</a></li>
+</ul>
+<p>Finalmente, hay que tener en cuenta que el almacenamiento de llamadas de una función se hace en la <em><em>Call Stack</em></em> por que se opera con dichos resultados, por ejemplo en <code>fibonacci(n)</code> se debe realizar <code>fibonacci(n-1)+fibonacci(n-2)</code>. Si de alguna manera se implementa un método recursivo sin operar con los resultados previos se podría evitar dicho problema, a esto se le conoce como <em><em>Tail Call Optimization</em></em>.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="funciones-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="graficación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

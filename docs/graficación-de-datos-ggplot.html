@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Graficación de datos: Ggplot | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Graficación de datos: Ggplot | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Graficación de datos: Ggplot | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="joins-y-set-operations.html"/>
+<link rel="next" href="introducción.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graficación-de-datos-ggplot" class="section level1" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> Graficación de datos: Ggplot</h1>
+<p>Finalmente, uno de los paquetes más famosos del tidyverse es <code>ggplot</code>, el cual esta diseñada para representar la información obtenida de los datos mediante gráficas con un excelente control de todos los elementos gráficos tratados como objetos. Dicha paquetería está basada en el libro <em>The Grammar of Graphics</em> de Leland Wilkinson.</p>
+<p>Como siempre, una de las mejores fuentes rápidas para recordar alguna función o característica de ellas, es la <a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">Cheat Sheet oficial</a>, aunque hay una enorme cantidad de ejemplos y tutoriales para esta paquetería. A criterio personal recomendaría los siguientes enlaces para estudiar más a fondo todo lo relacionado con este gran mundo que aún sigue en crecimiento.</p>
+<ul>
+<li><a href="https://ggplot2-book.org">ggplot2: Elegant Graphics for Data Analysis de Handley Wickham</a>.</li>
+<li>R Graphics Cookbook: Practical Recipes for Visualizing Data de Winston Chang.</li>
+<li><a href="https://r4ds.had.co.nz">R for Data Science de Hadley Wickham</a>.</li>
+<li><a href="https://cedricscherer.netlify.app/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/">A ggplot2 Tutorial for Beautiful Plotting in R</a>.</li>
+<li><a href="http://www.sthda.com/english/wiki/be-awesome-in-ggplot2-a-practical-guide-to-be-highly-effective-r-software-and-data-visualization">Be Awesome in ggplot2: A Practical Guide to be Highly Effective - R software and data visualization</a>.</li>
+<li><a href="http://uc-r.github.io/ggplot_intro">An Introduction to Ggplot2</a>.</li>
+</ul>
+<p>Independientemente de la gráfica que se esté realizando, la idea básica en ggplot para construir una gráfica es mediante el uso de capas. Algunos que tengan experiencia en programas diseñados para la creación de imágenes entenderán que el uso de capas otorga un mayor control sobre los elementos gráficos del resultado final. Mediante cada capa se agregan elementos gráficos que proporcionan algún tipo de atributo extra a toda la imagen. Se comenzará siempre con la capa donde se adjuntarán las capas restantes.</p>
+<p>Para este ejemplo se tomará la base de datos que ya se ha estado utilizando en las anteriores secciones con el objetivo de crear una gráfica donde se represente el comportamiento de la población total a medida que avanza el rango de edad.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="graficación-de-datos-ggplot.html#cb415-1" aria-hidden="true"></a>Population_total_range &lt;-<span class="st"> </span>Population_FEntityWS <span class="op">%&gt;%</span></span>
+<span id="cb415-2"><a href="graficación-de-datos-ggplot.html#cb415-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Rango_edad =</span> <span class="kw">factor</span>(Rango_edad, <span class="dt">levels =</span> <span class="kw">unique</span>(Rango_edad))) <span class="op">%&gt;%</span></span>
+<span id="cb415-3"><a href="graficación-de-datos-ggplot.html#cb415-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">Y =</span> <span class="kw">sum</span>(<span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>))</span>
+<span id="cb415-4"><a href="graficación-de-datos-ggplot.html#cb415-4" aria-hidden="true"></a><span class="kw">ggplot</span>(Population_total_range)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p>Esta primera capa se puede pensar como la hoja o la superficie donde se comenzaría a realizar un dibujo.</p>
+<p>En la bibliografía que se menciono al inicio se puede encontrar más información sobre el comportamiento interno de ggplot, por ahora es bueno saber que la función <code>ggplot</code> y sus subsecuentes toman los datos y aplican transformaciones para traducir dicho contenido en información que pueda ser utilizada para la determinación de colores, geometrías, escalas y hasta espacio geométrico. Algo que hay que tomar en cuenta al hacer una gráfica con ggplot es el uso del operador <code>+</code>, el cual tendrá una función similar a <code>%&gt;%</code>. Con este se añadirá una capa más a toda la gráfica con la que ya se estaba trabajando.</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="graficación-de-datos-ggplot.html#cb416-1" aria-hidden="true"></a>Population_total_range <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>Rango_edad, <span class="dt">y=</span>Y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<p>En esta segunda capa se estableció mediante la función <code>aes()</code> aquellas variables que servirán como ejes para mapear la información. Dicha función se puede modificar en cada capa y puede ser un parámetro en la mayoría de funciones de ggplot. Ahora, sólo falta agregar los elementos gráficos para representar las observaciones dadas, es decir la <em>geometría</em>.</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="graficación-de-datos-ggplot.html#cb417-1" aria-hidden="true"></a>Population_total_range <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Rango_edad, <span class="dt">y=</span>Y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p>¡Así de fácil se obtiene ya la gráfica! Faltan aplicar algunos detalles como el diseño de esta, lo cual sería añadiendo más capas. Véase que en las siguientes instrucciones la gráfica se guardo como un objeto el cual puede ser usado más adelante.</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="graficación-de-datos-ggplot.html#cb418-1" aria-hidden="true"></a>graph_population &lt;-<span class="st"> </span>Population_total_range <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Rango_edad, <span class="dt">y=</span>Y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb418-2"><a href="graficación-de-datos-ggplot.html#cb418-2" aria-hidden="true"></a>(graph_population_per &lt;-<span class="st"> </span>graph_population <span class="op">+</span><span class="st"> </span></span>
+<span id="cb418-3"><a href="graficación-de-datos-ggplot.html#cb418-3" aria-hidden="true"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>), </span>
+<span id="cb418-4"><a href="graficación-de-datos-ggplot.html#cb418-4" aria-hidden="true"></a>          <span class="dt">axis.ticks =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;gray0&quot;</span>), </span>
+<span id="cb418-5"><a href="graficación-de-datos-ggplot.html#cb418-5" aria-hidden="true"></a>          <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;gray25&quot;</span>), </span>
+<span id="cb418-6"><a href="graficación-de-datos-ggplot.html#cb418-6" aria-hidden="true"></a>          <span class="dt">panel.grid.minor =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&quot;gray25&quot;</span>), </span>
+<span id="cb418-7"><a href="graficación-de-datos-ggplot.html#cb418-7" aria-hidden="true"></a>          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray93&quot;</span>), </span>
+<span id="cb418-8"><a href="graficación-de-datos-ggplot.html#cb418-8" aria-hidden="true"></a>          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray82&quot;</span>), </span>
+<span id="cb418-9"><a href="graficación-de-datos-ggplot.html#cb418-9" aria-hidden="true"></a>          <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray90&quot;</span>), </span>
+<span id="cb418-10"><a href="graficación-de-datos-ggplot.html#cb418-10" aria-hidden="true"></a>          <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;gray33&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>), </span>
+<span id="cb418-11"><a href="graficación-de-datos-ggplot.html#cb418-11" aria-hidden="true"></a>          <span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;gray21&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;gray0&quot;</span>, </span>
+<span id="cb418-12"><a href="graficación-de-datos-ggplot.html#cb418-12" aria-hidden="true"></a>                                         <span class="dt">size =</span> <span class="fl">1.6</span>, <span class="dt">linetype =</span> <span class="st">&quot;solid&quot;</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p>Cada uno de los comandos anteriores son dados para cambiar solo el diseño, bien pudo hacerse todo en capas individuales con la función <code>theme()</code> o, como en este caso, englobar todo el diseño en una capa. Existen muchos elementos que se pueden cambiar y lo más recomendable es ver la documentación oficial de la función <code>theme</code> desde la página <a href="http://ggplot2.tidyverse.org/reference/theme.html">Modify components of a theme</a>, la cual contiene ejemplos muy útiles.</p>
+<p>Dando más diseño con más capas se puede mejorar mucho la presentación de esta, ya que aún la propia gráfica en si misma no proporciona mucha información para alguien que no tenga conocimiento de la información con la que se esta trabajando. Es decir que falta agregar títulos, nombres informativos en los ejes, una mejor distribución de las etiquetas en los ejes y algunos atributos extra que ayuda en la interpretación y obtención visual más rápida de la información.</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="graficación-de-datos-ggplot.html#cb419-1" aria-hidden="true"></a>(graph_population_per &lt;-<span class="st"> </span>graph_population_per <span class="op">+</span><span class="st"> </span></span>
+<span id="cb419-2"><a href="graficación-de-datos-ggplot.html#cb419-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Esta instrucción pudo colocarse la primera vez de su uso</span></span>
+<span id="cb419-3"><a href="graficación-de-datos-ggplot.html#cb419-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rango de edad&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Población total&quot;</span>, </span>
+<span id="cb419-4"><a href="graficación-de-datos-ggplot.html#cb419-4" aria-hidden="true"></a>       <span class="dt">caption =</span> <span class="st">&quot;Datos obtenidos de los tabulados básicos de la CONAPO (2020)&quot;</span>)<span class="op">+</span></span>
+<span id="cb419-5"><a href="graficación-de-datos-ggplot.html#cb419-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Población total de México por rangos de edad quinquenales en el 2020&quot;</span>)<span class="op">+</span></span>
+<span id="cb419-6"><a href="graficación-de-datos-ggplot.html#cb419-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">25</span>))<span class="op">+</span></span>
+<span id="cb419-7"><a href="graficación-de-datos-ggplot.html#cb419-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span></span>
+<span id="cb419-8"><a href="graficación-de-datos-ggplot.html#cb419-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>,  <span class="dt">family =</span> <span class="st">&quot;Leelawadee UI Semilight&quot;</span>),</span>
+<span id="cb419-9"><a href="graficación-de-datos-ggplot.html#cb419-9" aria-hidden="true"></a>        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="fl">9.6</span>),</span>
+<span id="cb419-10"><a href="graficación-de-datos-ggplot.html#cb419-10" aria-hidden="true"></a>        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">9</span>),</span>
+<span id="cb419-11"><a href="graficación-de-datos-ggplot.html#cb419-11" aria-hidden="true"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb419-12"><a href="graficación-de-datos-ggplot.html#cb419-12" aria-hidden="true"></a>        <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray99&quot;</span>, <span class="dt">size =</span> <span class="dv">7</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p>En la siguiente página: <a href="https://www.datanovia.com/en/blog/ggplot-title-subtitle-and-caption/">Ggplot title, Subtitle and caption</a>, se puede ver un poco sobre la manipulación de títulos, subtitulos y captions.</p>
+<p>Tal vez sea tedioso estar modificando manualmente cada aspecto estético de la gráfica, por lo que se han dado algunos temas predefinidos para hacer de dicha tarea algo sencillo, estos se pueden obtener con el prefijo <code>theme_</code>; aquí se dejan un par de ejemplos.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="graficación-de-datos-ggplot.html#cb420-1" aria-hidden="true"></a><span class="kw">library</span>(patchwork)</span>
+<span id="cb420-2"><a href="graficación-de-datos-ggplot.html#cb420-2" aria-hidden="true"></a>(graph_population<span class="op">+</span></span>
+<span id="cb420-3"><a href="graficación-de-datos-ggplot.html#cb420-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rango de edad&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Población total&quot;</span>, </span>
+<span id="cb420-4"><a href="graficación-de-datos-ggplot.html#cb420-4" aria-hidden="true"></a>       <span class="dt">caption =</span> <span class="st">&quot;Datos obtenidos de los tabulados básicos de la CONAPO (2020)&quot;</span>)<span class="op">+</span></span>
+<span id="cb420-5"><a href="graficación-de-datos-ggplot.html#cb420-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Población total de México por rangos de edad quinquenales en el 2020&quot;</span>)<span class="op">+</span></span>
+<span id="cb420-6"><a href="graficación-de-datos-ggplot.html#cb420-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>())<span class="op">+</span>(graph_population<span class="op">+</span></span>
+<span id="cb420-7"><a href="graficación-de-datos-ggplot.html#cb420-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rango de edad&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Población total&quot;</span>, </span>
+<span id="cb420-8"><a href="graficación-de-datos-ggplot.html#cb420-8" aria-hidden="true"></a>       <span class="dt">caption =</span> <span class="st">&quot;Datos obtenidos de los tabulados básicos de la CONAPO (2020)&quot;</span>)<span class="op">+</span></span>
+<span id="cb420-9"><a href="graficación-de-datos-ggplot.html#cb420-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Población total de México por rangos de edad quinquenales en el 2020&quot;</span>)<span class="op">+</span></span>
+<span id="cb420-10"><a href="graficación-de-datos-ggplot.html#cb420-10" aria-hidden="true"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+<p>Lo anterior solo fue un ejemplo de como usar el paquete <code>patchwork</code>, el cual se menciona más adelante en una lista de paquetes útiles, por lo que no se toma en cuenta la mal distribución que se consiguió en los ejes de las gráficas anteriores.</p>
+<p>Las siguientes gráficas muestran un poco más de todas las geometrías que incluye ggplot, sin importar por el momento el diseño de dichas gráficas.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="graficación-de-datos-ggplot.html#cb421-1" aria-hidden="true"></a>(Population_total_range <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Rango_edad, <span class="dt">y =</span> Y))<span class="op">+</span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>))<span class="op">+</span></span>
+<span id="cb421-2"><a href="graficación-de-datos-ggplot.html#cb421-2" aria-hidden="true"></a>(Population_by_sex_age_Mexico <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> PoblaciónF))<span class="op">+</span><span class="kw">geom_boxplot</span>())<span class="op">+</span></span>
+<span id="cb421-3"><a href="graficación-de-datos-ggplot.html#cb421-3" aria-hidden="true"></a>(Population_by_sex_age_Mexico <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> PoblaciónM))<span class="op">+</span><span class="kw">geom_density</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<p>Además de poder asignar las variables a los ejes, también se pueden usar las variables como atributos estéticos para las gráficas. Véase en el siguiente ejemplo el uso de la variable <code>Entidad Federativa</code> para agregar color a las barras en el siguiente gráfico de barras.</p>
+<style type="text/css">
+.scroll-300 {
+  max-height: 300px;
+}
+</style>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb422-1"><a href="graficación-de-datos-ggplot.html#cb422-1" aria-hidden="true"></a><span class="co">#Por rango de edad ¿Qué sexo predomina y en que estado se encuentra dicho resultado?</span></span>
+<span id="cb422-2"><a href="graficación-de-datos-ggplot.html#cb422-2" aria-hidden="true"></a>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb422-3"><a href="graficación-de-datos-ggplot.html#cb422-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb422-4"><a href="graficación-de-datos-ggplot.html#cb422-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">S =</span> <span class="kw">if_else</span>(SPredominante <span class="op">==</span><span class="st"> &quot;M&quot;</span>, PoblaciónM, PoblaciónF)) <span class="op">%&gt;%</span></span>
+<span id="cb422-5"><a href="graficación-de-datos-ggplot.html#cb422-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb422-6"><a href="graficación-de-datos-ggplot.html#cb422-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, S) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb422-7"><a href="graficación-de-datos-ggplot.html#cb422-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Rango_edad, <span class="dt">y =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>))<span class="op">+</span></span>
+<span id="cb422-8"><a href="graficación-de-datos-ggplot.html#cb422-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span></span>
+<span id="cb422-9"><a href="graficación-de-datos-ggplot.html#cb422-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rango de edad&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Población total&quot;</span>)<span class="op">+</span></span>
+<span id="cb422-10"><a href="graficación-de-datos-ggplot.html#cb422-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Población total por rangos de edad quinquenales </span><span class="ch">\n</span><span class="st"> del sexo dominante en México 2020&quot;</span>)<span class="op">+</span></span>
+<span id="cb422-11"><a href="graficación-de-datos-ggplot.html#cb422-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">25</span>))<span class="op">+</span></span>
+<span id="cb422-12"><a href="graficación-de-datos-ggplot.html#cb422-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span></span>
+<span id="cb422-13"><a href="graficación-de-datos-ggplot.html#cb422-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>,  <span class="dt">family =</span> <span class="st">&quot;Leelawadee UI Semilight&quot;</span>),</span>
+<span id="cb422-14"><a href="graficación-de-datos-ggplot.html#cb422-14" aria-hidden="true"></a>        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="fl">9.6</span>),</span>
+<span id="cb422-15"><a href="graficación-de-datos-ggplot.html#cb422-15" aria-hidden="true"></a>        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">9</span>),</span>
+<span id="cb422-16"><a href="graficación-de-datos-ggplot.html#cb422-16" aria-hidden="true"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb422-17"><a href="graficación-de-datos-ggplot.html#cb422-17" aria-hidden="true"></a>        <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray99&quot;</span>, <span class="dt">size =</span> <span class="dv">7</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p>Bien se podría hacer más patriótica la gráfica anterior.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb423-1"><a href="graficación-de-datos-ggplot.html#cb423-1" aria-hidden="true"></a>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-2"><a href="graficación-de-datos-ggplot.html#cb423-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-3"><a href="graficación-de-datos-ggplot.html#cb423-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">S =</span> <span class="kw">if_else</span>(SPredominante <span class="op">==</span><span class="st"> &quot;M&quot;</span>, PoblaciónM, PoblaciónF)) <span class="op">%&gt;%</span></span>
+<span id="cb423-4"><a href="graficación-de-datos-ggplot.html#cb423-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-5"><a href="graficación-de-datos-ggplot.html#cb423-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, S) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb423-6"><a href="graficación-de-datos-ggplot.html#cb423-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Rango_edad, <span class="dt">y =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="dt">color =</span> SPredominante))<span class="op">+</span></span>
+<span id="cb423-7"><a href="graficación-de-datos-ggplot.html#cb423-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span></span>
+<span id="cb423-8"><a href="graficación-de-datos-ggplot.html#cb423-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rango de edad&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Población total&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Entidad Federativa: &quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Sexo Predominante: &quot;</span>)<span class="op">+</span></span>
+<span id="cb423-9"><a href="graficación-de-datos-ggplot.html#cb423-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Población total por rangos de edad quinquenales </span><span class="ch">\n</span><span class="st"> del sexo dominante en México 2020&quot;</span>)<span class="op">+</span></span>
+<span id="cb423-10"><a href="graficación-de-datos-ggplot.html#cb423-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">25</span>))<span class="op">+</span></span>
+<span id="cb423-11"><a href="graficación-de-datos-ggplot.html#cb423-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span></span>
+<span id="cb423-12"><a href="graficación-de-datos-ggplot.html#cb423-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>,  <span class="dt">family =</span> <span class="st">&quot;Leelawadee UI Semilight&quot;</span>),</span>
+<span id="cb423-13"><a href="graficación-de-datos-ggplot.html#cb423-13" aria-hidden="true"></a>        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="fl">9.6</span>),</span>
+<span id="cb423-14"><a href="graficación-de-datos-ggplot.html#cb423-14" aria-hidden="true"></a>        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">9</span>),</span>
+<span id="cb423-15"><a href="graficación-de-datos-ggplot.html#cb423-15" aria-hidden="true"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb423-16"><a href="graficación-de-datos-ggplot.html#cb423-16" aria-hidden="true"></a>        <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray99&quot;</span>, <span class="dt">size =</span> <span class="dv">7</span>),</span>
+<span id="cb423-17"><a href="graficación-de-datos-ggplot.html#cb423-17" aria-hidden="true"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb423-18"><a href="graficación-de-datos-ggplot.html#cb423-18" aria-hidden="true"></a>        <span class="dt">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb423-19"><a href="graficación-de-datos-ggplot.html#cb423-19" aria-hidden="true"></a>        <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">linetype =</span> <span class="st">&quot;blank&quot;</span>), </span>
+<span id="cb423-20"><a href="graficación-de-datos-ggplot.html#cb423-20" aria-hidden="true"></a>        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;gray93&quot;</span>))<span class="op">+</span></span>
+<span id="cb423-21"><a href="graficación-de-datos-ggplot.html#cb423-21" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#CE0626&quot;</span>,<span class="st">&quot;#2C6846&quot;</span>))<span class="op">+</span></span>
+<span id="cb423-22"><a href="graficación-de-datos-ggplot.html#cb423-22" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dimgrey&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+<p>Además se pueden usar múltiples geometrías en una gráfica. La gráfica siguiente es un gráfico de dispersión de la longitud de los sépalos contra el ancho de los sépalos en la base de datos iris agregando un poco de ruido (se agrega un poco de variación aleatoria a las ubicaciones) junto con un ajuste polinómico a los datos originales.</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="graficación-de-datos-ggplot.html#cb424-1" aria-hidden="true"></a>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span>Petal.Width))<span class="op">+</span></span>
+<span id="cb424-2"><a href="graficación-de-datos-ggplot.html#cb424-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></span>
+<span id="cb424-3"><a href="graficación-de-datos-ggplot.html#cb424-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>()<span class="op">+</span></span>
+<span id="cb424-4"><a href="graficación-de-datos-ggplot.html#cb424-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_jitter</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p>Hay muchas más otras funciones y geometrías que se podrían explorar y que haría de este sección muy larga. Para resumir un poco, se deja una lista de paquetes y funciones que pueden ser de utilidad a la hora de graficar y que han ampliado de gran manera todo el universo de ggplot para hacerlo una de las herramientas principales para crear contenido visual a partir de una análisis de datos.</p>
+<ul>
+<li>Graficación interactiva
+<ul>
+<li><a href="https://jkunst.com/highcharter/">Highcharter</a></li>
+<li>Plotly</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb425-1"><a href="graficación-de-datos-ggplot.html#cb425-1" aria-hidden="true"></a><span class="kw">library</span>(plotly)</span>
+<span id="cb425-2"><a href="graficación-de-datos-ggplot.html#cb425-2" aria-hidden="true"></a>graph_example_interactive &lt;-<span class="st"> </span>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb425-3"><a href="graficación-de-datos-ggplot.html#cb425-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb425-4"><a href="graficación-de-datos-ggplot.html#cb425-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">S =</span> <span class="kw">if_else</span>(SPredominante <span class="op">==</span><span class="st"> &quot;M&quot;</span>, PoblaciónM, PoblaciónF)) <span class="op">%&gt;%</span></span>
+<span id="cb425-5"><a href="graficación-de-datos-ggplot.html#cb425-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb425-6"><a href="graficación-de-datos-ggplot.html#cb425-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, S) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb425-7"><a href="graficación-de-datos-ggplot.html#cb425-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Rango_edad, <span class="dt">y =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="dt">color =</span> SPredominante))<span class="op">+</span></span>
+<span id="cb425-8"><a href="graficación-de-datos-ggplot.html#cb425-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span></span>
+<span id="cb425-9"><a href="graficación-de-datos-ggplot.html#cb425-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Rango de edad&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Población total&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Entidad Federativa: &quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Sexo Predominante: &quot;</span>)<span class="op">+</span></span>
+<span id="cb425-10"><a href="graficación-de-datos-ggplot.html#cb425-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Población total por rangos de edad quinquenales </span><span class="ch">\n</span><span class="st"> del sexo dominante en México 2020&quot;</span>)<span class="op">+</span></span>
+<span id="cb425-11"><a href="graficación-de-datos-ggplot.html#cb425-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">25</span>))<span class="op">+</span></span>
+<span id="cb425-12"><a href="graficación-de-datos-ggplot.html#cb425-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span></span>
+<span id="cb425-13"><a href="graficación-de-datos-ggplot.html#cb425-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>,  <span class="dt">family =</span> <span class="st">&quot;Leelawadee UI Semilight&quot;</span>),</span>
+<span id="cb425-14"><a href="graficación-de-datos-ggplot.html#cb425-14" aria-hidden="true"></a>        <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="fl">9.6</span>),</span>
+<span id="cb425-15"><a href="graficación-de-datos-ggplot.html#cb425-15" aria-hidden="true"></a>        <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">9</span>),</span>
+<span id="cb425-16"><a href="graficación-de-datos-ggplot.html#cb425-16" aria-hidden="true"></a>        <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb425-17"><a href="graficación-de-datos-ggplot.html#cb425-17" aria-hidden="true"></a>        <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;gray99&quot;</span>, <span class="dt">size =</span> <span class="dv">7</span>),</span>
+<span id="cb425-18"><a href="graficación-de-datos-ggplot.html#cb425-18" aria-hidden="true"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb425-19"><a href="graficación-de-datos-ggplot.html#cb425-19" aria-hidden="true"></a>        <span class="dt">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb425-20"><a href="graficación-de-datos-ggplot.html#cb425-20" aria-hidden="true"></a>        <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">linetype =</span> <span class="st">&quot;blank&quot;</span>), </span>
+<span id="cb425-21"><a href="graficación-de-datos-ggplot.html#cb425-21" aria-hidden="true"></a>        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;gray93&quot;</span>))<span class="op">+</span></span>
+<span id="cb425-22"><a href="graficación-de-datos-ggplot.html#cb425-22" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#CE0626&quot;</span>,<span class="st">&quot;#2C6846&quot;</span>))<span class="op">+</span></span>
+<span id="cb425-23"><a href="graficación-de-datos-ggplot.html#cb425-23" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;dimgrey&quot;</span>, <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb425-24"><a href="graficación-de-datos-ggplot.html#cb425-24" aria-hidden="true"></a><span class="kw">ggplotly</span>(graph_example_interactive)</span></code></pre></div>
+<div id="htmlwidget-76ae57685377ac7a8b35" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-76ae57685377ac7a8b35">{"x":{"data":[{"orientation":"v","width":0.899999999999999,"base":0,"x":[13],"y":[1153638],"text":"Rango_edad: 60 y más<br />Población Total: 1153638.00<br />Entidad Federativa: Distrito Federal<br />SPredominante: F","type":"bar","marker":{"autocolorscale":false,"color":"rgba(206,6,38,1)","line":{"width":1.88976377952756,"color":"rgba(105,105,105,1)"}},"name":"(Distrito Federal,F)","legendgroup":"(Distrito Federal,F)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9,0.899999999999999,0.899999999999999,0.899999999999999,0.899999999999999],"base":[0,0,0,0,0,0,0,0,0],"x":[3,4,5,6,7,8,9,11,12],"y":[1516607,1295913,1193458,1096307,1010527,803368,833091,575032,498999],"text":["Rango_edad: 15 a 19<br />Población Total: 1516607.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 20 a 24<br />Población Total: 1295913.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 25 a 29<br />Población Total: 1193458.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 30 a 34<br />Población Total: 1096307.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 35 a 39<br />Población Total: 1010527.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 40 a 44<br />Población Total:  803368.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 45 a 49<br />Población Total:  833091.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 50 a 54<br />Población Total:  575032.00<br />Entidad Federativa: México<br />SPredominante: F","Rango_edad: 55 a 59<br />Población Total:  498999.00<br />Entidad Federativa: México<br />SPredominante: F"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(44,104,70,1)","line":{"width":1.88976377952756,"color":"rgba(105,105,105,1)"}},"name":"(México,F)","legendgroup":"(México,F)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.899999999999999,0.9,0.899999999999999],"base":[0,0,0,0],"x":[1,10,2,14],"y":[1309802,1456192,1566083,15591.4429],"text":["Rango_edad: 0 a 4<br />Población Total: 1309802.00<br />Entidad Federativa: México<br />SPredominante: M","Rango_edad: 5 a 9<br />Población Total: 1456192.00<br />Entidad Federativa: México<br />SPredominante: M","Rango_edad: 10 a 14<br />Población Total: 1566083.00<br />Entidad Federativa: México<br />SPredominante: M","Rango_edad: NE<br />Población Total:   15591.44<br />Entidad Federativa: México<br />SPredominante: M"],"type":"bar","marker":{"autocolorscale":false,"color":"rgba(44,104,70,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"(México,M)","legendgroup":"(México,M)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":45.3565794935658,"r":7.30593607305936,"b":38.5886259858863,"l":77.5093399750934},"plot_bgcolor":"rgba(237,237,237,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":15.9402241594022},"title":{"text":"Población total por rangos de edad quinquenales <br /> del sexo dominante en México 2020","font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":19.1282689912827},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,14.6],"tickmode":"array","ticktext":["0 a 4","10 a 14","15 a 19","20 a 24","25 a 29","30 a 34","35 a 39","40 a 44","45 a 49","5 a 9","50 a 54","55 a 59","60 y más","NE"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14],"categoryorder":"array","categoryarray":["0 a 4","10 a 14","15 a 19","20 a 24","25 a 29","30 a 34","35 a 39","40 a 44","45 a 49","5 a 9","50 a 54","55 a 59","60 y más","NE"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Leelawadee UI Semilight","size":11.9551681195517},"tickangle":-25,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Rango de edad","font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":12.7521793275218}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-78304.15,1644387.15],"tickmode":"array","ticktext":["0","500,000","1,000,000","1,500,000"],"tickvals":[0,500000,1000000,1500000],"categoryorder":"array","categoryarray":["0","500,000","1,000,000","1,500,000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Leelawadee UI Semilight","size":11.9551681195517},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Población total","font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":12.7521793275218}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":12.7521793275218},"y":0.811023622047244},"annotations":[{"text":"Entidad Federativa: <br />Sexo Predominante: ","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":15.9402241594022},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"12c91668be94":{"x":{},"y":{},"fill":{},"colour":{},"type":"bar"}},"cur_data":"12c91668be94","visdat":{"12c91668be94":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="graficación-de-datos-ggplot.html#cb426-1" aria-hidden="true"></a><span class="kw">ggplotly</span>(graph_population_per)</span></code></pre></div>
+<div id="htmlwidget-a022370d4ab0dfdbc8d2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a022370d4ab0dfdbc8d2">{"x":{"data":[{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14],"y":[9637687,10773373,11570470,10451216,8624942,7591364,7816192,7215390,6313930,5433526,4176323,4094964,9668031,130829.88403],"text":["Rango_edad: 0 a 4<br />Y:  9637687.0","Rango_edad: 5 a 9<br />Y: 10773373.0","Rango_edad: 10 a 14<br />Y: 11570470.0","Rango_edad: 15 a 19<br />Y: 10451216.0","Rango_edad: 20 a 24<br />Y:  8624942.0","Rango_edad: 25 a 29<br />Y:  7591364.0","Rango_edad: 30 a 34<br />Y:  7816192.0","Rango_edad: 35 a 39<br />Y:  7215390.0","Rango_edad: 40 a 44<br />Y:  6313930.0","Rango_edad: 45 a 49<br />Y:  5433526.0","Rango_edad: 50 a 54<br />Y:  4176323.0","Rango_edad: 55 a 59<br />Y:  4094964.0","Rango_edad: 60 y más<br />Y:  9668031.0","Rango_edad: NE<br />Y:   130829.9"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,255,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,255,255,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":45.3565794935658,"r":7.30593607305936,"b":38.5886259858863,"l":83.4869240348693},"plot_bgcolor":"rgba(84,84,84,1)","paper_bgcolor":"rgba(54,54,54,1)","font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":15.9402241594022},"title":{"text":"Población total de México por rangos de edad quinquenales en el 2020","font":{"color":"rgba(229,229,229,1)","family":"Leelawadee UI Semilight","size":19.1282689912827},"x":0.5,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,14.6],"tickmode":"array","ticktext":["0 a 4","5 a 9","10 a 14","15 a 19","20 a 24","25 a 29","30 a 34","35 a 39","40 a 44","45 a 49","50 a 54","55 a 59","60 y más","NE"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14],"categoryorder":"array","categoryarray":["0 a 4","5 a 9","10 a 14","15 a 19","20 a 24","25 a 29","30 a 34","35 a 39","40 a 44","45 a 49","50 a 54","55 a 59","60 y más","NE"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(209,209,209,1)","family":"Leelawadee UI Semilight","size":11.9551681195517},"tickangle":-25,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":true,"gridcolor":"rgba(64,64,64,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Rango de edad","font":{"color":"rgba(237,237,237,1)","family":"Leelawadee UI Semilight","size":12.7521793275218}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-441152.1217685,12142452.0057985],"tickmode":"array","ticktext":["0","3,000,000","6,000,000","9,000,000","12,000,000"],"tickvals":[5.82076609134674e-11,3000000,6000000,9000000,12000000],"categoryorder":"array","categoryarray":["0","3,000,000","6,000,000","9,000,000","12,000,000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(0,0,0,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(209,209,209,1)","family":"Leelawadee UI Semilight","size":11.9551681195517},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":true,"gridcolor":"rgba(64,64,64,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Población total","font":{"color":"rgba(237,237,237,1)","family":"Leelawadee UI Semilight","size":12.7521793275218}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"Leelawadee UI Semilight","size":12.7521793275218}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"12c916f2ab5af":{"x":{},"y":{},"type":"scatter"},"12c915cfe2d2d":{"x":{},"y":{}}},"cur_data":"12c916f2ab5af","visdat":{"12c916f2ab5af":["function (y) ","x"],"12c915cfe2d2d":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>3D
+<ul>
+<li><a href="https://colinbousige.github.io/post/3dplotr/">Aquí un ejemplo en 3D usando Plotly</a>.</li>
+<li><a href="https://www.tylermw.com/3d-ggplots-with-rayshader/">rayshader</a>.</li>
+<li><a href="http://math.furman.edu/~dcs/courses/math47/R/library/scatterplot3d/doc/s3d.pdf">Scatterplot3d</a>.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="graficación-de-datos-ggplot.html#cb427-1" aria-hidden="true"></a><span class="kw">library</span>(<span class="st">&quot;scatterplot3d&quot;</span>)</span>
+<span id="cb427-2"><a href="graficación-de-datos-ggplot.html#cb427-2" aria-hidden="true"></a><span class="kw">scatterplot3d</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<ul>
+<li>Animación
+<ul>
+<li><a href="https://yihui.org/animation/">animation</a>.</li>
+<li><a href="https://github.com/thomasp85/transformr">transformr</a>.</li>
+<li><a href="https://github.com/thomasp85/tweenr">tweenr</a>.</li>
+<li><a href="https://gganimate.com">gganimate</a>. El el siguiente <a href="https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/">enlace</a> se pueden ver algunas variaciones del siguiente ejemplo.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="graficación-de-datos-ggplot.html#cb428-1" aria-hidden="true"></a><span class="kw">library</span>(gganimate)</span>
+<span id="cb428-2"><a href="graficación-de-datos-ggplot.html#cb428-2" aria-hidden="true"></a><span class="kw">library</span>(gapminder) <span class="co">#Para obtener la base de datos gapminder: Extracto de los datos de Gapminder sobre esperanza de vida, PIB per cápita y población por país.</span></span>
+<span id="cb428-3"><a href="graficación-de-datos-ggplot.html#cb428-3" aria-hidden="true"></a><span class="kw">ggplot</span>(</span>
+<span id="cb428-4"><a href="graficación-de-datos-ggplot.html#cb428-4" aria-hidden="true"></a>  gapminder, </span>
+<span id="cb428-5"><a href="graficación-de-datos-ggplot.html#cb428-5" aria-hidden="true"></a>  <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y=</span>lifeExp, <span class="dt">size =</span> pop, <span class="dt">colour =</span> country)</span>
+<span id="cb428-6"><a href="graficación-de-datos-ggplot.html#cb428-6" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb428-7"><a href="graficación-de-datos-ggplot.html#cb428-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb428-8"><a href="graficación-de-datos-ggplot.html#cb428-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_color_viridis_d</span>() <span class="op">+</span></span>
+<span id="cb428-9"><a href="graficación-de-datos-ggplot.html#cb428-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_size</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">12</span>)) <span class="op">+</span></span>
+<span id="cb428-10"><a href="graficación-de-datos-ggplot.html#cb428-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
+<span id="cb428-11"><a href="graficación-de-datos-ggplot.html#cb428-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;GDP per capita&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Life expectancy&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">transition_time</span>(year) <span class="op">+</span></span>
+<span id="cb428-12"><a href="graficación-de-datos-ggplot.html#cb428-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Year: {frame_time}&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-224-1.gif" /><!-- --></p>
+<ul>
+<li>Colores
+<ul>
+<li><a href="https://github.com/JoeyStanley/futurevisions">futurevisions</a>.</li>
+<li><a href="https://github.com/karthik/wesanderson">wesanderson</a>.</li>
+</ul></li>
+<li>Emoji
+<ul>
+<li><a href="https://github.com/hadley/emo">Emoji</a>.</li>
+</ul></li>
+<li>Otras librerías muy útiles.
+<ul>
+<li><a href="https://www.data-imaginist.com/2019/the-ggforce-awakens-again/">ggforce</a>.</li>
+<li><a href="https://wilkelab.org/cowplot/index.html">cowplot</a>.</li>
+<li><a href="https://ggplot2.tidyverse.org/articles/extending-ggplot2.html">ggproto</a>.</li>
+<li><a href="https://patchwork.data-imaginist.com">patchwork</a>.</li>
+</ul></li>
+</ul>
+<p>Faltarían muchos otros tipos de gráficas y referencias que hacer, pero una de las mejores formas de obtener más ejemplos son con galerías, algunas son las siguientes</p>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/all-graphs">the R Graph Gallery</a>.</li>
+<li><a href="http://gallery.htmlwidgets.org">htmlwidgets for R - gallery</a>.</li>
+<li>Twitter</li>
+</ul>
+<hr />
+<div id="ejercicios" class="section level4 unnumbered">
+<h4>Ejercicios</h4>
+<ol start="90" style="list-style-type: decimal">
+<li><p>Investiga el uso de la función <code>ggplot2::qplot()</code>.</p></li>
+<li><p>¿Qué sucede en el primer ejemplo de la sección ggplot si los datos que sirvieron para el parámetro <code>data</code> de dicha función fueran los siguientes: <code>Population_total_range&lt;-Population_FEntityWS %&gt;% group_by(Rango_edad) %&gt;% summarise(Y = sum(</code>Población Total<code>))</code>?</p></li>
+<li><p>Usar la función <code>ggplot2::facet_grid()</code> para graficar, por los cinco principales estados (los de mayor población), un gráfico de barras donde se vea la distribución por rangos quinquenales de edad de su población.</p></li>
+<li><p>Utiliza la función <code>ggplot2::scale_function()</code> para gráficar la función normal en el rango (-5,5).</p></li>
+<li><p>Utiliza la función <code>latex2exp::TeX()</code> para agregar la ecuación de la función normal en la gráfica anterior.</p></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="joins-y-set-operations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introducción.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+# Markdown
+
+Antes de comenzar a escribir código creemos que es necesario aprender a como escribir notas a través de un RMarkdown. [Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado, así como lo es HTML, creado por John Gruberque donde, mediante una sintaxis fácil de aprender, se pueden crear archivos de texto plano integrando elementos para mejorar el formato de este. En el caso de RMarkdown, además de la sintaxis de Markdown, se pueden integrar elementos de HTML, CSS ([Cascading Style Sheets](https://es.wikipedia.org/wiki/Hoja_de_estilos_en_cascada)) y $\LaTeX$, con la finalidad de obtener archivos con distinta extensión, como lo son pdf, html y word.
+
+Es cierto que ciertos archivos no se podrán llevar de una manera directa de uno a otro, como html a pdf cuando se tienen gráficas interactivas, pero siempre se tiene la posibilidad de integrar código y resultados del lenguaje de programación con el que se este trabajando en el tipo de archivo de salida. Uno de las primeras herramientas es [Zepellin](https://zeppelin.apache.org); otras aplicaciones de este estilo son: Jupyter, Typora, etc.
+
+La ayuda fundamental para un paquete de R, como generalmente va a ser si se tiene disponible, es una CheetSheet y la correspondiente a RMakdown se puede descargar del siguiente [enlace](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+Para facilitar y complementar un poco la sintaxis, aquí se enlistan algunos puntos recurrentes
+
+1. Se pueden agregar comentarios en MarkDown empezando \<!-- y terminando con -->.
+
+2. Cuando se esta trabajando en $\LaTeX$, generalmente se agrega algo llamado preámbulo al inicio de los archivos `.tex` donde se colocan todos los comandos para darle formato al texto, en este caso se podría agregar un preámbulo agregando en el YAML en la sección `includes: in_header:` o se pueden agregar las librerías de $\LaTeX$ directamente dentro de `header_includes`:
+
+```r
+"usepackage[all]{xy}"
+"usepackage{enumitem}"
+"usepackage{caption}"
+"captionsetup{labelformat=empty}"
+```
+
+3. Es posible agregar bibliografía de un archivo `.bib`. Esto puede hacerse en la sección `bibliography:` del YAML, por ejemplo: `bibliography:"bib/library.bib"`. El estilo de esta también se puede en la sección `csl:`, por ejemplo: `csl:acm-sig-proceedings-long-author-list.csl`
+
+4. Hay muchas opciones que se pueden agregar de acuerdo al tipo de archivo que se este creando. Para el caso un archivo HTML se puede cambiar el tema, agregar una opción para ocultar o desglosar el código adjunto, cambiar ancho y alto de las imágenes, etc. Algunas opciones son las siguientes:
+
++ html_document:
+
+  - df_print: paged (Formato para tablas)
+  - highlight: tango (Diseño)
+  - code_folding: hide (Esconder código)
+  - theme: flatly (Tema)
+  - toc: yes (Tabla de contenidos o un índice) (table of contents)
+  - toc_float: yes (TOC con mejor diseño)
+  - fig_width: 9 (Ancho)
+  - fig_height: 5 (Largo)
+
+Donde mínimo se tienen las siguientes opciones: 
+
++ highlight: default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, and textmate
++ theme: default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, and yeti.
++ df_print: default, kable, tibble, paged
+
+Para un archivo PDF, se tienen también una gran cantidad de opciones para personalizar el documento
+
++ pdf_document:
+  - df_print: kable (Formato para tablas)
+  - fig_caption: yes (Etiquetas a las imágenes y gráficas)
+  - number_sections: yes (Secciones)
+  - toc: yes (Tabla de contenidos o un índice) (table of contents)
+  - toc_depth: 5 (Jerarquía de subtitulos) (profundidad del índice)
+  - fig_width: 7 (Ancho)
+  - fig_height: 4 (Largo)
+  - keep_tex: true (Para devolver el archivo .tex)
+  - extra_dependencies: ["amsfonts", "dsfont", "mathrsfs", "bbold"] (Para más librerías de $\LaTeX$)
+
+
+Sea cual sea formato de salida que se eliga, se pueden generalizar algunas características del archivo
+
++ documentclass: book (Tipo de documento)
++ classoption: a4paper (Tamaño del documento)
++ fontsize: 12pt (Tamaño de letra)
++ geometry: "top=1in, left=0.9in, right=1.25in, bottom=1in" (Bordes de la página)
++ linkcolor: blue (Color para hipervínculos)
++ urlcolor: blue (Color para enlaces)
+
+***
+
+5. Como ya se ha mencionado, se puede hacer una integración con el código que se este desarrollando, así que aquí se muestran algunas opciones generales para los bloques donde va contenido el código llamados _chunks_.
+
+```{r, echo=TRUE, eval=FALSE, include=TRUE}
+
+#```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, #sirve para mostrar código y va dentro del chunk
+  fig.pos = 'H',
+  fig.align = 'center', 
+  message = FALSE, warning = FALSE
+)
+#```
+```
+
+
+6. Para las imágenes se puede usar alguna función establecida en R, o bien hacer uso de lo que  MarkDown permite. Véase el siguiente ejemplo para insertar una imagen: ![rain of numbers\](source/rain_of_numbers.jpg)
+
+<center>
+![rain_of_numbers](Images/rain_numbers.jpg)
+</center>
+
+7. Otro punto importante es que la generación de tablas se puede obtener directamente de una "tabla" que se produzca con código, aunque ciertas veces se puede preferir hacer una tabla de manera manual. En la página [Tables Generator](https://www.tablesgenerator.com/markdown_tables) se pueden crear estas con una interfaz amigable y simplemente copiar y pegar el resultado aquí mismo, ya sea en formato Markdown, HTML o en $\LaTeX$.
+
+8. La integración del código en R se puede hacer mediante un chunk o mediante un ejecución en linea, para esto hay que seguir la siguiente sintaxis: $`$r code$`$, por ejemplo, este `r emo::ji("monkey")` fue generado a través de un comando inline.
+
+9. En el siguiente enlace se ve un poco más sobre la nomenclatura que se tiene en [YAML](https://learnxinyminutes.com/docs/es-es/yaml-es/)
+
+Finalmente, existen muchas fuentes de donde obtener información, aunque una de las más completas es del Bookdown [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) y la página oficial de [RMarkdown](https://rmarkdown.rstudio.com/lesson-1.html). 

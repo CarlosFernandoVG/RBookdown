@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.2 Vectores y operaciones | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.2 Vectores y operaciones | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.2 Vectores y operaciones | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="buscando-ayuda.html"/>
+<link rel="next" href="estructuras-de-datos.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vectores-y-operaciones" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Vectores y operaciones</h2>
+<p>Quizá ya hayas escuchado lo siguiente en algún lado: <em>R es un lenguaje vectorial</em>.</p>
+<p>El comportamiento al que hace referencia esta frase será de mucha ayuda en la construcción de rutinas avanzadas de programación que veremos más adelante, por ahora la implicación más relevante reside en el hecho de que la estructura básica en R serán justamente vectores.</p>
+<div id="vectores-atómicos" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Vectores atómicos</h3>
+<p>En todos los lenguajes de programación se tienen diferentes tipos de datos primitivos; por ejemplo en Java se tiene <code>int</code>, <code>long</code>, <code>char</code>, <code>byte</code>, etc. Para Python: <code>String</code>, <code>Float</code>, <code>Boolean</code>, entre otros. En R se tienen 6 tipos de datos primitivos, también conocidos como “atómicos”. En R, en general todo estará compuesto de vectores o de estructuras hechas con vectores y los datos primitivos no son la excepción, ya que estos también son vectores.</p>
+<ul>
+<li>Lógicos (<strong>boolean</strong>): <code>TRUE</code>, <code>FALSE</code></li>
+<li>Enteros (<strong>integer</strong>): <code>5</code></li>
+<li>Double (<strong>doble</strong>): <code>5.54</code>
+<ul>
+<li>Es interesante preguntarse el porqué, en general, un valor en coma flotante se le llama (traducido) doble.</li>
+<li>En el siguiente <a href="https://www.quora.com/In-most-programming-languages-why-is-the-primary-type-double-called-so-Simply-because-it-can-express-the-decimals-double-accurate-than-the-float">enlace</a> se hace este interrogante en la página Quora.</li>
+<li>Los enteros y double son categorizados como vectores numéricos(numeric).</li>
+</ul></li>
+<li>Caracteres (<strong>character</strong>): <code>"word"</code></li>
+<li>Complejos (<strong>complex</strong>): <code>5 + 7i</code></li>
+<li>Crudos o sin procesamiento (<strong>raw</strong>): <code>raw(5)</code>
+<ul>
+<li>Este tipo de dato se usa para representar una secuencia de bytes.</li>
+<li>Este tipo de dato, así como los complejos generalmente no se utilizan.</li>
+<li>En el libro <a href="https://www.wiley.com/en-us/A+Data+Scientist%27s+Guide+to+Acquiring%2C+Cleaning%2C+and+Managing+Data+in+R-p-9781119080022">A Data Scientist’s Guide to Acquiring, Cleaning, and Managing Data in R</a> de Buttrey y Whitaker se muestra un ejemplo del uso de este tipo de vectores.</li>
+</ul></li>
+</ul>
+<div id="nota-a-partir-de-aquí-véase-el-uso-de-distintas-funciones." class="section level6 unnumbered">
+<h6><em>NOTA</em>: A partir de aquí, véase el uso de distintas funciones.</h6>
+<p>Existen algunas funciones de R para saber el tipo de dato que se está usando: <code>typeof()</code>, <code>class()</code> y <code>mode()</code>. Las tres funciones tienen diferentes criterios para determinar que tipo de vector atómico es con el que se está tratando; <code>typeof()</code> identifica el tipo de dato visto desde el punto de vista de R y es la función más usada,<code>mode()</code> es compatible con S y <code>class()</code> identifica el tipo de datos visto desde una POO en R (específicamente el sistema S3).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="vectores-y-operaciones.html#cb8-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">class</span>(<span class="ot">TRUE</span>), </span>
+<span id="cb8-2"><a href="vectores-y-operaciones.html#cb8-2" aria-hidden="true"></a><span class="kw">class</span>(<span class="dv">5</span>),  </span>
+<span id="cb8-3"><a href="vectores-y-operaciones.html#cb8-3" aria-hidden="true"></a><span class="kw">typeof</span>(<span class="fl">5.54</span>),</span>
+<span id="cb8-4"><a href="vectores-y-operaciones.html#cb8-4" aria-hidden="true"></a><span class="kw">typeof</span>(5L),</span>
+<span id="cb8-5"><a href="vectores-y-operaciones.html#cb8-5" aria-hidden="true"></a><span class="kw">mode</span>(<span class="st">&quot;word&quot;</span>), </span>
+<span id="cb8-6"><a href="vectores-y-operaciones.html#cb8-6" aria-hidden="true"></a><span class="kw">class</span>(<span class="kw">charToRaw</span>(<span class="st">&quot;5&quot;</span>)), </span>
+<span id="cb8-7"><a href="vectores-y-operaciones.html#cb8-7" aria-hidden="true"></a><span class="kw">typeof</span>(<span class="dv">5</span> <span class="op">+</span><span class="st"> </span>7i) ,<span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>logical
+numeric
+double
+integer
+character
+raw
+complex</code></pre>
+<p>En la siguiente tabla se muestra las posibles salidas con todas las variables de prueba.</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+typeof()
+</th>
+<th style="text-align:center;">
+class()
+</th>
+<th style="text-align:center;">
+mode()
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+TRUE
+</td>
+<td style="text-align:center;">
+logical
+</td>
+<td style="text-align:center;">
+logical
+</td>
+<td style="text-align:center;">
+logical
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+double
+</td>
+<td style="text-align:center;">
+numeric
+</td>
+<td style="text-align:center;">
+numeric
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5.4
+</td>
+<td style="text-align:center;">
+double
+</td>
+<td style="text-align:center;">
+numeric
+</td>
+<td style="text-align:center;">
+numeric
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5L
+</td>
+<td style="text-align:center;">
+integer
+</td>
+<td style="text-align:center;">
+integer
+</td>
+<td style="text-align:center;">
+numeric
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+word
+</td>
+<td style="text-align:center;">
+character
+</td>
+<td style="text-align:center;">
+character
+</td>
+<td style="text-align:center;">
+character
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+charToRaw(“5”)
+</td>
+<td style="text-align:center;">
+raw
+</td>
+<td style="text-align:center;">
+raw
+</td>
+<td style="text-align:center;">
+raw
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5 + 7i
+</td>
+<td style="text-align:center;">
+complex
+</td>
+<td style="text-align:center;">
+complex
+</td>
+<td style="text-align:center;">
+complex
+</td>
+</tr>
+</tbody>
+</table>
+<p>Con lo anterior surge la siguiente pregunta: ¿Hay alguna diferencia entre un vector de tipo <code>integer</code> y un tipo <code>double</code>?</p>
+<p>En general, cuando se están trabajando con datos de punto flotante, se esta considerando una aproximación del verdadero número, tanta aproximación como lo permita la memoria, por lo que pueden existir errores de precisión. De hecho, una manera más adecuada de comparar valores con punto decimal sería utilizando la función <code>dplyr::near()</code> en lugar de <code>==</code>. Después se tratará el tema de las funciones.</p>
+<p>Otro punto interesante es que, dependiendo del tipo de vector, se tiene un distinto representante para los valores faltantes (Missing values); para un entero se tiene <code>NA</code> pero con un vector tipo <code>double</code> se tienen <code>NA</code>, <code>NaN</code>, <code>Inf</code> y <code>–Inf</code>. Un ejemplo de esto se puede obtener al dividir distintos números entre 0.</p>
+<ul>
+<li>Para un profundizar en esto, se puede ver la <a href="https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-lang.html#Vector-objects">documentación</a> oficial.</li>
+<li>Algunos enlaces útiles sobre los vectores numéricos:
+<ul>
+<li><a href="https://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r">What is the difference between mode and class in R?</a>.</li>
+<li><a href="https://stackoverflow.com/questions/23660094/whats-the-difference-between-integer-class-and-numeric-class-in-r">What’s the difference between integer class and numeric class in R</a>.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="otros-tipos-de-datos" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Otros tipos de datos</h3>
+<p>Además de los vectores atómicos, se tienen otro tipo de vector llamado <em>factor</em>. Un factor es un tipo especial de dato en el cual se puede establecer una jerarquía en variables categóricas.</p>
+<p>Supongase que se tiene una variable correspondiente al tamaño de un objeto donde los posibles valores son “Big”, “Little”, “Medium”, “Jumbo”. Intuitivamente se sabe que esta variable es categórica ordinal por lo que se desearía dejar establecido esta jerarquía en el vector que contenga esta información.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="vectores-y-operaciones.html#cb10-1" aria-hidden="true"></a><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Little&quot;</span>, <span class="st">&quot;Medium&quot;</span>,<span class="st">&quot;Jumbo&quot;</span>))</span></code></pre></div>
+<pre><code>[1] Big    Little Medium Jumbo 
+Levels: Big Jumbo Little Medium</code></pre>
+<p>Como se puede observar, se tiene un atributo (más adelante se verán los atributos de un vector) indicando los niveles del factor. Los niveles se establecieron en orden alfabético pero sin ningún orden realmente. Para establecer los niveles se puede dar este atributo directamente desde la creación o modificarlo después de la creación del factor.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="vectores-y-operaciones.html#cb12-1" aria-hidden="true"></a><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Little&quot;</span>, <span class="st">&quot;Medium&quot;</span>,<span class="st">&quot;Jumbo&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Little&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Jumbo&quot;</span>))</span></code></pre></div>
+<pre><code>[1] Big    Little Medium Jumbo 
+Levels: Little Medium Big Jumbo</code></pre>
+<p>De manera análoga, se puede dar el orden a los niveles.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="vectores-y-operaciones.html#cb14-1" aria-hidden="true"></a><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Little&quot;</span>, <span class="st">&quot;Medium&quot;</span>,<span class="st">&quot;Jumbo&quot;</span>), <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Little&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Big&quot;</span>, <span class="st">&quot;Jumbo&quot;</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>[1] Big    Little Medium Jumbo 
+Levels: Little &lt; Medium &lt; Big &lt; Jumbo</code></pre>
+<ul>
+<li>¿Qué sucede si se agregan más datos pero que pertenecen a los niveles?</li>
+<li>¿Qué sucede cuando no se agrega un nivel?</li>
+<li>¿Qué pasará con los niveles en datos numéricos?</li>
+<li>¿Qué pasará con los niveles en datos numéricos pero dados como caracteres?</li>
+<li>¿Qué obtenemos al usar <code>class()</code> y <code>typeof()</code> con un factor?</li>
+<li>¿Cómo puede ayudar la función <code>rev()</code> en un factor?</li>
+</ul>
+<p>En la siguiente <a href="http://www.cookbook-r.com/Manipulating_data/Changing_the_order_of_levels_of_a_factor/">liga</a> se puede ver un poco más de información sobre este tipo de datos.</p>
+<p>En la sección 15 del libro <a href="https://es.r4ds.hadley.nz">R para ciencia de Datos</a> (traducción al español de R for Data Science de Wickham y Grolemund) se mencionan algunas fuentes para aprender más acerca de los factores, el cual es un tema bastante útil de dominar ya que existe una librería llamada <code>forcats</code> con la que se puede trabajar de manera adecuada estos tipos de datos que son de gran ayuda al momento de hacer algún tipo de análisis descriptivo, graficación y creación de modelos. Aquí se enlistan los artículos correspondientes.</p>
+<ul>
+<li><a href="https://peerj.com/preprints/3163/">Wrangling categorical data in R</a></li>
+<li><a href="https://simplystatistics.org/2015/07/24/stringsasfactors-an-unauthorized-biography/">stringsAsFactors: An unauthorized biography</a></li>
+<li><a href="https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh">stringsAsFactors = &lt;sigh&gt;</a></li>
+</ul>
+<p>Otro tipo de dato con el que se cuenta es aquel que no está definido, es decir, como en Java, un objeto nulo: <code>NULL</code>. En las siguientes líneas de código se muestra como hacer comparaciones con este tipo de dato.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="vectores-y-operaciones.html#cb16-1" aria-hidden="true"></a><span class="kw">is.null</span>(<span class="ot">NULL</span>)</span></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="vectores-y-operaciones.html#cb18-1" aria-hidden="true"></a><span class="dv">0</span> <span class="op">==</span><span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
+<pre><code>logical(0)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="vectores-y-operaciones.html#cb20-1" aria-hidden="true"></a><span class="ot">NA</span> <span class="op">==</span><span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
+<pre><code>logical(0)</code></pre>
+<p>Otro punto muy común al analizar datos es encontrarse con información faltante. Aquí, como en otros lenguajes, los valores perdidos son distintos a un objeto no definido; ya que un valor perdido bien puede indicar un error humano al momento del registro de la información pero con la característica de que se puede inferir un posible valor para ese registro faltante. Un <code>NA</code> es una constante que puede ser asignada a cualquier tipo de vector a excepción de un vector de tipo <code>raw</code>.</p>
+<p>Al tener esta ausencia de datos se desea identificarlos de manera rápida y esto puede ser complicado en una base de datos con cientos o miles de registros; al igual que si se tiene el conocimiento de la existencia de estos, se desea que no afecten en operaciones o aplicaciones de funciones en el resto de los datos. Véase lo siguiente</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="vectores-y-operaciones.html#cb22-1" aria-hidden="true"></a><span class="kw">sum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div>
+<pre><code>[1] NA</code></pre>
+<p>Es decir, que cuando se tiene algún valor perdido, la operación suma (más adelante se verá a detalle las operaciones en este lenguaje) queda determinada con <code>NA</code>. ¿Sucede lo mismo con otro tipo de operaciones?</p>
+<p>Como se había mencionado, se desea que si se tiene conocimiento de la existencia de al menos un <code>NA</code>, este no afecte a las operaciones</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="vectores-y-operaciones.html#cb24-1" aria-hidden="true"></a><span class="kw">sum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<p>Técnicamente, existen cinco missing values para cada uno de los vectores atómicos (a excepción de <code>raw</code> claro): <code>NA</code>, <code>NA_interger_</code>, <code>NA_real_</code>, <code>NA_character_</code> y <code>NA_complex_</code>, pero eso solo es de manera interna.</p>
+<hr />
+</div>
+<div id="asignación-de-nombres-y-atributos" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Asignación de nombres y atributos</h3>
+<p>Como en cualquier lenguaje de programación, existen identificadores para guardar o asignar el valor de los tipos de datos primitivos o resultados y así utilizarlos posteriormente. En el caso de R, la asociación de un nombre con un cierto valor se puede realizar mediante la función <code>&lt;-()</code> y gracias a que R es un lenguaje interpretado, no es necesario declarar el tipo de dato antes de darle una instanciación. Por ejemplo, véase que en las siguientes líneas de código se asignan a algunos vectores atómicos un identificador.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="vectores-y-operaciones.html#cb26-1" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="dv">5</span><span class="op">+</span>7i</span>
+<span id="cb26-2"><a href="vectores-y-operaciones.html#cb26-2" aria-hidden="true"></a>b &lt;-<span class="st"> </span>5L</span>
+<span id="cb26-3"><a href="vectores-y-operaciones.html#cb26-3" aria-hidden="true"></a>c &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb26-4"><a href="vectores-y-operaciones.html#cb26-4" aria-hidden="true"></a>d &lt;-<span class="st"> </span><span class="ot">TRUE</span></span>
+<span id="cb26-5"><a href="vectores-y-operaciones.html#cb26-5" aria-hidden="true"></a>e &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
+<p>Y en este caso, basta con llamar a la variable por su nombre para poder usarla.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="vectores-y-operaciones.html#cb27-1" aria-hidden="true"></a>a</span></code></pre></div>
+<pre><code>[1] 5+7i</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="vectores-y-operaciones.html#cb29-1" aria-hidden="true"></a>c</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="vectores-y-operaciones.html#cb31-1" aria-hidden="true"></a>e</span></code></pre></div>
+<pre><code>[1] NA</code></pre>
+<p>También se puede asignar un valor a una variable con el operador <code>=</code> pero esto no es nada recomendable ya que, por buenas prácticas, en este lenguaje, se acostumbra a usar el igual para dar valores a parámetros. ¿Qué pasará cuando se ejecute <code>x &lt;- NULL</code>? ¿Qué pasará si antes <code>x</code> tenía otro tipo de dato?</p>
+<p>Aquí se dejan otros ejemplos útiles, más adelante se verá la función <code>assign()</code>.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="vectores-y-operaciones.html#cb33-1" aria-hidden="true"></a>roma &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>)</span>
+<span id="cb33-2"><a href="vectores-y-operaciones.html#cb33-2" aria-hidden="true"></a></span>
+<span id="cb33-3"><a href="vectores-y-operaciones.html#cb33-3" aria-hidden="true"></a><span class="kw">assign</span>(<span class="st">&quot;mora&quot;</span>, <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>))</span>
+<span id="cb33-4"><a href="vectores-y-operaciones.html#cb33-4" aria-hidden="true"></a></span>
+<span id="cb33-5"><a href="vectores-y-operaciones.html#cb33-5" aria-hidden="true"></a><span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>) -&gt;<span class="st"> </span>z</span>
+<span id="cb33-6"><a href="vectores-y-operaciones.html#cb33-6" aria-hidden="true"></a></span>
+<span id="cb33-7"><a href="vectores-y-operaciones.html#cb33-7" aria-hidden="true"></a>mora &lt;-<span class="st"> </span><span class="kw">c</span>(roma, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, roma)</span></code></pre></div>
+<p>N.B. Los vectores en R no solo pueden ser numéricos también los hay aquellos con cadenas de texto.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="vectores-y-operaciones.html#cb34-1" aria-hidden="true"></a>mora[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>[1] 0.3</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="vectores-y-operaciones.html#cb36-1" aria-hidden="true"></a>mora[<span class="op">-</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>[1] 0.1 0.2 0.0 0.0 0.0 0.1 0.2 0.3</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="vectores-y-operaciones.html#cb38-1" aria-hidden="true"></a>mora[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">7</span>)]</span></code></pre></div>
+<pre><code>[1] 0.1 0.0 0.1</code></pre>
+<p>Algo que hay que entender sobre R es que este lenguaje esta basado en el paradigma de programación orientada a objetos, aunque también tiene ciertas características de un lenguaje funcional. Existen muchos sistemas para hacer todo lo que se tiene conocimiento de POO en R, como lo es el encapsulamiento, herencia y polimorfismo. Aquí se evitará en la mayor medida posible el tema pero se harán menciones en la marcha de esto.</p>
+<p>Para el caso de los vectores, se tienen ciertos atributos fijos desde su creación: la longitud y el tipo de dato. Más adelante, en las estructuras de datos, se detallará sobre este tema; por el momento, véase lo siguiente</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="vectores-y-operaciones.html#cb40-1" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb40-2"><a href="vectores-y-operaciones.html#cb40-2" aria-hidden="true"></a><span class="kw">paste0</span>(<span class="st">&quot;longitud: &quot;</span>, <span class="kw">length</span>(a), <span class="st">&quot;.Tipo de dato: &quot;</span>, <span class="kw">typeof</span>(a))</span></code></pre></div>
+<pre><code>[1] &quot;longitud: 5.Tipo de dato: double&quot;</code></pre>
+<p>Aclaremos ciertas cosas:</p>
+<ul>
+<li>La manera más rápida de crear un vector es con el constructor <code>c()</code> y agregando datos del mismo tipo dentro de él separados con una coma.
+<ul>
+<li>Si <code>v_1</code> es un vector de un cierto tipo y se desea hacer otro vector <code>v_2</code> del mismo tipo que contenga el contenido de <code>v_1</code> más otros elementos ¿Se puede hacer <code>v_2 &lt;- c(v_1,...)</code>?</li>
+</ul></li>
+<li>Otra forma de crear cualquier otro vector es con la función <code>vector("type", length)</code>.
+<ul>
+<li>En cierto sentido, usar la última función es una mejor manera de trabajar ya que así se reserva un espacio de memoria para un vector fijo, mientras que con <code>c()</code> este puede ir variando.</li>
+<li>Para crear un vector vacío de una cierta longitud, la función <code>vector()</code> es la ideal.</li>
+</ul></li>
+<li>Se pueden crear vectores atómicos de cierta longitud con sus valores por defecto al usar los constructores <code>double(length)</code>, <code>interger(length)</code>, <code>character(length)</code>, etc.</li>
+<li>Arriba se creo una secuencia de números de manera rudimentaria, ya que en R se pueden crear secuencias de números con la función <code>:</code>, por ejemplo: 1:5.</li>
+<li>Con <code>seq_along()</code> se puede crear también una secuencia de números; esta la podemos usar en lugar de <code>1:length(v)</code> con <code>v</code> un vector.
+<ul>
+<li>¿Qué pasa en las siguientes instrucciones? <code>y &lt;- vector("double", 0)</code>; <code>seq_along(y); 1:length(y)</code>.</li>
+</ul></li>
+<li>Finalmente, se pueden hacer secuencias cada <span class="math inline">\(n\)</span> números con la función <code>seq()</code>: <code>seq(1,10,by=2)</code>.</li>
+</ul>
+<p>Ya que R es un lenguaje de código libre y orientado a objetos, podemos ver el contenido de sus funciones. Para las funciones que están escritas en R podemos ejecutar directamente el nombre de la función omitiendo los paréntesis.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="vectores-y-operaciones.html#cb42-1" aria-hidden="true"></a>integer</span></code></pre></div>
+<pre><code>function (length = 0L) 
+.Internal(vector(&quot;integer&quot;, length))
+&lt;bytecode: 0x7fbf4329ace0&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+<p>¿Cómo están hechos los constructores para double, character, boolean y raw?
+¿Cómo están hechos los constructores para un complejo y un factor?</p>
+<p>Muchas veces es útil comparar distintos tipos de variables o verificar si estas son de algún tipo en específico. Para ello existen ciertas funciones como <code>is.character()</code>, <code>is.na()</code>, <code>is.double()</code>, etc. En general se tiene este tipo de funciones para cualquier objeto, incluso se tiene <code>is.function()</code>. En el caso de los posibles valores perdidos de un double, hay que evita usar <code>==</code> para verificar los posibles valores como <code>Inf</code> y <code>–Inf</code>. En su lugar usar las funciones <code>is.finite()</code>, <code>is.infinite()</code>, e <code>is.nan()</code>.</p>
+<hr />
+</div>
+<div id="operaciones-básicas-en-r" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Operaciones básicas en R</h3>
+<p>Es importante que existan operaciones en los lenguajes de programación, y en este caso se tienen las más comunes y algunas especiales.</p>
+<ul>
+<li>Adición: <code>5 + 7</code>; <code>sum(5,7)</code>.</li>
+<li>Sustracción: <code>5 - 7</code>.</li>
+<li>Multiplicación: <code>5*7</code>; <code>prod(5,7)</code>.</li>
+<li>División: <code>5 / 7</code>.</li>
+<li>Modulo: <code>5 %% 7</code></li>
+<li>División entera (piso): <code>5 %/% 7</code>.</li>
+<li>Potencia: <code>5 ^ 7</code>; <code>5 ** 7</code>.</li>
+<li>Multiplicación Matricial: <code>%*%</code></li>
+</ul>
+<p>Al igual que los clásicos operadores booleanos o relacionales</p>
+<ul>
+<li><code>TRUE &amp; TRUE</code>.</li>
+<li><code>TRUE &amp; FALSE</code>.</li>
+<li><code>TRUE | TRUE</code>.</li>
+<li><code>TRUE | FALSE</code>.</li>
+<li><code>!TRUE</code>.</li>
+<li><code>TRUE == FALSE</code>.</li>
+<li><code>TRUE != FALSE</code>.</li>
+</ul>
+<p>En resumen, tenemos la siguiente tabla</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Aritméticos</th>
+<th align="center">Comparación</th>
+<th align="center">Lógicos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Suma (+)</td>
+<td align="center">Menor que (&lt;)</td>
+<td align="center">NOT (!)</td>
+</tr>
+<tr class="even">
+<td align="center">Resta (-)</td>
+<td align="center">Mayor que (&gt;)</td>
+<td align="center">AND (&amp;)</td>
+</tr>
+<tr class="odd">
+<td align="center">Multiplicación (*)</td>
+<td align="center">Menor o igual que (&lt;=)</td>
+<td align="center">OR (|)</td>
+</tr>
+<tr class="even">
+<td align="center">División (/)</td>
+<td align="center">Mayor o igual que (&gt;=)</td>
+<td align="center">Cierto (TRUE)</td>
+</tr>
+<tr class="odd">
+<td align="center">Potencia (^)</td>
+<td align="center">Igual (==)</td>
+<td align="center">Falso (FALSE)</td>
+</tr>
+<tr class="even">
+<td align="center">Modulo (%%)</td>
+<td align="center">Diferente (!=)</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">División entera (%/%)</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Ahora, lo poderoso de R es poder trabajar de manera vectorial, por lo que las operaciones actúan también de manera vectorial. Los siguientes ejemplos muestran el comportamiento asociado a un lenguaje <em>vectorial</em> que mencionamos:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="vectores-y-operaciones.html#cb44-1" aria-hidden="true"></a>v &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>roma<span class="op">+</span>mora<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb44-2"><a href="vectores-y-operaciones.html#cb44-2" aria-hidden="true"></a>v</span></code></pre></div>
+<pre><code>[1] 1.3 1.6 1.9 1.2 1.4 1.6 1.3 1.6 1.9</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="vectores-y-operaciones.html#cb46-1" aria-hidden="true"></a><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">6</span></span></code></pre></div>
+<pre><code>[1]  3  5  7  9 11</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="vectores-y-operaciones.html#cb48-1" aria-hidden="true"></a><span class="dv">1</span><span class="op">:</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">6</span></span></code></pre></div>
+<pre><code>[1]  2  6 12 20 30</code></pre>
+<ul>
+<li>¿Qué pasará con las siguientes operaciones?
+<ul>
+<li><code>1:5 ^ 1:5</code></li>
+<li><code>(1:6) ^ c(2,3)</code></li>
+<li><code>s &lt;- seq(1,10, by = 2); s + 7</code></li>
+<li><code>sqrt(s)</code></li>
+<li><code>1:10 + 1:5</code></li>
+<li><code>1:10 * 1:5</code></li>
+<li><code>1:10 * 10</code></li>
+</ul></li>
+</ul>
+<p>Lo que sucedió arriba se conoce como <strong>reciclaje</strong>, lo cual tiene el efecto de repetir de manera ordenada los vectores más pequeños para que ambos vectores que se están operando tengan la misma longitud, esto resulta muy útil cuando se quiere repetir ciertos parámetros en una operación cada <span class="math inline">\(n\)</span> cantidad de pasos. Por ejemplo, si se desea obtener el cuadrado de todos los pares de números del <span class="math inline">\(1\)</span> al <span class="math inline">\(100\)</span>, no es necesario hacer algún proceso usando condicionales y algún bucle, sino sólo operar de manera vectorial y usar reciclaje.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="vectores-y-operaciones.html#cb50-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">100</span>)<span class="op">^</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>  [1]     1     4     3    16     5    36     7    64     9   100    11   144
+ [13]    13   196    15   256    17   324    19   400    21   484    23   576
+ [25]    25   676    27   784    29   900    31  1024    33  1156    35  1296
+ [37]    37  1444    39  1600    41  1764    43  1936    45  2116    47  2304
+ [49]    49  2500    51  2704    53  2916    55  3136    57  3364    59  3600
+ [61]    61  3844    63  4096    65  4356    67  4624    69  4900    71  5184
+ [73]    73  5476    75  5776    77  6084    79  6400    81  6724    83  7056
+ [85]    85  7396    87  7744    89  8100    91  8464    93  8836    95  9216
+ [97]    97  9604    99 10000</code></pre>
+<p>Hay que tener cuidado en algunos casos, por ejemplo <code>1:4^c(2,4)</code>.</p>
+<hr />
+<div id="ejercicios" class="section level4 unnumbered">
+<h4>Ejercicios</h4>
+<ol style="list-style-type: decimal">
+<li><p><a id="1"></a>El siguiente vector contiene una muestra referente al genero en un grupo de personas: <code>c('H','M','M','H','H','M','H','M','H','H','M','M','M','M','M','M','M','M','H','H','H','M','H','M','M','M',</code>
+<code>'M','H','H','H','H','M','M','M','H','M','H','H','M','H','M','H','M','H','M','M','H','H','M','H')</code>. Mediante la función <code>table()</code> determina la frecuencia de cada categoría usando un factor.</p></li>
+<li><p>Convierte el siguiente vector de caracteres en un vector numérico y obtén la suma de todos sus elementos. <code>c('7', '50', '7', '18', '42', '37', '20', '11', '33', '38', '28', '3', '16', '40', '3', '40', '36', '37', '1',</code>
+<code>'6', '8', '23', '25', '48', '5', '22', '21', '21', '1', '5', '8', '48', '34', '16', '4')</code>. Guárdalo con el nombre <code>v</code>.</p></li>
+<li><p>La función <code>table()</code> también funciona con elementos numéricos, así que crea una tabla de frecuencias de <code>v</code>.</p></li>
+<li><p>Ordena el vector <code>v</code> de forma descendente.</p></li>
+<li><p>Se desea categorizar a <code>v</code> en 3 grupos (los menores a 4, los mayores o igual a 4 pero menores a 31 y los restantes), por lo que hay que hacer lo siguiente</p></li>
+</ol>
+<ol style="list-style-type: lower-roman">
+<li>Crea distintos vectores que contengan sólo los elementos que caen dentro de cada categoría.</li>
+<li>Agregar nombres a los vectores de acuerdo al grupo que pertenecen. Pueden usar la función <code>rep()</code>. Los nombres serán el número de grupo (Uno, Dos y Tres).</li>
+<li>Une los anteriores vectores en un nuevo vector (puede ser un factor o no).</li>
+<li><a id="5.4"></a>Obtén una tabla de frecuencias para mostrar la cantidad de elementos por cada categoría.</li>
+</ol>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Obtén los nombres del vector que se obtuvo al final del punto <a href="vectores-y-operaciones.html#5.4">5</a> y guárdalo como una nueva variable. Crea un vector numérico con los datos 1, 2, 3 y con nombres “Uno”, “Dos” y “Tres”. Utiliza character subsetting para obtener un vector de 1, 2 y 3 con el vector de nombres que se menciono al inicio de este ejercicio.</p></li>
+<li><p>Obtén la raíz cuadrada de los primeros 100 números naturales.</p></li>
+<li><p>Crea un vector numérico y eleva cada elemento a la potencia determinada por la longitud de ese vector.</p></li>
+<li><p>Crea un vector numérico y eleva cada uno de sus elementos al cubo sin usar el operador <code>^</code> ni <code>**</code>.</p></li>
+<li><p>Con los datos del inciso <a href="vectores-y-operaciones.html#1">1</a> y con la función <code>seq_along()</code>, crea un vector con los datos antes mencionados pero que sus nombres sean una indexación de estos.</p></li>
+<li><p><a id="11"></a>Con los siguientes datos <code>c('14', '1', '12', '27', '5', '38', '9', '29', '21', '19', '34', '18', '22', '1','26',</code>
+<code>'18','36', '28', '24','39','36', '21', '36', '28', '8', '13')</code>, crea un vector booleano determinando que elementos son menores a 26 y con ese vector booleano concluye cuantos datos son menores a 26 y cuantos no lo son.</p></li>
+<li><p>Crea una lista con cinco elementos donde, al menos dos, deben ser listas que contengan listas a su vez.</p></li>
+<li><p><a id="13"></a>Se desea crear una lista de 10 elementos con las siguientes secuencias de números: <code>c(1, 2, 3, ..., 10),</code>
+<code>c(11, 12, ..., 20), ..., c(91, 92, ..., 100)</code>. Además cada elemento debe tener nombre.</p></li>
+<li><p>En la lista anterior, cambia el vector <code>c(40, ..., 50)</code> por <code>c(50, 49, ..., 40)</code> sin escribir explícitamente ese vector.</p></li>
+<li><p>Agrega tu nombre como un atributo a cualquier vector anterior y a la lista del punto <a href="vectores-y-operaciones.html#13">13</a> y convierte la lista a un vector.</p></li>
+</ol>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="buscando-ayuda.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estructuras-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

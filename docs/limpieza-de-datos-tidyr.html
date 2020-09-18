@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Limpieza de datos: Tidyr | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Limpieza de datos: Tidyr | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Limpieza de datos: Tidyr | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tidyverse.html"/>
+<link rel="next" href="manipulación-de-datos-dplyr.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="limpieza-de-datos-tidyr" class="section level1" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Limpieza de datos: Tidyr</h1>
+<p>En un análisis de datos, gran parte del tiempo que se utiliza es dando un grado de limpieza a estos, para así ya solo obtener información resumen, aplicar modelos o manipularlos para descubrir algo en ellos. De acuerdo a las fuentes que se consulten, esto puede tomar hasta un 80% del tiempo que se dispone, por lo que es evidente la necesidad de tener funciones que ayuden con dicha tarea.</p>
+<p>La limpieza de datos varía dependiendo de los fines, pero para Hadley Wickham (Chief Scientist en RStudio y alguien importante en desarrollo y mantenimiento del tidyverse) tener una limpieza en los datos requiere de ciertas características. La información completa se puede encontrar en artículo de Hadley, <a href="http://vita.had.co.nz/papers/tidy-data.pdf">Tidy Data</a>, pero básicamente se tienen 3 puntos importantes para considerar que los datos son limpios.</p>
+<ul>
+<li>Cada variable forma una columna.</li>
+<li>Cada observación forma un renglón.</li>
+<li>Cada valor debe tener su propia celda.</li>
+</ul>
+<p>Las siguientes gráficas representan dichos puntos sobre un subconjunto de <code>Iris</code>.</p>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+<div class="row">
+<div class="column">
+<img src="Images/EachColumn.png" width="100%" />
+</div>
+<div class="column">
+<img src="Images/EachRow.png" width="100%" />
+</div>
+<div class="column">
+<img src="Images/EachObservation.png" width="100%" />
+</div>
+</div>
+<p><br></p>
+<p>Con lo anterior establecido y suponiendo que se esta analizando una pequeña base de datos correspondientes a las calificaciones de ciertos alumnos ¿Cuál de las siguientes estructuras es correcta?</p>
+<ul>
+<li>Colocando las observaciones respecto a los nombres</li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+Matemáticas
+</th>
+<th style="text-align:center;">
+Química
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Juan
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Carlos
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Luis
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Allison
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Leticia
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Colocando las observaciones respecto a la materia</li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+Juan
+</th>
+<th style="text-align:center;">
+Carlos
+</th>
+<th style="text-align:center;">
+Luis
+</th>
+<th style="text-align:center;">
+Allison
+</th>
+<th style="text-align:center;">
+Leticia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Matemáticas
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Química
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+</tbody>
+</table>
+<p>De hecho, ninguna de las dos opciones anteriores es correcta. De acuerdo a los principios anteriores para tener datos limpios, cada variable debe formar una columna, lo cual no sucede en este caso, ya que las variables aquí son estudiante o el nombre, la materia y las calificaciones. Es decir, que las configuración correcta es la siguiente</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Nombre
+</th>
+<th style="text-align:center;">
+Asignatura
+</th>
+<th style="text-align:center;">
+Calificaciones
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Juan
+</td>
+<td style="text-align:center;">
+Matemáticas
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Carlos
+</td>
+<td style="text-align:center;">
+Matemáticas
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Luis
+</td>
+<td style="text-align:center;">
+Matemáticas
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Allison
+</td>
+<td style="text-align:center;">
+Matemáticas
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Leticia
+</td>
+<td style="text-align:center;">
+Matemáticas
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Juan
+</td>
+<td style="text-align:center;">
+Química
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Carlos
+</td>
+<td style="text-align:center;">
+Química
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Luis
+</td>
+<td style="text-align:center;">
+Química
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Allison
+</td>
+<td style="text-align:center;">
+Química
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Leticia
+</td>
+<td style="text-align:center;">
+Química
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+</tbody>
+</table>
+<p>Esto es uno de los tantos ejemplos que se pueden dar cuando se trabajando con datos. En el momento en que se identifican estos problemas, se deberá usar toda la creatividad para resolverlos y obtener una estructura con la que ya se pueda trabajar. El paquete <code>tidyr</code> ayudará con la mayoría de estos.</p>
+<p>Como recomendación, se aconseja tener a la mano siempre la respectiva Cheat Sheet que pueda ser de utilidad, en este caso de la librería <code>tidyr</code> se pueden consultar <a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf">Data import</a> y <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling</a>; las respectivas traducciones al español se pueden encontrar en la página oficial de <a href="https://rstudio.com/resources/cheatsheets/">Cheat Sheets de RStudio</a>.</p>
+<p>Como bien dice Hadley en <a href="http://vita.had.co.nz/papers/tidy-data.pdf">Tidy Data</a>, hay cinco problemas comunes en los <em>messy datasets</em>:</p>
+<ul>
+<li>Los encabezados son valores y no nombres de dichas variables.</li>
+<li>Múltiples variables están contenidas en una sola.</li>
+<li>Existen variables que están almacenadas tanto en renglones como columnas.</li>
+<li>Múltiples tipos de observaciones están en la misma tabla.</li>
+<li>Una sola observación esta en múltiples tablas.</li>
+</ul>
+<p>En la sección anterior se presentaron los datos para la población por sexo y entidad federativa según grupos de edad quinquenales de acuerdo a los <a href="http://www.conapo.gob.mx/es/CONAPO/Tabulados_basicos">tabulados básicos</a> de la CONAPO</p>
+<style type="text/css">
+.scroll-300 {
+  max-height: 300px;
+}
+</style>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="limpieza-de-datos-tidyr.html#cb286-1" aria-hidden="true"></a><span class="kw">colnames</span>(Population_FEntity)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)</span>
+<span id="cb286-2"><a href="limpieza-de-datos-tidyr.html#cb286-2" aria-hidden="true"></a>Population_FEntity</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 33 x 16
+   `Entidad Federa… `Población Tota… `0 a 4` `5 a 9` `10 a 14` `15 a 19`
+   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 República Mexic…        103498524    9.31   10.4      11.2      10.1 
+ 2 Aguascalientes            1066233   10.3    11.0      11.1      10.9 
+ 3 Baja California           2856361    9.41   10.3      11.1      10.7 
+ 4 Baja California…           512030    9.00    8.44     10.1      10.8 
+ 5 Campeche                   755703    8.34   10.4      12.7       9.52
+ 6 Coahuila                  2501413    9.78   10.1      10.6       9.96
+ 7 Colima                     568642    8.09    8.43     10.0      11.0 
+ 8 Chiapas                   4293414   11.4    11.8      13.2      11.0 
+ 9 Chihuahua                 3241513    7.83   10.2      11.0       9.49
+10 Distrito Federal          8737172    7.82    8.82      8.09      8.19
+# … with 23 more rows, and 10 more variables: `20 a 24` &lt;dbl&gt;, `25 a 29` &lt;dbl&gt;,
+#   `30 a 34` &lt;dbl&gt;, `35 a 39` &lt;dbl&gt;, `40 a 44` &lt;dbl&gt;, `45 a 49` &lt;dbl&gt;, `50 a
+#   54` &lt;dbl&gt;, `55 a 59` &lt;dbl&gt;, `60 y más` &lt;dbl&gt;, NE &lt;dbl&gt;</code></pre>
+<p>En las primeras dos columnas se cambiaron los nombres con las herramientas que hasta este momento se tienen. Véase que las demás columnas representan rangos de edad, por lo que se tiene el primer problema en los <em>messy datasets</em>. De hecho, en estos datos las variables son la Entidad Federativa, la Población Total, el Rango de Edad y el Porcentaje de la población total en ese rango de edad.</p>
+<p>En estos casos se dice los datos son anchos, y lo que se desea es que estos estén en un formato largo (ancho por la cantidad de columnas y largo por la cantidad de observaciones). Para tales casos se utiliza la función <code>tidyr::gather()</code> la cual recibe como parámetros múltiples columnas y colapsa la información de estas en dos variables.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="limpieza-de-datos-tidyr.html#cb288-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> Population_FEntity, <span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)))</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 462 x 4
+   `Entidad Federativa` `Población Total` Rango_edad Porcentaje
+   &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+ 1 República Mexicana           103498524 0 a 4            9.31
+ 2 Aguascalientes                 1066233 0 a 4           10.3 
+ 3 Baja California                2856361 0 a 4            9.41
+ 4 Baja California Sur             512030 0 a 4            9.00
+ 5 Campeche                        755703 0 a 4            8.34
+ 6 Coahuila                       2501413 0 a 4            9.78
+ 7 Colima                          568642 0 a 4            8.09
+ 8 Chiapas                        4293414 0 a 4           11.4 
+ 9 Chihuahua                      3241513 0 a 4            7.83
+10 Distrito Federal               8737172 0 a 4            7.82
+# … with 452 more rows</code></pre>
+<p>Con lo anterior se logro tener una mejor estructura en los datos, con lo cual fácilmente se podrían crear gráficas, modelos y estadísticas de resumen por Entidad Federativa o por rango de edad. Después de tener la información con una estructura adecuada, la imaginación es el único limitante. En el siguiente capítulo se verá como manipular internamente los datos para que se tenga una mejor semántica en ellos.</p>
+<p>Si se desea por algún motivo, lo cual puede suceder, tener los datos en formato ancho, se puede usar la función complementaria la cual es <code>tidyr::spread()</code></p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="limpieza-de-datos-tidyr.html#cb290-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>)</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 33 x 16
+   `Entidad Federa… `Población Tota… `0 a 4` `10 a 14` `15 a 19` `20 a 24`
+   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Aguascalientes            1066233   10.3      11.1      10.9       8.27
+ 2 Baja California           2856361    9.41     11.1      10.7       8.43
+ 3 Baja California…           512030    9.00     10.1      10.8       8.75
+ 4 Campeche                   755703    8.34     12.7       9.52      9.23
+ 5 Chiapas                   4293414   11.4      13.2      11.0       9.16
+ 6 Chihuahua                 3241513    7.83     11.0       9.49      7.71
+ 7 Coahuila                  2501413    9.78     10.6       9.96      8.31
+ 8 Colima                     568642    8.09     10.0      11.0       9.29
+ 9 Distrito Federal          8737172    7.82      8.09      8.19      7.86
+10 Durango                   1509025    9.97     11.8      10.3       8.11
+# … with 23 more rows, and 10 more variables: `25 a 29` &lt;dbl&gt;, `30 a 34` &lt;dbl&gt;,
+#   `35 a 39` &lt;dbl&gt;, `40 a 44` &lt;dbl&gt;, `45 a 49` &lt;dbl&gt;, `5 a 9` &lt;dbl&gt;, `50 a
+#   54` &lt;dbl&gt;, `55 a 59` &lt;dbl&gt;, `60 y más` &lt;dbl&gt;, NE &lt;dbl&gt;</code></pre>
+<p>Finalmente:</p>
+<ul>
+<li>Un equivalente de la función <code>tidyr:: gather()</code> la proporciona el paquete <code>reshape</code> con su función <code>melt()</code>.</li>
+<li>Para la función <code>tidyr:: spread()</code> se tiene la función <code>reshape::dcast()</code>.</li>
+<li>Depende de la versión que se utilice, las funciones <code>gather()</code> y <code>spread()</code> podrían haber sido remplazadas por las funciones <code>tidyr::pivot_longer()</code> y <code>pivot_wider()</code> respectivamente.</li>
+<li>En otros lenguajes de programación, a estas técnicas se les conoce como pivoteo.</li>
+</ul>
+<p>Para ver un ejemplo del segundo punto, supóngase que los datos vistos al inicio donde se relacionaban las calificaciones de ciertos alumnos tienen originalmente la siguiente estructura</p>
+<pre><code># A tibble: 10 x 2
+   Nombre  `A/C`
+   &lt;chr&gt;   &lt;chr&gt;
+ 1 Juan    M8   
+ 2 Carlos  M9   
+ 3 Luis    M7   
+ 4 Allison M9   
+ 5 Leticia M8   
+ 6 Juan    Q9   
+ 7 Carlos  Q7   
+ 8 Luis    Q8   
+ 9 Allison Q9   
+10 Leticia Q9   </code></pre>
+<p>En tal caso, la segunda variable contiene la información tanto de la materia como de la calificación. Aquí la función <code>tidyr::separate()</code> es de gran ayuda</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="limpieza-de-datos-tidyr.html#cb293-1" aria-hidden="true"></a>(Student_grades &lt;-<span class="st"> </span>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(<span class="dt">col =</span> <span class="st">&quot;A/C&quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Asignatura&quot;</span>, <span class="st">&quot;Calificaciones&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code># A tibble: 10 x 3
+   Nombre  Asignatura Calificaciones
+   &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;         
+ 1 Juan    M          8             
+ 2 Carlos  M          9             
+ 3 Luis    M          7             
+ 4 Allison M          9             
+ 5 Leticia M          8             
+ 6 Juan    Q          9             
+ 7 Carlos  Q          7             
+ 8 Luis    Q          8             
+ 9 Allison Q          9             
+10 Leticia Q          9             </code></pre>
+<ul>
+<li>En el argumento <code>sep</code> se da la posición dentro del texto para separar los datos.</li>
+</ul>
+<p>En el caso en que se desee tener el caso inverso, se utiliza la función <code>tidyr::unite()</code></p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="limpieza-de-datos-tidyr.html#cb295-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;A/C&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Asignatura&quot;</span>, <span class="st">&quot;Calificaciones&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 10 x 2
+   Nombre  `A/C`
+   &lt;chr&gt;   &lt;chr&gt;
+ 1 Juan    M8   
+ 2 Carlos  M9   
+ 3 Luis    M7   
+ 4 Allison M9   
+ 5 Leticia M8   
+ 6 Juan    Q9   
+ 7 Carlos  Q7   
+ 8 Luis    Q8   
+ 9 Allison Q9   
+10 Leticia Q9   </code></pre>
+<p>Otro ejemplo lo proporciona la Cheat Sheet <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data Wrangling</a>.</p>
+<pre class="scroll-300"><code># A tibble: 10,010 x 11
+   name  date   hour   lat  long status category  wind pressure ts_diameter
+   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;ord&gt;    &lt;int&gt;    &lt;int&gt;       &lt;dbl&gt;
+ 1 Amy   1975…     0  27.5 -79   tropi… -1          25     1013          NA
+ 2 Amy   1975…     6  28.5 -79   tropi… -1          25     1013          NA
+ 3 Amy   1975…    12  29.5 -79   tropi… -1          25     1013          NA
+ 4 Amy   1975…    18  30.5 -79   tropi… -1          25     1013          NA
+ 5 Amy   1975…     0  31.5 -78.8 tropi… -1          25     1012          NA
+ 6 Amy   1975…     6  32.4 -78.7 tropi… -1          25     1012          NA
+ 7 Amy   1975…    12  33.3 -78   tropi… -1          25     1011          NA
+ 8 Amy   1975…    18  34   -77   tropi… -1          30     1006          NA
+ 9 Amy   1975…     0  34.4 -75.8 tropi… 0           35     1004          NA
+10 Amy   1975…     6  34   -74.8 tropi… 0           40     1002          NA
+# … with 10,000 more rows, and 1 more variable: hu_diameter &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="limpieza-de-datos-tidyr.html#cb298-1" aria-hidden="true"></a><span class="kw">separate</span>(storms, <span class="dt">col =</span> date ,<span class="dt">into =</span>  <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="dt">sep =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 10,010 x 13
+   name  year  month day    hour   lat  long status category  wind pressure
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;ord&gt;    &lt;int&gt;    &lt;int&gt;
+ 1 Amy   1975  6     27        0  27.5 -79   tropi… -1          25     1013
+ 2 Amy   1975  6     27        6  28.5 -79   tropi… -1          25     1013
+ 3 Amy   1975  6     27       12  29.5 -79   tropi… -1          25     1013
+ 4 Amy   1975  6     27       18  30.5 -79   tropi… -1          25     1013
+ 5 Amy   1975  6     28        0  31.5 -78.8 tropi… -1          25     1012
+ 6 Amy   1975  6     28        6  32.4 -78.7 tropi… -1          25     1012
+ 7 Amy   1975  6     28       12  33.3 -78   tropi… -1          25     1011
+ 8 Amy   1975  6     28       18  34   -77   tropi… -1          30     1006
+ 9 Amy   1975  6     29        0  34.4 -75.8 tropi… 0           35     1004
+10 Amy   1975  6     29        6  34   -74.8 tropi… 0           40     1002
+# … with 10,000 more rows, and 2 more variables: ts_diameter &lt;dbl&gt;,
+#   hu_diameter &lt;dbl&gt;</code></pre>
+<ul>
+<li>Se tiene un equivalente para separar en renglones: <code>tidyr::separate_rows()</code></li>
+<li>Un equivalente la función <code>separate()</code> esta dada por <code>reshape::colsplit()</code>.</li>
+</ul>
+<p>En el caso que se tenga el problema donde algunas variables esten almacenadas tanto en renglones como columnas se debe tratar el problema como lo anterior visto, primero abstraerse al problema de juntar las columnas necesarias en dos variables con la función <code>gather()</code> para posteriormente separar las variables que lo requieran con la función <code>separate()</code>.</p>
+<p>Para los últimos dos casos se necesita hacer uso de unas funciones del paquete <code>dplyr</code>, el cual ser verá en la siguiente sección. Por el momento, se pueden ver otras funciones útiles de <code>tidyr</code>, como aquellas que ayudan en la obtención de diferentes operaciones de conjuntos en los datos.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="limpieza-de-datos-tidyr.html#cb300-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">1</span>)</span>
+<span id="cb300-2"><a href="limpieza-de-datos-tidyr.html#cb300-2" aria-hidden="true"></a>tidyr<span class="op">::</span><span class="kw">expand_grid</span>(df, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code># A tibble: 6 x 3
+      x     y     z
+  &lt;int&gt; &lt;int&gt; &lt;int&gt;
+1     1     2     1
+2     1     2     2
+3     1     2     3
+4     2     1     1
+5     2     1     2
+6     2     1     3</code></pre>
+<p>La función <code>tidyr::expand_grid()</code> crea un tibble de todas las combinaciones de sus inputs, estos pueden ser data frames o tibbles, matrices y hasta vectores. Se puede entender a esta función como el producto cartesiano de dos conjuntos.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="limpieza-de-datos-tidyr.html#cb302-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</span>
+<span id="cb302-2"><a href="limpieza-de-datos-tidyr.html#cb302-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb302-3"><a href="limpieza-de-datos-tidyr.html#cb302-3" aria-hidden="true"></a><span class="kw">crossing</span>(x, y)</span></code></pre></div>
+<pre><code># A tibble: 6 x 2
+  x     `c(3, 3, 1)`
+  &lt;chr&gt;        &lt;dbl&gt;
+1 e                1
+2 e                3
+3 f                1
+4 f                3
+5 g                1
+6 g                3</code></pre>
+<p>La función <code>tidyr::crossing()</code> regresa un tibble y tiene un comportamiento similar a <code>expand_grid()</code> con la diferencia de eliminar registros duplicados.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="limpieza-de-datos-tidyr.html#cb304-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb304-2"><a href="limpieza-de-datos-tidyr.html#cb304-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb304-3"><a href="limpieza-de-datos-tidyr.html#cb304-3" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb304-4"><a href="limpieza-de-datos-tidyr.html#cb304-4" aria-hidden="true"></a>tidyr<span class="op">::</span><span class="kw">nesting</span>(x, y)</span></code></pre></div>
+<pre><code># A tibble: 4 x 2
+  `sample(letters[1:3], size = 5, replace = T)`     y
+  &lt;chr&gt;                                         &lt;int&gt;
+1 a                                                 1
+2 b                                                 2
+3 c                                                 1
+4 c                                                 2</code></pre>
+<p>La función <code>tidyr::nesting()</code> encuentra las posibles combinaciones entre los datos, es decir, las combinaciones entre los datos de entrada si estos se unieran en uno solo.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="limpieza-de-datos-tidyr.html#cb306-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb306-2"><a href="limpieza-de-datos-tidyr.html#cb306-2" aria-hidden="true"></a>reduced_iris &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span>
+<span id="cb306-3"><a href="limpieza-de-datos-tidyr.html#cb306-3" aria-hidden="true"></a>df &lt;-<span class="st"> </span>reduced_iris[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T),]</span>
+<span id="cb306-4"><a href="limpieza-de-datos-tidyr.html#cb306-4" aria-hidden="true"></a>df <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">expand</span>(Petal.Length)</span></code></pre></div>
+<pre><code># A tibble: 3 x 1
+  Petal.Length
+         &lt;dbl&gt;
+1          1.3
+2          1.4
+3          1.7</code></pre>
+<p>La función <code>tidyr::expand()</code> genera todas las combinaciones de variables que se encuentran en un data set.</p>
+<ul>
+<li>¿Qué sucede al ejecutar <code>df %&gt;% tidyr::expand(Sepal.Width, Petal.Width)</code>?</li>
+<li>¿Y al ejecutar <code>df %&gt;% tidyr::expand(nesting(Sepal.Width, Petal.Width))</code>?</li>
+</ul>
+<p>Otras funciones útiles son las siguientes</p>
+<ul>
+<li><code>tidyr::nest()</code>. Dicha función anida un data frame o un subconjunto de este en listas y coloca estos como observaciones; esto puede ser muy útil en la aplicación de modelos.</li>
+<li><code>tidyr::unnest()</code>. Función inversa a <code>tidyr::nest()</code>.</li>
+<li><code>tidyr::replace_na()</code>. Dicha función encuentra los valores perdidos en un data set y los cambia por un valor dado.</li>
+</ul>
+<hr />
+<div id="ejercicios" class="section level4 unnumbered">
+<h4>Ejercicios</h4>
+<ol start="77" style="list-style-type: decimal">
+<li><p>En la sección <em>Limpieza de datos: Tidyr</em> se vieron varios ejemplos donde se mencionaba que estos venían como sugerencias de las respectivas Cheat Sheets. Dichos datos fueron manipulados para ver el uso de las funciones que se estaban presentando. Obtén la estructura de los datos a los cuales se les aplicaron dichas funciones.</p></li>
+<li><p>Investigar otras funciones de <code>tidyr</code> como <code>chop()</code>, <code>complete()</code> y <code>pack()</code>.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulación-de-datos-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

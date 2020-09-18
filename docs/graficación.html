@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.7 Graficación | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.7 Graficación | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.7 Graficación | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="iteración-y-recursión.html"/>
+<link rel="next" href="tidyverse.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graficación" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Graficación</h2>
+<p>La comunicación visual siempre será un recurso muy importante para presentar y aclarar la información con la que se esta trabajando así como los resultados obtenidos. R cuenta con una gran cantidad de funciones para crear elementos gráficos, principalmente en el ámbito estadístico, a partir de ciertas estructuras u objetos, las cuales se pueden personalizar y dar un mejor formato a gusto del programador.</p>
+<p>En esta sección sólo se verán algunas funciones y estrategias para crear objetos gráficos usando las funciones que proporciona R por defecto, así como funciones de ciertos paquetes a excepción de paquetes y funciones relacionados con <em>ggplot</em>.</p>
+<p>Una de las funciones más importantes es la función <code>plot()</code>, la cual es una función genérica por lo que dependiendo del tipo de objeto u objetos que se den como parámetros se comporta de manera distinta, esta función devolverá un gráfico relacionando dos variables (<span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span>) en un plano cartesiano. Tómese como ejemplo los datos <code>pressure</code> del paquete <code>datasets</code>. ¿Qué dice la documentación acerca de estos datos?</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="graficación.html#cb237-1" aria-hidden="true"></a><span class="kw">head</span>(pressure)</span></code></pre></div>
+<pre><code>  temperature pressure
+1           0   0.0002
+2          20   0.0012
+3          40   0.0060
+4          60   0.0300
+5          80   0.0900
+6         100   0.2700</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="graficación.html#cb239-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>El anterior gráfico también pudo obtenerse especificando lo que se considerará como variable <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span> o dando una formula:</p>
+<ul>
+<li><code>plot(pressure$temperature, pressure$pressure)</code></li>
+<li><code>plot(pressure ~ temperature, data=pressure)</code></li>
+</ul>
+<p>La anterior gráfica contiene muchos elementos gráficos, como títulos para los ejes y hasta los propios ejes, además las observaciones en los datos son dibujados como circunferencias. Véase en la siguiente gráfica que se puede modificar todo esto y agregar unos cuantos elementos gráficos más</p>
+<style type="text/css">
+.scroll-300 {
+  max-height: 300px;
+}
+</style>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb240-1"><a href="graficación.html#cb240-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb240-2"><a href="graficación.html#cb240-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb240-3"><a href="graficación.html#cb240-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb240-4"><a href="graficación.html#cb240-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb240-5"><a href="graficación.html#cb240-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb240-6"><a href="graficación.html#cb240-6" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="st">&quot;Temperatura&quot;</span>, <span class="co"># Eje x</span></span>
+<span id="cb240-7"><a href="graficación.html#cb240-7" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="st">&quot;Presión&quot;</span>, <span class="co"># Eje y</span></span>
+<span id="cb240-8"><a href="graficación.html#cb240-8" aria-hidden="true"></a>     <span class="dt">col.lab =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co">#Color para los nombres dados en los ejes</span></span>
+<span id="cb240-9"><a href="graficación.html#cb240-9" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co"># Color para las anotaciones en los ejes</span></span>
+<span id="cb240-10"><a href="graficación.html#cb240-10" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>, <span class="co"># Color para otros elementos gráficos como los ejes</span></span>
+<span id="cb240-11"><a href="graficación.html#cb240-11" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb240-12"><a href="graficación.html#cb240-12" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb240-13"><a href="graficación.html#cb240-13" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb240-14"><a href="graficación.html#cb240-14" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb240-15"><a href="graficación.html#cb240-15" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb240-16"><a href="graficación.html#cb240-16" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb240-17"><a href="graficación.html#cb240-17" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb240-18"><a href="graficación.html#cb240-18" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb240-19"><a href="graficación.html#cb240-19" aria-hidden="true"></a>     <span class="dt">cex.lab =</span> <span class="fl">1.1</span>, <span class="co"># Tamaño para los títulos en los ejes</span></span>
+<span id="cb240-20"><a href="graficación.html#cb240-20" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span> <span class="co"># Tamaño para los ejes</span></span>
+<span id="cb240-21"><a href="graficación.html#cb240-21" aria-hidden="true"></a>     <span class="co">#cex haría proporcional el tamaño en todo.</span></span>
+<span id="cb240-22"><a href="graficación.html#cb240-22" aria-hidden="true"></a>     )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p>También pueden eliminarse los ejes y el marco</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb241-1"><a href="graficación.html#cb241-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb241-2"><a href="graficación.html#cb241-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb241-3"><a href="graficación.html#cb241-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb241-4"><a href="graficación.html#cb241-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb241-5"><a href="graficación.html#cb241-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb241-6"><a href="graficación.html#cb241-6" aria-hidden="true"></a>     <span class="dt">axes =</span> <span class="ot">FALSE</span>,  <span class="co">#Eliminando ejes</span></span>
+<span id="cb241-7"><a href="graficación.html#cb241-7" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="st">&quot;Temperatura&quot;</span>, <span class="co"># Eje x</span></span>
+<span id="cb241-8"><a href="graficación.html#cb241-8" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="st">&quot;Presión&quot;</span>, <span class="co"># Eje y</span></span>
+<span id="cb241-9"><a href="graficación.html#cb241-9" aria-hidden="true"></a>     <span class="dt">col.lab =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co">#Color para los nombres dados en los ejes</span></span>
+<span id="cb241-10"><a href="graficación.html#cb241-10" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb241-11"><a href="graficación.html#cb241-11" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb241-12"><a href="graficación.html#cb241-12" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb241-13"><a href="graficación.html#cb241-13" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb241-14"><a href="graficación.html#cb241-14" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb241-15"><a href="graficación.html#cb241-15" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb241-16"><a href="graficación.html#cb241-16" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb241-17"><a href="graficación.html#cb241-17" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb241-18"><a href="graficación.html#cb241-18" aria-hidden="true"></a>     <span class="dt">cex.lab =</span> <span class="fl">1.1</span> <span class="co"># Tamaño para los títulos en los ejes</span></span>
+<span id="cb241-19"><a href="graficación.html#cb241-19" aria-hidden="true"></a>     )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>Para solo eliminar el marco se puede usar <code>frame=FALSE</code> y para eliminar alguno de los ejes con <code>xaxt="n"</code> o <code>yaxt="n"</code>.
+Aún se puede dar una mejor presentación modificando el tipo de fuente</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb242-1"><a href="graficación.html#cb242-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb242-2"><a href="graficación.html#cb242-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb242-3"><a href="graficación.html#cb242-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb242-4"><a href="graficación.html#cb242-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb242-5"><a href="graficación.html#cb242-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb242-6"><a href="graficación.html#cb242-6" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="st">&quot;Temperatura&quot;</span>, <span class="co"># Eje x</span></span>
+<span id="cb242-7"><a href="graficación.html#cb242-7" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="st">&quot;Presión&quot;</span>, <span class="co"># Eje y</span></span>
+<span id="cb242-8"><a href="graficación.html#cb242-8" aria-hidden="true"></a>     <span class="dt">col.lab =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co">#Color para los nombres dados en los ejes</span></span>
+<span id="cb242-9"><a href="graficación.html#cb242-9" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co"># Color para las anotaciones en los ejes</span></span>
+<span id="cb242-10"><a href="graficación.html#cb242-10" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>, <span class="co"># Color para otros elementos gráficos como los ejes</span></span>
+<span id="cb242-11"><a href="graficación.html#cb242-11" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb242-12"><a href="graficación.html#cb242-12" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb242-13"><a href="graficación.html#cb242-13" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb242-14"><a href="graficación.html#cb242-14" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb242-15"><a href="graficación.html#cb242-15" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb242-16"><a href="graficación.html#cb242-16" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb242-17"><a href="graficación.html#cb242-17" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb242-18"><a href="graficación.html#cb242-18" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb242-19"><a href="graficación.html#cb242-19" aria-hidden="true"></a>     <span class="dt">cex.lab =</span> <span class="fl">1.1</span>, <span class="co"># Tamaño para los títulos en los ejes</span></span>
+<span id="cb242-20"><a href="graficación.html#cb242-20" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para los ejes</span></span>
+<span id="cb242-21"><a href="graficación.html#cb242-21" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>, <span class="co"># Formato para los ejes</span></span>
+<span id="cb242-22"><a href="graficación.html#cb242-22" aria-hidden="true"></a>     <span class="dt">font.lab =</span> <span class="dv">3</span>, <span class="co"># Formato para los títulos en los ejes</span></span>
+<span id="cb242-23"><a href="graficación.html#cb242-23" aria-hidden="true"></a>     <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="co"># Formato para el título</span></span>
+<span id="cb242-24"><a href="graficación.html#cb242-24" aria-hidden="true"></a>     <span class="dt">font.sub =</span> <span class="dv">3</span>, <span class="co"># Formato para el sub título</span></span>
+<span id="cb242-25"><a href="graficación.html#cb242-25" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb242-26"><a href="graficación.html#cb242-26" aria-hidden="true"></a>     )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p>Muchos de los argumentos anteriores no son específicamente de la función <code>plot()</code>, ya que dicha función solo solicita la información para los ejes <span class="math inline">\(x\)</span> y <span class="math inline">\(y\)</span> y lo demás es opcional mediante el argumento <code>...</code> en el cual se pueden agregar opciones de texto y parámetros gráficos.</p>
+<p>De los anteriores las opciones de texto son los parámetros <code>main</code>, <code>sub</code>, <code>xlab</code> y <code>ylab</code>. El tipo de gráfico no es exclusivamente un graphical parameter para todas las gráficas, si no que es para la función <code>plot()</code> en general. Los demás argumentos son graphical parameters los cuales pueden ser usados en otros tipos de gráficos.</p>
+<p>La gráfica se ve bien aunque se puede mejorar el aspecto de los ejes con la función <code>axis()</code>. Para usar la función <code>axis</code> primero se deben eliminar los ejes.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb243-1"><a href="graficación.html#cb243-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb243-2"><a href="graficación.html#cb243-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb243-3"><a href="graficación.html#cb243-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb243-4"><a href="graficación.html#cb243-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb243-5"><a href="graficación.html#cb243-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb243-6"><a href="graficación.html#cb243-6" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="st">&quot;Temperatura&quot;</span>, <span class="co"># Eje x</span></span>
+<span id="cb243-7"><a href="graficación.html#cb243-7" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="st">&quot;Presión&quot;</span>, <span class="co"># Eje y</span></span>
+<span id="cb243-8"><a href="graficación.html#cb243-8" aria-hidden="true"></a>     <span class="dt">col.lab =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co">#Color para los nombres dados en los ejes</span></span>
+<span id="cb243-9"><a href="graficación.html#cb243-9" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb243-10"><a href="graficación.html#cb243-10" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb243-11"><a href="graficación.html#cb243-11" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb243-12"><a href="graficación.html#cb243-12" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb243-13"><a href="graficación.html#cb243-13" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb243-14"><a href="graficación.html#cb243-14" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb243-15"><a href="graficación.html#cb243-15" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb243-16"><a href="graficación.html#cb243-16" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb243-17"><a href="graficación.html#cb243-17" aria-hidden="true"></a>     <span class="dt">cex.lab =</span> <span class="fl">1.1</span>, <span class="co"># Tamaño para los títulos en los ejes</span></span>
+<span id="cb243-18"><a href="graficación.html#cb243-18" aria-hidden="true"></a>     <span class="dt">font.lab =</span> <span class="dv">3</span>, <span class="co"># Formato para los títulos en los ejes</span></span>
+<span id="cb243-19"><a href="graficación.html#cb243-19" aria-hidden="true"></a>     <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="co"># Formato para el título</span></span>
+<span id="cb243-20"><a href="graficación.html#cb243-20" aria-hidden="true"></a>     <span class="dt">font.sub =</span> <span class="dv">3</span>, <span class="co"># Formato para el sub título</span></span>
+<span id="cb243-21"><a href="graficación.html#cb243-21" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb243-22"><a href="graficación.html#cb243-22" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb243-23"><a href="graficación.html#cb243-23" aria-hidden="true"></a>     )</span>
+<span id="cb243-24"><a href="graficación.html#cb243-24" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb243-25"><a href="graficación.html#cb243-25" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb243-26"><a href="graficación.html#cb243-26" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb243-27"><a href="graficación.html#cb243-27" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb243-28"><a href="graficación.html#cb243-28" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb243-29"><a href="graficación.html#cb243-29" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb243-30"><a href="graficación.html#cb243-30" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb243-31"><a href="graficación.html#cb243-31" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb243-32"><a href="graficación.html#cb243-32" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb243-33"><a href="graficación.html#cb243-33" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb243-34"><a href="graficación.html#cb243-34" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb243-35"><a href="graficación.html#cb243-35" aria-hidden="true"></a>    )</span>
+<span id="cb243-36"><a href="graficación.html#cb243-36" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb243-37"><a href="graficación.html#cb243-37" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb243-38"><a href="graficación.html#cb243-38" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb243-39"><a href="graficación.html#cb243-39" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb243-40"><a href="graficación.html#cb243-40" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb243-41"><a href="graficación.html#cb243-41" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb243-42"><a href="graficación.html#cb243-42" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb243-43"><a href="graficación.html#cb243-43" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb243-44"><a href="graficación.html#cb243-44" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb243-45"><a href="graficación.html#cb243-45" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb243-46"><a href="graficación.html#cb243-46" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb243-47"><a href="graficación.html#cb243-47" aria-hidden="true"></a>    )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p>Para aclarar, el argumento <code>side</code> hace referencia al eje que se esta modificando, 1-below, 2-left, 3-above y 4-right. La función axis tiene más argumentos como <code>lyt</code> para indicar el tipo de línea sobre el eje y <code>col</code> para el color del eje. ¿Qué pasa cuando en <code>tck</code> se da un valor negativo?</p>
+<p>Ahora, si se desea agregar texto en la gráfica se puede usar la función <code>text()</code></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb244-1"><a href="graficación.html#cb244-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb244-2"><a href="graficación.html#cb244-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb244-3"><a href="graficación.html#cb244-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb244-4"><a href="graficación.html#cb244-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb244-5"><a href="graficación.html#cb244-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb244-6"><a href="graficación.html#cb244-6" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="st">&quot;Temperatura&quot;</span>, <span class="co"># Eje x</span></span>
+<span id="cb244-7"><a href="graficación.html#cb244-7" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="st">&quot;Presión&quot;</span>, <span class="co"># Eje y</span></span>
+<span id="cb244-8"><a href="graficación.html#cb244-8" aria-hidden="true"></a>     <span class="dt">col.lab =</span> <span class="st">&quot;#284c73&quot;</span>, <span class="co">#Color para los nombres dados en los ejes</span></span>
+<span id="cb244-9"><a href="graficación.html#cb244-9" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb244-10"><a href="graficación.html#cb244-10" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb244-11"><a href="graficación.html#cb244-11" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb244-12"><a href="graficación.html#cb244-12" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb244-13"><a href="graficación.html#cb244-13" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb244-14"><a href="graficación.html#cb244-14" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb244-15"><a href="graficación.html#cb244-15" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb244-16"><a href="graficación.html#cb244-16" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb244-17"><a href="graficación.html#cb244-17" aria-hidden="true"></a>     <span class="dt">cex.lab =</span> <span class="fl">1.1</span>, <span class="co"># Tamaño para los títulos en los ejes</span></span>
+<span id="cb244-18"><a href="graficación.html#cb244-18" aria-hidden="true"></a>     <span class="dt">font.lab =</span> <span class="dv">3</span>, <span class="co"># Formato para los títulos en los ejes</span></span>
+<span id="cb244-19"><a href="graficación.html#cb244-19" aria-hidden="true"></a>     <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="co"># Formato para el título</span></span>
+<span id="cb244-20"><a href="graficación.html#cb244-20" aria-hidden="true"></a>     <span class="dt">font.sub =</span> <span class="dv">3</span>, <span class="co"># Formato para el sub título</span></span>
+<span id="cb244-21"><a href="graficación.html#cb244-21" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb244-22"><a href="graficación.html#cb244-22" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb244-23"><a href="graficación.html#cb244-23" aria-hidden="true"></a>     )</span>
+<span id="cb244-24"><a href="graficación.html#cb244-24" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb244-25"><a href="graficación.html#cb244-25" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb244-26"><a href="graficación.html#cb244-26" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb244-27"><a href="graficación.html#cb244-27" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb244-28"><a href="graficación.html#cb244-28" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb244-29"><a href="graficación.html#cb244-29" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb244-30"><a href="graficación.html#cb244-30" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb244-31"><a href="graficación.html#cb244-31" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb244-32"><a href="graficación.html#cb244-32" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb244-33"><a href="graficación.html#cb244-33" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb244-34"><a href="graficación.html#cb244-34" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb244-35"><a href="graficación.html#cb244-35" aria-hidden="true"></a>    )</span>
+<span id="cb244-36"><a href="graficación.html#cb244-36" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb244-37"><a href="graficación.html#cb244-37" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb244-38"><a href="graficación.html#cb244-38" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb244-39"><a href="graficación.html#cb244-39" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb244-40"><a href="graficación.html#cb244-40" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb244-41"><a href="graficación.html#cb244-41" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb244-42"><a href="graficación.html#cb244-42" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb244-43"><a href="graficación.html#cb244-43" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb244-44"><a href="graficación.html#cb244-44" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb244-45"><a href="graficación.html#cb244-45" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb244-46"><a href="graficación.html#cb244-46" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb244-47"><a href="graficación.html#cb244-47" aria-hidden="true"></a>    )</span>
+<span id="cb244-48"><a href="graficación.html#cb244-48" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">810</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb244-49"><a href="graficación.html#cb244-49" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb244-50"><a href="graficación.html#cb244-50" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb244-51"><a href="graficación.html#cb244-51" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb244-52"><a href="graficación.html#cb244-52" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb244-53"><a href="graficación.html#cb244-53" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span></span>
+<span id="cb244-54"><a href="graficación.html#cb244-54" aria-hidden="true"></a>     )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>La función <code>tex()</code> tiene otro argumento, <code>pos</code>, que modifican la posición del texto de acuerdo a las coordenadas dadas. Con la función <code>mtext()</code> se puede modificar el título de los ejes o mejor dicho en cada margen de la gráfica con la ventaja de manipular el margen entre los ejes y los correspondientes títulos.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb245-1"><a href="graficación.html#cb245-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb245-2"><a href="graficación.html#cb245-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb245-3"><a href="graficación.html#cb245-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb245-4"><a href="graficación.html#cb245-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb245-5"><a href="graficación.html#cb245-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb245-6"><a href="graficación.html#cb245-6" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>,</span>
+<span id="cb245-7"><a href="graficación.html#cb245-7" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb245-8"><a href="graficación.html#cb245-8" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb245-9"><a href="graficación.html#cb245-9" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb245-10"><a href="graficación.html#cb245-10" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb245-11"><a href="graficación.html#cb245-11" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb245-12"><a href="graficación.html#cb245-12" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb245-13"><a href="graficación.html#cb245-13" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb245-14"><a href="graficación.html#cb245-14" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb245-15"><a href="graficación.html#cb245-15" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb245-16"><a href="graficación.html#cb245-16" aria-hidden="true"></a>     <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="co"># Formato para el título</span></span>
+<span id="cb245-17"><a href="graficación.html#cb245-17" aria-hidden="true"></a>     <span class="dt">font.sub =</span> <span class="dv">3</span>, <span class="co"># Formato para el sub título</span></span>
+<span id="cb245-18"><a href="graficación.html#cb245-18" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb245-19"><a href="graficación.html#cb245-19" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb245-20"><a href="graficación.html#cb245-20" aria-hidden="true"></a>     )</span>
+<span id="cb245-21"><a href="graficación.html#cb245-21" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb245-22"><a href="graficación.html#cb245-22" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb245-23"><a href="graficación.html#cb245-23" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb245-24"><a href="graficación.html#cb245-24" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb245-25"><a href="graficación.html#cb245-25" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb245-26"><a href="graficación.html#cb245-26" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb245-27"><a href="graficación.html#cb245-27" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb245-28"><a href="graficación.html#cb245-28" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb245-29"><a href="graficación.html#cb245-29" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb245-30"><a href="graficación.html#cb245-30" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb245-31"><a href="graficación.html#cb245-31" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb245-32"><a href="graficación.html#cb245-32" aria-hidden="true"></a>    )</span>
+<span id="cb245-33"><a href="graficación.html#cb245-33" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb245-34"><a href="graficación.html#cb245-34" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb245-35"><a href="graficación.html#cb245-35" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb245-36"><a href="graficación.html#cb245-36" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb245-37"><a href="graficación.html#cb245-37" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb245-38"><a href="graficación.html#cb245-38" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb245-39"><a href="graficación.html#cb245-39" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb245-40"><a href="graficación.html#cb245-40" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb245-41"><a href="graficación.html#cb245-41" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb245-42"><a href="graficación.html#cb245-42" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb245-43"><a href="graficación.html#cb245-43" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb245-44"><a href="graficación.html#cb245-44" aria-hidden="true"></a>    )</span>
+<span id="cb245-45"><a href="graficación.html#cb245-45" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">810</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb245-46"><a href="graficación.html#cb245-46" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb245-47"><a href="graficación.html#cb245-47" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb245-48"><a href="graficación.html#cb245-48" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb245-49"><a href="graficación.html#cb245-49" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb245-50"><a href="graficación.html#cb245-50" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span></span>
+<span id="cb245-51"><a href="graficación.html#cb245-51" aria-hidden="true"></a>     )</span>
+<span id="cb245-52"><a href="graficación.html#cb245-52" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb245-53"><a href="graficación.html#cb245-53" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb245-54"><a href="graficación.html#cb245-54" aria-hidden="true"></a>      <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb245-55"><a href="graficación.html#cb245-55" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb245-56"><a href="graficación.html#cb245-56" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb245-57"><a href="graficación.html#cb245-57" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb245-58"><a href="graficación.html#cb245-58" aria-hidden="true"></a>      )</span>
+<span id="cb245-59"><a href="graficación.html#cb245-59" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb245-60"><a href="graficación.html#cb245-60" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb245-61"><a href="graficación.html#cb245-61" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb245-62"><a href="graficación.html#cb245-62" aria-hidden="true"></a>      <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb245-63"><a href="graficación.html#cb245-63" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb245-64"><a href="graficación.html#cb245-64" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb245-65"><a href="graficación.html#cb245-65" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb245-66"><a href="graficación.html#cb245-66" aria-hidden="true"></a>      )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>Ahora, se desearía que la etiqueta de “Presión máxima” apuntará hacia el valor máximo con una flecha, además de agregar lineas para ubicar mejor las proyecciones en los ejes de dicho valor. Esto se puede lograr con las funciones <code>arrow()</code> y <code>abline()</code></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb246-1"><a href="graficación.html#cb246-1" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb246-2"><a href="graficación.html#cb246-2" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb246-3"><a href="graficación.html#cb246-3" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb246-4"><a href="graficación.html#cb246-4" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb246-5"><a href="graficación.html#cb246-5" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb246-6"><a href="graficación.html#cb246-6" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>,</span>
+<span id="cb246-7"><a href="graficación.html#cb246-7" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb246-8"><a href="graficación.html#cb246-8" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb246-9"><a href="graficación.html#cb246-9" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb246-10"><a href="graficación.html#cb246-10" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb246-11"><a href="graficación.html#cb246-11" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb246-12"><a href="graficación.html#cb246-12" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb246-13"><a href="graficación.html#cb246-13" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb246-14"><a href="graficación.html#cb246-14" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb246-15"><a href="graficación.html#cb246-15" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb246-16"><a href="graficación.html#cb246-16" aria-hidden="true"></a>     <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="co"># Formato para el título</span></span>
+<span id="cb246-17"><a href="graficación.html#cb246-17" aria-hidden="true"></a>     <span class="dt">font.sub =</span> <span class="dv">3</span>, <span class="co"># Formato para el sub título</span></span>
+<span id="cb246-18"><a href="graficación.html#cb246-18" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb246-19"><a href="graficación.html#cb246-19" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb246-20"><a href="graficación.html#cb246-20" aria-hidden="true"></a>     )</span>
+<span id="cb246-21"><a href="graficación.html#cb246-21" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb246-22"><a href="graficación.html#cb246-22" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb246-23"><a href="graficación.html#cb246-23" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb246-24"><a href="graficación.html#cb246-24" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb246-25"><a href="graficación.html#cb246-25" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb246-26"><a href="graficación.html#cb246-26" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb246-27"><a href="graficación.html#cb246-27" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb246-28"><a href="graficación.html#cb246-28" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb246-29"><a href="graficación.html#cb246-29" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb246-30"><a href="graficación.html#cb246-30" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb246-31"><a href="graficación.html#cb246-31" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb246-32"><a href="graficación.html#cb246-32" aria-hidden="true"></a>    )</span>
+<span id="cb246-33"><a href="graficación.html#cb246-33" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb246-34"><a href="graficación.html#cb246-34" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb246-35"><a href="graficación.html#cb246-35" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb246-36"><a href="graficación.html#cb246-36" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb246-37"><a href="graficación.html#cb246-37" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb246-38"><a href="graficación.html#cb246-38" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb246-39"><a href="graficación.html#cb246-39" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb246-40"><a href="graficación.html#cb246-40" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb246-41"><a href="graficación.html#cb246-41" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb246-42"><a href="graficación.html#cb246-42" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb246-43"><a href="graficación.html#cb246-43" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb246-44"><a href="graficación.html#cb246-44" aria-hidden="true"></a>    )</span>
+<span id="cb246-45"><a href="graficación.html#cb246-45" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">810</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb246-46"><a href="graficación.html#cb246-46" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb246-47"><a href="graficación.html#cb246-47" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb246-48"><a href="graficación.html#cb246-48" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb246-49"><a href="graficación.html#cb246-49" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb246-50"><a href="graficación.html#cb246-50" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span>,</span>
+<span id="cb246-51"><a href="graficación.html#cb246-51" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">2</span> <span class="co"># Se coloca la etiqueta a la izquierda de la posición dada.</span></span>
+<span id="cb246-52"><a href="graficación.html#cb246-52" aria-hidden="true"></a>     )</span>
+<span id="cb246-53"><a href="graficación.html#cb246-53" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb246-54"><a href="graficación.html#cb246-54" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb246-55"><a href="graficación.html#cb246-55" aria-hidden="true"></a>      <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb246-56"><a href="graficación.html#cb246-56" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb246-57"><a href="graficación.html#cb246-57" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb246-58"><a href="graficación.html#cb246-58" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb246-59"><a href="graficación.html#cb246-59" aria-hidden="true"></a>      )</span>
+<span id="cb246-60"><a href="graficación.html#cb246-60" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb246-61"><a href="graficación.html#cb246-61" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb246-62"><a href="graficación.html#cb246-62" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb246-63"><a href="graficación.html#cb246-63" aria-hidden="true"></a>      <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb246-64"><a href="graficación.html#cb246-64" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb246-65"><a href="graficación.html#cb246-65" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb246-66"><a href="graficación.html#cb246-66" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb246-67"><a href="graficación.html#cb246-67" aria-hidden="true"></a>      )</span>
+<span id="cb246-68"><a href="graficación.html#cb246-68" aria-hidden="true"></a><span class="kw">arrows</span>(<span class="dv">270</span>,<span class="dv">810</span>, <span class="co">#Posición de inicio</span></span>
+<span id="cb246-69"><a href="graficación.html#cb246-69" aria-hidden="true"></a>      <span class="kw">max</span>(pressure<span class="op">$</span>temperature)<span class="op">-</span><span class="dv">5</span>, <span class="kw">max</span>(pressure<span class="op">$</span>pressure),  <span class="co">#Posición de término</span></span>
+<span id="cb246-70"><a href="graficación.html#cb246-70" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb246-71"><a href="graficación.html#cb246-71" aria-hidden="true"></a>      <span class="dt">lwd =</span> <span class="fl">1.2</span> <span class="co">#Ancho de la línea</span></span>
+<span id="cb246-72"><a href="graficación.html#cb246-72" aria-hidden="true"></a>      )</span>
+<span id="cb246-73"><a href="graficación.html#cb246-73" aria-hidden="true"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="co">#h es especial para líneas horizontales</span></span>
+<span id="cb246-74"><a href="graficación.html#cb246-74" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb246-75"><a href="graficación.html#cb246-75" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb246-76"><a href="graficación.html#cb246-76" aria-hidden="true"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">max</span>(pressure<span class="op">$</span>temperature),<span class="co">#v es especial para líneas horizontales</span></span>
+<span id="cb246-77"><a href="graficación.html#cb246-77" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb246-78"><a href="graficación.html#cb246-78" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p>A la función <code>abline()</code> también se le puede dar la información en la forma <span class="math inline">\(ax+b\)</span> donde el argumento <code>a</code> sirve para establecer la pendiente y <code>b</code> para el intercepto. Véase que las rectas dibujadas con la función <code>abline()</code> cubren todo el rango de ambos ejes y en este caso se desea que estas terminen cuando lleguen a la coordenada específica, para eso se utilizará la función <code>segments()</code> donde sus argumentos indican las coordenadas de inicio y de final. Además el diseño de la flecha puede mejorar con <code>shape::Arrows</code>.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb247-1"><a href="graficación.html#cb247-1" aria-hidden="true"></a><span class="kw">library</span>(shape)</span>
+<span id="cb247-2"><a href="graficación.html#cb247-2" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb247-3"><a href="graficación.html#cb247-3" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb247-4"><a href="graficación.html#cb247-4" aria-hidden="true"></a>     <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>, <span class="co"># Color para el título</span></span>
+<span id="cb247-5"><a href="graficación.html#cb247-5" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb247-6"><a href="graficación.html#cb247-6" aria-hidden="true"></a>     <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>, <span class="co"># Color para el sub título</span></span>
+<span id="cb247-7"><a href="graficación.html#cb247-7" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>,</span>
+<span id="cb247-8"><a href="graficación.html#cb247-8" aria-hidden="true"></a>     <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb247-9"><a href="graficación.html#cb247-9" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb247-10"><a href="graficación.html#cb247-10" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb247-11"><a href="graficación.html#cb247-11" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb247-12"><a href="graficación.html#cb247-12" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb247-13"><a href="graficación.html#cb247-13" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb247-14"><a href="graficación.html#cb247-14" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb247-15"><a href="graficación.html#cb247-15" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb247-16"><a href="graficación.html#cb247-16" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb247-17"><a href="graficación.html#cb247-17" aria-hidden="true"></a>     <span class="dt">font.main =</span> <span class="dv">4</span>, <span class="co"># Formato para el título</span></span>
+<span id="cb247-18"><a href="graficación.html#cb247-18" aria-hidden="true"></a>     <span class="dt">font.sub =</span> <span class="dv">3</span>, <span class="co"># Formato para el sub título</span></span>
+<span id="cb247-19"><a href="graficación.html#cb247-19" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb247-20"><a href="graficación.html#cb247-20" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb247-21"><a href="graficación.html#cb247-21" aria-hidden="true"></a>     )</span>
+<span id="cb247-22"><a href="graficación.html#cb247-22" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb247-23"><a href="graficación.html#cb247-23" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb247-24"><a href="graficación.html#cb247-24" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb247-25"><a href="graficación.html#cb247-25" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb247-26"><a href="graficación.html#cb247-26" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb247-27"><a href="graficación.html#cb247-27" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb247-28"><a href="graficación.html#cb247-28" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb247-29"><a href="graficación.html#cb247-29" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb247-30"><a href="graficación.html#cb247-30" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb247-31"><a href="graficación.html#cb247-31" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb247-32"><a href="graficación.html#cb247-32" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb247-33"><a href="graficación.html#cb247-33" aria-hidden="true"></a>    )</span>
+<span id="cb247-34"><a href="graficación.html#cb247-34" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb247-35"><a href="graficación.html#cb247-35" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb247-36"><a href="graficación.html#cb247-36" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb247-37"><a href="graficación.html#cb247-37" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb247-38"><a href="graficación.html#cb247-38" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb247-39"><a href="graficación.html#cb247-39" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb247-40"><a href="graficación.html#cb247-40" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb247-41"><a href="graficación.html#cb247-41" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span>,</span>
+<span id="cb247-42"><a href="graficación.html#cb247-42" aria-hidden="true"></a>     <span class="dt">cex.axis =</span> <span class="fl">.8</span>,</span>
+<span id="cb247-43"><a href="graficación.html#cb247-43" aria-hidden="true"></a>     <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb247-44"><a href="graficación.html#cb247-44" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span></span>
+<span id="cb247-45"><a href="graficación.html#cb247-45" aria-hidden="true"></a>    )</span>
+<span id="cb247-46"><a href="graficación.html#cb247-46" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb247-47"><a href="graficación.html#cb247-47" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb247-48"><a href="graficación.html#cb247-48" aria-hidden="true"></a>     <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb247-49"><a href="graficación.html#cb247-49" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb247-50"><a href="graficación.html#cb247-50" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb247-51"><a href="graficación.html#cb247-51" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span>,</span>
+<span id="cb247-52"><a href="graficación.html#cb247-52" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">2</span> <span class="co"># Se coloca la etiqueta a la izquierda de la posición dada.</span></span>
+<span id="cb247-53"><a href="graficación.html#cb247-53" aria-hidden="true"></a>     )</span>
+<span id="cb247-54"><a href="graficación.html#cb247-54" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb247-55"><a href="graficación.html#cb247-55" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb247-56"><a href="graficación.html#cb247-56" aria-hidden="true"></a>      <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb247-57"><a href="graficación.html#cb247-57" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb247-58"><a href="graficación.html#cb247-58" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb247-59"><a href="graficación.html#cb247-59" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb247-60"><a href="graficación.html#cb247-60" aria-hidden="true"></a>      )</span>
+<span id="cb247-61"><a href="graficación.html#cb247-61" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb247-62"><a href="graficación.html#cb247-62" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb247-63"><a href="graficación.html#cb247-63" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb247-64"><a href="graficación.html#cb247-64" aria-hidden="true"></a>      <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb247-65"><a href="graficación.html#cb247-65" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb247-66"><a href="graficación.html#cb247-66" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb247-67"><a href="graficación.html#cb247-67" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb247-68"><a href="graficación.html#cb247-68" aria-hidden="true"></a>      )</span>
+<span id="cb247-69"><a href="graficación.html#cb247-69" aria-hidden="true"></a><span class="kw">Arrows</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición de inicio</span></span>
+<span id="cb247-70"><a href="graficación.html#cb247-70" aria-hidden="true"></a>      <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),  <span class="co">#Posición de término</span></span>
+<span id="cb247-71"><a href="graficación.html#cb247-71" aria-hidden="true"></a>      <span class="dt">arr.type=</span><span class="st">&quot;triangle&quot;</span>, <span class="co">#Tipo de flecha</span></span>
+<span id="cb247-72"><a href="graficación.html#cb247-72" aria-hidden="true"></a>      <span class="dt">arr.adj =</span> <span class="dv">2</span>, <span class="co">#Ajuste para que la punta de la flecha toque el punto seleccionado</span></span>
+<span id="cb247-73"><a href="graficación.html#cb247-73" aria-hidden="true"></a>      <span class="co"># arr.width=0.5, #Ancho de flecha</span></span>
+<span id="cb247-74"><a href="graficación.html#cb247-74" aria-hidden="true"></a>      <span class="dt">arr.col =</span> <span class="st">&quot;gray47&quot;</span>,<span class="co">#color de la flecha</span></span>
+<span id="cb247-75"><a href="graficación.html#cb247-75" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb247-76"><a href="graficación.html#cb247-76" aria-hidden="true"></a>      <span class="dt">lwd =</span> <span class="fl">1.2</span></span>
+<span id="cb247-77"><a href="graficación.html#cb247-77" aria-hidden="true"></a>      )</span>
+<span id="cb247-78"><a href="graficación.html#cb247-78" aria-hidden="true"></a><span class="kw">segments</span>(<span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="dv">-40</span>, <span class="co">#Coordenadas del primer punto</span></span>
+<span id="cb247-79"><a href="graficación.html#cb247-79" aria-hidden="true"></a>         <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="co">#Coordenadas del segundo punto</span></span>
+<span id="cb247-80"><a href="graficación.html#cb247-80" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb247-81"><a href="graficación.html#cb247-81" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb247-82"><a href="graficación.html#cb247-82" aria-hidden="true"></a><span class="kw">segments</span>(<span class="op">-</span><span class="dv">15</span>, <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),</span>
+<span id="cb247-83"><a href="graficación.html#cb247-83" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb247-84"><a href="graficación.html#cb247-84" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p>Todos los parámetros gráficos se podrían haber incluido directamente con la función <code>par()</code>. En el siguiente ejemplo se ve como dicha función ahorra código. Hay que tener en cuenta que aveces es bueno hacer una copia donde no se tengan los parámetros gráficos alterados, esto guardando el estado actual de estos: <code>par_default &lt;- par()</code>y después llamando <code>par(par_default)</code>.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb248-1"><a href="graficación.html#cb248-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>,</span>
+<span id="cb248-2"><a href="graficación.html#cb248-2" aria-hidden="true"></a>    <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb248-3"><a href="graficación.html#cb248-3" aria-hidden="true"></a>    <span class="dt">font.main =</span> <span class="dv">4</span>,</span>
+<span id="cb248-4"><a href="graficación.html#cb248-4" aria-hidden="true"></a>    <span class="dt">font.sub =</span> <span class="dv">3</span>,</span>
+<span id="cb248-5"><a href="graficación.html#cb248-5" aria-hidden="true"></a>    <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb248-6"><a href="graficación.html#cb248-6" aria-hidden="true"></a>    <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb248-7"><a href="graficación.html#cb248-7" aria-hidden="true"></a>    <span class="dt">cex.axis =</span> <span class="fl">.8</span></span>
+<span id="cb248-8"><a href="graficación.html#cb248-8" aria-hidden="true"></a>    )</span>
+<span id="cb248-9"><a href="graficación.html#cb248-9" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb248-10"><a href="graficación.html#cb248-10" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb248-11"><a href="graficación.html#cb248-11" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb248-12"><a href="graficación.html#cb248-12" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>, <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb248-13"><a href="graficación.html#cb248-13" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb248-14"><a href="graficación.html#cb248-14" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb248-15"><a href="graficación.html#cb248-15" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb248-16"><a href="graficación.html#cb248-16" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb248-17"><a href="graficación.html#cb248-17" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb248-18"><a href="graficación.html#cb248-18" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb248-19"><a href="graficación.html#cb248-19" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb248-20"><a href="graficación.html#cb248-20" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb248-21"><a href="graficación.html#cb248-21" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb248-22"><a href="graficación.html#cb248-22" aria-hidden="true"></a>     )</span>
+<span id="cb248-23"><a href="graficación.html#cb248-23" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb248-24"><a href="graficación.html#cb248-24" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb248-25"><a href="graficación.html#cb248-25" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb248-26"><a href="graficación.html#cb248-26" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb248-27"><a href="graficación.html#cb248-27" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb248-28"><a href="graficación.html#cb248-28" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb248-29"><a href="graficación.html#cb248-29" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb248-30"><a href="graficación.html#cb248-30" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb248-31"><a href="graficación.html#cb248-31" aria-hidden="true"></a>    )</span>
+<span id="cb248-32"><a href="graficación.html#cb248-32" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb248-33"><a href="graficación.html#cb248-33" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb248-34"><a href="graficación.html#cb248-34" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb248-35"><a href="graficación.html#cb248-35" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb248-36"><a href="graficación.html#cb248-36" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb248-37"><a href="graficación.html#cb248-37" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb248-38"><a href="graficación.html#cb248-38" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb248-39"><a href="graficación.html#cb248-39" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb248-40"><a href="graficación.html#cb248-40" aria-hidden="true"></a>    )</span>
+<span id="cb248-41"><a href="graficación.html#cb248-41" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb248-42"><a href="graficación.html#cb248-42" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb248-43"><a href="graficación.html#cb248-43" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb248-44"><a href="graficación.html#cb248-44" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb248-45"><a href="graficación.html#cb248-45" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span>,</span>
+<span id="cb248-46"><a href="graficación.html#cb248-46" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">2</span> <span class="co"># Se coloca la etiqueta a la izquierda de la posición dada.</span></span>
+<span id="cb248-47"><a href="graficación.html#cb248-47" aria-hidden="true"></a>     )</span>
+<span id="cb248-48"><a href="graficación.html#cb248-48" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb248-49"><a href="graficación.html#cb248-49" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb248-50"><a href="graficación.html#cb248-50" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb248-51"><a href="graficación.html#cb248-51" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb248-52"><a href="graficación.html#cb248-52" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb248-53"><a href="graficación.html#cb248-53" aria-hidden="true"></a>      )</span>
+<span id="cb248-54"><a href="graficación.html#cb248-54" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb248-55"><a href="graficación.html#cb248-55" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb248-56"><a href="graficación.html#cb248-56" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb248-57"><a href="graficación.html#cb248-57" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb248-58"><a href="graficación.html#cb248-58" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb248-59"><a href="graficación.html#cb248-59" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb248-60"><a href="graficación.html#cb248-60" aria-hidden="true"></a>      )</span>
+<span id="cb248-61"><a href="graficación.html#cb248-61" aria-hidden="true"></a><span class="kw">Arrows</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición de inicio</span></span>
+<span id="cb248-62"><a href="graficación.html#cb248-62" aria-hidden="true"></a>      <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),  <span class="co">#Posición de término</span></span>
+<span id="cb248-63"><a href="graficación.html#cb248-63" aria-hidden="true"></a>      <span class="dt">arr.type=</span><span class="st">&quot;triangle&quot;</span>, <span class="co">#Tipo de flecha</span></span>
+<span id="cb248-64"><a href="graficación.html#cb248-64" aria-hidden="true"></a>      <span class="dt">arr.adj =</span> <span class="dv">2</span>, <span class="co">#Ajuste para que la punta de la flecha toque el punto seleccionado</span></span>
+<span id="cb248-65"><a href="graficación.html#cb248-65" aria-hidden="true"></a>      <span class="co"># arr.width=0.5, #Ancho de flecha</span></span>
+<span id="cb248-66"><a href="graficación.html#cb248-66" aria-hidden="true"></a>      <span class="dt">arr.col =</span> <span class="st">&quot;gray47&quot;</span>,<span class="co">#color de la flecha</span></span>
+<span id="cb248-67"><a href="graficación.html#cb248-67" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb248-68"><a href="graficación.html#cb248-68" aria-hidden="true"></a>      <span class="dt">lwd =</span> <span class="fl">1.2</span></span>
+<span id="cb248-69"><a href="graficación.html#cb248-69" aria-hidden="true"></a>      )</span>
+<span id="cb248-70"><a href="graficación.html#cb248-70" aria-hidden="true"></a><span class="kw">segments</span>(<span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="dv">-40</span>, <span class="co">#Coordenadas del primer punto</span></span>
+<span id="cb248-71"><a href="graficación.html#cb248-71" aria-hidden="true"></a>         <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="co">#Coordenadas del segundo punto</span></span>
+<span id="cb248-72"><a href="graficación.html#cb248-72" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb248-73"><a href="graficación.html#cb248-73" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb248-74"><a href="graficación.html#cb248-74" aria-hidden="true"></a><span class="kw">segments</span>(<span class="op">-</span><span class="dv">15</span>, <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),</span>
+<span id="cb248-75"><a href="graficación.html#cb248-75" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb248-76"><a href="graficación.html#cb248-76" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<p>Se puede utilizar la función <code>par()</code> para algunas características especiales como cambiar el color de fondo (background) de la gráfica con <code>bg</code></p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb249-1"><a href="graficación.html#cb249-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">bg=</span><span class="st">&quot;#daeff5&quot;</span>,</span>
+<span id="cb249-2"><a href="graficación.html#cb249-2" aria-hidden="true"></a>    <span class="dt">col.main =</span> <span class="st">&quot;#0e608f&quot;</span>,</span>
+<span id="cb249-3"><a href="graficación.html#cb249-3" aria-hidden="true"></a>    <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb249-4"><a href="graficación.html#cb249-4" aria-hidden="true"></a>    <span class="dt">font.main =</span> <span class="dv">4</span>,</span>
+<span id="cb249-5"><a href="graficación.html#cb249-5" aria-hidden="true"></a>    <span class="dt">font.sub =</span> <span class="dv">3</span>,</span>
+<span id="cb249-6"><a href="graficación.html#cb249-6" aria-hidden="true"></a>    <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb249-7"><a href="graficación.html#cb249-7" aria-hidden="true"></a>    <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb249-8"><a href="graficación.html#cb249-8" aria-hidden="true"></a>    <span class="dt">cex.axis =</span> <span class="fl">.8</span></span>
+<span id="cb249-9"><a href="graficación.html#cb249-9" aria-hidden="true"></a>    )</span>
+<span id="cb249-10"><a href="graficación.html#cb249-10" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb249-11"><a href="graficación.html#cb249-11" aria-hidden="true"></a>     <span class="dt">main =</span> <span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="co"># Título principal</span></span>
+<span id="cb249-12"><a href="graficación.html#cb249-12" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb249-13"><a href="graficación.html#cb249-13" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>, <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb249-14"><a href="graficación.html#cb249-14" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb249-15"><a href="graficación.html#cb249-15" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb249-16"><a href="graficación.html#cb249-16" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb249-17"><a href="graficación.html#cb249-17" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb249-18"><a href="graficación.html#cb249-18" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb249-19"><a href="graficación.html#cb249-19" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb249-20"><a href="graficación.html#cb249-20" aria-hidden="true"></a>     <span class="dt">cex.main =</span> <span class="fl">1.3</span>, <span class="co"># Tamaño para el título</span></span>
+<span id="cb249-21"><a href="graficación.html#cb249-21" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb249-22"><a href="graficación.html#cb249-22" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb249-23"><a href="graficación.html#cb249-23" aria-hidden="true"></a>     )</span>
+<span id="cb249-24"><a href="graficación.html#cb249-24" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb249-25"><a href="graficación.html#cb249-25" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb249-26"><a href="graficación.html#cb249-26" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb249-27"><a href="graficación.html#cb249-27" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb249-28"><a href="graficación.html#cb249-28" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb249-29"><a href="graficación.html#cb249-29" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb249-30"><a href="graficación.html#cb249-30" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb249-31"><a href="graficación.html#cb249-31" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb249-32"><a href="graficación.html#cb249-32" aria-hidden="true"></a>    )</span>
+<span id="cb249-33"><a href="graficación.html#cb249-33" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb249-34"><a href="graficación.html#cb249-34" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb249-35"><a href="graficación.html#cb249-35" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb249-36"><a href="graficación.html#cb249-36" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb249-37"><a href="graficación.html#cb249-37" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb249-38"><a href="graficación.html#cb249-38" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb249-39"><a href="graficación.html#cb249-39" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb249-40"><a href="graficación.html#cb249-40" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb249-41"><a href="graficación.html#cb249-41" aria-hidden="true"></a>    )</span>
+<span id="cb249-42"><a href="graficación.html#cb249-42" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb249-43"><a href="graficación.html#cb249-43" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb249-44"><a href="graficación.html#cb249-44" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb249-45"><a href="graficación.html#cb249-45" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb249-46"><a href="graficación.html#cb249-46" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span>,</span>
+<span id="cb249-47"><a href="graficación.html#cb249-47" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">2</span> <span class="co"># Se coloca la etiqueta a la izquierda de la posición dada.</span></span>
+<span id="cb249-48"><a href="graficación.html#cb249-48" aria-hidden="true"></a>     )</span>
+<span id="cb249-49"><a href="graficación.html#cb249-49" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb249-50"><a href="graficación.html#cb249-50" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb249-51"><a href="graficación.html#cb249-51" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb249-52"><a href="graficación.html#cb249-52" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb249-53"><a href="graficación.html#cb249-53" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb249-54"><a href="graficación.html#cb249-54" aria-hidden="true"></a>      )</span>
+<span id="cb249-55"><a href="graficación.html#cb249-55" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb249-56"><a href="graficación.html#cb249-56" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb249-57"><a href="graficación.html#cb249-57" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb249-58"><a href="graficación.html#cb249-58" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb249-59"><a href="graficación.html#cb249-59" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb249-60"><a href="graficación.html#cb249-60" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb249-61"><a href="graficación.html#cb249-61" aria-hidden="true"></a>      )</span>
+<span id="cb249-62"><a href="graficación.html#cb249-62" aria-hidden="true"></a><span class="kw">Arrows</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición de inicio</span></span>
+<span id="cb249-63"><a href="graficación.html#cb249-63" aria-hidden="true"></a>      <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),  <span class="co">#Posición de término</span></span>
+<span id="cb249-64"><a href="graficación.html#cb249-64" aria-hidden="true"></a>      <span class="dt">arr.type=</span><span class="st">&quot;triangle&quot;</span>, <span class="co">#Tipo de flecha</span></span>
+<span id="cb249-65"><a href="graficación.html#cb249-65" aria-hidden="true"></a>      <span class="dt">arr.adj =</span> <span class="dv">2</span>, <span class="co">#Ajuste para que la punta de la flecha toque el punto seleccionado</span></span>
+<span id="cb249-66"><a href="graficación.html#cb249-66" aria-hidden="true"></a>      <span class="co"># arr.width=0.5, #Ancho de flecha</span></span>
+<span id="cb249-67"><a href="graficación.html#cb249-67" aria-hidden="true"></a>      <span class="dt">arr.col =</span> <span class="st">&quot;gray47&quot;</span>,<span class="co">#color de la flecha</span></span>
+<span id="cb249-68"><a href="graficación.html#cb249-68" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb249-69"><a href="graficación.html#cb249-69" aria-hidden="true"></a>      <span class="dt">lwd =</span> <span class="fl">1.2</span></span>
+<span id="cb249-70"><a href="graficación.html#cb249-70" aria-hidden="true"></a>      )</span>
+<span id="cb249-71"><a href="graficación.html#cb249-71" aria-hidden="true"></a><span class="kw">segments</span>(<span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="dv">-40</span>, <span class="co">#Coordenadas del primer punto</span></span>
+<span id="cb249-72"><a href="graficación.html#cb249-72" aria-hidden="true"></a>         <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="co">#Coordenadas del segundo punto</span></span>
+<span id="cb249-73"><a href="graficación.html#cb249-73" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb249-74"><a href="graficación.html#cb249-74" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb249-75"><a href="graficación.html#cb249-75" aria-hidden="true"></a><span class="kw">segments</span>(<span class="op">-</span><span class="dv">15</span>, <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),</span>
+<span id="cb249-76"><a href="graficación.html#cb249-76" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb249-77"><a href="graficación.html#cb249-77" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<p>Si se desea solo colorear el fondo del plano coordenado, véase el ejemplo que se da en el siguiente <a href="https://coders-corner.net/2016/05/08/data-visualization-in-r-background-color/">link</a>.</p>
+<p>También se pueden crear matrices de gráficas, esto gracias al parámetro <code>mfrow</code></p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r scroll-300"><code class="sourceCode r"><span id="cb250-1"><a href="graficación.html#cb250-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">oma =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
+<span id="cb250-2"><a href="graficación.html#cb250-2" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">bg=</span><span class="st">&quot;#daeff5&quot;</span>,</span>
+<span id="cb250-3"><a href="graficación.html#cb250-3" aria-hidden="true"></a>    <span class="dt">col.sub=</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb250-4"><a href="graficación.html#cb250-4" aria-hidden="true"></a>    <span class="dt">font.main =</span> <span class="dv">4</span>,</span>
+<span id="cb250-5"><a href="graficación.html#cb250-5" aria-hidden="true"></a>    <span class="dt">font.sub =</span> <span class="dv">3</span>,</span>
+<span id="cb250-6"><a href="graficación.html#cb250-6" aria-hidden="true"></a>    <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb250-7"><a href="graficación.html#cb250-7" aria-hidden="true"></a>    <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb250-8"><a href="graficación.html#cb250-8" aria-hidden="true"></a>    <span class="dt">cex.axis =</span> <span class="fl">.8</span></span>
+<span id="cb250-9"><a href="graficación.html#cb250-9" aria-hidden="true"></a>    )</span>
+<span id="cb250-10"><a href="graficación.html#cb250-10" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb250-11"><a href="graficación.html#cb250-11" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb250-12"><a href="graficación.html#cb250-12" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>, <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb250-13"><a href="graficación.html#cb250-13" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb250-14"><a href="graficación.html#cb250-14" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb250-15"><a href="graficación.html#cb250-15" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb250-16"><a href="graficación.html#cb250-16" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb250-17"><a href="graficación.html#cb250-17" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb250-18"><a href="graficación.html#cb250-18" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb250-19"><a href="graficación.html#cb250-19" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb250-20"><a href="graficación.html#cb250-20" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb250-21"><a href="graficación.html#cb250-21" aria-hidden="true"></a>     )</span>
+<span id="cb250-22"><a href="graficación.html#cb250-22" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb250-23"><a href="graficación.html#cb250-23" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb250-24"><a href="graficación.html#cb250-24" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb250-25"><a href="graficación.html#cb250-25" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb250-26"><a href="graficación.html#cb250-26" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb250-27"><a href="graficación.html#cb250-27" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb250-28"><a href="graficación.html#cb250-28" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-29"><a href="graficación.html#cb250-29" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb250-30"><a href="graficación.html#cb250-30" aria-hidden="true"></a>    )</span>
+<span id="cb250-31"><a href="graficación.html#cb250-31" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb250-32"><a href="graficación.html#cb250-32" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb250-33"><a href="graficación.html#cb250-33" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb250-34"><a href="graficación.html#cb250-34" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb250-35"><a href="graficación.html#cb250-35" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb250-36"><a href="graficación.html#cb250-36" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb250-37"><a href="graficación.html#cb250-37" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-38"><a href="graficación.html#cb250-38" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb250-39"><a href="graficación.html#cb250-39" aria-hidden="true"></a>    )</span>
+<span id="cb250-40"><a href="graficación.html#cb250-40" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb250-41"><a href="graficación.html#cb250-41" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb250-42"><a href="graficación.html#cb250-42" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb250-43"><a href="graficación.html#cb250-43" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb250-44"><a href="graficación.html#cb250-44" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span>,</span>
+<span id="cb250-45"><a href="graficación.html#cb250-45" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">2</span> <span class="co"># Se coloca la etiqueta a la izquierda de la posición dada.</span></span>
+<span id="cb250-46"><a href="graficación.html#cb250-46" aria-hidden="true"></a>     )</span>
+<span id="cb250-47"><a href="graficación.html#cb250-47" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb250-48"><a href="graficación.html#cb250-48" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb250-49"><a href="graficación.html#cb250-49" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb250-50"><a href="graficación.html#cb250-50" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-51"><a href="graficación.html#cb250-51" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb250-52"><a href="graficación.html#cb250-52" aria-hidden="true"></a>      )</span>
+<span id="cb250-53"><a href="graficación.html#cb250-53" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb250-54"><a href="graficación.html#cb250-54" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb250-55"><a href="graficación.html#cb250-55" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb250-56"><a href="graficación.html#cb250-56" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb250-57"><a href="graficación.html#cb250-57" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-58"><a href="graficación.html#cb250-58" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb250-59"><a href="graficación.html#cb250-59" aria-hidden="true"></a>      )</span>
+<span id="cb250-60"><a href="graficación.html#cb250-60" aria-hidden="true"></a><span class="kw">Arrows</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición de inicio</span></span>
+<span id="cb250-61"><a href="graficación.html#cb250-61" aria-hidden="true"></a>      <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),  <span class="co">#Posición de término</span></span>
+<span id="cb250-62"><a href="graficación.html#cb250-62" aria-hidden="true"></a>      <span class="dt">arr.type=</span><span class="st">&quot;triangle&quot;</span>, <span class="co">#Tipo de flecha</span></span>
+<span id="cb250-63"><a href="graficación.html#cb250-63" aria-hidden="true"></a>      <span class="dt">arr.adj =</span> <span class="dv">2</span>, <span class="co">#Ajuste para que la punta de la flecha toque el punto seleccionado</span></span>
+<span id="cb250-64"><a href="graficación.html#cb250-64" aria-hidden="true"></a>      <span class="co"># arr.width=0.5, #Ancho de flecha</span></span>
+<span id="cb250-65"><a href="graficación.html#cb250-65" aria-hidden="true"></a>      <span class="dt">arr.col =</span> <span class="st">&quot;gray47&quot;</span>,<span class="co">#color de la flecha</span></span>
+<span id="cb250-66"><a href="graficación.html#cb250-66" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb250-67"><a href="graficación.html#cb250-67" aria-hidden="true"></a>      <span class="dt">lwd =</span> <span class="fl">1.2</span></span>
+<span id="cb250-68"><a href="graficación.html#cb250-68" aria-hidden="true"></a>      )</span>
+<span id="cb250-69"><a href="graficación.html#cb250-69" aria-hidden="true"></a><span class="kw">segments</span>(<span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="dv">-40</span>, <span class="co">#Coordenadas del primer punto</span></span>
+<span id="cb250-70"><a href="graficación.html#cb250-70" aria-hidden="true"></a>         <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="co">#Coordenadas del segundo punto</span></span>
+<span id="cb250-71"><a href="graficación.html#cb250-71" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb250-72"><a href="graficación.html#cb250-72" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb250-73"><a href="graficación.html#cb250-73" aria-hidden="true"></a><span class="kw">segments</span>(<span class="op">-</span><span class="dv">15</span>, <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),</span>
+<span id="cb250-74"><a href="graficación.html#cb250-74" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb250-75"><a href="graficación.html#cb250-75" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>) </span>
+<span id="cb250-76"><a href="graficación.html#cb250-76" aria-hidden="true"></a></span>
+<span id="cb250-77"><a href="graficación.html#cb250-77" aria-hidden="true"></a><span class="kw">plot</span>(pressure <span class="op">~</span><span class="st"> </span>temperature, <span class="dt">data=</span>pressure,</span>
+<span id="cb250-78"><a href="graficación.html#cb250-78" aria-hidden="true"></a>     <span class="dt">sub=</span><span class="st">&quot;Ejemplo 1&quot;</span>, <span class="co"># Sub título</span></span>
+<span id="cb250-79"><a href="graficación.html#cb250-79" aria-hidden="true"></a>     <span class="dt">xlab=</span><span class="ot">NA</span>, <span class="dt">ylab=</span><span class="ot">NA</span>,</span>
+<span id="cb250-80"><a href="graficación.html#cb250-80" aria-hidden="true"></a>     <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>, <span class="co"># Tipo de gráfico</span></span>
+<span id="cb250-81"><a href="graficación.html#cb250-81" aria-hidden="true"></a>     <span class="dt">pch=</span> <span class="dv">24</span>, <span class="co"># símbolo para dibujar las observaciones</span></span>
+<span id="cb250-82"><a href="graficación.html#cb250-82" aria-hidden="true"></a>     <span class="dt">col=</span> <span class="st">&quot;#0b3666&quot;</span>,<span class="co"># Color para los anteriores símbolos y lineas</span></span>
+<span id="cb250-83"><a href="graficación.html#cb250-83" aria-hidden="true"></a>     <span class="dt">bg=</span> <span class="st">&quot;#12b587&quot;</span>, <span class="co"># Color de relleno de los anteriores elementos</span></span>
+<span id="cb250-84"><a href="graficación.html#cb250-84" aria-hidden="true"></a>     <span class="dt">lty =</span> <span class="dv">3</span>, <span class="co">#Tipo de líneas</span></span>
+<span id="cb250-85"><a href="graficación.html#cb250-85" aria-hidden="true"></a>     <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="co"># Ancho de las líneas</span></span>
+<span id="cb250-86"><a href="graficación.html#cb250-86" aria-hidden="true"></a>     <span class="dt">cex.sub =</span> <span class="fl">.8</span>, <span class="co"># Tamaño para el sub título</span></span>
+<span id="cb250-87"><a href="graficación.html#cb250-87" aria-hidden="true"></a>     <span class="dt">axes=</span><span class="ot">FALSE</span></span>
+<span id="cb250-88"><a href="graficación.html#cb250-88" aria-hidden="true"></a>     )</span>
+<span id="cb250-89"><a href="graficación.html#cb250-89" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">1</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb250-90"><a href="graficación.html#cb250-90" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">15</span>,<span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="dv">380</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb250-91"><a href="graficación.html#cb250-91" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">360</span>, <span class="dv">45</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb250-92"><a href="graficación.html#cb250-92" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-40</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb250-93"><a href="graficación.html#cb250-93" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">0</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb250-94"><a href="graficación.html#cb250-94" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb250-95"><a href="graficación.html#cb250-95" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-96"><a href="graficación.html#cb250-96" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb250-97"><a href="graficación.html#cb250-97" aria-hidden="true"></a>    )</span>
+<span id="cb250-98"><a href="graficación.html#cb250-98" aria-hidden="true"></a><span class="kw">axis</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Indicando el eje al que se le aplicará diseño </span></span>
+<span id="cb250-99"><a href="graficación.html#cb250-99" aria-hidden="true"></a>     <span class="dt">at =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">40</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="dv">840</span>), <span class="co">#Se indica donde se darán las etiquetas</span></span>
+<span id="cb250-100"><a href="graficación.html#cb250-100" aria-hidden="true"></a>     <span class="dt">labels =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">810</span>, <span class="dv">162</span>), <span class="ot">NA</span>), <span class="co"># Se dan explícitamente las anotaciones en los ejes (en los tickmarks)</span></span>
+<span id="cb250-101"><a href="graficación.html#cb250-101" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">-15</span>,<span class="co"># Coordenada para indicar donde se intersecta con el otro eje</span></span>
+<span id="cb250-102"><a href="graficación.html#cb250-102" aria-hidden="true"></a>     <span class="dt">las =</span> <span class="dv">2</span>, <span class="co"># 0 para un eje paralelo y 2 para uno perpendicular</span></span>
+<span id="cb250-103"><a href="graficación.html#cb250-103" aria-hidden="true"></a>     <span class="dt">tck =</span> <span class="fl">0.03</span>, <span class="co"># Ajuste de longitud de los ticks.</span></span>
+<span id="cb250-104"><a href="graficación.html#cb250-104" aria-hidden="true"></a>     <span class="dt">col.axis =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-105"><a href="graficación.html#cb250-105" aria-hidden="true"></a>     <span class="dt">fg =</span> <span class="st">&quot;#9fb3c9&quot;</span> <span class="co">#Color de los ticks y el marco de los ejes</span></span>
+<span id="cb250-106"><a href="graficación.html#cb250-106" aria-hidden="true"></a>    )</span>
+<span id="cb250-107"><a href="graficación.html#cb250-107" aria-hidden="true"></a><span class="kw">text</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición para el texto</span></span>
+<span id="cb250-108"><a href="graficación.html#cb250-108" aria-hidden="true"></a>     <span class="st">&quot;Presión máxima&quot;</span>,</span>
+<span id="cb250-109"><a href="graficación.html#cb250-109" aria-hidden="true"></a>     <span class="dt">cex =</span> <span class="fl">.8</span>,</span>
+<span id="cb250-110"><a href="graficación.html#cb250-110" aria-hidden="true"></a>     <span class="dt">font =</span> <span class="dv">3</span>,</span>
+<span id="cb250-111"><a href="graficación.html#cb250-111" aria-hidden="true"></a>     <span class="dt">col =</span> <span class="st">&quot;#7d522a&quot;</span>,</span>
+<span id="cb250-112"><a href="graficación.html#cb250-112" aria-hidden="true"></a>     <span class="dt">pos =</span> <span class="dv">2</span> <span class="co"># Se coloca la etiqueta a la izquierda de la posición dada.</span></span>
+<span id="cb250-113"><a href="graficación.html#cb250-113" aria-hidden="true"></a>     )</span>
+<span id="cb250-114"><a href="graficación.html#cb250-114" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">1</span>,<span class="st">&quot;Temperatura&quot;</span>, </span>
+<span id="cb250-115"><a href="graficación.html#cb250-115" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>,</span>
+<span id="cb250-116"><a href="graficación.html#cb250-116" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb250-117"><a href="graficación.html#cb250-117" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-118"><a href="graficación.html#cb250-118" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb250-119"><a href="graficación.html#cb250-119" aria-hidden="true"></a>      )</span>
+<span id="cb250-120"><a href="graficación.html#cb250-120" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="dt">side =</span> <span class="dv">2</span>, <span class="co">#Al igual que con axis</span></span>
+<span id="cb250-121"><a href="graficación.html#cb250-121" aria-hidden="true"></a>      <span class="st">&quot;Presión&quot;</span>, </span>
+<span id="cb250-122"><a href="graficación.html#cb250-122" aria-hidden="true"></a>      <span class="dt">line=</span><span class="fl">2.4</span>, <span class="co">#Agregar margen</span></span>
+<span id="cb250-123"><a href="graficación.html#cb250-123" aria-hidden="true"></a>      <span class="dt">cex=</span> <span class="fl">1.1</span>,</span>
+<span id="cb250-124"><a href="graficación.html#cb250-124" aria-hidden="true"></a>      <span class="dt">col=</span> <span class="st">&quot;#284c73&quot;</span>,</span>
+<span id="cb250-125"><a href="graficación.html#cb250-125" aria-hidden="true"></a>      <span class="dt">font=</span> <span class="dv">3</span></span>
+<span id="cb250-126"><a href="graficación.html#cb250-126" aria-hidden="true"></a>      )</span>
+<span id="cb250-127"><a href="graficación.html#cb250-127" aria-hidden="true"></a><span class="kw">Arrows</span>(<span class="dv">270</span>,<span class="dv">648</span>, <span class="co">#Posición de inicio</span></span>
+<span id="cb250-128"><a href="graficación.html#cb250-128" aria-hidden="true"></a>      <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),  <span class="co">#Posición de término</span></span>
+<span id="cb250-129"><a href="graficación.html#cb250-129" aria-hidden="true"></a>      <span class="dt">arr.type=</span><span class="st">&quot;triangle&quot;</span>, <span class="co">#Tipo de flecha</span></span>
+<span id="cb250-130"><a href="graficación.html#cb250-130" aria-hidden="true"></a>      <span class="dt">arr.adj =</span> <span class="dv">2</span>, <span class="co">#Ajuste para que la punta de la flecha toque el punto seleccionado</span></span>
+<span id="cb250-131"><a href="graficación.html#cb250-131" aria-hidden="true"></a>      <span class="co"># arr.width=0.5, #Ancho de flecha</span></span>
+<span id="cb250-132"><a href="graficación.html#cb250-132" aria-hidden="true"></a>      <span class="dt">arr.col =</span> <span class="st">&quot;gray47&quot;</span>,<span class="co">#color de la flecha</span></span>
+<span id="cb250-133"><a href="graficación.html#cb250-133" aria-hidden="true"></a>      <span class="dt">col =</span> <span class="st">&quot;grey50&quot;</span>,</span>
+<span id="cb250-134"><a href="graficación.html#cb250-134" aria-hidden="true"></a>      <span class="dt">lwd =</span> <span class="fl">1.2</span></span>
+<span id="cb250-135"><a href="graficación.html#cb250-135" aria-hidden="true"></a>      )</span>
+<span id="cb250-136"><a href="graficación.html#cb250-136" aria-hidden="true"></a><span class="kw">segments</span>(<span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="dv">-40</span>, <span class="co">#Coordenadas del primer punto</span></span>
+<span id="cb250-137"><a href="graficación.html#cb250-137" aria-hidden="true"></a>         <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="co">#Coordenadas del segundo punto</span></span>
+<span id="cb250-138"><a href="graficación.html#cb250-138" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb250-139"><a href="graficación.html#cb250-139" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb250-140"><a href="graficación.html#cb250-140" aria-hidden="true"></a><span class="kw">segments</span>(<span class="op">-</span><span class="dv">15</span>, <span class="kw">max</span>(pressure<span class="op">$</span>pressure), <span class="kw">max</span>(pressure<span class="op">$</span>temperature), <span class="kw">max</span>(pressure<span class="op">$</span>pressure),</span>
+<span id="cb250-141"><a href="graficación.html#cb250-141" aria-hidden="true"></a>       <span class="dt">col =</span> <span class="st">&quot;gray73&quot;</span>,</span>
+<span id="cb250-142"><a href="graficación.html#cb250-142" aria-hidden="true"></a>       <span class="dt">lty =</span> <span class="dv">3</span>) </span>
+<span id="cb250-143"><a href="graficación.html#cb250-143" aria-hidden="true"></a></span>
+<span id="cb250-144"><a href="graficación.html#cb250-144" aria-hidden="true"></a><span class="kw">mtext</span>(<span class="st">&quot;Gráfico de dispersión y Lineas: Presión VS Temperatura&quot;</span>, <span class="dt">outer =</span> <span class="ot">TRUE</span>, <span class="dt">cex=</span> <span class="fl">1.3</span>,<span class="dt">col =</span> <span class="st">&quot;#0e608f&quot;</span>,<span class="dt">font =</span> <span class="dv">4</span> )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<p>El parámetro <code>oma</code> es para modificar el margen exterior de la gráfica. Puede verse más de esto y del argumento <code>mar</code> en los siguientes enlaces:</p>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/74-margin-and-oma-cheatsheet.html">Graph-gallery</a></li>
+<li><a href="https://bookdown.org/ndphillips/YaRrr/plot-margins.html">YaRrr</a></li>
+</ul>
+<p>Finalmente, un conjunto de funciones comunes para crear una matriz de dispersión</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="graficación.html#cb251-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&quot;#e3e9ff&quot;</span>, <span class="dt">font.main =</span> <span class="dv">4</span>,</span>
+<span id="cb251-2"><a href="graficación.html#cb251-2" aria-hidden="true"></a>    <span class="dt">font.sub =</span> <span class="dv">3</span>,</span>
+<span id="cb251-3"><a href="graficación.html#cb251-3" aria-hidden="true"></a>    <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb251-4"><a href="graficación.html#cb251-4" aria-hidden="true"></a>    <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb251-5"><a href="graficación.html#cb251-5" aria-hidden="true"></a>    <span class="dt">cex.axis =</span> <span class="fl">.8</span>)</span>
+<span id="cb251-6"><a href="graficación.html#cb251-6" aria-hidden="true"></a><span class="kw">pairs</span>(iris, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;#865fd4&quot;</span>, <span class="st">&quot;#b34769&quot;</span>, <span class="st">&quot;#a19f4c&quot;</span>)[<span class="kw">ifelse</span>(iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>, <span class="dt">yes =</span> <span class="dv">1</span>, <span class="dt">no =</span> <span class="kw">ifelse</span>(iris<span class="op">$</span>Species<span class="op">==</span><span class="st">&quot;versicolor&quot;</span>, <span class="dt">yes =</span> <span class="dv">2</span>, <span class="dt">no =</span> <span class="dv">3</span>))])</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<ul>
+<li>Histograma, Gráfico de densidad, Pie Chart y Boxplot</li>
+</ul>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="graficación.html#cb252-1" aria-hidden="true"></a><span class="kw">library</span>(wesanderson)</span>
+<span id="cb252-2"><a href="graficación.html#cb252-2" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb252-3"><a href="graficación.html#cb252-3" aria-hidden="true"></a>datos_fic &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dt">by =</span> <span class="fl">0.01</span>), <span class="dt">replace =</span> T, <span class="dt">size =</span> <span class="dv">1000</span>))</span>
+<span id="cb252-4"><a href="graficación.html#cb252-4" aria-hidden="true"></a>datos_fic_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">replace =</span> T, <span class="dt">size =</span> <span class="dv">100</span>)</span>
+<span id="cb252-5"><a href="graficación.html#cb252-5" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">bg =</span> <span class="st">&quot;#e3e9ff&quot;</span>, <span class="dt">font.main =</span> <span class="dv">4</span>,</span>
+<span id="cb252-6"><a href="graficación.html#cb252-6" aria-hidden="true"></a>    <span class="dt">font.sub =</span> <span class="dv">3</span>,</span>
+<span id="cb252-7"><a href="graficación.html#cb252-7" aria-hidden="true"></a>    <span class="dt">family =</span> <span class="st">&quot;Fira Sans Condensed&quot;</span>,</span>
+<span id="cb252-8"><a href="graficación.html#cb252-8" aria-hidden="true"></a>    <span class="dt">font.axis =</span> <span class="dv">1</span>,</span>
+<span id="cb252-9"><a href="graficación.html#cb252-9" aria-hidden="true"></a>    <span class="dt">cex.axis =</span> <span class="fl">.8</span>)</span>
+<span id="cb252-10"><a href="graficación.html#cb252-10" aria-hidden="true"></a><span class="kw">hist</span>(datos_fic, <span class="dt">freq=</span><span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;#2241b5&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma de datos_fic&quot;</span>)</span>
+<span id="cb252-11"><a href="graficación.html#cb252-11" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">density</span>(datos_fic), <span class="dt">col=</span><span class="st">&quot;#2241b5&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Densidad de datos_fic&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;datos_fic&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Densidad&quot;</span>)</span>
+<span id="cb252-12"><a href="graficación.html#cb252-12" aria-hidden="true"></a><span class="kw">pie</span>(<span class="kw">table</span>(datos_fic_<span class="dv">1</span>), <span class="dt">col=</span><span class="kw">wes_palette</span>(<span class="st">&quot;Rushmore1&quot;</span>), <span class="dt">clockwise=</span><span class="ot">TRUE</span>, <span class="dt">main =</span> <span class="st">&quot;Gráfico de pastel&quot;</span>)</span>
+<span id="cb252-13"><a href="graficación.html#cb252-13" aria-hidden="true"></a><span class="kw">boxplot</span>(iris<span class="op">$</span>Sepal.Length<span class="op">~</span>iris<span class="op">$</span>Species, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;#865fd4&quot;</span>, <span class="st">&quot;#b34769&quot;</span>, <span class="st">&quot;#a19f4c&quot;</span>), <span class="dt">xlab =</span> <span class="st">&quot;Especies&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Longitud del Sépalo&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Boxplots por especie&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<div id="comentarios-finales" class="section level4" number="3.7.0.1">
+<h4><span class="header-section-number">3.7.0.1</span> Comentarios finales</h4>
+<ul>
+<li>Aún falta mucho por ver.</li>
+<li>Existen paquetes especiales para obtener colores.</li>
+<li>Se pueden agregar colores de tipo gradiente.</li>
+<li>Se pueden crear mapas.</li>
+<li>Existen muchas más gráficas estadísticas.</li>
+<li>Se pueden crear gráficas en 3D.</li>
+<li>Se pueden crear gráficas interactivas.</li>
+<li>Se pueden crear animaciones.</li>
+<li>investíguese el paquete <code>manipulate</code> para poder manipular las gráficas base de R de manera más interactiva.</li>
+<li>Además de saber crear gráficas, hay que tener conocimiento sobre cuando y cuales usar.</li>
+<li>Aquí se dejan algunos enlaces que pueden ser de interés:
+<ul>
+<li><a href="https://www.datacamp.com/community/tutorials/15-questions-about-r-plots">15 questions about r plots</a>.</li>
+<li><a href="https://www.stat.auckland.ac.nz/~paul/Talks/Rgraphics.pdf">RGraphics-Paul Murell</a>.</li>
+<li><a href="https://www.stat.auckland.ac.nz/~paul/RGraphics/chapter1.pdf">Rgraphics-Chapter1</a>.</li>
+<li><a href="http://www.ub.edu/stat/docencia/EADB/Advanced_graphics_with_R.pdf">Advance graphics with R</a>.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="ejercicios-4" class="section level4 unnumbered">
+<h4>Ejercicios</h4>
+<ol start="61" style="list-style-type: decimal">
+<li><p>Es algo tedioso estar copiando y pegando el mismo contenido para hacer una gráfica. Investiga una forma para guardar una gráfica como las vistas en esta sección como un objeto para usarlo posteriormente.</p></li>
+<li><p>Investiga como agregar una leyenda en la siguiente gráfica</p></li>
+</ol>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="graficación.html#cb253-1" aria-hidden="true"></a>x&lt;-<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>; square =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>; fourth =<span class="st"> </span>x<span class="op">^</span><span class="dv">4</span></span>
+<span id="cb253-2"><a href="graficación.html#cb253-2" aria-hidden="true"></a><span class="kw">plot</span>(x, square, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#cc5252&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;x&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="dt">pch=</span><span class="dv">19</span>)</span>
+<span id="cb253-3"><a href="graficación.html#cb253-3" aria-hidden="true"></a><span class="kw">lines</span>(x, fourth, <span class="dt">pch=</span><span class="dv">19</span>, <span class="dt">col=</span><span class="st">&quot;#e0773f&quot;</span>, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<ol start="63" style="list-style-type: decimal">
+<li><p>Investiga la función <code>expression()</code> para agregar en la anterior gráfica las respectivas ecuaciones (<span class="math inline">\(y = x^2\)</span>, <span class="math inline">\(y = x^4\)</span>).</p></li>
+<li><p>Crear una gráfica donde se tenga el histograma y la gráfica de densidad para el siguiente vector numérico: <code>rnorm(1000, 5, 0.4)</code>.</p></li>
+<li><p>En la gráfica anterior, agrega con la función <code>curve()</code> la ecuación del ejercicio <a href="funciones-1.html#50">50</a> con <span class="math inline">\(\mu = 5\)</span> y <span class="math inline">\(\sigma = 0.4\)</span></p></li>
+<li><p>Se puede agregar texto en una gráfica con el estilo de Latex, es decir, en <span class="math inline">\(esta \ forma \ junto \ con \ ecuaciones \ como \sum_{x = 20}^{40}x^2\cdot\log(x)\)</span>. Lee el siguiente <a href="https://robjhyndman.com/hyndsight/latex2exp/">post</a> y crea una gráfica agregando alguna ecuación en ella.</p></li>
+<li><p>Escribe el código necesario para crear la siguiente gráfica
+<img src="Images/ej_67.png" /></p></li>
+<li><p>Escribe el código necesario para crear la siguiente gráfica. Hint: Utiliza alguna de las funciones que se explican en <a href="https://bookdown.org/ndphillips/YaRrr/low-level-plotting-functions.html">Low-level plotting functions: YaRrr! The Pirate’s Guide to R</a>
+<img src="Images/ej_68.png" /></p></li>
+<li><p>Utiliza la función curve para gráficar la función <span class="math inline">\(sin(x)\)</span>, <span class="math inline">\(cos(x)\)</span> y <span class="math inline">\(tan(x)\)</span> en una sola gráfica. El rango debe abarcar tanto números negativos como positivos.
+<img src="Images/ej_69.png" /></p></li>
+<li><p>Con las funciones <code>rect()</code>, <code>polygon()</code> y <code>symbol()</code>, crea la siguiente gráfica.
+<img src="Images/ej_70.png" /></p></li>
+<li><p>Crea una gráfica con las siguientes ecuaciones parámetricas con <span class="math inline">\(t\in[0,2\pi]\)</span></p></li>
+</ol>
+<p><span class="math display">\[
+\begin{split}
+x &amp;= 16 cos^3(t)\\
+y &amp;= 13 cos(t)-5cos(2t)-2cos(3t)-cos(4t)
+\end{split}
+\]</span></p>
+<ol start="72" style="list-style-type: decimal">
+<li><p>Grafica 1000 puntos con dos vectores de números pseudo aleatorios entre 0 y 1 y utiliza la función <a href="https://astrostatistics.psu.edu/su07/R/html/grDevices/html/palettes.html">rainbow</a> para otorgarles color.</p></li>
+<li><p>Crea una representación geométricas de la integral <span class="math inline">\(\int_0^\pi sen(x)dx\)</span></p></li>
+<li><p>Crea una gráfica del las funciones <span class="math inline">\(sen(x)\)</span> y <span class="math inline">\(cos(x)\)</span> agregando anotaciones cada <span class="math inline">\(\frac{\pi}{2}\)</span> e indicando que ecuación corresponde a cada gráfica.</p></li>
+<li><p>Crea una gráfica para comparar las funciones <span class="math inline">\(sen(x)\)</span>, <span class="math inline">\(2sen(x)\)</span> y <span class="math inline">\(sen(\frac{x}{2})\)</span>.</p></li>
+<li><p>Crea una representación geométrica de la función <span class="math inline">\(sen(x)\)</span> y <span class="math inline">\(cos(x)\)</span> en una circunferencia.</p></li>
+</ol>
+<hr />
+</div>
+<div id="referencias-y-bibliografía-adicional" class="section level4 unnumbered">
+<h4>Referencias y bibliografía adicional</h4>
+<p>Wickham and Grolemund. 2017. R for Data Science. <a href="https://r4ds.had.co.nz" class="uri">https://r4ds.had.co.nz</a>
+Versión en español: <a href="https://es.r4ds.hadley.nz" class="uri">https://es.r4ds.hadley.nz</a></p>
+<p>Grolemund, Garrett.2014. Hands-On Programming with R. <a href="https://rstudio-education.github.io/hopr/" class="uri">https://rstudio-education.github.io/hopr/</a></p>
+<p>Mendoza, Vega. R para principiantes. <a href="https://bookdown.org/jboscomendoza/r-principiantes4/" class="uri">https://bookdown.org/jboscomendoza/r-principiantes4/</a></p>
+<p>Wickham and Grolemund. 2019. Advanced R. Second Edition. <a href="https://adv-r.hadley.nz" class="uri">https://adv-r.hadley.nz</a></p>
+<p>Chang, W. (2012). R graphics cookbook: practical recipes for visualizing data. " O’Reilly Media, Inc.".</p>
+<p>Rahlf, T. (2019). Data Visualisation with R: 111 Examples. Springer Nature.</p>
+<p>Murrell, P. (2018). R graphics. CRC Press.</p>
+
+</div>
+</div>
+<!-- </div> -->
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="iteración-y-recursión.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

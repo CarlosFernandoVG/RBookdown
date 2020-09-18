@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Tidyverse | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Tidyverse | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Tidyverse | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="graficación.html"/>
+<link rel="next" href="limpieza-de-datos-tidyr.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidyverse" class="section level1" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Tidyverse</h1>
+<p>La mayoría del contenido visto en <a href="https://rpubs.com/CarlosFVG/basicr">Introducción a R</a> se ha enfocado al uso del lenguaje R y al uso de ciertas funciones sin considerar su rendimiento. Como bien se menciono en su momento, R no esta diseñado para ser rápido; lo que a través de los años ha sido un tema de interés a medida que la información aumenta y las necesidades por analizar y ejecutar procesos que traten con grandes cantidades de datos. Por tales razones, el uso de paquetes que estén diseñados para trabajar de manera eficiente ha sido fundamental en la mayoría de lenguajes de programación; tal es el caso del Tidyverse.</p>
+<p>Como bien se especifica en su <a href="https://www.tidyverse.org">página</a> oficial, <em>“The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures”</em>. Estos paquetes están enfocados a tener un mejor flujo de escritura, a tener un mejor entendimiento de la estructura de los procesos, dar funciones que solucionen problemas comunes y, como ya se menciono, mejorar el rendimiento de las funciones.</p>
+<p>Dentro de este conjunto de paquetes se encuentran funciones para leer distintos tipos de archivos como aquellos con extensión .csv y .xls, además aquellas para reconocer archivos dados por SPSS, Stata y SAS, manipular archivos JSON, XML, dar una interfaz para trabajar con APIs, hacer web scraping y tener comunicación con diferentes administradores de bases de datos como SQL, MariaDB, etc.</p>
+<p>Se tienen paquetes especializados en la manipulación y limpieza de datos, también para crear modelos con estos, dar características especiales como catalogar y tratar a ciertas variables como fechas y factores, aplicar técnicas de expresiones regulares en dichos datos, aplicar funciones optimizadas que pueden remplazar a las de la familia apply y crear gráficas profesionales con una mayor fluidez.</p>
+<p>Aquí se verán solo algunos de los paquetes que componen todo este “universo limpio” y se comenzará con un operador fundamental proporcionado por el paquete <code>magritt</code>: <code>%&gt;%</code>, el cual se podrá utilizar casi siempre en R.</p>
+<p>Dicho operador tiene por nombre <code>pipe</code>, el cual tiene un uso similar al dado en otros lenguajes de programación como Python: <code>.</code> y bash: <code>|</code>. Este tiene como objetivo encadenar procesos de tal forma que el resultado dado en la cadena sirve como input del siguiente eslabón en dicha cadena, lo cual ayuda a evitar el anidamiento de funciones, minimizar la cantidad de objetos locales y facilitar la lectura e implementación de una secuencia de operaciones.</p>
+<p>Supongase que se desea resolver la tarea sencilla de aplicar una cantidad definida de operaciones sobre un número; por ejemplo, obtener la raíz cuadrada del logaritmo natural de un número multiplicado por el cuadrado de otro, a dicho valor sumarlo con los primeros 10 naturales y, finalmente, obtener la raíz cuadrada de dicho resultado. Esto se puede resolver de la siguiente manera; supongamos que los números son 10 y 20.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="tidyverse.html#cb254-1" aria-hidden="true"></a><span class="kw">sqrt</span>(<span class="kw">sum</span>(<span class="kw">sqrt</span>(<span class="kw">log</span>(<span class="kw">prod</span>(<span class="dv">10</span>, <span class="dv">20</span><span class="op">^</span><span class="dv">2</span>))), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</span></code></pre></div>
+<pre><code>[1] 7.607887</code></pre>
+<p>En tal caso se tuvo que anidar las funciones para aplicar estas cada resultado obtenido. Con <code>%&gt;%</code> la solución se ve de esta forma</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="tidyverse.html#cb256-1" aria-hidden="true"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb256-2"><a href="tidyverse.html#cb256-2" aria-hidden="true"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 10</span></span>
+<span id="cb256-3"><a href="tidyverse.html#cb256-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">prod</span>(<span class="dv">20</span><span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#se multiplica por 20^2</span></span>
+<span id="cb256-4"><a href="tidyverse.html#cb256-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">log</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#se obtiene el logaritmo de dicho número</span></span>
+<span id="cb256-5"><a href="tidyverse.html#cb256-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se obtiene la raíz cuadrada</span></span>
+<span id="cb256-6"><a href="tidyverse.html#cb256-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#A eso se le suman los primeros 10 naturales</span></span>
+<span id="cb256-7"><a href="tidyverse.html#cb256-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">sqrt</span>() <span class="co">#Se obtiene la raíz cuadrada.</span></span></code></pre></div>
+<pre><code>[1] 7.607887</code></pre>
+<p>La anterior solución tiene una estructura más fiel a como se fue resolviendo el problema poco a poco sin tiene que escribir hacia la izquierda para aplicar resultados de funciones anidadas. Más adelante se verá que el uso de dicho operador resulta fundamental para ahorra tiempo al momento de escribir código.</p>
+<p>Otro ejemplo:</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="tidyverse.html#cb258-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">5</span>, <span class="dt">byrow =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Creación de una matriz con los primeros 100 naturales.</span></span>
+<span id="cb258-2"><a href="tidyverse.html#cb258-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">rowSums</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se suma por renglón añadiendo 10 unidades a dicho resultado.</span></span>
+<span id="cb258-3"><a href="tidyverse.html#cb258-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">as.matrix</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se convierte dicho resultado a matriz.</span></span>
+<span id="cb258-4"><a href="tidyverse.html#cb258-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se normalizan los datos.</span></span>
+<span id="cb258-5"><a href="tidyverse.html#cb258-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">sum</span>() <span class="co">#Se comprueba que estos sumen media cero.</span></span></code></pre></div>
+<pre><code>[1] 0</code></pre>
+<p>Como la mayoría de la información que se utilizará se tendrá que cargar con alguna librería, aquí se dejan algunos ejemplos de algunas funciones útiles en la lectura de información.</p>
+<p>La función <code>read_csv()</code> es una de las más comunes para leer archivos separados por comas, en la cual se puede dar el path del archivo o la dirección URL de dichos datos. En este caso se esta utilizando unos datos donde se relaciona la información sobre exceso de velocidad de ciertos automóviles y señales de advertencia. Para más información consúltese el siguiente <a href="https://vincentarelbundock.github.io/Rdatasets/doc/boot/amis.html">enlace</a>.</p>
+<style type="text/css">
+.scroll-300 {
+  max-height: 300px;
+}
+</style>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="tidyverse.html#cb260-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb260-2"><a href="tidyverse.html#cb260-2" aria-hidden="true"></a><span class="kw">library</span>(tibble)</span>
+<span id="cb260-3"><a href="tidyverse.html#cb260-3" aria-hidden="true"></a>(amis &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;Data/amis.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>))</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 10 x 5
+      X1 speed period warning  pair
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1     1    26      1       1     1
+ 2     2    26      1       1     1
+ 3     3    26      1       1     1
+ 4     4    26      1       1     1
+ 5     5    27      1       1     1
+ 6     6    28      1       1     1
+ 7     7    28      1       1     1
+ 8     8    28      1       1     1
+ 9     9    28      1       1     1
+10    10    29      1       1     1</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="tidyverse.html#cb262-1" aria-hidden="true"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/boot/amis.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 10 x 5
+      X1 speed period warning  pair
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1     1    26      1       1     1
+ 2     2    26      1       1     1
+ 3     3    26      1       1     1
+ 4     4    26      1       1     1
+ 5     5    27      1       1     1
+ 6     6    28      1       1     1
+ 7     7    28      1       1     1
+ 8     8    28      1       1     1
+ 9     9    28      1       1     1
+10    10    29      1       1     1</code></pre>
+<p>En caso de que se desee leer un archivo por algún otro delimitador, se puede usar la función <code>read_delim()</code> y en el caso de tener archivos donde el delimitador sea “\t” usar la función <code>read_tsv()</code>. Los datos que se utilizan son proporcionados por el US Census Bureau, los cuales fueron indirectamente obtenidos del siguiente <a href="https://github.com/nsgrantham/uspops">enlance</a>.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tidyverse.html#cb264-1" aria-hidden="true"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb264-2"><a href="tidyverse.html#cb264-2" aria-hidden="true"></a>(US_Census_Bureau &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_delim</span>(<span class="st">&quot;Data/US Census Bureau.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>))</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 54 x 11
+   X1      `1900` `1901` `1902` `1903` `1904` `1905` `1906` `1907` `1908` `1909`
+   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
+ 1 U.S.     76094  77585  79160  80632  82165  83820  85437  87000  88709 90,492
+ 2 Northe…  21059  21401  21815  22248  22716  23214  23769  24320  24879 25,440
+ 3 North_…  26359  26722  27126  27446  27830  28203  28524  28868  29187 29,530
+ 4 South    24565  25114  25599  26055  26492  27003  27475  27879  28406 28,963
+ 5 West      4112   4351   4620   4882   5127   5398   5671   5934   6234 6,557 
+ 6 AL        1830   1907   1935   1957   1978   2012   2045   2058   2070 2,108 
+ 7 AR        1314   1341   1360   1384   1419   1447   1465   1484   1513 1,545 
+ 8 AZ         124    131    138    144    151    158    167    176    186 196   
+ 9 CA        1490   1550   1623   1702   1792   1893   1976   2054   2161 2,282 
+10 CO         543    581    621    652    659    680    707    733    757 775   
+# … with 44 more rows</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tidyverse.html#cb266-1" aria-hidden="true"></a><span class="kw">read_tsv</span>(<span class="st">&quot;Data/US Census Bureautsv.txt&quot;</span>)</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 54 x 11
+   X1      `1900` `1901` `1902` `1903` `1904` `1905` `1906` `1907` `1908` `1909`
+   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
+ 1 U.S.     76094  77585  79160  80632  82165  83820  85437  87000  88709 90,492
+ 2 Northe…  21059  21401  21815  22248  22716  23214  23769  24320  24879 25,440
+ 3 North_…  26359  26722  27126  27446  27830  28203  28524  28868  29187 29,530
+ 4 South    24565  25114  25599  26055  26492  27003  27475  27879  28406 28,963
+ 5 West      4112   4351   4620   4882   5127   5398   5671   5934   6234 6,557 
+ 6 AL        1830   1907   1935   1957   1978   2012   2045   2058   2070 2,108 
+ 7 AR        1314   1341   1360   1384   1419   1447   1465   1484   1513 1,545 
+ 8 AZ         124    131    138    144    151    158    167    176    186 196   
+ 9 CA        1490   1550   1623   1702   1792   1893   1976   2054   2161 2,282 
+10 CO         543    581    621    652    659    680    707    733    757 775   
+# … with 44 more rows</code></pre>
+<p>El paquete <code>readxl</code> esta diseño para leer archivos excel. La siguiente información proporciona la población por sexo y entidad federativa según grupos de edad quinquenales de acuerdo a los <a href="http://www.conapo.gob.mx/es/CONAPO/Tabulados_basicos">tabulados básicos</a> de la CONAPO.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tidyverse.html#cb268-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B5:Q38&quot;</span>))</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 33 x 16
+   ...1    ...2 `0 a 4` `5 a 9` `10 a 14` `15 a 19` `20 a 24` `25 a 29`
+   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Repú… 1.03e8    9.31   10.4      11.2      10.1       8.33      7.33
+ 2 Agua… 1.07e6   10.3    11.0      11.1      10.9       8.27      7.34
+ 3 Baja… 2.86e6    9.41   10.3      11.1      10.7       8.43      7.82
+ 4 Baja… 5.12e5    9.00    8.44     10.1      10.8       8.75      7.37
+ 5 Camp… 7.56e5    8.34   10.4      12.7       9.52      9.23      7.74
+ 6 Coah… 2.50e6    9.78   10.1      10.6       9.96      8.31      7.11
+ 7 Coli… 5.69e5    8.09    8.43     10.0      11.0       9.29      7.11
+ 8 Chia… 4.29e6   11.4    11.8      13.2      11.0       9.16      7.15
+ 9 Chih… 3.24e6    7.83   10.2      11.0       9.49      7.71      6.03
+10 Dist… 8.74e6    7.82    8.82      8.09      8.19      7.86      7.89
+# … with 23 more rows, and 8 more variables: `30 a 34` &lt;dbl&gt;, `35 a 39` &lt;dbl&gt;,
+#   `40 a 44` &lt;dbl&gt;, `45 a 49` &lt;dbl&gt;, `50 a 54` &lt;dbl&gt;, `55 a 59` &lt;dbl&gt;, `60 y
+#   más` &lt;dbl&gt;, NE &lt;dbl&gt;</code></pre>
+<p>Algo que hay que tener en cuenta al trabajar con los paquetes del tidyverse es el uso de <em>tibbles</em> en lugar de <em>data frames</em>.</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tidyverse.html#cb270-1" aria-hidden="true"></a><span class="kw">class</span>(amis)</span></code></pre></div>
+<pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>Un <em>tibble</em> es una versión moderna de un <em>data frame</em> que trabaja de manera perezosa (es decir, que realiza menos operaciones) evitando problemas comunes y supuestos que un data frame puede llegar a asumir. Por ejemplo, los tibbles no coercionan automáticamente los caracteres a factores, no crean nombres para las observaciones y no cambia los nombres de columnas que sean nombres no sintácticos, por ejemplo</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="tidyverse.html#cb272-1" aria-hidden="true"></a><span class="kw">tibble</span>(<span class="st">&quot;:)&quot;</span> =<span class="st"> &quot;feliz&quot;</span>, <span class="st">&quot;:(&quot;</span>=<span class="st">&quot;triste&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 x 2
+  `:)`  `:(`  
+  &lt;chr&gt; &lt;chr&gt; 
+1 feliz triste</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="tidyverse.html#cb274-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="st">&quot;:)&quot;</span> =<span class="st"> &quot;feliz&quot;</span>, <span class="st">&quot;:(&quot;</span>=<span class="st">&quot;triste&quot;</span>)</span></code></pre></div>
+<pre><code>    X..  X...1
+1 feliz triste</code></pre>
+<p>Se pueden utilizar variables desde la construcción del tibble</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="tidyverse.html#cb276-1" aria-hidden="true"></a>(t &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">y =</span> x<span class="dv">-1</span>))</span></code></pre></div>
+<pre class="scroll-300"><code># A tibble: 20 x 2
+       x     y
+   &lt;int&gt; &lt;dbl&gt;
+ 1     1     0
+ 2     2     1
+ 3     3     2
+ 4     4     3
+ 5     5     4
+ 6     6     5
+ 7     7     6
+ 8     8     7
+ 9     9     8
+10    10     9
+11    11    10
+12    12    11
+13    13    12
+14    14    13
+15    15    14
+16    16    15
+17    17    16
+18    18    17
+19    19    18
+20    20    19</code></pre>
+<ul>
+<li>¿Qué sucede al ejecutar <code>data.frame(x = 1:20, y = x-1)</code>?</li>
+</ul>
+<p>Además se tienen diferencias respecto a la impresión entre un tibble y un data frame, un tibble permite agregar listas directamente sin tener que usar la función <code>I()</code> y los tibbles nunca hacen emparejamiento parcial.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="tidyverse.html#cb278-1" aria-hidden="true"></a>t2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">xy=</span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span>
+<span id="cb278-2"><a href="tidyverse.html#cb278-2" aria-hidden="true"></a>d2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">xy =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span>
+<span id="cb278-3"><a href="tidyverse.html#cb278-3" aria-hidden="true"></a><span class="kw">str</span>(t2<span class="op">$</span>x)</span></code></pre></div>
+<pre><code> NULL</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tidyverse.html#cb280-1" aria-hidden="true"></a><span class="kw">str</span>(d2<span class="op">$</span>x)</span></code></pre></div>
+<pre><code> int [1:20] 1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<p>Finalmente, los tibbles permiten hacer substracciones con el operador pipe.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="tidyverse.html#cb282-1" aria-hidden="true"></a><span class="co">#t$x</span></span>
+<span id="cb282-2"><a href="tidyverse.html#cb282-2" aria-hidden="true"></a>t <span class="op">%&gt;%</span><span class="st"> </span>.<span class="op">$</span>x</span></code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="tidyverse.html#cb284-1" aria-hidden="true"></a><span class="co">#t[[&quot;x&quot;]]</span></span>
+<span id="cb284-2"><a href="tidyverse.html#cb284-2" aria-hidden="true"></a>t <span class="op">%&gt;%</span><span class="st"> </span>.[[<span class="st">&quot;x&quot;</span>]]</span></code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<ul>
+<li>¿Qué hace la función <code>tribble()</code>?</li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="graficación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="limpieza-de-datos-tidyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

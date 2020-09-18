@@ -1,0 +1,170 @@
+# (PART) Presentando datos {-}
+
+# Introducción
+
+No sólo basta saber crear el contenido, también es muy importante si dicho material realmente comunica lo que se desea. En esta sección se revisaran algunos de los puntos más importantes sobre la forma en que se presenta la información para que el mensaje que se quiere transmitir con ellos sea comunicado mas eficientemente.
+
+Los datos, pueden ser duros es decir los datos originales o resúmenes de estos.
+
+En los resúmenes podemos tener frecuencias acumuladas, porcentajes, tablas, gráficos entre otros.
+
+Hay 4 conceptos a tener en cuenta cuando se presentan datos, estos deben ser:
+
+- __Correctos.__ Todos los datos presentados deben ser verificados previo a cualquier difusión de información
+
+- __Claros.__ Se debe tener claro el mensaje que se quiere dar con los datos y la presentación de la información debe transmitir claramente este mensaje.
+
+- __Concisos.__ La presentación debe tener sólo la información necesaria para transmitir el mensaje.
+
+- __Consistentes.__ La información debe ser consistente en la unidades usadas, asi como abreviaciones y uso de decimales.  
+
+# Manejo de números
+
+Uno de los elementos a cuidar en la presentación de datos estadísticos es el manejo de los números.
+
+- __Uso de separador de miles.__ 128456 vs 128,456 o 128 456
+
+- __Uso de separador decimal.__ (consistencia) 66.6, 56.7, 34,7
+
+- __Nivel de comparación.__ (usar mismas unidades)
+
+Presupuesto de secretaria de salud es de 11,048 millones de pesos, representa un incremento de 563 mil pesos ($5.4\%$) respecto al año pasado.
+
+El presupuesto de secretaria de salud aumento 0.6 millones ($5\%$) siendo 11.0 millones.
+
+- __Justificación de los datos.__
+
+- __Usar la misma tipografia, tamaño y número de dígitos.__
+
+- __Justificar a la derecha cuando los datos se ponen en columnas, para alinear las unidades.__
+
+- __Redondeo.__
+
+- __Redondear los datos para que sean comparables al mismo nivel.__
+
+- __Redondear para hacerlo memorable y más fácil de comunicar (14,245  a 14,000).__
+
+# Tablas
+
+- Posicionar los totales por renglón en una última columna, y los totales por columna en un último renglón.
+
+- Los títulos deben ser reducidos.
+
+- Centrar los encabezados de las columnas.
+
+- Cuando la tabla tenga mas de 5 renglones, agregar espaciado cada 5 renglones (es más fácil leer en bloques)
+
+- Marcar la fuente de donde se tomaron los datos.
+
+- Datos temporales se ordenan cronológicamente de arriba a abajo o dercha a izquierda.
+
+## Tabla de resumen
+
+Al realizar una tabla que resume datos es buena idea considerar el mesaje que se quiere transmitir así como la audiencia a la que va dirigida. Para ello las siguiente preguntas son útiles.
+
+- ¿Qué números de la tabla se quiere que el lector  compare?
+
+- ¿Cuántos números son necesarios para transmitir el mensaje?
+
+- ¿Qué tanto detalle es necesario?
+
+- ¿Se puede agregar información derivada para ayudar a transmitir el mensaje?
+
+- ¿Deben estar los datos presentados en algún orden?
+
+#### Ejemplo {-}
+
+De una base de datos en donde se registra la exportación díaria de aguacate de los diferentes productores del país, se busca conocer la distribución de las exportaciones por estado de la república en 2019.
+
+El siguiente ejemplo presenta la salida en R de un agrupamiento por estado del total de kilogramos exportados durante 2019. 
+
+| Estado     | Volumen (Kgs) | Porcentaje |
+|------------|--------------:|-----------:|
+| JALISCO    |      417729.8 |      52.12 |
+| MICHOACAN  |      286298.8 |      35.72 |
+| GUANAJUATO |       96916.3 |      12.09 |
+| MORELOS    |           600 |       0.07 |
+
+Una mejor presentación de estos datos, siguiendo las recomendaciones es:
+
+
+| Estado     | Volumen (Kgs) | Porcentaje |
+|------------|--------------:|-----------:|
+| JALISCO    |       417,730 |        52% |
+| MICHOACAN  |       286,299 |        36% |
+| GUANAJUATO |        96,916 |        12% |
+
+# Gráficos
+
+Cuando se usan gráficos por lo general se busca la comprensión de los datos sólo con el objeto visual sin ayuda de ejes, pies de página o información adicional.
+
+Al igual que con las tablas, antes de realizar un gráfico se debe tener claro el mensaje que se desea transmitir.
+
+Puntos a considerar:
+
+- Acomodar los datos para maximizar el uso de texto en forma horizontal.
+
+- Seleccionar el tipo de gráfico correcto según los datos y el mensaje a transmitir.
+
+- Evitar colores fuertes primarios (son dominantes para el cebrebro).
+
+- Cuando se grafican números, siempre empezar el eje “y” en cero.
+
+- Usar la misma escala en gráficos que serán comparados. Considerar tranformar datos en diferentes escalas antes de graficarlos.
+
+- Asegurarse que las escalas tengan el formato apropiado. (Redondeo, decimales, etc)
+
+- Sólo usar gráficos en dos dimensiones para datos bidimensionales.
+
+## Gráfico circular
+
+En particular para los gráficos circulares se recomienda:
+
+- Asegurarse que los porcentajes sumen $100\%$
+
+- Iniciar con el primer segmento a las 12 del día e ir llenando en sentido de las manecillas del reloj.
+
+- Cuando se pueda, ordenar los segmentos por tamaño de mayor a menor.
+
+- Evitar _pies_ de mas de 6 segmentos.
+
+- Usar tonos del mismo color para identificar proporciones de una variable.
+
+#### Ejemplo {-}
+
+Usando los mismos datos de exportación díaria de aguacate. Realizaremos una representación gráfica del volumen de exportación de aguacate observada en 2019 para cada país destino. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+paises <- c("MYANMAR (BIRMANIA)","BANGLADESH","HONG KONG","JAPON","ARABIA SAUDITA", "EMIRATOS ÁRABES UNIDOS", "REINO UNIDO", "PAÍSES BAJOS (HOLANDA)", "SINGAPUR","ESTADOS UNIDOS")
+
+vol <- c(304734.62, 125240.00, 74578.50, 68925.24,55285.20,51517.44, 43760.00, 32092.50, 29610.00, 11481.36)
+
+D1 <- data.frame(paises,vol)
+
+ggplot(D1, aes(x = paises, y = vol)) +
+  labs(x="Paises de Destino", y="Volumen en Kg", title="Volumen de exportación de aguacate por pais de destino en 2019")+
+  geom_bar(stat = "identity",fill="#f68060")+
+  theme(axis.text.x = element_text(angle = 90)) +
+  scale_y_continuous(labels = scales::number)
+```
+
+Y también presentaremos gráficamente la tabla de producción de aguacate por estado de la república que presentamos en la sección de tablas.
+
+```{r, echo=TRUE}
+edo <- c("JALISCO","MICHOACAN","GUANAJUATO")	
+vol <- c("417,730","286,299","96,916")
+por <- c(52,36,	12)
+D1 <- data.frame(edo,vol,por)
+
+ggplot(D1, aes(x="", y=por, fill=edo)) +
+  geom_bar(stat="identity", width=1,color="white") +
+  coord_polar("y", start=0)+
+  theme_void()+
+  geom_text(aes(label = vol,x = 1), color = "white", size=4,
+            position = position_stack(vjust = 0.5))+
+  scale_fill_brewer(palette="Set2")+
+  labs(title="Producción de aguacate por estado en 2019")
+  
+```

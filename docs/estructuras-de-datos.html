@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Estructuras de datos | Programación en R</title>
+  <meta name="description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Estructuras de datos | Programación en R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Estructuras de datos | Programación en R" />
+  
+  <meta name="twitter:description" content="Material para el aprendizaje de R como lenguaje de programación para los cursos de Estadística en la Facultado de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+<meta name="author" content="Carlos Fernando Vásquez Guerra" />
+<meta name="author" content="David Alberto Mateos Montes de Oca" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="vectores-y-operaciones.html"/>
+<link rel="next" href="sentencias-de-control-ciclos-y-funciones.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programación en R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-técnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Todo empieza con R</b></span></li>
+<li class="chapter" data-level="1" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html"><i class="fa fa-check"></i><b>1</b> Introducción e instalación</a>
+<ul>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#r-y-rstudio"><i class="fa fa-check"></i>R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="introducción-e-instalación.html"><a href="introducción-e-instalación.html#recursos-adicionales"><i class="fa fa-check"></i>Recursos adicionales</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>2</b> Markdown</a></li>
+<li class="chapter" data-level="3" data-path="conocimientos-básicos-de-r.html"><a href="conocimientos-básicos-de-r.html"><i class="fa fa-check"></i><b>3</b> Conocimientos básicos de R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="buscando-ayuda.html"><a href="buscando-ayuda.html"><i class="fa fa-check"></i><b>3.1</b> Buscando ayuda</a></li>
+<li class="chapter" data-level="3.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html"><i class="fa fa-check"></i><b>3.2</b> Vectores y operaciones</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#vectores-atómicos"><i class="fa fa-check"></i><b>3.2.1</b> Vectores atómicos</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#otros-tipos-de-datos"><i class="fa fa-check"></i><b>3.2.2</b> Otros tipos de datos</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#asignación-de-nombres-y-atributos"><i class="fa fa-check"></i><b>3.2.3</b> Asignación de nombres y atributos</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vectores-y-operaciones.html"><a href="vectores-y-operaciones.html#operaciones-básicas-en-r"><i class="fa fa-check"></i><b>3.2.4</b> Operaciones básicas en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3.3</b> Estructuras de datos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#arreglos"><i class="fa fa-check"></i><b>3.3.3</b> Arreglos</a></li>
+<li class="chapter" data-level="3.3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html"><i class="fa fa-check"></i><b>3.4</b> Sentencias de control, ciclos y funciones</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#if-if-else"><i class="fa fa-check"></i><b>3.4.1</b> If &amp; If-else</a></li>
+<li class="chapter" data-level="3.4.2" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#for-while-y-repeat"><i class="fa fa-check"></i><b>3.4.2</b> For, While y Repeat</a></li>
+<li class="chapter" data-level="3.4.3" data-path="sentencias-de-control-ciclos-y-funciones.html"><a href="sentencias-de-control-ciclos-y-funciones.html#funciones"><i class="fa fa-check"></i><b>3.4.3</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="funciones-1.html"><a href="funciones-1.html"><i class="fa fa-check"></i><b>3.5</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="funciones-1.html"><a href="funciones-1.html#funciones-2"><i class="fa fa-check"></i><b>3.5.1</b> Funciones</a></li>
+<li class="chapter" data-level="3.5.2" data-path="funciones-1.html"><a href="funciones-1.html#vectorización"><i class="fa fa-check"></i><b>3.5.2</b> Vectorización</a></li>
+<li class="chapter" data-level="3.5.3" data-path="funciones-1.html"><a href="funciones-1.html#paquetes"><i class="fa fa-check"></i><b>3.5.3</b> Paquetes</a></li>
+<li class="chapter" data-level="3.5.4" data-path="funciones-1.html"><a href="funciones-1.html#miscellaneous"><i class="fa fa-check"></i><b>3.5.4</b> Miscellaneous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="iteración-y-recursión.html"><a href="iteración-y-recursión.html"><i class="fa fa-check"></i><b>3.6</b> Iteración y Recursión</a></li>
+<li class="chapter" data-level="3.7" data-path="graficación.html"><a href="graficación.html"><i class="fa fa-check"></i><b>3.7</b> Graficación</a></li>
+</ul></li>
+<li class="part"><span><b>II EfficientR</b></span></li>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> Tidyverse</a></li>
+<li class="chapter" data-level="5" data-path="limpieza-de-datos-tidyr.html"><a href="limpieza-de-datos-tidyr.html"><i class="fa fa-check"></i><b>5</b> Limpieza de datos: Tidyr</a></li>
+<li class="chapter" data-level="6" data-path="manipulación-de-datos-dplyr.html"><a href="manipulación-de-datos-dplyr.html"><i class="fa fa-check"></i><b>6</b> Manipulación de datos: Dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="dplyrfilter.html"><a href="dplyrfilter.html"><i class="fa fa-check"></i><b>6.1</b> dplyr::filter()</a></li>
+<li class="chapter" data-level="6.2" data-path="dplyrselect.html"><a href="dplyrselect.html"><i class="fa fa-check"></i><b>6.2</b> dplyr::select()</a></li>
+<li class="chapter" data-level="6.3" data-path="dplyrarrange.html"><a href="dplyrarrange.html"><i class="fa fa-check"></i><b>6.3</b> dplyr::arrange()</a></li>
+<li class="chapter" data-level="6.4" data-path="dplyrmutate.html"><a href="dplyrmutate.html"><i class="fa fa-check"></i><b>6.4</b> dplyr::mutate()</a></li>
+<li class="chapter" data-level="6.5" data-path="dplyrgroup-by.html"><a href="dplyrgroup-by.html"><i class="fa fa-check"></i><b>6.5</b> dplyr::group_by()</a></li>
+<li class="chapter" data-level="6.6" data-path="dplyrrename.html"><a href="dplyrrename.html"><i class="fa fa-check"></i><b>6.6</b> dplyr::rename</a></li>
+<li class="chapter" data-level="6.7" data-path="joins-y-set-operations.html"><a href="joins-y-set-operations.html"><i class="fa fa-check"></i><b>6.7</b> Joins y Set Operations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graficación-de-datos-ggplot.html"><a href="graficación-de-datos-ggplot.html"><i class="fa fa-check"></i><b>7</b> Graficación de datos: Ggplot</a></li>
+<li class="part"><span><b>III Presentando datos</b></span></li>
+<li class="chapter" data-level="8" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>8</b> Introducción</a></li>
+<li class="chapter" data-level="9" data-path="manejo-de-números.html"><a href="manejo-de-números.html"><i class="fa fa-check"></i><b>9</b> Manejo de números</a></li>
+<li class="chapter" data-level="10" data-path="tablas.html"><a href="tablas.html"><i class="fa fa-check"></i><b>10</b> Tablas</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tabla-de-resumen.html"><a href="tabla-de-resumen.html"><i class="fa fa-check"></i><b>10.1</b> Tabla de resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>11</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Programación en R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estructuras-de-datos" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Estructuras de datos</h2>
+<p>La mayoría de las bases datos contienen más de una variable de acuerdo a una cantidad de observaciones y no necesariamente los datos tiene que ser del mismo tipo de dato. En caso de que se deseara ejecutar algún algoritmo para la manipulación de estos, bien se podría tomar cada variable como un vector y ser ingeniosos y cuidadosos para relacionar todos esos vectores y obtener resultados útiles. Esta manera de trabajar no es eficiente ni la más recomendable, ya que se dedicará una mayor cantidad de tiempo a la programación y una menor a la obtención de resultados.</p>
+<p>Existen muchas estructuras de datos y aunque todas pueden ser adaptadas a un lenguaje de programación, cada lenguaje tiene estructuras básicas para trabajar. Java tiene los arreglos y otro tipo de estructuras en ciertas librerías como listas, pilas y colas. Python tiene diccionarios y mediante la librería pandas utiliza marcos de datos (data frames). En el caso de R también se tienen esta última y otras más. La siguiente imagen resume las estructuras de datos en R.</p>
+<center>
+<!-- <img src ="Images/Data_Structures_R.png" width="650" height="500" /> -->
+<p><img src="Images/Data_Structures_R.png" /></p>
+<h6>
+<p>Fuente:
+<a href="https://rstudio-education.github.io/hopr/r-objects.html#summary-2">Hands-On Programming with R</a>.</p>
+</h6>
+</center>
+<hr />
+<div id="vectores" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Vectores</h3>
+<p>Ya se ha tratado esta estructura pero faltan algunas cosas por ver.</p>
+<ul>
+<li>¿Qué sucede cuando se ejecuta el siguiente código? <code>c(TRUE, 1,2,5,9.4)</code>.</li>
+</ul>
+<p>Lo que sucede aquí es llamado <strong>coercion</strong>. En otros lenguajes de programación esto puede ser entendido como promoción y casteo, pero en este caso no es necesario hacer una declaración explicita del tipo de dato al que se desea convertir. La coerción se aplicará en cualquier estructura que use vectores.</p>
+<center>
+<!-- <img src ="Images/coercion.png" width="650" height="500" /> -->
+<img src="Images/coercion.png" />
+<h6>
+<p>Fuente:
+<a href="https://rstudio-education.github.io/hopr/r-objects.html#coercion">Hands-On Programming with R</a>.</p>
+</h6>
+</center>
+<p>En la imagen anterior quedan claras las reglas que se tienen al hacer coerción. Por ejemplo, ¿Qué tipo de vector resultará en las siguientes instrucciones?</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="estructuras-de-datos.html#cb52-1" aria-hidden="true"></a><span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="dv">3</span>)</span>
+<span id="cb52-2"><a href="estructuras-de-datos.html#cb52-2" aria-hidden="true"></a><span class="kw">c</span>(<span class="dv">4</span>, <span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>)</span>
+<span id="cb52-3"><a href="estructuras-de-datos.html#cb52-3" aria-hidden="true"></a><span class="dv">4</span> <span class="op">==</span><span class="st"> &quot;4&quot;</span></span>
+<span id="cb52-4"><a href="estructuras-de-datos.html#cb52-4" aria-hidden="true"></a><span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="ot">FALSE</span></span>
+<span id="cb52-5"><a href="estructuras-de-datos.html#cb52-5" aria-hidden="true"></a><span class="st">&quot;a&quot;</span> <span class="op">!=</span><span class="st"> </span><span class="ot">FALSE</span></span></code></pre></div>
+<p>Así como se tienen funciones para verificar si un vector es de algún tipo, también es fácil recordar las funciones para cambiar un tipo de dato a otro; en este caso en lugar de comenzar con el prefijo <code>is.</code>, se usará <code>as.</code> dando así las funciones <code>as.double()</code>, <code>as.character</code>, etc. Y esto no se limita a los vectores atómicos, ya que ciertas estructuras se pueden convertir a otras, aunque hay que tener en cuenta que ciertos atributos pueden eliminarse o que en ciertas ocasiones no será posible hacer la conversión.</p>
+<p>Finalmente, al tener una estructura que contiene datos, es de esperar una sintaxis para obtener los elementos que la componen. En el caso de los vectores, la obtención de los elementos interiores se puede hacer mediante de diferentes maneras.</p>
+<ul>
+<li>Posición de un elemento: <code>(1:10)[[3]]</code>. <code>(1:10)[3]</code></li>
+<li>¿Cuál es la diferencia entre <code>[[</code> o <code>[</code> ? Hint: <code>?'[['</code>.</li>
+<li>Posición mediante un vector: <code>(1:10)[seq(1, 10, by = 2)]</code>; <code>(1:10)[c(4,5)]</code>.</li>
+<li>Mediante filtros (subsetting) <code>(1:10)[(1:10)&lt;4]</code>.</li>
+<li>Con nombres.</li>
+</ul>
+<p>Un atributo que tienen los vectores es llamado <code>names</code>, el cual otorga un nombre a cada uno de los elementos interiores del vector.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="estructuras-de-datos.html#cb53-1" aria-hidden="true"></a>vec_altura &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.50</span>, <span class="fl">1.60</span>, <span class="fl">1.72</span>, <span class="fl">1.55</span>)</span>
+<span id="cb53-2"><a href="estructuras-de-datos.html#cb53-2" aria-hidden="true"></a><span class="kw">names</span>(vec_altura) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;José&quot;</span>, <span class="st">&quot;Raúl&quot;</span>, <span class="st">&quot;Cecilia&quot;</span>, <span class="st">&quot;Camila&quot;</span>)</span>
+<span id="cb53-3"><a href="estructuras-de-datos.html#cb53-3" aria-hidden="true"></a>vec_altura[[<span class="st">&quot;José&quot;</span>]]</span></code></pre></div>
+<pre><code>[1] 1.5</code></pre>
+<p>Por último, véase la aplicación tablas de búsqueda (Character subsetting) que otorga el subsetting en los vectores.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="estructuras-de-datos.html#cb55-1" aria-hidden="true"></a>datos_frutas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;Ma&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;Ma&quot;</span>)</span>
+<span id="cb55-2"><a href="estructuras-de-datos.html#cb55-2" aria-hidden="true"></a>frutas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">M =</span> <span class="st">&quot;Manzana&quot;</span>, <span class="dt">Ma =</span> <span class="st">&quot;Mango&quot;</span>, <span class="dt">S =</span> <span class="st">&quot;Sandía&quot;</span>)</span>
+<span id="cb55-3"><a href="estructuras-de-datos.html#cb55-3" aria-hidden="true"></a>frutas[datos_frutas]</span></code></pre></div>
+<pre><code>        M        Ma         S         M         S        Ma 
+&quot;Manzana&quot;   &quot;Mango&quot;  &quot;Sandía&quot; &quot;Manzana&quot;  &quot;Sandía&quot;   &quot;Mango&quot; </code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="estructuras-de-datos.html#cb57-1" aria-hidden="true"></a><span class="kw">unname</span>(frutas[datos_frutas])</span></code></pre></div>
+<pre><code>[1] &quot;Manzana&quot; &quot;Mango&quot;   &quot;Sandía&quot;  &quot;Manzana&quot; &quot;Sandía&quot;  &quot;Mango&quot;  </code></pre>
+<hr />
+</div>
+<div id="listas" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Listas</h3>
+<p>Las listas son una estructura de datos muy útil por la forma en la que esta codificada, ya que esta nos ayuda a tener vectores en su interior y de diferentes tipos. Comúnmente se le conoce a las listas como vectores recursivos, ya que una lista puede contener listas en su interior (las listas son otro tipo de objeto así que no hay restricciones para hacer listas de listas). Como bien indica una de las imágenes anteriores, las listas tienen una dimensión, lo cual no se debe confundir con su longitud, la cual es la cantidad de elementos que esta contiene.</p>
+<ul>
+<li>El constructor por defecto es <code>list()</code> y el tipo es <code>list</code>.</li>
+<li>Se pueden dar nombres a los elementos de las listas de la siguiente manera: <code>list("nombre" = datos)</code></li>
+<li>No es necesario dar nombres para construir una lista</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="estructuras-de-datos.html#cb59-1" aria-hidden="true"></a><span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>[[1]]
+[1] 1 5
+
+[[2]]
+ [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<ul>
+<li>Los elementos internos de una lista, al tener la posibilidad de ser diferentes, se pueden tener diferentes tamaños.</li>
+</ul>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="estructuras-de-datos.html#cb61-1" aria-hidden="true"></a><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>[[1]]
+[1] 1 2
+
+[[2]]
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+[[3]]
+[1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+<ul>
+<li>Se tiene la función <code>is.list()</code> y <code>as.list()</code> como cualquier otra estructura de datos en R.</li>
+<li>Esta sería una forma de hacer una lista de listas</li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="estructuras-de-datos.html#cb63-1" aria-hidden="true"></a><span class="kw">list</span>(<span class="kw">list</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="st">&quot;numeros&quot;</span> =<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">10</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">-3</span><span class="op">:-</span><span class="dv">5</span>))</span></code></pre></div>
+<pre><code>[[1]]
+[[1]][[1]]
+[1] &quot;a&quot;
+
+[[1]][[2]]
+[1] &quot;b&quot;
+
+[[1]][[3]]
+[1] &quot;c&quot;
+
+
+$numeros
+$numeros[[1]]
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+$numeros[[2]]
+[1] 1 2 3 4 5
+
+$numeros[[3]]
+ [1] 10 11 12 13 14 15 16 17 18 19 20
+
+$numeros[[4]]
+[1] -3 -4 -5</code></pre>
+<p>Como las listas y los vectores son de una dimensión, estas estructuras tiene algunas características en común; ambas tienen una longitud y puede determinarse su tipo (<code>typeof(vector()</code>, <code>typeof(list())</code>). Además en ambas se les puede asignar nombres y otros atributos que se deseen para dar meta data a las estructuras. Para dar un nuevo atributo se puede usar la función <code>attr()</code>.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="estructuras-de-datos.html#cb65-1" aria-hidden="true"></a>lista_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;numeros&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="st">&quot;letras&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="st">&quot;ambos&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>))</span>
+<span id="cb65-2"><a href="estructuras-de-datos.html#cb65-2" aria-hidden="true"></a><span class="kw">attr</span>(lista_<span class="dv">1</span>, <span class="st">&quot;meta&quot;</span>) &lt;-<span class="st"> &quot;Más datos&quot;</span></span>
+<span id="cb65-3"><a href="estructuras-de-datos.html#cb65-3" aria-hidden="true"></a><span class="kw">attr</span>(vec_altura, <span class="st">&quot;atributo_extra&quot;</span>) &lt;-<span class="st"> &quot;Más datos&quot;</span></span>
+<span id="cb65-4"><a href="estructuras-de-datos.html#cb65-4" aria-hidden="true"></a><span class="kw">attributes</span>(lista_<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>$names
+[1] &quot;numeros&quot; &quot;letras&quot;  &quot;ambos&quot;  
+
+$meta
+[1] &quot;Más datos&quot;</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="estructuras-de-datos.html#cb67-1" aria-hidden="true"></a><span class="kw">attributes</span>(vec_altura)</span></code></pre></div>
+<pre><code>$names
+[1] &quot;José&quot;    &quot;Raúl&quot;    &quot;Cecilia&quot; &quot;Camila&quot; 
+
+$atributo_extra
+[1] &quot;Más datos&quot;</code></pre>
+<p>Al usar la función <code>structure()</code>, no es necesario usar la función <code>attr()</code> para agregar un nuevo atributo.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="estructuras-de-datos.html#cb69-1" aria-hidden="true"></a><span class="kw">structure</span>(<span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>), <span class="dt">paridad =</span> <span class="st">&quot;Pares&quot;</span>)</span></code></pre></div>
+<pre><code> [1]  2  4  6  8 10 12 14 16 18 20
+attr(,&quot;paridad&quot;)
+[1] &quot;Pares&quot;</code></pre>
+<ul>
+<li>¿Qué sucede al hacer <code>structure(seq(2,20, by = 2), comment = "Pares")</code>?</li>
+</ul>
+<p>En general, para ver la composición de una estructura, La función <code>str()</code> es de grán utilidad ya que dará de manera resumida esta composición.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="estructuras-de-datos.html#cb71-1" aria-hidden="true"></a><span class="kw">str</span>(vec_altura)</span></code></pre></div>
+<pre><code> Named num [1:4] 1.5 1.6 1.72 1.55
+ - attr(*, &quot;names&quot;)= chr [1:4] &quot;José&quot; &quot;Raúl&quot; &quot;Cecilia&quot; &quot;Camila&quot;
+ - attr(*, &quot;atributo_extra&quot;)= chr &quot;Más datos&quot;</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="estructuras-de-datos.html#cb73-1" aria-hidden="true"></a><span class="kw">str</span>(lista_<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>List of 3
+ $ numeros: num [1:3] 1 2 3
+ $ letras : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+ $ ambos  : chr [1:4] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;
+ - attr(*, &quot;meta&quot;)= chr &quot;Más datos&quot;</code></pre>
+<p>Al poder acceder a los elementos de un vector o una lista, es sencillo cambiar el contenido de estos.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="estructuras-de-datos.html#cb75-1" aria-hidden="true"></a>lista_<span class="dv">1</span>[[<span class="st">&quot;numeros&quot;</span>]] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">4</span></span>
+<span id="cb75-2"><a href="estructuras-de-datos.html#cb75-2" aria-hidden="true"></a>lista_<span class="dv">1</span></span></code></pre></div>
+<pre><code>$numeros
+[1] 2 3 4
+
+$letras
+[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+
+$ambos
+[1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;
+
+attr(,&quot;meta&quot;)
+[1] &quot;Más datos&quot;</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="estructuras-de-datos.html#cb77-1" aria-hidden="true"></a>vec_altura[vec_altura<span class="op">&lt;</span><span class="fl">1.60</span>] &lt;-<span class="st"> </span><span class="fl">1.50</span></span>
+<span id="cb77-2"><a href="estructuras-de-datos.html#cb77-2" aria-hidden="true"></a>vec_altura</span></code></pre></div>
+<pre><code>   José    Raúl Cecilia  Camila 
+   1.50    1.60    1.72    1.50 
+attr(,&quot;atributo_extra&quot;)
+[1] &quot;Más datos&quot;</code></pre>
+<ul>
+<li>El acceso a una lista puede ser de diferentes maneras
+<ul>
+<li>Mediante el nombre del elemento: <code>lista_1[["numeros"]]</code> o <code>lista_1$numeros</code>.</li>
+<li>Mediante la posición: <code>lista[[1]]</code></li>
+<li>¿Cuál es la diferencia entre <code>lista[[1]]</code> y <code>lista[1]</code>?</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="estructuras-de-datos.html#cb79-1" aria-hidden="true"></a>lista_<span class="dv">1</span><span class="op">$</span>ambos &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb79-2"><a href="estructuras-de-datos.html#cb79-2" aria-hidden="true"></a><span class="kw">str</span>(lista_<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>List of 2
+ $ numeros: int [1:3] 2 3 4
+ $ letras : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+ - attr(*, &quot;meta&quot;)= chr &quot;Más datos&quot;</code></pre>
+<p>Lo anterior es un ejemplo de como borrar elementos de una lista.</p>
+<ul>
+<li>¿Esto se puede hacer con un vector? ¿Si, no, porqué? 🤷
+<ul>
+<li>Hint: ¿Qué sucede al hacer lo siguiente? <code>v &lt;- 1:10</code>; <code>v[5] &lt;- "5"</code>.</li>
+</ul></li>
+<li>¿Es posible convertir una lista a un vector? Sí, pero ¿Por qué <code>as.vector(lista_1)</code> sigue siendo una lista?</li>
+<li>¿Qué hace <code>unlist()</code>?</li>
+<li>¿Qué atributos permanecen al hacer hacer una correcta conversión?</li>
+</ul>
+<hr />
+</div>
+<div id="arreglos" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Arreglos</h3>
+<p>Todos aquellos que ya hayan tenido algún acercamiento con algún lenguaje de programación como Java, C, C++, Python, etc. conocen lo importante que pueden ser los arreglos, los cuales son una colección de elementos con ciertas posiciones. Además del simple hecho de poder almacenar elementos en un solo objeto, es de gran importancia lograr manejar matrices para realizar distintas operaciones y obtener ciertos resultados para diferentes problemas del ámbito científico.</p>
+<p>Como bien se indica en el diagrama donde se presentan las diferentes estructuras de datos que tenemos disponibles en R, las matrices y los arreglos solo aceptan un sólo tipo de dato como los vectores. De hecho, véase que internamente, los constructores de una matriz y un arreglo (<code>matrix()</code> y <code>array()</code>) tienen que convertir, en caso de que sea necesario, el input a un vector.</p>
+<pre><code>#matrix():
+.
+.
+    if (is.object(data) || !is.atomic(data)) 
+        data &lt;- as.vector(data)
+.
+.
+}
+#array():
+.
+.
+    data &lt;- as.vector(data)
+.
+.
+}</code></pre>
+<p>Por lo que una matriz y un array los podemos considerar vectores, solo que con diferentes dimensiones. Solo para aclarar, al momento de ingresar listas o matrices a estos constructores, todo será llevado a vectores y se realizará, en caso de ser necesario, coerción y reciclaje.</p>
+<ul>
+<li>¿Qué sucede al ejecutar <code>matrix(list(1,2,3,4))</code>?</li>
+</ul>
+<p>Considérese los siguientes puntos cuando se desea construir una matriz o cuando se trabaje con ellas.</p>
+<ul>
+<li><p>Se tienen las correspondientes funciones <code>is.matrix()</code> y <code>as.matrix()</code>.</p></li>
+<li><p>El constructor <code>matrix()</code> en su primer argumento solicita los datos los cuales pueden ser cualquier vector.</p></li>
+</ul>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="estructuras-de-datos.html#cb82-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>      [,1]
+ [1,]    1
+ [2,]    2
+ [3,]    3
+ [4,]    4
+ [5,]    5
+ [6,]    6
+ [7,]    7
+ [8,]    8
+ [9,]    9
+[10,]   10</code></pre>
+<ul>
+<li>Automáticamente <code>matrix()</code> dispone de sus elementos en forma columnar.</li>
+<li>El constructor de las matrices permite agregar el número de renglones y columnas.</li>
+</ul>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="estructuras-de-datos.html#cb84-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    1    6
+[2,]    2    7
+[3,]    3    8
+[4,]    4    9
+[5,]    5   10</code></pre>
+<ul>
+<li>La matriz se rellena en base a columnas, pero esto puede ser modificado. ¿Cómo?</li>
+</ul>
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6
+[4,]    7    8
+[5,]    9   10</code></pre>
+<ul>
+<li>Se puede acceder a los elementos de una matriz de manera análoga a los vectores y listas solo que considerando las dos dimensiones.</li>
+</ul>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="estructuras-de-datos.html#cb87-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>[1] 1</code></pre>
+<ul>
+<li>Si no se indica algún valor, o ambos, para alguna dimensión, R entenderá que se desea abarcar toda esa dimensión.</li>
+</ul>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="estructuras-de-datos.html#cb89-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)[,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>[1]  2  4  6  8 10</code></pre>
+<ul>
+<li>También es posible acceder mediante nombres en una matriz. En este caso existe la distinción entre renglones y columnas, y las correspondientes funciones para obtener y modificar los nombres son <code>rownames()</code> y <code>colnames()</code>.</li>
+</ul>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="estructuras-de-datos.html#cb91-1" aria-hidden="true"></a>m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb91-2"><a href="estructuras-de-datos.html#cb91-2" aria-hidden="true"></a><span class="kw">rownames</span>(m) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Row&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span>
+<span id="cb91-3"><a href="estructuras-de-datos.html#cb91-3" aria-hidden="true"></a><span class="kw">colnames</span>(m) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Column&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</span>
+<span id="cb91-4"><a href="estructuras-de-datos.html#cb91-4" aria-hidden="true"></a>m</span></code></pre></div>
+<pre><code>      Column 1 Column 2
+Row 1        1        2
+Row 2        3        4
+Row 3        5        6
+Row 4        7        8
+Row 5        9       10</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="estructuras-de-datos.html#cb93-1" aria-hidden="true"></a>m[<span class="st">&quot;Row 5&quot;</span>,<span class="st">&quot;Column 2&quot;</span>]</span></code></pre></div>
+<pre><code>[1] 10</code></pre>
+<ul>
+<li>Al igual que en los vectores, se puede acceder mediante vectores booleanos o expresiones que resulten en vectores booleanos.</li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="estructuras-de-datos.html#cb95-1" aria-hidden="true"></a>m[<span class="dv">1</span>,m[<span class="dv">1</span>,]<span class="op">&lt;</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>[1] 1</code></pre>
+<ul>
+<li>El equivalente de <code>length()</code> en vectores, se divide en <code>nrow()</code> y <code>ncol()</code>; además de la función <code>dim()</code> para obtener ambos resultados</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="estructuras-de-datos.html#cb97-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;nrow: &quot;</span>,<span class="kw">nrow</span>(m), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">ncol: &quot;</span>,<span class="kw">ncol</span>(m), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">dim:&quot;</span>, <span class="st">&quot;c(&quot;</span>,<span class="kw">dim</span>(m),<span class="st">&quot;)&quot;</span>)</span></code></pre></div>
+<pre><code>nrow:  5 
+ncol:  2 
+dim: c( 5 2 )</code></pre>
+<ul>
+<li>La función <code>dim()</code> se puede usar para modificar la estructura de una matriz; aunque esto puede ocasionar una pérdida de atributos.</li>
+</ul>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="estructuras-de-datos.html#cb99-1" aria-hidden="true"></a><span class="kw">dim</span>(m) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>)</span>
+<span id="cb99-2"><a href="estructuras-de-datos.html#cb99-2" aria-hidden="true"></a>m</span></code></pre></div>
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    5    9    4    8
+[2,]    3    7    2    6   10</code></pre>
+<ul>
+<li>La función anterior puede usarse también con vectores. Al hacer esto ¿El resultado es una matriz? Compruébelo.</li>
+</ul>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="estructuras-de-datos.html#cb101-1" aria-hidden="true"></a>vec &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb101-2"><a href="estructuras-de-datos.html#cb101-2" aria-hidden="true"></a><span class="kw">dim</span>(vec) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>)</span>
+<span id="cb101-3"><a href="estructuras-de-datos.html#cb101-3" aria-hidden="true"></a>vec</span></code></pre></div>
+<pre><code>     [,1] [,2]
+[1,]    1    6
+[2,]    2    7
+[3,]    3    8
+[4,]    4    9
+[5,]    5   10</code></pre>
+<ul>
+<li>Con las funciones <code>cbin()</code> y <code>rbind()</code> se pueden unir matrices por columna o por renglón.</li>
+</ul>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="estructuras-de-datos.html#cb103-1" aria-hidden="true"></a>first &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb103-2"><a href="estructuras-de-datos.html#cb103-2" aria-hidden="true"></a>second &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">11</span></span>
+<span id="cb103-3"><a href="estructuras-de-datos.html#cb103-3" aria-hidden="true"></a><span class="kw">cbind</span>(first, second)</span></code></pre></div>
+<pre><code>      first second
+ [1,]     1      2
+ [2,]     2      3
+ [3,]     3      4
+ [4,]     4      5
+ [5,]     5      6
+ [6,]     6      7
+ [7,]     7      8
+ [8,]     8      9
+ [9,]     9     10
+[10,]    10     11</code></pre>
+<p>Las matrices son de uso recurrente en el álgebra lineal, por lo que se desearía realizar algunas operaciones básicas entre ellas; R proporciona estas así como algunas funciones importantes. Supongamos que <span class="math inline">\(\mathcal{A}\)</span> y <span class="math inline">\(\mathcal{B}\)</span> son matrices definidas en R.</p>
+<ul>
+<li>Operaciones básicas
+<ul>
+<li>Adición:<span class="math inline">\(\mathcal{A}\)</span><code>+</code><span class="math inline">\(\mathcal{B}\)</span>.</li>
+<li>Sustracción: <span class="math inline">\(\mathcal{A}\)</span><code>-</code><span class="math inline">\(\mathcal{B}\)</span>.</li>
+<li>Multiplicación por un escalar: <span class="math inline">\(c\)</span><code>*</code><span class="math inline">\(\mathcal{A}\)</span>.</li>
+<li>Producto matricial: <span class="math inline">\(\mathcal{A}\)</span><code>%*%</code><span class="math inline">\(\mathcal{B}\)</span>.</li>
+</ul></li>
+<li>Funciones básicas
+<ul>
+<li>Transpuesta: <code>t()</code>.</li>
+<li>Diagonal: <code>diag()</code>. Devuelve la diagonal de una matriz o crea una matriz diagonal.</li>
+<li>Determinante: <code>det()</code>.</li>
+<li>Inversa: <code>solve()</code>. <code>solve()</code> también resuelve un sistema de ecuaciones dado.</li>
+<li>Varianza: <code>var()</code>.</li>
+<li>Vectores y valores propios: <code>eigen()</code>.</li>
+</ul></li>
+</ul>
+<p>Hay que tener en cuenta la teoría sobre estas operaciones o funciones ya que será relevante las dimensiones de las matrices; por ejemplo si las matrices son cuadradas para obtener el determinante o la inversa o si las dimensiones de <span class="math inline">\(\mathcal{A}\)</span> y <span class="math inline">\(\mathcal{B}\)</span> son adecuadas para aplicar, por ejemplo, la multiplicación entre ellas. Para ver algunas otras funciones que se pueden aplicar en las matrices véase los enlaces <a href="https://rpubs.com/Cesar_AHN/operaciones_con_matrices_multiplicacion_determinante_inversa_factorizacion_descomposicion_grafica">1</a> y <a href="http://www.philender.com/courses/multivariate/notes/matr.html">2</a>.</p>
+<p>Finalmente, cuando se desea crear un arreglo con un número mayor de dimensiones, se puede utilizar el constructor <code>array()</code> donde se pueden indicar las dimensiones como parámetro, por ejemplo <code>array(1:16, c(2,2,4))</code>. Las operaciones básicas funcionan correctamente en este tipo de estructura pero la mayoría de las funciones, al menos todas las mencionadas, no trabajan bien al tratar con arreglos ya que las funciones anteriores solicitan arreglos de dos dimensiones.</p>
+<ul>
+<li>¿Una matriz es un arreglo y un arreglo es una matriz?</li>
+</ul>
+<hr />
+</div>
+<div id="data-frames" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Data Frames</h3>
+<p>Al trabajar con matrices se debe estar consciente de que cada uno de sus elementos es de un solo tipo, lo cual puede resultar problemático al tratar con una base de datos donde se tengan datos numéricos y categóricos o incluso cuando se desee agregar una columna de otro tipo de objetos como lo son las gráficas. Aquella estructura de datos que dos dimensiones que acepta diferentes tipos de datos por columna se le llama <strong>Data Frame</strong>. La mayoría de las bases de datos se trabajan con un data frame y por convención a las columnas se les llama variables y a los renglones observaciones.</p>
+<p>La construcción de un data frame se puede hacer mediante el constructor por defecto <code>data.frame()</code> donde el contenido de este es similar al de una lista, ya sea dando los nombres desde la creación o posteriormente. Por ejemplo:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="estructuras-de-datos.html#cb105-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="dt">c1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">c2 =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">c3 =</span> <span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>), <span class="dt">c4 =</span> <span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>  c1 c2 c3.1 c3.2 c3.3 c3.4 c3.5 c4.1 c4.2
+1  1  a    1    2    3    4    5    0    0
+2  2  b    1    2    3    4    5    0    0
+3  3  c    1    2    3    4    5    0    0
+4  4  d    1    2    3    4    5    0    0
+5  5  e    1    2    3    4    5    0    0</code></pre>
+<p>Hay que notar lo siguiente del anterior ejemplo.</p>
+<ul>
+<li>Los vectores son tomados de manera columnar como en las matrices.</li>
+<li>Los caracteres son considerados como factores; esto puede cambiar modificando el parámetro <code>stringsAsFactors</code> del constructor.</li>
+<li>Por cada elemento de la lista se agrego una columna.</li>
+<li>Las matrices son tomadas con la misma estructura en cuanto a los renglones y columnas.</li>
+</ul>
+<p>Estos puntos son considerados en cuenta cuando se desea convertir algún otro objeto en data frame con la función <code>as.data.frame()</code>.</p>
+<ul>
+<li>Se debe ser cuidadoso con el número de observaciones en cada variable, ya que estos deben ser iguales, lo cual puede ser relevante al usar las funciones <code>rbind()</code> y <code>cbind()</code> entre data frames. En general, estas funciones deben usarse si alguno de los objetos implicados es un data frame, en caso de que alguno no lo sea y ambos sean vectores, las funciones crearán primero una matriz aplicando coerción y dando problemas en la construcción del data frame.</li>
+</ul>
+<p>El constructor de una data frame, <code>data.frame()</code>, es más robusto que el constructor de una matriz, <code>matrix()</code>, ya que aquí se deben mantener las estructuras en las columnas; por ejemplo una columna de listas no deben convertirse en una columna de números como en el caso de una matriz para una sola lista. Si se desea tener una columna de listas y no distribuir los elementos de la lista en las columnas de data frame, se puede utilizar la función <code>I()</code> la cual ayuda a tratar un objeto como el mismo y así no aplicarle algún tipo de transformación.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="estructuras-de-datos.html#cb107-1" aria-hidden="true"></a>(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">numbers =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">listas=</span> <span class="kw">I</span>(<span class="kw">list</span>(<span class="dt">num_list =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">letras =</span> letters,<span class="dt">listas =</span> <span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)))))</span></code></pre></div>
+<pre><code>         numbers       listas
+num_list       1 1, 2, 3,....
+letras         2 a, b, c,....
+listas         3   1, 2, 3, 4</code></pre>
+<p>Al igual que las listas, el acceso puede ser mediante los nombres y posición además de vectores booleanos, agregando el acceso que se aplica en las matrices.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="estructuras-de-datos.html#cb109-1" aria-hidden="true"></a>df<span class="op">$</span>listas<span class="op">$</span>letras</span></code></pre></div>
+<pre><code> [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+[20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="estructuras-de-datos.html#cb111-1" aria-hidden="true"></a>df[[<span class="st">&quot;numbers&quot;</span>]]</span></code></pre></div>
+<pre><code>[1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="estructuras-de-datos.html#cb113-1" aria-hidden="true"></a>df[<span class="dv">1</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>$num_list
+ [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="estructuras-de-datos.html#cb115-1" aria-hidden="true"></a>df[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">$</span>num_list</span></code></pre></div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="estructuras-de-datos.html#cb117-1" aria-hidden="true"></a>df[<span class="dv">2</span>,<span class="kw">c</span>(<span class="kw">typeof</span>(df<span class="op">$</span>numeros), <span class="kw">typeof</span>(df<span class="op">$</span>listas))<span class="op">==</span><span class="st">&quot;list&quot;</span>]</span></code></pre></div>
+<pre><code>$letras
+ [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+[20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<ul>
+<li>Es posible agregar nombres a los renglones de un data frame como en una matriz.</li>
+</ul>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="estructuras-de-datos.html#cb119-1" aria-hidden="true"></a><span class="kw">row.names</span>(df) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span>
+<span id="cb119-2"><a href="estructuras-de-datos.html#cb119-2" aria-hidden="true"></a>df</span></code></pre></div>
+<pre><code>  numbers       listas
+1       1 1, 2, 3,....
+2       2 a, b, c,....
+3       3   1, 2, 3, 4</code></pre>
+<ul>
+<li>¿Qué sucede al usar la función <code>as.matrix()</code> con el anterior data frame?</li>
+<li>¿Se puede cambiar la dimensión de un data frame como en una matriz usando la función <code>dim()</code>?</li>
+<li>¿Se pueden aplicar operaciones básicas entre data frames? ¿Cuáles y en que caso?</li>
+</ul>
+<p>No esta de más mencionar que hay otro tipo de objeto en R llamado <em>expresiones</em>. Estas son importantes al momento de desarrollar una función a un nivel más profesional. En este libro no se tratará dicho tema pero se puede estudiar a profundidad de esto en el libro <a href="https://adv-r.hadley.nz">Advance R</a>. Aquí se deja un simple ejemplo de tal objeto.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="estructuras-de-datos.html#cb121-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb121-2"><a href="estructuras-de-datos.html#cb121-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="fl">2.5</span></span>
+<span id="cb121-3"><a href="estructuras-de-datos.html#cb121-3" aria-hidden="true"></a>z &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb121-4"><a href="estructuras-de-datos.html#cb121-4" aria-hidden="true"></a></span>
+<span id="cb121-5"><a href="estructuras-de-datos.html#cb121-5" aria-hidden="true"></a>exp &lt;-<span class="st"> </span><span class="kw">expression</span>(x<span class="op">/</span>(y <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(z)))</span></code></pre></div>
+<hr />
+<div id="ejercicios-1" class="section level4 unnumbered">
+<h4>Ejercicios</h4>
+<ol start="16" style="list-style-type: decimal">
+<li><p><a id="16"></a>La siguiente instrucción genera un vector con valores numéricos y <code>NA</code>: <code>sample(c(1:20, rep(NA,15)))</code>. El anterior vector se debe guardar con el nombre de random_NA y Usando algún ciclo, determine cuantos valores <code>NA</code> hay en random_NA.</p></li>
+<li><p>Utilizando los conocimientos de coerción, la función <code>sum()</code> y lo que sea necesario, determinar cuantos valores <code>NA</code> existen en random_NA.</p></li>
+<li><p>Crea una función que, dado un vector, se determine la cantidad de valores perdidos en él.</p></li>
+<li><p>Crear un función que, dado un número se cree una matriz que contenga solo ese número. El número de renglones y columnas debe también ser dado en los parámetros de la función.</p></li>
+<li><p><a id="20"></a>Usando algún ciclo, crear una función llamada <code>suma_gauss</code> en la que se tendrá que simular el proceso para la suma de los primeros <span class="math inline">\(n\)</span> números en <span class="math inline">\(\mathbb{N}\)</span>. No se debe utilizar la formula de manera directa.</p></li>
+<li><p>Crear una matriz, sin tener que usar algún ciclo, de 0s y 1s alternados. Aquí un ejemplo</p></li>
+</ol>
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    0    1    0    1
+[2,]    1    0    1    0
+[3,]    0    1    0    1
+[4,]    1    0    1    0
+[5,]    0    1    0    1</code></pre>
+<ol start="22" style="list-style-type: decimal">
+<li><a id="22"></a>Crear un data frame de la siguiente matriz.</li>
+</ol>
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    1   25   81  169  289
+[2,]    4   36  100  196  324
+[3,]    9   49  121  225  361
+[4,]   16   64  144  256  400</code></pre>
+<ol start="23" style="list-style-type: decimal">
+<li><p>Crear un data frame con 5 variables y al menos 3 observaciones. La primera variable corresponderá a nombres de una persona, las demás representarán la edad, altura, peso y nacionalidad de cada individuo. Se puede usar la función <code>sample()</code>.</p></li>
+<li><p>En el anterior data frame, agregar una sexta variable que represente los videojuegos que tiene cada usuario. Los datos deben ser los siguientes: <code>list(juegos = c("Horizon-Zero-Dawn", "bloodborne"))</code>, <code>list(juegos = c("Mario-Kart", "Mario Maker", "Mario Odyssey"))</code>, <code>list(c("Halo", "Batman Arkham Knight", "Injustice"))</code>. Si hacen falta más datos, crearlos o replicar los ya dados.</p></li>
+<li><p>Crear un función que regrese una lista donde cada elemento de la lista tendrá el nombre de cada una de las estructuras y los tipos de datos ya vistos y su contenido será un vector booleano indicando si, de acuerdo al parámetro de la función, se es de alguna clase de las ya vistas. Por ejemplo, si se da como input una matriz de caracteres, la lista resultante en la posición <code>[["Matriz"]]</code> y en <code>[["Caracter"]]</code> deben contener el valor <code>TRUE</code>.</p></li>
+<li><p><a id="26"></a>Obtener la siguiente matriz usando la función <code>paste()</code>.</p></li>
+</ol>
+<pre><code>     [,1]  [,2]  [,3]  [,4]  [,5] 
+[1,] &quot;a A&quot; &quot;e E&quot; &quot;i I&quot; &quot;m M&quot; &quot;q Q&quot;
+[2,] &quot;b B&quot; &quot;f F&quot; &quot;j J&quot; &quot;n N&quot; &quot;r R&quot;
+[3,] &quot;c C&quot; &quot;g G&quot; &quot;k K&quot; &quot;o O&quot; &quot;s S&quot;
+[4,] &quot;d D&quot; &quot;h H&quot; &quot;l L&quot; &quot;p P&quot; &quot;t T&quot;</code></pre>
+<ol start="27" style="list-style-type: decimal">
+<li><p>Del data frame del inciso <a href="estructuras-de-datos.html#22">22</a>, obtener mediante una expresión lógica las columnas, que de acuerdo al primer renglón, contengan valores menores a 150.</p></li>
+<li><p>Crea una lista que contenga al menos cada una de las estructuras ya vistas.</p></li>
+<li><p>Crear una función que, dadas dos matrices, se verifique si estas son aptas para aplicarles las operaciones fundamentales suma y sustracción y regresar dichos resultados en una lista; en caso de que sean aptas para la multiplicación agregar este resultado a la lista de retorno.</p></li>
+<li><p>Crear un ciclo dentro de una función donde, de acuerdo a un data frame de entrada, y utilizando la primera observación del data frame, se determine el tipo de variable que contiene el data frame en cada columna. Finalmente todos los resultados deben ser devueltos en un vector.</p></li>
+</ol>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vectores-y-operaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sentencias-de-control-ciclos-y-funciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

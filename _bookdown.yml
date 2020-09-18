@@ -1,0 +1,6 @@
+language:
+  ui:
+    chapter_name: "Capítulo "
+    reference_name: "Referencias"
+delete_merged_file: true
+output_dir: "docs"

@@ -1,0 +1,125 @@
+# (PART) EfficientR {-}
+
+# Tidyverse
+
+La mayoría del contenido visto en [Introducción a R](https://rpubs.com/CarlosFVG/basicr) se ha enfocado al uso del lenguaje R y al uso de ciertas funciones sin considerar su rendimiento. Como bien se menciono en su momento, R no esta diseñado para ser rápido; lo que a través de los años ha sido un tema de interés a medida que la información aumenta y las necesidades por analizar y ejecutar procesos que traten con grandes cantidades de datos. Por tales razones, el uso de paquetes que estén diseñados para trabajar de manera eficiente ha sido fundamental en la mayoría de lenguajes de programación; tal es el caso del Tidyverse.
+
+Como bien se especifica en su [página](https://www.tidyverse.org) oficial, _"The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures"_. Estos paquetes están enfocados a tener un mejor flujo de escritura, a tener un mejor entendimiento de la estructura de los procesos, dar funciones que solucionen problemas comunes y, como ya se menciono, mejorar el rendimiento de las funciones.
+
+Dentro de este conjunto de paquetes se encuentran funciones para leer distintos tipos de archivos como aquellos con extensión .csv y .xls, además aquellas para reconocer archivos dados por SPSS, Stata y SAS, manipular archivos JSON, XML, dar una interfaz para trabajar con APIs, hacer web scraping y tener comunicación con diferentes administradores de bases de datos como SQL, MariaDB, etc.
+
+Se tienen paquetes especializados en la manipulación y limpieza de datos, también para crear modelos con estos, dar características especiales como catalogar y tratar a ciertas variables como fechas y factores, aplicar técnicas de expresiones regulares en dichos datos, aplicar funciones optimizadas que pueden remplazar a las de la familia apply y crear gráficas profesionales con una mayor fluidez.
+
+Aquí se verán solo algunos de los paquetes que componen todo este "universo limpio" y se comenzará con un operador fundamental proporcionado por el paquete `magritt`: `%>%`, el cual se podrá utilizar casi siempre en R.
+
+Dicho operador tiene por nombre `pipe`, el cual tiene un uso similar al dado en otros lenguajes de programación como Python: `.` y bash: `|`. Este tiene como objetivo encadenar procesos de tal forma que el resultado dado en la cadena sirve como input del siguiente eslabón en dicha cadena, lo cual ayuda a evitar el anidamiento de funciones, minimizar la cantidad de objetos locales y facilitar la lectura e implementación de una secuencia de operaciones.
+
+Supongase que se desea resolver la tarea sencilla de aplicar una cantidad definida de operaciones sobre un número; por ejemplo, obtener la raíz cuadrada del logaritmo natural de un número multiplicado por el cuadrado de otro, a dicho valor sumarlo con los primeros 10 naturales y, finalmente, obtener la raíz cuadrada de dicho resultado. Esto se puede resolver de la siguiente manera; supongamos que los números son 10 y 20.
+
+
+```{r}
+sqrt(sum(sqrt(log(prod(10, 20^2))), 1:10))
+```
+
+En tal caso se tuvo que anidar las funciones para aplicar estas cada resultado obtenido. Con `%>%` la solución se ve de esta forma
+
+```{r}
+library(magrittr)
+10 %>% # 10
+  prod(20^2) %>% #se multiplica por 20^2
+  log() %>% #se obtiene el logaritmo de dicho número
+  sqrt() %>% #Se obtiene la raíz cuadrada
+  sum(1:10) %>% #A eso se le suman los primeros 10 naturales
+  sqrt() #Se obtiene la raíz cuadrada.
+```
+
+La anterior solución tiene una estructura más fiel a como se fue resolviendo el problema poco a poco sin tiene que escribir hacia la izquierda para aplicar resultados de funciones anidadas. Más adelante se verá que el uso de dicho operador resulta fundamental para ahorra tiempo al momento de escribir código.
+
+Otro ejemplo:
+
+```{r}
+matrix(1:100, ncol = 5, byrow = 20) %>% #Creación de una matriz con los primeros 100 naturales.
+  rowSums(10) %>% #Se suma por renglón añadiendo 10 unidades a dicho resultado.
+  as.matrix() %>% #Se convierte dicho resultado a matriz.
+  scale() %>% #Se normalizan los datos.
+  sum() #Se comprueba que estos sumen media cero.
+```
+
+Como la mayoría de la información que se utilizará se tendrá que cargar con alguna librería, aquí se dejan algunos ejemplos de algunas funciones útiles en la lectura de información.
+
+La función `read_csv()` es una de las más comunes para leer archivos separados por comas, en la cual se puede dar el path del archivo o la dirección URL de dichos datos. En este caso se esta utilizando unos datos donde se relaciona la información sobre exceso de velocidad de ciertos automóviles y señales de advertencia. Para más información consúltese el siguiente [enlace](https://vincentarelbundock.github.io/Rdatasets/doc/boot/amis.html).
+
+```{css, echo=FALSE}
+.scroll-300 {
+  max-height: 300px;
+}
+```
+
+```{r, class.output = "scroll-300"}
+library(readr)
+library(tibble)
+(amis <- readr::read_csv("Data/amis.csv") %>% head(10))
+```
+
+```{r, class.output = "scroll-300"}
+readr::read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/boot/amis.csv") %>% head(10)
+```
+
+En caso de que se desee leer un archivo por algún otro delimitador, se puede usar la función `read_delim()` y en el caso de tener archivos donde el delimitador sea "\\t" usar la función `read_tsv()`. Los datos que se utilizan son proporcionados por el US Census Bureau, los cuales fueron indirectamente obtenidos del siguiente [enlance](https://github.com/nsgrantham/uspops).
+
+```{r, class.output = "scroll-300"}
+library(readxl)
+(US_Census_Bureau <- readr::read_delim("Data/US Census Bureau.txt", delim = "|"))
+```
+
+```{r, class.output = "scroll-300"}
+read_tsv("Data/US Census Bureautsv.txt")
+```
+
+El paquete `readxl` esta diseño para leer archivos excel. La siguiente información proporciona la población por sexo y entidad federativa según grupos de edad quinquenales de acuerdo a los [tabulados básicos](http://www.conapo.gob.mx/es/CONAPO/Tabulados_basicos) de la CONAPO.
+
+```{r, class.output = "scroll-300"}
+(Population_FEntity <- readxl::read_xls("Data/Population_Sex_FEntity.xls", range = "B5:Q38"))
+```
+
+Algo que hay que tener en cuenta al trabajar con los paquetes del tidyverse es el uso de _tibbles_ en lugar de _data frames_. 
+
+```{r}
+class(amis)
+```
+
+Un _tibble_ es una versión moderna de un _data frame_ que trabaja de manera perezosa (es decir, que realiza menos operaciones) evitando problemas comunes y supuestos que un data frame puede llegar a asumir. Por ejemplo, los tibbles no coercionan automáticamente los caracteres a factores, no crean nombres para las observaciones y no cambia los nombres de columnas que sean nombres no sintácticos, por ejemplo
+
+```{r}
+tibble(":)" = "feliz", ":("="triste")
+```
+```{r}
+data.frame(":)" = "feliz", ":("="triste")
+```
+
+Se pueden utilizar variables desde la construcción del tibble
+
+```{r, class.output = "scroll-300"}
+(t <- tibble(x = 1:20, y = x-1))
+```
++ ¿Qué sucede al ejecutar `data.frame(x = 1:20, y = x-1)`?
+
+Además se tienen diferencias respecto a la impresión entre un tibble y un data frame, un tibble permite agregar listas directamente sin tener que usar la función `I()` y los tibbles nunca hacen emparejamiento parcial.
+
+```{r}
+t2 <- tibble(xy=1:20, z = 1:20)
+d2 <- data.frame(xy = 1:20, z = 1:20)
+str(t2$x)
+str(d2$x)
+```
+
+Finalmente, los tibbles permiten hacer substracciones con el operador pipe.
+
+```{r}
+#t$x
+t %>% .$x
+#t[["x"]]
+t %>% .[["x"]]
+```
+
++ ¿Qué hace la función `tribble()`?

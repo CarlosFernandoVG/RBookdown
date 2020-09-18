@@ -1,0 +1,477 @@
+# Manipulación de datos: Dplyr
+
+Así como es de importante la limpieza en un análisis de datos, lo es la manipulación de estos, ya que la información que contienen debe ser extraída y será poco probable que se vean a simple vista. Para dichas tareas el paquete `dplyr`, parte del tidyverse, es una de las mejores opciones.
+
+`dplyr` tiene tres metas principales:
+
+1. Identificar los verbos de manipulación más importantes en la manipulación de datos y hacerlos fácil de usar en R. Esto mediante un conjunto de funciones que se verán en esta sección.
+2. Proporcionar un gran rendimiento en datos alojados en memoria utilizando código en C++ mediante la librería Rcpp en sus funciones.
+3. Usar la misma interfaz para trabajar con los datos sin importar cuando y como estén almacenados (data frame, data table o en una base de datos).
+
+Para este paquete se puede obtener su [Cheat Sheet oficial](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf) y es mencionada en otras como [Data import](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf) y [Data Wrangling](https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf). También se puede usar el comando `vignette("dplyr", package="dplyr")` para ver una guía con ejemplos de este paquete donde utilizan una base de datos de Star Wars obtenida directamente de su API.
+
+Para este caso, se tomará las bases de datos que ya se utilizaron en la sección anterior para ver el funcionamiento de algunas de las funciones de `dplyr`.
+
+## dplyr::filter()
+
+Las funciones en `dplyr` son vectorizadas, por lo que podemos estar seguros que se esta trabajando de manera adecuada. Es común pensar en una función vectorizada como un remplazo eficiente de un ciclo con una operación dada; para este caso, filtrar un conjunto de datos puede ser tedioso mediante ciclos anidados y es lo que se puede remplazar con la función `dplyr::filter()`.
+
+En la base de datos donde se reúne la información correspondiente a la población de México por rangos de edad quinquenales, es evidente que se puede obtener la población total de todo el territorio con la suma de las cantidades dadas por cada estado, así que este registro será eliminado.
+
+```{css, echo=FALSE}
+.scroll-300 {
+  max-height: 300px;
+}
+```
+
+```{r, class.output = "scroll-300"}
+(Population_FEntity <- Population_FEntity %>% filter(`Entidad Federativa`!="República Mexicana"))
+```
+Véase que `dplyr::filter()` utilizó la variable `Entidad Federativa` y elimino los registros que no cumplieran con la condición dada: `!="República Mexicana"`, al igual que se hubiera hecho con un condicional `if()` en ciclos anidados. En esta función se pueden aplicar los operados lógicos conocidos `==`, `<=`, `%in%`, etc. Además de los operados de conjuntos como `|`, `&` y `xor()`. En el siguiente ejemplo solo se toman aquellos estados donde el rango de edad sea 25 a 29 años y tengan un porcentaje de su  población total en dicha edad entre 7.5 y 8.5.
+
+```{r}
+Population_FEntity %>% filter(Rango_edad == "25 a 29" & Porcentaje >= 7.5 & Porcentaje < 8.5)
+```
+
+Como el resultado es un tibble, bien podría utilizarse las veces que se desee la función utilizando ` %>%` a los resultados previos. En este caso no se tienen valores perdidos pero es bueno recordar que la función `is.na()` regresa un vector booleano indicando si en el input dado se tienen valores perdidos, por lo que podría usarse con la función `filter()` para detectar dichos valores de una manera rápida.
+
+Además de obtener un subconjunto de los datos con `filter()`, `dplyr` ofrece otras funciones útiles para obtener un subconjunto específico de datos. 
+
++ Obtener valores distintos en toda la base o por algunas variables específicas:
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% distinct(`Entidad Federativa`)
+```
+
+```{r, class.output = "scroll-300"}
+set.seed(20)
+data_easy <- tibble(x = sample(letters, 50, replace = TRUE), y = sample(1:25, 50, replace = TRUE))
+data_easy %>% distinct(y)
+```
++ Obtener un porcentaje de los datos o un número de observaciones de manera aleatoria:
+
+```{r}
+Population_FEntity %>% sample_frac(0.01, replace = FALSE)
+```
+
+```{r}
+Population_FEntity %>% sample_n(4, replace = FALSE)
+```
+
++ Obtener renglones específicos:
+
+```{r}
+Population_FEntity %>% slice(1:3)
+```
+
+## dplyr::select()
+
+La función anterior sólo trabaja con observaciones, por lo que también debe existir un análogo para las variables, dicha función es `dplyr::select()`, la cual permite un conjunto de funciones útiles para hacer selecciones específicas de variables.
+
+```{r}
+Population_FEntity %>% select(`Entidad Federativa`, Rango_edad, Porcentaje) %>% head()
+```
+Lo anterior es equivalente a la siguiente instrucción:
+
+```{r}
+Population_FEntity %>% select(!`Población Total`) %>% head()
+```
+
+Utilizar el operando `!` se indica que dicha variable no se desea observar, dicha instrucción se pudo haber sustituido con `Population_FEntity %>% select(-'Población Total')`. También se puede usar un rango de columnas con `:`.
+
+La función `select` tiene algunas funciones auxiliares para trabajar con texto como el uso de expresiones regulares. Algunas de estas funciones son `contains()`, `ends_with()` y `start_with()`. Para el uso de este tipo de filtros en observaciones, véase el paquete `stringr`.
+
+```{r}
+iris %>% select(starts_with("Petal")) %>% head()
+```
+```{r}
+Population_FEntity %>% select(contains("_")) %>% head()
+```
+Finalmente, para obtener todas las columnas se puede usar la función `dplyr::everything()`, para obtener variables donde sus nombres estén en un grupo `dplyr::one_of` y para seleccionar las variables por rango `dplyr::num_range()`.
+
+## dplyr::arrange()
+
+Para ordenar una variable de forma ascendente o descendente se utiliza la función `dplyr::arrange()`. Al ordenar una variable, se ordenan todos los datos de acuerdo a esa variable de referencia.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% arrange(`Entidad Federativa`)
+```
+
+Además, se pueden ordenar los registros por múltiples variables. En este ejemplo se ordenan los datos de la población mexicana por la Entidad Federativa y, de manera descendente, el porcentaje de la población total por grupos quinquenales de edad.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% arrange(`Entidad Federativa`, desc(Porcentaje))
+```
+
+## dplyr::mutate()
+
+La función `arrange()` modificó de una forma sutil los datos, sólo el orden; pero en el caso de que se desee modificar o agregar una nueva variable, ya sea en función de los valores de otra o nuevos valores independientes, se utiliza la función `dplyr::mutate()`.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% mutate(Var_fake = sample(1:50, size = 448, replace = TRUE))
+```
+En esta función se pueden aplicar funciones ya pre-establecidas, además de `window functions` (véase la Cheat Sheet Data Wrangling) que se pueden obtener de R o de `dplyr` como `dplyr::lag()` y `dplyr::between()`. Véase los siguientes ejemplos:
+
++ Se modifica el porcentaje en términos correctos.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% mutate(Porcentaje = Porcentaje/100)
+```
++ Se obtiene el porcentaje de población que tiene cada entidad federativa correspondiente a toda la población del país. (Recordar que la población total es 103,498,524)
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% 
+  mutate(Porcentaje_entidad = `Población Total`/103498524) %>% 
+  select(c(`Entidad Federativa`, `Población Total`, Porcentaje_entidad))
+```
++ Se obtiene el porcentaje de la población total que hay por grupo quinquenal.
+
+```{r, class.output = "scroll-300"}
+library(scales)
+Population_FEntity %>% 
+  mutate(Porcentaje_entidad = `Población Total`/103498524, 
+         Porcentaje = Porcentaje/100) %>% 
+  mutate(Porcentaje_quinquenal_P = percent(Porcentaje*Porcentaje_entidad, accuracy = 0.01)) %>% select(`Entidad Federativa`, Rango_edad, Porcentaje_quinquenal_P)
+```
++ Uso de funciones
+
+```{r, class.output = "scroll-300"}
+Student_grades %>% mutate(Sobresaliente = if_else(Calificaciones>=9, T, F))
+```
++ Agregar un índice a los datos
+
+```{r, class.output = "scroll-300"}
+Student_grades %>% mutate(index = row_number())
+```
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% 
+  mutate(Porcentaje = Porcentaje/100) %>% 
+  mutate("Población" = Porcentaje * `Población Total`)
+```
+En este último ejemplo se modifico la base de datos de la población donde puede notarse que la anterior función no elimina las variables con las que se opera, esto podría hacerse con la función `select()`, o bien con la función `dplyr::transmute()`, aunque elimina también aquellas columnas que no se utilizan.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% 
+  mutate(Porcentaje = Porcentaje/100) %>% 
+  transmute("Población" = Porcentaje * `Población Total`)
+```
+Así que se hará lo siguiente
+
+```{r, class.output = "scroll-300"}
+(Population_FEntity <- Population_FEntity %>% 
+  mutate(Porcentaje = Porcentaje/100) %>% 
+  mutate("Población" = Porcentaje * `Población Total`) %>% select(-Porcentaje))
+```
+
+## dplyr::group_by()
+
+Un funcionalidad muy importante es el uso de datos agrupados. Dichos grupos serán subconjuntos de datos que compartan una característica en común. Esto tiene muchas ventajas ya que se pueden obtener funciones resumen con una mayor fluidez y aplicaciones de funciones por bloques en lugar de observaciones individuales. La función para otorgar esta propiedad es `dplyr::group_by()` en donde sus parámetros indican que variables servirán para crear los grupos de acuerdo a los diferentes valores de esas variables.
+
+Por ejemplo, véase que es natural pensar que en los datos de la población ya vistos se tomen resúmenes por la variable `Rango_edad`.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% group_by(Rango_edad)
+```
+A simple vista no se ve algún cambio, pero internamente ya se tiene más estructura a dicha base de datos, ahora existe un atributo llamado "groups".
+
+```{r, class.output = "scroll-300"}
+str(Population_FEntity %>% group_by(Rango_edad))
+```
+Entonces, al aplicar funciones con `mutate`, estas se harán por grupos.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% 
+  group_by(Rango_edad) %>% 
+  mutate("Población Mínima" = min(Población), "Población Máxima" = max(Población))
+```
+
+Igual se puede agrupar por distintas variables
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% 
+  mutate(division = rep(c(rep(1,16),rep(2,16)), 14)) %>% 
+  group_by(Rango_edad, division) %>% 
+  mutate(index = row_number()) %>% 
+  select(`Entidad Federativa`, Rango_edad, division, index)
+```
+Algo interesante que se puede hacer con datos agrupados es el uso de funciones para resumir información, tales como `dplyr::first()`, `dplyr::min()`, `dplyr::n()`, `dplyr::n_distinct()` y `dplyr::mean()`; estas funciones también se pueden usar sin datos agrupados. Véase los siguientes ejemplos
+
+```{r}
+Population_FEntity %>% 
+  group_by(Rango_edad) %>% 
+  summarise(min(Población))
+```
+
+```{r}
+Population_FEntity %>% 
+  group_by(Rango_edad) %>% 
+  summarise(last(Población))
+```
+
+```{r}
+Population_FEntity %>% 
+  group_by(Rango_edad) %>% 
+  summarise("Población promedio" = mean(Población))
+```
+
+Otras funciones que ofrece `dplyr` para resumir información son `dplyr::summarise_each()` y `dplyr::count()`. La primera aplica la función resumen a cada una de las columnas y la segunda cuenta el número de valores únicos con o sin un peso establecido.
+
+```{r}
+Population_FEntity %>% count()
+```
+Para eliminar esta propiedad a los datos se utiliza la función `dplyr::ungroup()` y así la manipulación de datos continuará sin eliminar los resultados ya obtenidos.
+
+## dplyr::rename
+
+Antes de pasar a las funciones de `dplyr` especializadas en las operaciones de conjuntos con bases de datos,se verá la función `dplyr::rename()` la cual, como indica su nombre, da un nuevo nombre a una variable existente.
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>% rename(State = `Entidad Federativa`)
+```
+Lo cual se pudo haber hecho con `mutate()` y `select()`
+
+```{r, class.output = "scroll-300"}
+Population_FEntity %>%
+  mutate (State = `Entidad Federativa`) %>% 
+  select(-`Entidad Federativa`)
+```
+
+## Joins y Set Operations
+
+Anteriormente ya se había mencionado la unión entre matrices, por renglón o columna y de la función `base::merge()`, las cuales tienen su optimización por parte de dplyr.
+
+Por parte de las funciones que unen registros o variables, se tienen las funciones `dplyr::bind_rows()` y `bind_cols()`. Las mismas reglas que `cbind()` y `rbind()` se deben respetar.
+
+```{r}
+set.seed(20)
+x <- tibble(One_Two = sample(1:2, size = 5, replace = T), 
+            Three_Four= sample(3:4, size = 5, replace = T), 
+            Five_Six = sample(5:6, size = 5, replace = T))
+y <- tibble(One_Two = rep(2, 3), Three_Four = rep(4, 3), Five_Six = rep(5, 3))
+bind_rows(x,y)
+```
+
+```{r}
+z <- tibble(One_Eigth = 1:8)
+bind_cols(bind_rows(x,y), z)
+```
+
+Respecto a las operaciones de conjuntos se tienen las funciones `dplyr::interset()`, `dplyr::union` y `dplyr::setdiff()`.
+
+```{r}
+intersect(x, y)
+```
+
+```{r}
+union(x, y)
+```
+
+```{r}
+setdiff(x, y)
+```
+
+Las operaciones tipo [Join](https://es.wikipedia.org/wiki/Join) son muy importantes en la extracción de información en bases de datos, `dplyr` por su cuenta tiene varias funciones para trabajar.
+
++ `dplyr::left_join(a, b, by = x)`: Une las bases de datos de acuerdo a la variable x tomando la preferencia sobre a.
++ `dplyr::rigth_join(a, b, by = x)`: Une las bases de datos de acuerdo a la variable x tomando la preferencia sobre b.
++ `dplyr::inner_join(a, b, by = x)`: Une las bases de datos de acuerdo a la variable x considerando a y b.
++ `dplyr::full_join(a, b, by = x)`: Une las bases de datos de acuerdo a la variable x sin ninguna preferencia, por lo que contiene todos los datos posibles.
+
+Para ver más claro esto, véase los siguientes ejemplos.
+
+```{r}
+set.seed(20)
+a <- tibble(L = sample(LETTERS[1:5], size = 5, replace = T), 
+            N = sample(1:100, size = 5, replace = T))
+b <- tibble(L = sample(LETTERS[1:5], size = 5, replace = T), 
+            Lo = sample(c(T, F), size = 5, replace = T))
+a
+b
+```
+
+```{r}
+left_join(a, b, by = "L")
+```
+```{r}
+right_join(a, b, by = "L")
+```
+```{r}
+inner_join(a, b, by = "L")
+```
+
+```{r}
+full_join(a, b, by = "L")
+```
+Y un ejemplo práctico: Tomando la base de datos de la población mexicana, se puede obtener los datos para los hombres y mujeres y modificarlos para que tengan un estructura similar a `Population_FEntity`.
+
+```{r}
+normalization <- function(data){
+  colnames(data) <- c("Entidad Federativa", "Población Total", unique(Population_FEntity$Rango_edad))
+  data <- data %>% 
+    gather(key = "Rango_edad", 
+           value = "Porcentaje", -c("Entidad Federativa", "Población Total")) %>% 
+  mutate(Porcentaje = Porcentaje/100) %>% 
+  mutate("Población" = Porcentaje * `Población Total`) %>% 
+  select(-Porcentaje, -`Población Total`)
+}
+```
+
+```{r, class.output = "scroll-300"}
+Population_FEntity_M <- readxl::read_xls("Data/Population_Sex_FEntity.xls", range = "B43:Q74", col_names = F)
+(Population_FEntity_M <- normalization(Population_FEntity_M))
+```
+
+```{r, class.output = "scroll-300"}
+Population_FEntity_F <- readxl::read_xls("Data/Population_Sex_FEntity.xls", range = "B79:Q110", col_names = F)
+(Population_FEntity_F <- normalization(Population_FEntity_F))
+```
+
+Así es fácil crear un sólo conjunto de datos donde se reúna toda la información relevante
+
+```{r, class.output = "scroll-300"}
+Population_FEntity <- Population_FEntity %>% select(-`Población Total`)
+Population_FEntityWS <- left_join(Population_FEntity, Population_FEntity_M, by = c("Entidad Federativa", "Rango_edad"))
+(Population_FEntityWS <- left_join(Population_FEntityWS, Population_FEntity_F, by = c("Entidad Federativa", "Rango_edad")) %>% 
+    rename( "Población Total" = "Población.x", "PoblaciónM" = "Población.y", "PoblaciónF" = "Población"))
+```
++ Por rango de edad ¿Qué sexo predomina en cada población?
+
+```{r, class.output = "scroll-300"}
+Population_FEntityWS %>% 
+  mutate(PPredominante = if_else(PoblaciónM>=PoblaciónF, "M", "F")) %>% 
+  select(`Entidad Federativa`, Rango_edad, PPredominante)
+```
++ Por rango de edad ¿Qué sexo predomina y en que estado se encuentra dicho resultado?
+
+```{r}
+Population_FEntityWS %>% 
+  mutate(SPredominante = if_else(PoblaciónM>=PoblaciónF, "M", "F")) %>% 
+  mutate(S = if_else(SPredominante == "M", PoblaciónM, PoblaciónF)) %>%
+  group_by(Rango_edad) %>% 
+  top_n(1, S) %>% select(`Entidad Federativa`, Rango_edad, SPredominante)
+```
+
++ ¿Cuál estado tiene el mayor número de mujeres y cuál el de hombres?
+
+```{r}
+Population_by_sex_Mexico <- Population_FEntityWS %>% group_by(`Entidad Federativa`) %>% 
+  summarise(SMasculino = sum(PoblaciónM), 
+            SFemenino = sum(PoblaciónF))
+full_join(
+  Population_by_sex_Mexico %>% arrange(desc(SMasculino)) %>%
+    head(1) %>% select(-SFemenino),
+  Population_by_sex_Mexico %>% arrange(desc(SFemenino)) %>% 
+    head(1) %>% select(-SMasculino), 
+  by = "Entidad Federativa")
+```
+¿Cuál es el rango de edad con mayor población en mujeres y hombres?
+
+```{r}
+Population_by_sex_age_Mexico <- Population_FEntityWS %>% 
+  group_by(Rango_edad) %>% 
+  summarise(PoblaciónF = sum(PoblaciónF), PoblaciónM = sum(PoblaciónM))
+
+full_join(
+  Population_by_sex_age_Mexico  %>% arrange(desc(PoblaciónM)) %>%
+    head(1) %>% select(-PoblaciónF),
+  Population_by_sex_age_Mexico  %>% arrange(desc(PoblaciónF)) %>% 
+    head(1) %>% select(-PoblaciónM), 
+  by = "Rango_edad")
+```
+Finalmente, algunos puntos extra
+
++ Recordando los cinco problemas en unos datos sin limpieza, dos que quedaron pendientes
+
+4. Múltiples tipos de observaciones están en la misma tabla.
+5. Una sola observación esta en múltiples tablas.
+
+En el ejemplo que se ha tomado de la población mexicana tiene el primer defecto, ya que la población total bien podría quedar en una sola tabla junto con el nombre de la entidad y en otra los porcentajes de acuerdo a los rangos de edad. En general en este punto se debe tener en cuenta que cada unidad observacional debe tener su propia tabla, así logrando un técnica en bases de datos llamada normalización. Para este caso, se tendrían dos tablas
+
+```{r, class.output = "scroll-300"}
+Population_FEntity <- readxl::read_xls("Data/Population_Sex_FEntity.xls", range = "B5:Q38", col_names = TRUE)
+colnames(Population_FEntity)[1:2] <- c("Entidad Federativa", "Población Total")
+Population_FEntity <- Population_FEntity %>% gather(key = "Rango_edad", 
+           value = "Porcentaje", -c("Entidad Federativa", "Población Total")) %>% 
+  mutate(Porcentaje = Porcentaje/100) %>% 
+  mutate("Población" = Porcentaje * `Población Total`)
+(t1 <- Population_FEntity %>% select(`Entidad Federativa`, `Población Total`))
+```
+```{r, class.output = "scroll-300"}
+(t2 <- Population_FEntity %>% select(`Entidad Federativa`, Rango_edad,  Población))
+```
+
+Para el último punto se entiende que los datos están dispersos entre distintos conjuntos de datos, por lo que usar las funciones para combinar bases de datos ayudan en la resolución de este problema.
+
++ Es recomendable estudiar el paquete `purrr`, el cual es parte del tidyverse y ofrece una versión ideal para trabajar con funciones anónimas en data frames, ya que al tratar de aplicar alguna función de la familia apply con un data frame estos son convertidos primero a una matriz lo cual hace perder muchos de sus atributos. Así, con las funciones de la "familia" `purrr::map` se pueden hacer todas las aplicaciones que se pueden hacer con alguna de la familia `apply` e incluso algunas más. Además de que tienen una aplicación ideal con `dplyr`. Véase [Functional Programming](https://dcl-prog.stanford.edu/purrr-mutate.html).
+
++ Se pueden usar las librerías [`dtplyr`](https://dtplyr.tidyverse.org), [`dbplyr`](https://dbplyr.tidyverse.org) o [`sparklyr`](https://spark.rstudio.com) como interfaz para usar la sintaxis de `dplyr` en data.tables, bases de datos en SQL o en Apache Spark.
+
++ Recordar que la función `dplyr::near()` compara dos elementos numéricos en punto flotante.
+
++ La función `dplyr::case_when()` es una versión equivalente a `dplyr::if_else()` pero más general
+
+```{r}
+tibble(x = 1:5) %>% mutate(new_variable = dplyr::case_when(x == 1 ~ "Hola", x == 5 ~ "Adios", TRUE ~ as.character(x)))
+```
+
++ `dplyr` proviene de la paquetería `plyr` la cual contiene muchas más funciones que pueden ser de utilidad en ciertas ocasiones.
+
+***
+
+#### Ejercicios {-}
+
+79. Utiliza la función `dplyr::top_n()`.
+
+80. En la siguiente [página](https://regexone.com) se puede aprender sobre el uso de expresiones regulares. Usando las funciones `dplyr::select()` y `dplyr::matches()` replica los resultados que se dieron como ejemplo cuando se explico la función `dplyr::select()`.
+
+81. Crea un data frame o tibble con 5 variables numéricas. Utiliza la función `dplyr::mutate_each()` para aplicar la función `dplyr::percent_rank()` en cada una de las variables.
+
+82. Investigar algunas funciones de `purrr` como `reduce()`, `map()` y `accumulate()`.
+
+83. Investiga el uso de `dplyr::semi_join()` y `dplyr::anti_join()`.
+
+84. Si eres meticuloso, verás que algo anda en los datos de la población. ¿Por qué? Hint: Ve la tabla que se uso para los últimos ejemplos de la sección `dplyr`.
+
+85. Obtén resultados necesarios para contestar las siguientes preguntas sobre la base de datos `population` que ofrece `dplyr`.
+
++ ¿Cuantos años están registrados por país?
++ ¿Qué países tienen mayor población por año?
++ ¿Cuál es la edad promedio, con los años dados, de la población en cada país?
++ ¿Qué países son aquellos que tienen más de un millón de habitantes en algún año?
++ ¿Qué países tienen menos de un millón de habitantes en al menos un año?
++ ¿Que país ha sido el que ha tenido la peor reducción en su población y en que año?
++ ¿Qué país tuvo la mayor cantidad población en el año de tu nacimiento?
++ ¿Cuál fue el año en que cada país tuvo su mayor numero de habitantes?
++ ¿Cuál fue el año en que cada país tuvo su menor numero de habitantes?
++ ¿Cuántos países considera la base de datos?
+  
+86. La base de datos `who` de `dplyr` contiene la información sobre los reportes de tuberculosis en el mundo. Haz una limpieza en esta base utilizando las funciones de `tidyr` y obtén la siguiente información.
+
++ Por país ¿Cuál fue el año con mayor número de enfermos por tuberculosis?
++ Por país ¿Cuál de los tres diagnósticos diferentes tiene una mayor ocurrencia?
++ ¿Cuál fue el año con mayor número de enfermos por país?
++ ¿Qué país ha tenido el mayor número de enfermos por tuberculosis?
++ ¿Cuál es el top-10 de países con mayor número de casos con tuberculosis?
++ ¿Hay algún país sin casos de tuberculosis en los años registrados?
++ ¿Cuál sexo es el más afectado, por país, con tuberculosis?
++ ¿Cuál es el rango de edad con mayor número de casos con tuberculosis?
++ ¿Cuál es el rango de edad con menor número de casos con tuberculosis?
++ Por rango de edad ¿Qué sexo es el más afectado con tuberculosis?
+
+87. Las bases de datos `who` y `population` están relacionadas, por lo que se pueden unir para responder lo siguiente: ¿Existen países en los que el año donde se tuvo el máximo número de enfermos por tuberculosis sean los años donde se obtuvo un gran descenso en la población?
+
+88. La base de datos `storms` proporcionada por `dplyr` contiene la información acerca de 198 tormentas tropicales con diferentes atributos. Obtén la siguiente información.
+
++ ¿Cuántos huracanes tuvieron las tres clasificaciones (Depresión Tropical, Tormenta Tropical y Huracán)?
++ ¿Cuál año fue el que tuvo el mayor número de huracanes?
++ ¿Cuál año fue el que tuvo el mayor número de Tormentas Tropicales?
++ ¿Cuál es el mes con mayor actividad?
++ ¿Qué tormenta ha sido la que tuvo mayor número de cambios en su categoría Saffir-Simpson?
++ ¿Cuál ha sido la tormenta con mayor velocidad promedio del viento en nudos?
++ ¿Por tormenta, cuál ha sido la velocidad máxima que alcanzo en $k/h$?
++ Considerando que una tormenta se puede clasificar por el estatus que predomina en ella, ¿Qué tipo de tormenta es la más recurrente en el Atlántico?
++ ¿Cuál ha sido la tormenta con mayor duración?
++ Considerando latitud y longitud en términos enteros (pensando así en segmentos del territorio), ¿Cuál ha sido la ubicación donde se ha tenido la mayor cantidad de tormentas?
+
+89. Utiliza las funciones Join que proporciona `dplyr` con las bases de datos `dplyr::band_instruments` y `dplyr::and_members`.
