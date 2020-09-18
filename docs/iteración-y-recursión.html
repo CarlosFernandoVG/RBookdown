@@ -243,25 +243,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Como ya se habia mencionado, cuando se hace algún objeto en R, como un vector o una lista, a estos se les asigna un nombre para poder identificarlos posteriormente. Véase los siguientes resultados.</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="iteración-y-recursión.html#cb213-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
 <span id="cb213-2"><a href="iteración-y-recursión.html#cb213-2" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7ffd309ba070&gt;&quot;</code></pre>
+<pre><code>[1] &quot;&lt;0x7fd5799ac8d0&gt;&quot;</code></pre>
 <p>El resultado anterior es un identificador de la dirección en formato hexadecimal del vector <code>x</code> en memoria.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="iteración-y-recursión.html#cb215-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span>x</span>
 <span id="cb215-2"><a href="iteración-y-recursión.html#cb215-2" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7ffd309ba070&gt;&quot;</code></pre>
+<pre><code>[1] &quot;&lt;0x7fd5799ac8d0&gt;&quot;</code></pre>
 <p>Ahora el nombre “y” esta asociado con la variable <code>x</code>, aunque en realidad los nombres “y” y “x” apuntan hacia un mismo objeto y eso puede verse con los anteriores resultados.</p>
 <p>¿Qué sucederá cuando se modifique algún valor en la variable <code>y</code>? ¿Se modificará en esa posición <code>x</code>?</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="iteración-y-recursión.html#cb217-1" aria-hidden="true"></a>trace_vec &lt;-<span class="st"> </span><span class="kw">capture.output</span>(y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="dv">10</span>)</span>
 <span id="cb217-2"><a href="iteración-y-recursión.html#cb217-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">strsplit</span>(trace_vec[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],  <span class="kw">strsplit</span>(trace_vec[<span class="dv">2</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
-<pre><code>tracemem[0x7ffd309ba070 -&gt; 0x7ffd31aa0798]
-tracemem[0x7ffd31aa0798 -&gt; 0x7ffd3191fdf8]</code></pre>
+<pre><code>tracemem[0x7fd5799ac8d0 -&gt; 0x7fd579583f18]
+tracemem[0x7fd579583f18 -&gt; 0x7fd57959b1b8]</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="iteración-y-recursión.html#cb219-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(x[[<span class="dv">3</span>]], y[[<span class="dv">3</span>]]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
 <pre><code>3
 10</code></pre>
 <p>Los valores del vector <code>x</code> no se modificaron, solo los de <code>y</code> y las anteriores salidas al modificar el tercer elemento en el vector <code>y</code> son por lo que en R se conoce como <strong><em>Copy-on-modify</em></strong> donde básicamente los vectores no son copiados hasta que estos sean modificados. La primera salida es debido a que se realizo una copia de <strong>todos</strong> los elementos de <code>x</code> y posteriormente se modifico en <code>y</code> el tercer elemento. Véase que <code>x</code> no fue alterado en la ubicación o el identificador en memoria de este.</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="iteración-y-recursión.html#cb221-1" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7ffd309ba070&gt;&quot;</code></pre>
+<pre><code>[1] &quot;&lt;0x7fd5799ac8d0&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="iteración-y-recursión.html#cb223-1" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7ffd3191fdf8&gt;&quot;</code></pre>
+<pre><code>[1] &quot;&lt;0x7fd57959b1b8&gt;&quot;</code></pre>
 <ul>
 <li>¿Si se hubiera modificado algún elemento de <code>x</code> en lugar de <code>y</code>, qué hubiera sucedido?</li>
 </ul>
@@ -269,31 +269,31 @@ tracemem[0x7ffd31aa0798 -&gt; 0x7ffd3191fdf8]</code></pre>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="iteración-y-recursión.html#cb225-1" aria-hidden="true"></a>list_mem &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">uno =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">dos =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>)</span>
 <span id="cb225-2"><a href="iteración-y-recursión.html#cb225-2" aria-hidden="true"></a>list_mem_copy &lt;-<span class="st"> </span>list_mem</span>
 <span id="cb225-3"><a href="iteración-y-recursión.html#cb225-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7ffd2e038348&gt;&quot;</code></pre>
+<pre><code>[1] &quot;&lt;0x7fd5792d5e08&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="iteración-y-recursión.html#cb227-1" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7ffd2e038348&gt;&quot;</code></pre>
+<pre><code>[1] &quot;&lt;0x7fd5792d5e08&gt;&quot;</code></pre>
 <p>Las listas creadas anteriormente tienen la misma dirección y no sólo eso, si no que cada uno de los elementos de la lista también son los mismos</p>
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="iteración-y-recursión.html#cb229-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
 <span id="cb229-2"><a href="iteración-y-recursión.html#cb229-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
 <span id="cb229-3"><a href="iteración-y-recursión.html#cb229-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
 <span id="cb229-4"><a href="iteración-y-recursión.html#cb229-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
-<pre><code>&lt;0x7ffd2e7b59d0&gt;
-&lt;0x7ffd2e7b59d0&gt;
-&lt;0x7ffd2e7b5ab0&gt;
-&lt;0x7ffd2e7b5ab0&gt;</code></pre>
+<pre><code>&lt;0x7fd576e37f38&gt;
+&lt;0x7fd576e37f38&gt;
+&lt;0x7fd576e38018&gt;
+&lt;0x7fd576e38018&gt;</code></pre>
 <p>¿Qué sucedera cuando se modifique algún elemento en <code>list_mem</code>? ¿Sucederá lo mismo que en los vectores?</p>
 <div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="iteración-y-recursión.html#cb231-1" aria-hidden="true"></a>trace_list &lt;-<span class="st"> </span><span class="kw">capture.output</span>(list_mem[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)</span>
 <span id="cb231-2"><a href="iteración-y-recursión.html#cb231-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">strsplit</span>(trace_list[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>])</span></code></pre></div>
-<pre><code>tracemem[0x7ffd2e038348 -&gt; 0x7ffd2f1f1bc8]</code></pre>
+<pre><code>tracemem[0x7fd5792d5e08 -&gt; 0x7fd575717d88]</code></pre>
 <p>Solo se hizo un cambio en dirección de memoria, ya que en el caso de las listas no se copia todos los elementos, solo se cambia el puntero hacia otro objeto. Véase que en los elementos que no se realizo algúna modificación se sigue apuntando hacia el mismo objeto.</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="iteración-y-recursión.html#cb233-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
 <span id="cb233-2"><a href="iteración-y-recursión.html#cb233-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
 <span id="cb233-3"><a href="iteración-y-recursión.html#cb233-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
 <span id="cb233-4"><a href="iteración-y-recursión.html#cb233-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
-<pre><code>&lt;0x7ffd2e7b59d0&gt;
-&lt;0x7ffd2e7b59d0&gt;
-&lt;0x7ffd2e5237c0&gt;
-&lt;0x7ffd2e7b5ab0&gt;</code></pre>
+<pre><code>&lt;0x7fd576e37f38&gt;
+&lt;0x7fd576e37f38&gt;
+&lt;0x7fd572e74b20&gt;
+&lt;0x7fd576e38018&gt;</code></pre>
 <ul>
 <li>¿Las direcciones de las listas <code>list_mem</code> y <code>list_mem_copy</code> ahora son diferentes?</li>
 </ul>
@@ -321,10 +321,10 @@ tracemem[0x7ffd31aa0798 -&gt; 0x7ffd3191fdf8]</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">1.37ms</td>
-<td align="right">1.64ms</td>
+<td align="right">1.39ms</td>
+<td align="right">1.67ms</td>
 <td align="right">1.3MB</td>
-<td align="right">353ms</td>
+<td align="right">357ms</td>
 </tr>
 </tbody>
 </table>
@@ -349,9 +349,9 @@ tracemem[0x7ffd31aa0798 -&gt; 0x7ffd3191fdf8]</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">149µs</td>
-<td align="right">185µs</td>
+<td align="right">184µs</td>
 <td align="right">813KB</td>
-<td align="right">291ms</td>
+<td align="right">295ms</td>
 </tr>
 </tbody>
 </table>

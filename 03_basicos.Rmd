@@ -2,7 +2,7 @@
 
 Este capítulo este destinado cien por ciento a lenguaje de programación R sin uso de algunas otras funciones que provengan de distintos paquetes. Sí se hará mención de algunos paquetes como una alternativa o mejora a diversas funciones que provengan del paquete `base` de R. Por lo mismo, se tratarán algunos conceptos teóricos sobre el comportamiento de este lenguaje, así como sus estructuras, su comportamiento y se presentarán funciones para la creación de gráficas. 
 
-Se asume que previamente se ha tenido un acercamiento al paradigma de programación orienta a objetos por lo que también se añade contenido referente a conceptos relacionados mostrando implementaciones en este lenguaje así como desventajas que puede presentar R fuera del propósito por el que fue creado.
+Se asume que previamente se ha tenido un acercamiento al paradigma de programación orientada a objetos por lo que también se añade contenido referente a conceptos relacionados mostrando implementaciones en este lenguaje así como desventajas que puede presentar R fuera del propósito por el que fue creado.
 
 ## Buscando ayuda
 
