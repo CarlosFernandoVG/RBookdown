@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -240,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.5</span> dplyr::group_by()</h2>
 <p>Un funcionalidad muy importante es el uso de datos agrupados. Dichos grupos serán subconjuntos de datos que compartan una característica en común. Esto tiene muchas ventajas ya que se pueden obtener funciones resumen con una mayor fluidez y aplicaciones de funciones por bloques en lugar de observaciones individuales. La función para otorgar esta propiedad es <code>dplyr::group_by()</code> en donde sus parámetros indican que variables servirán para crear los grupos de acuerdo a los diferentes valores de esas variables.</p>
 <p>Por ejemplo, véase que es natural pensar que en los datos de la población ya vistos se tomen resúmenes por la variable <code>Rango_edad</code>.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="dplyrgroup-by.html#cb352-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Rango_edad)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="dplyrgroup-by.html#cb353-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Rango_edad)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
 # Groups:   Rango_edad [14]
    `Entidad Federativa` `Población Total` Rango_edad Población
@@ -257,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Durango                        1509025 0 a 4        150485 
 # … with 438 more rows</code></pre>
 <p>A simple vista no se ve algún cambio, pero internamente ya se tiene más estructura a dicha base de datos, ahora existe un atributo llamado “groups”.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="dplyrgroup-by.html#cb354-1" aria-hidden="true"></a><span class="kw">str</span>(Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Rango_edad))</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="dplyrgroup-by.html#cb355-1" aria-hidden="true"></a><span class="kw">str</span>(Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Rango_edad))</span></code></pre></div>
 <pre class="scroll-300"><code>tibble [448 × 4] (S3: grouped_df/tbl_df/tbl/data.frame)
  $ Entidad Federativa: chr [1:448] &quot;Aguascalientes&quot; &quot;Baja California&quot; &quot;Baja California Sur&quot; &quot;Campeche&quot; ...
  $ Población Total   : num [1:448] 1066233 2856361 512030 755703 2501413 ...
@@ -283,9 +284,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   .. ..@ ptype: int(0) 
   ..- attr(*, &quot;.drop&quot;)= logi TRUE</code></pre>
 <p>Entonces, al aplicar funciones con <code>mutate</code>, estas se harán por grupos.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="dplyrgroup-by.html#cb356-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb356-2"><a href="dplyrgroup-by.html#cb356-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb356-3"><a href="dplyrgroup-by.html#cb356-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población Mínima&quot;</span> =<span class="st"> </span><span class="kw">min</span>(Población), <span class="st">&quot;Población Máxima&quot;</span> =<span class="st"> </span><span class="kw">max</span>(Población))</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="dplyrgroup-by.html#cb357-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb357-2"><a href="dplyrgroup-by.html#cb357-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb357-3"><a href="dplyrgroup-by.html#cb357-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población Mínima&quot;</span> =<span class="st"> </span><span class="kw">min</span>(Población), <span class="st">&quot;Población Máxima&quot;</span> =<span class="st"> </span><span class="kw">max</span>(Población))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 6
 # Groups:   Rango_edad [14]
    `Entidad Federa… `Población Tota… Rango_edad Población `Población Míni…
@@ -302,11 +303,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Durango                   1509025 0 a 4        150485             45985
 # … with 438 more rows, and 1 more variable: `Población Máxima` &lt;dbl&gt;</code></pre>
 <p>Igual se puede agrupar por distintas variables</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="dplyrgroup-by.html#cb358-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb358-2"><a href="dplyrgroup-by.html#cb358-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">division =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">16</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">16</span>)), <span class="dv">14</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb358-3"><a href="dplyrgroup-by.html#cb358-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad, division) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb358-4"><a href="dplyrgroup-by.html#cb358-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">index =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb358-5"><a href="dplyrgroup-by.html#cb358-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, division, index)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="dplyrgroup-by.html#cb359-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb359-2"><a href="dplyrgroup-by.html#cb359-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">division =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">16</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">16</span>)), <span class="dv">14</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb359-3"><a href="dplyrgroup-by.html#cb359-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad, division) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb359-4"><a href="dplyrgroup-by.html#cb359-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">index =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb359-5"><a href="dplyrgroup-by.html#cb359-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, division, index)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
 # Groups:   Rango_edad, division [28]
    `Entidad Federativa` Rango_edad division index
@@ -323,9 +324,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Durango              0 a 4             1    10
 # … with 438 more rows</code></pre>
 <p>Algo interesante que se puede hacer con datos agrupados es el uso de funciones para resumir información, tales como <code>dplyr::first()</code>, <code>dplyr::min()</code>, <code>dplyr::n()</code>, <code>dplyr::n_distinct()</code> y <code>dplyr::mean()</code>; estas funciones también se pueden usar sin datos agrupados. Véase los siguientes ejemplos</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="dplyrgroup-by.html#cb360-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb360-2"><a href="dplyrgroup-by.html#cb360-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb360-3"><a href="dplyrgroup-by.html#cb360-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">min</span>(Población))</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="dplyrgroup-by.html#cb361-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb361-2"><a href="dplyrgroup-by.html#cb361-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb361-3"><a href="dplyrgroup-by.html#cb361-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">min</span>(Población))</span></code></pre></div>
 <pre><code># A tibble: 14 x 2
    Rango_edad `min(Población)`
    &lt;chr&gt;                 &lt;dbl&gt;
@@ -343,9 +344,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 12 55 a 59              23534 
 13 60 y más             34364 
 14 NE                       0 </code></pre>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="dplyrgroup-by.html#cb362-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb362-2"><a href="dplyrgroup-by.html#cb362-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb362-3"><a href="dplyrgroup-by.html#cb362-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">last</span>(Población))</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="dplyrgroup-by.html#cb363-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb363-2"><a href="dplyrgroup-by.html#cb363-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb363-3"><a href="dplyrgroup-by.html#cb363-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">last</span>(Población))</span></code></pre></div>
 <pre><code># A tibble: 14 x 2
    Rango_edad `last(Población)`
    &lt;chr&gt;                  &lt;dbl&gt;
@@ -363,9 +364,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 12 55 a 59               53257 
 13 60 y más             123730 
 14 NE                     1067.</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="dplyrgroup-by.html#cb364-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb364-2"><a href="dplyrgroup-by.html#cb364-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb364-3"><a href="dplyrgroup-by.html#cb364-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="st">&quot;Población promedio&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(Población))</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="dplyrgroup-by.html#cb365-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb365-2"><a href="dplyrgroup-by.html#cb365-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb365-3"><a href="dplyrgroup-by.html#cb365-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="st">&quot;Población promedio&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(Población))</span></code></pre></div>
 <pre><code># A tibble: 14 x 2
    Rango_edad `Población promedio`
    &lt;chr&gt;                     &lt;dbl&gt;
@@ -384,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 13 60 y más                302126.
 14 NE                        4088.</code></pre>
 <p>Otras funciones que ofrece <code>dplyr</code> para resumir información son <code>dplyr::summarise_each()</code> y <code>dplyr::count()</code>. La primera aplica la función resumen a cada una de las columnas y la segunda cuenta el número de valores únicos con o sin un peso establecido.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="dplyrgroup-by.html#cb366-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="dplyrgroup-by.html#cb367-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>()</span></code></pre></div>
 <pre><code># A tibble: 1 x 1
       n
   &lt;int&gt;

@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -563,8 +564,8 @@ Química
   max-height: 300px;
 }
 </style>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="limpieza-de-datos-tidyr.html#cb286-1" aria-hidden="true"></a><span class="kw">colnames</span>(Population_FEntity)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)</span>
-<span id="cb286-2"><a href="limpieza-de-datos-tidyr.html#cb286-2" aria-hidden="true"></a>Population_FEntity</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="limpieza-de-datos-tidyr.html#cb287-1" aria-hidden="true"></a><span class="kw">colnames</span>(Population_FEntity)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)</span>
+<span id="cb287-2"><a href="limpieza-de-datos-tidyr.html#cb287-2" aria-hidden="true"></a>Population_FEntity</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 33 x 16
    `Entidad Federa… `Población Tota… `0 a 4` `5 a 9` `10 a 14` `15 a 19`
    &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -583,7 +584,7 @@ Química
 #   54` &lt;dbl&gt;, `55 a 59` &lt;dbl&gt;, `60 y más` &lt;dbl&gt;, NE &lt;dbl&gt;</code></pre>
 <p>En las primeras dos columnas se cambiaron los nombres con las herramientas que hasta este momento se tienen. Véase que las demás columnas representan rangos de edad, por lo que se tiene el primer problema en los <em>messy datasets</em>. De hecho, en estos datos las variables son la Entidad Federativa, la Población Total, el Rango de Edad y el Porcentaje de la población total en ese rango de edad.</p>
 <p>En estos casos se dice los datos son anchos, y lo que se desea es que estos estén en un formato largo (ancho por la cantidad de columnas y largo por la cantidad de observaciones). Para tales casos se utiliza la función <code>tidyr::gather()</code> la cual recibe como parámetros múltiples columnas y colapsa la información de estas en dos variables.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="limpieza-de-datos-tidyr.html#cb288-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> Population_FEntity, <span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="limpieza-de-datos-tidyr.html#cb289-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> Population_FEntity, <span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 462 x 4
    `Entidad Federativa` `Población Total` Rango_edad Porcentaje
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
@@ -600,7 +601,7 @@ Química
 # … with 452 more rows</code></pre>
 <p>Con lo anterior se logro tener una mejor estructura en los datos, con lo cual fácilmente se podrían crear gráficas, modelos y estadísticas de resumen por Entidad Federativa o por rango de edad. Después de tener la información con una estructura adecuada, la imaginación es el único limitante. En el siguiente capítulo se verá como manipular internamente los datos para que se tenga una mejor semántica en ellos.</p>
 <p>Si se desea por algún motivo, lo cual puede suceder, tener los datos en formato ancho, se puede usar la función complementaria la cual es <code>tidyr::spread()</code></p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="limpieza-de-datos-tidyr.html#cb290-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="limpieza-de-datos-tidyr.html#cb291-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>,<span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 33 x 16
    `Entidad Federa… `Población Tota… `0 a 4` `10 a 14` `15 a 19` `20 a 24`
    &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -639,7 +640,7 @@ Química
  9 Allison Q9   
 10 Leticia Q9   </code></pre>
 <p>En tal caso, la segunda variable contiene la información tanto de la materia como de la calificación. Aquí la función <code>tidyr::separate()</code> es de gran ayuda</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="limpieza-de-datos-tidyr.html#cb293-1" aria-hidden="true"></a>(Student_grades &lt;-<span class="st"> </span>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(<span class="dt">col =</span> <span class="st">&quot;A/C&quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Asignatura&quot;</span>, <span class="st">&quot;Calificaciones&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="limpieza-de-datos-tidyr.html#cb294-1" aria-hidden="true"></a>(Student_grades &lt;-<span class="st"> </span>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(<span class="dt">col =</span> <span class="st">&quot;A/C&quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Asignatura&quot;</span>, <span class="st">&quot;Calificaciones&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code># A tibble: 10 x 3
    Nombre  Asignatura Calificaciones
    &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;         
@@ -657,7 +658,7 @@ Química
 <li>En el argumento <code>sep</code> se da la posición dentro del texto para separar los datos.</li>
 </ul>
 <p>En el caso en que se desee tener el caso inverso, se utiliza la función <code>tidyr::unite()</code></p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="limpieza-de-datos-tidyr.html#cb295-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;A/C&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Asignatura&quot;</span>, <span class="st">&quot;Calificaciones&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="limpieza-de-datos-tidyr.html#cb296-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unite</span>(<span class="st">&quot;A/C&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Asignatura&quot;</span>, <span class="st">&quot;Calificaciones&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 10 x 2
    Nombre  `A/C`
    &lt;chr&gt;   &lt;chr&gt;
@@ -686,7 +687,7 @@ Química
  9 Amy   1975…     0  34.4 -75.8 tropi… 0           35     1004          NA
 10 Amy   1975…     6  34   -74.8 tropi… 0           40     1002          NA
 # … with 10,000 more rows, and 1 more variable: hu_diameter &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="limpieza-de-datos-tidyr.html#cb298-1" aria-hidden="true"></a><span class="kw">separate</span>(storms, <span class="dt">col =</span> date ,<span class="dt">into =</span>  <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="dt">sep =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="limpieza-de-datos-tidyr.html#cb299-1" aria-hidden="true"></a><span class="kw">separate</span>(storms, <span class="dt">col =</span> date ,<span class="dt">into =</span>  <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>), <span class="dt">sep =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 10,010 x 13
    name  year  month day    hour   lat  long status category  wind pressure
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;ord&gt;    &lt;int&gt;    &lt;int&gt;
@@ -708,8 +709,8 @@ Química
 </ul>
 <p>En el caso que se tenga el problema donde algunas variables esten almacenadas tanto en renglones como columnas se debe tratar el problema como lo anterior visto, primero abstraerse al problema de juntar las columnas necesarias en dos variables con la función <code>gather()</code> para posteriormente separar las variables que lo requieran con la función <code>separate()</code>.</p>
 <p>Para los últimos dos casos se necesita hacer uso de unas funciones del paquete <code>dplyr</code>, el cual ser verá en la siguiente sección. Por el momento, se pueden ver otras funciones útiles de <code>tidyr</code>, como aquellas que ayudan en la obtención de diferentes operaciones de conjuntos en los datos.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="limpieza-de-datos-tidyr.html#cb300-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">1</span>)</span>
-<span id="cb300-2"><a href="limpieza-de-datos-tidyr.html#cb300-2" aria-hidden="true"></a>tidyr<span class="op">::</span><span class="kw">expand_grid</span>(df, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="limpieza-de-datos-tidyr.html#cb301-1" aria-hidden="true"></a>df &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">1</span>)</span>
+<span id="cb301-2"><a href="limpieza-de-datos-tidyr.html#cb301-2" aria-hidden="true"></a>tidyr<span class="op">::</span><span class="kw">expand_grid</span>(df, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
       x     y     z
   &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -720,9 +721,9 @@ Química
 5     2     1     2
 6     2     1     3</code></pre>
 <p>La función <code>tidyr::expand_grid()</code> crea un tibble de todas las combinaciones de sus inputs, estos pueden ser data frames o tibbles, matrices y hasta vectores. Se puede entender a esta función como el producto cartesiano de dos conjuntos.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="limpieza-de-datos-tidyr.html#cb302-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</span>
-<span id="cb302-2"><a href="limpieza-de-datos-tidyr.html#cb302-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
-<span id="cb302-3"><a href="limpieza-de-datos-tidyr.html#cb302-3" aria-hidden="true"></a><span class="kw">crossing</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="limpieza-de-datos-tidyr.html#cb303-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> letters[<span class="dv">5</span><span class="op">:</span><span class="dv">7</span>])</span>
+<span id="cb303-2"><a href="limpieza-de-datos-tidyr.html#cb303-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb303-3"><a href="limpieza-de-datos-tidyr.html#cb303-3" aria-hidden="true"></a><span class="kw">crossing</span>(x, y)</span></code></pre></div>
 <pre><code># A tibble: 6 x 2
   x     `c(3, 3, 1)`
   &lt;chr&gt;        &lt;dbl&gt;
@@ -733,10 +734,10 @@ Química
 5 g                1
 6 g                3</code></pre>
 <p>La función <code>tidyr::crossing()</code> regresa un tibble y tiene un comportamiento similar a <code>expand_grid()</code> con la diferencia de eliminar registros duplicados.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="limpieza-de-datos-tidyr.html#cb304-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb304-2"><a href="limpieza-de-datos-tidyr.html#cb304-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
-<span id="cb304-3"><a href="limpieza-de-datos-tidyr.html#cb304-3" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
-<span id="cb304-4"><a href="limpieza-de-datos-tidyr.html#cb304-4" aria-hidden="true"></a>tidyr<span class="op">::</span><span class="kw">nesting</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="limpieza-de-datos-tidyr.html#cb305-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb305-2"><a href="limpieza-de-datos-tidyr.html#cb305-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb305-3"><a href="limpieza-de-datos-tidyr.html#cb305-3" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">y =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb305-4"><a href="limpieza-de-datos-tidyr.html#cb305-4" aria-hidden="true"></a>tidyr<span class="op">::</span><span class="kw">nesting</span>(x, y)</span></code></pre></div>
 <pre><code># A tibble: 4 x 2
   `sample(letters[1:3], size = 5, replace = T)`     y
   &lt;chr&gt;                                         &lt;int&gt;
@@ -745,10 +746,10 @@ Química
 3 c                                                 1
 4 c                                                 2</code></pre>
 <p>La función <code>tidyr::nesting()</code> encuentra las posibles combinaciones entre los datos, es decir, las combinaciones entre los datos de entrada si estos se unieran en uno solo.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="limpieza-de-datos-tidyr.html#cb306-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb306-2"><a href="limpieza-de-datos-tidyr.html#cb306-2" aria-hidden="true"></a>reduced_iris &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span>
-<span id="cb306-3"><a href="limpieza-de-datos-tidyr.html#cb306-3" aria-hidden="true"></a>df &lt;-<span class="st"> </span>reduced_iris[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T),]</span>
-<span id="cb306-4"><a href="limpieza-de-datos-tidyr.html#cb306-4" aria-hidden="true"></a>df <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">expand</span>(Petal.Length)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="limpieza-de-datos-tidyr.html#cb307-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb307-2"><a href="limpieza-de-datos-tidyr.html#cb307-2" aria-hidden="true"></a>reduced_iris &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</span>
+<span id="cb307-3"><a href="limpieza-de-datos-tidyr.html#cb307-3" aria-hidden="true"></a>df &lt;-<span class="st"> </span>reduced_iris[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> T),]</span>
+<span id="cb307-4"><a href="limpieza-de-datos-tidyr.html#cb307-4" aria-hidden="true"></a>df <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw">expand</span>(Petal.Length)</span></code></pre></div>
 <pre><code># A tibble: 3 x 1
   Petal.Length
          &lt;dbl&gt;

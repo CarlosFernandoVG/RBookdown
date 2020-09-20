@@ -17,7 +17,6 @@ Respecto a [RStudio](https://rstudio.com/products/rstudio/download/), este es un
 En RStudio también se puede trabajar con otros lenguajes de programación e integrar estos con R, como por ejemplo Python; de hecho, desde el 2019 se tiene soporte para Notebooks de Jupyter. Además de que, como cualquier IDE, se puede personalizar un poco la interfaz para trabajar más cómodamente.
 
 ```{r, echo = FALSE, out.width="50%", fig.align='default'}
-library(knitr)
 myimages<-list.files("Images/RStudio/", pattern = ".png", full.names = TRUE)
 knitr::include_graphics(myimages)
 ```

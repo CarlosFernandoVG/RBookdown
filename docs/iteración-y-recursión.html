@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -241,75 +242,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>¿Los ciclos son lentos en R? Sí y no. Todo depende de como se utilice.</p>
 <p>Para comprender lo anterior, primero hay que entender como R almacena sus objetos. Para tener un entendimiento completo sobre todas las estructuras, es recomendable leer el capitulo 2 de <a href="https://adv-r.hadley.nz/names-values.html">Advance R</a>; por el momento sólo se dará una introducción sobre como se comportan los vectores y las listas.</p>
 <p>Como ya se habia mencionado, cuando se hace algún objeto en R, como un vector o una lista, a estos se les asigna un nombre para poder identificarlos posteriormente. Véase los siguientes resultados.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="iteración-y-recursión.html#cb213-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
-<span id="cb213-2"><a href="iteración-y-recursión.html#cb213-2" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7fd5799ac8d0&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="iteración-y-recursión.html#cb214-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb214-2"><a href="iteración-y-recursión.html#cb214-2" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fda847a4ec8&gt;&quot;</code></pre>
 <p>El resultado anterior es un identificador de la dirección en formato hexadecimal del vector <code>x</code> en memoria.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="iteración-y-recursión.html#cb215-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span>x</span>
-<span id="cb215-2"><a href="iteración-y-recursión.html#cb215-2" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7fd5799ac8d0&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="iteración-y-recursión.html#cb216-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span>x</span>
+<span id="cb216-2"><a href="iteración-y-recursión.html#cb216-2" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fda847a4ec8&gt;&quot;</code></pre>
 <p>Ahora el nombre “y” esta asociado con la variable <code>x</code>, aunque en realidad los nombres “y” y “x” apuntan hacia un mismo objeto y eso puede verse con los anteriores resultados.</p>
 <p>¿Qué sucederá cuando se modifique algún valor en la variable <code>y</code>? ¿Se modificará en esa posición <code>x</code>?</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="iteración-y-recursión.html#cb217-1" aria-hidden="true"></a>trace_vec &lt;-<span class="st"> </span><span class="kw">capture.output</span>(y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="dv">10</span>)</span>
-<span id="cb217-2"><a href="iteración-y-recursión.html#cb217-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">strsplit</span>(trace_vec[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],  <span class="kw">strsplit</span>(trace_vec[<span class="dv">2</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
-<pre><code>tracemem[0x7fd5799ac8d0 -&gt; 0x7fd579583f18]
-tracemem[0x7fd579583f18 -&gt; 0x7fd57959b1b8]</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="iteración-y-recursión.html#cb219-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(x[[<span class="dv">3</span>]], y[[<span class="dv">3</span>]]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="iteración-y-recursión.html#cb218-1" aria-hidden="true"></a>trace_vec &lt;-<span class="st"> </span><span class="kw">capture.output</span>(y[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="dv">10</span>)</span>
+<span id="cb218-2"><a href="iteración-y-recursión.html#cb218-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">strsplit</span>(trace_vec[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>],  <span class="kw">strsplit</span>(trace_vec[<span class="dv">2</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>tracemem[0x7fda847a4ec8 -&gt; 0x7fda86eee4f8]
+tracemem[0x7fda86eee4f8 -&gt; 0x7fda8ac62ed8]</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="iteración-y-recursión.html#cb220-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(x[[<span class="dv">3</span>]], y[[<span class="dv">3</span>]]), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
 <pre><code>3
 10</code></pre>
 <p>Los valores del vector <code>x</code> no se modificaron, solo los de <code>y</code> y las anteriores salidas al modificar el tercer elemento en el vector <code>y</code> son por lo que en R se conoce como <strong><em>Copy-on-modify</em></strong> donde básicamente los vectores no son copiados hasta que estos sean modificados. La primera salida es debido a que se realizo una copia de <strong>todos</strong> los elementos de <code>x</code> y posteriormente se modifico en <code>y</code> el tercer elemento. Véase que <code>x</code> no fue alterado en la ubicación o el identificador en memoria de este.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="iteración-y-recursión.html#cb221-1" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7fd5799ac8d0&gt;&quot;</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="iteración-y-recursión.html#cb223-1" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7fd57959b1b8&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="iteración-y-recursión.html#cb222-1" aria-hidden="true"></a><span class="kw">tracemem</span>(x)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fda847a4ec8&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="iteración-y-recursión.html#cb224-1" aria-hidden="true"></a><span class="kw">tracemem</span>(y)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fda8ac62ed8&gt;&quot;</code></pre>
 <ul>
 <li>¿Si se hubiera modificado algún elemento de <code>x</code> en lugar de <code>y</code>, qué hubiera sucedido?</li>
 </ul>
 <p>Ahora, véase el caso con las listas</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="iteración-y-recursión.html#cb225-1" aria-hidden="true"></a>list_mem &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">uno =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">dos =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>)</span>
-<span id="cb225-2"><a href="iteración-y-recursión.html#cb225-2" aria-hidden="true"></a>list_mem_copy &lt;-<span class="st"> </span>list_mem</span>
-<span id="cb225-3"><a href="iteración-y-recursión.html#cb225-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7fd5792d5e08&gt;&quot;</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="iteración-y-recursión.html#cb227-1" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy)</span></code></pre></div>
-<pre><code>[1] &quot;&lt;0x7fd5792d5e08&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="iteración-y-recursión.html#cb226-1" aria-hidden="true"></a>list_mem &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">uno =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">dos =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">7</span>)</span>
+<span id="cb226-2"><a href="iteración-y-recursión.html#cb226-2" aria-hidden="true"></a>list_mem_copy &lt;-<span class="st"> </span>list_mem</span>
+<span id="cb226-3"><a href="iteración-y-recursión.html#cb226-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fda8a334948&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="iteración-y-recursión.html#cb228-1" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy)</span></code></pre></div>
+<pre><code>[1] &quot;&lt;0x7fda8a334948&gt;&quot;</code></pre>
 <p>Las listas creadas anteriormente tienen la misma dirección y no sólo eso, si no que cada uno de los elementos de la lista también son los mismos</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="iteración-y-recursión.html#cb229-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
-<span id="cb229-2"><a href="iteración-y-recursión.html#cb229-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
-<span id="cb229-3"><a href="iteración-y-recursión.html#cb229-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
-<span id="cb229-4"><a href="iteración-y-recursión.html#cb229-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
-<pre><code>&lt;0x7fd576e37f38&gt;
-&lt;0x7fd576e37f38&gt;
-&lt;0x7fd576e38018&gt;
-&lt;0x7fd576e38018&gt;</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="iteración-y-recursión.html#cb230-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
+<span id="cb230-2"><a href="iteración-y-recursión.html#cb230-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
+<span id="cb230-3"><a href="iteración-y-recursión.html#cb230-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
+<span id="cb230-4"><a href="iteración-y-recursión.html#cb230-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>&lt;0x7fda84c96b10&gt;
+&lt;0x7fda84c96b10&gt;
+&lt;0x7fda84c96bf0&gt;
+&lt;0x7fda84c96bf0&gt;</code></pre>
 <p>¿Qué sucedera cuando se modifique algún elemento en <code>list_mem</code>? ¿Sucederá lo mismo que en los vectores?</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="iteración-y-recursión.html#cb231-1" aria-hidden="true"></a>trace_list &lt;-<span class="st"> </span><span class="kw">capture.output</span>(list_mem[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)</span>
-<span id="cb231-2"><a href="iteración-y-recursión.html#cb231-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">strsplit</span>(trace_list[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>])</span></code></pre></div>
-<pre><code>tracemem[0x7fd5792d5e08 -&gt; 0x7fd575717d88]</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="iteración-y-recursión.html#cb232-1" aria-hidden="true"></a>trace_list &lt;-<span class="st"> </span><span class="kw">capture.output</span>(list_mem[[<span class="dv">2</span>]] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb232-2"><a href="iteración-y-recursión.html#cb232-2" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">strsplit</span>(trace_list[<span class="dv">1</span>],<span class="st">&quot;:&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>tracemem[0x7fda8a334948 -&gt; 0x7fda891a2e48]</code></pre>
 <p>Solo se hizo un cambio en dirección de memoria, ya que en el caso de las listas no se copia todos los elementos, solo se cambia el puntero hacia otro objeto. Véase que en los elementos que no se realizo algúna modificación se sigue apuntando hacia el mismo objeto.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="iteración-y-recursión.html#cb233-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
-<span id="cb233-2"><a href="iteración-y-recursión.html#cb233-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
-<span id="cb233-3"><a href="iteración-y-recursión.html#cb233-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
-<span id="cb233-4"><a href="iteración-y-recursión.html#cb233-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
-<pre><code>&lt;0x7fd576e37f38&gt;
-&lt;0x7fd576e37f38&gt;
-&lt;0x7fd572e74b20&gt;
-&lt;0x7fd576e38018&gt;</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="iteración-y-recursión.html#cb234-1" aria-hidden="true"></a><span class="kw">cat</span>(<span class="kw">paste</span>(<span class="kw">c</span>(<span class="kw">tracemem</span>(list_mem[[<span class="dv">1</span>]]),</span>
+<span id="cb234-2"><a href="iteración-y-recursión.html#cb234-2" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">1</span>]]),</span>
+<span id="cb234-3"><a href="iteración-y-recursión.html#cb234-3" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem[[<span class="dv">2</span>]]),</span>
+<span id="cb234-4"><a href="iteración-y-recursión.html#cb234-4" aria-hidden="true"></a><span class="kw">tracemem</span>(list_mem_copy[[<span class="dv">2</span>]])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<pre><code>&lt;0x7fda84c96b10&gt;
+&lt;0x7fda84c96b10&gt;
+&lt;0x7fda82071f90&gt;
+&lt;0x7fda84c96bf0&gt;</code></pre>
 <ul>
 <li>¿Las direcciones de las listas <code>list_mem</code> y <code>list_mem_copy</code> ahora son diferentes?</li>
 </ul>
 <p>En resumen, al modificar algún elemento dentro de un vector, se creó una copia de todos los valores teniendo así dos vectores con diferentes nombres y, cuando se modifica algún elemento en las listas, solo se cambia de dirección el punto correspondiente a ese objeto y los demás enlaces permanecen.</p>
 <p>Cuando se hace algún ciclo donde se este agregando o modificando algún vector, internamente se realizarán copias de todo el vector aunque sólo un elemento sea alterado; en ese caso los ciclos iterativos son lentos, pero cuando se utiliza una lista en lugar de un vector el rendimiento mejora bastante. Hay que recordar que R no fue diseñado para ser rápido, aunque usando listas el rendimiento obtenido será mejor al usar un ciclo.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="iteración-y-recursión.html#cb235-1" aria-hidden="true"></a><span class="kw">library</span>(bench)</span>
-<span id="cb235-2"><a href="iteración-y-recursión.html#cb235-2" aria-hidden="true"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb235-3"><a href="iteración-y-recursión.html#cb235-3" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100000</span>, <span class="dt">ncol =</span> <span class="dv">100</span>))</span>
-<span id="cb235-4"><a href="iteración-y-recursión.html#cb235-4" aria-hidden="true"></a>plus2_byVector &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb235-5"><a href="iteración-y-recursión.html#cb235-5" aria-hidden="true"></a>  <span class="co">#Al usar m[[n]] cuando m es un data.frame, véase que se estan tomando vectores</span></span>
-<span id="cb235-6"><a href="iteración-y-recursión.html#cb235-6" aria-hidden="true"></a>  <span class="cf">for</span>(item <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</span>
-<span id="cb235-7"><a href="iteración-y-recursión.html#cb235-7" aria-hidden="true"></a>    x[[item]] &lt;-<span class="st"> </span>x[[item]]<span class="op">+</span><span class="dv">2</span></span>
-<span id="cb235-8"><a href="iteración-y-recursión.html#cb235-8" aria-hidden="true"></a>  }</span>
-<span id="cb235-9"><a href="iteración-y-recursión.html#cb235-9" aria-hidden="true"></a>  x</span>
-<span id="cb235-10"><a href="iteración-y-recursión.html#cb235-10" aria-hidden="true"></a>}</span>
-<span id="cb235-11"><a href="iteración-y-recursión.html#cb235-11" aria-hidden="true"></a><span class="kw">kable</span>(bench<span class="op">::</span><span class="kw">mark</span>(<span class="kw">plus2_byVector</span>(data))[<span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;mem_alloc&quot;</span>, <span class="st">&quot;total_time&quot;</span>)], <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="iteración-y-recursión.html#cb236-1" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100000</span>, <span class="dt">ncol =</span> <span class="dv">100</span>))</span>
+<span id="cb236-2"><a href="iteración-y-recursión.html#cb236-2" aria-hidden="true"></a>plus2_byVector &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb236-3"><a href="iteración-y-recursión.html#cb236-3" aria-hidden="true"></a>  <span class="co">#Al usar m[[n]] cuando m es un data.frame, véase que se estan tomando vectores</span></span>
+<span id="cb236-4"><a href="iteración-y-recursión.html#cb236-4" aria-hidden="true"></a>  <span class="cf">for</span>(item <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</span>
+<span id="cb236-5"><a href="iteración-y-recursión.html#cb236-5" aria-hidden="true"></a>    x[[item]] &lt;-<span class="st"> </span>x[[item]]<span class="op">+</span><span class="dv">2</span></span>
+<span id="cb236-6"><a href="iteración-y-recursión.html#cb236-6" aria-hidden="true"></a>  }</span>
+<span id="cb236-7"><a href="iteración-y-recursión.html#cb236-7" aria-hidden="true"></a>  x</span>
+<span id="cb236-8"><a href="iteración-y-recursión.html#cb236-8" aria-hidden="true"></a>}</span>
+<span id="cb236-9"><a href="iteración-y-recursión.html#cb236-9" aria-hidden="true"></a><span class="kw">kable</span>(bench<span class="op">::</span><span class="kw">mark</span>(<span class="kw">plus2_byVector</span>(data))[<span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;mem_alloc&quot;</span>, <span class="st">&quot;total_time&quot;</span>)], <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -322,21 +321,21 @@ tracemem[0x7fd579583f18 -&gt; 0x7fd57959b1b8]</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1.39ms</td>
-<td align="right">1.67ms</td>
-<td align="right">1.3MB</td>
-<td align="right">357ms</td>
+<td align="right">1.58ms</td>
+<td align="right">1.11MB</td>
+<td align="right">429ms</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="iteración-y-recursión.html#cb236-1" aria-hidden="true"></a>plus2_byList &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb236-2"><a href="iteración-y-recursión.html#cb236-2" aria-hidden="true"></a>  <span class="co">#Al convertir un data.frame en una lista, se agrega un elemento por columna</span></span>
-<span id="cb236-3"><a href="iteración-y-recursión.html#cb236-3" aria-hidden="true"></a>  x &lt;-<span class="st"> </span><span class="kw">as.list</span>(x)</span>
-<span id="cb236-4"><a href="iteración-y-recursión.html#cb236-4" aria-hidden="true"></a>  <span class="cf">for</span>(item <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</span>
-<span id="cb236-5"><a href="iteración-y-recursión.html#cb236-5" aria-hidden="true"></a>    x[[item]] &lt;-<span class="st"> </span>x[[item]]<span class="op">+</span><span class="dv">2</span></span>
-<span id="cb236-6"><a href="iteración-y-recursión.html#cb236-6" aria-hidden="true"></a>  }</span>
-<span id="cb236-7"><a href="iteración-y-recursión.html#cb236-7" aria-hidden="true"></a>  x</span>
-<span id="cb236-8"><a href="iteración-y-recursión.html#cb236-8" aria-hidden="true"></a>}</span>
-<span id="cb236-9"><a href="iteración-y-recursión.html#cb236-9" aria-hidden="true"></a><span class="kw">kable</span>(bench<span class="op">::</span><span class="kw">mark</span>(<span class="kw">plus2_byList</span>(data))[<span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;mem_alloc&quot;</span>, <span class="st">&quot;total_time&quot;</span>)], <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="iteración-y-recursión.html#cb237-1" aria-hidden="true"></a>plus2_byList &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb237-2"><a href="iteración-y-recursión.html#cb237-2" aria-hidden="true"></a>  <span class="co">#Al convertir un data.frame en una lista, se agrega un elemento por columna</span></span>
+<span id="cb237-3"><a href="iteración-y-recursión.html#cb237-3" aria-hidden="true"></a>  x &lt;-<span class="st"> </span><span class="kw">as.list</span>(x)</span>
+<span id="cb237-4"><a href="iteración-y-recursión.html#cb237-4" aria-hidden="true"></a>  <span class="cf">for</span>(item <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)){</span>
+<span id="cb237-5"><a href="iteración-y-recursión.html#cb237-5" aria-hidden="true"></a>    x[[item]] &lt;-<span class="st"> </span>x[[item]]<span class="op">+</span><span class="dv">2</span></span>
+<span id="cb237-6"><a href="iteración-y-recursión.html#cb237-6" aria-hidden="true"></a>  }</span>
+<span id="cb237-7"><a href="iteración-y-recursión.html#cb237-7" aria-hidden="true"></a>  x</span>
+<span id="cb237-8"><a href="iteración-y-recursión.html#cb237-8" aria-hidden="true"></a>}</span>
+<span id="cb237-9"><a href="iteración-y-recursión.html#cb237-9" aria-hidden="true"></a><span class="kw">kable</span>(bench<span class="op">::</span><span class="kw">mark</span>(<span class="kw">plus2_byList</span>(data))[<span class="kw">c</span>(<span class="st">&quot;min&quot;</span>, <span class="st">&quot;median&quot;</span>, <span class="st">&quot;mem_alloc&quot;</span>, <span class="st">&quot;total_time&quot;</span>)], <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -348,10 +347,10 @@ tracemem[0x7fd579583f18 -&gt; 0x7fd57959b1b8]</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">149µs</td>
-<td align="right">184µs</td>
+<td align="right">150µs</td>
+<td align="right">188µs</td>
 <td align="right">813KB</td>
-<td align="right">295ms</td>
+<td align="right">257ms</td>
 </tr>
 </tbody>
 </table>

@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -239,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dplyrrename" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> dplyr::rename</h2>
 <p>Antes de pasar a las funciones de <code>dplyr</code> especializadas en las operaciones de conjuntos con bases de datos,se verá la función <code>dplyr::rename()</code> la cual, como indica su nombre, da un nuevo nombre a una variable existente.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="dplyrrename.html#cb368-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">State =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="dplyrrename.html#cb369-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">State =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
    State               `Población Total` Rango_edad Población
    &lt;chr&gt;                           &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
@@ -255,9 +256,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Durango                       1509025 0 a 4        150485 
 # … with 438 more rows</code></pre>
 <p>Lo cual se pudo haber hecho con <code>mutate()</code> y <code>select()</code></p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="dplyrrename.html#cb370-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span></span>
-<span id="cb370-2"><a href="dplyrrename.html#cb370-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">State =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb370-3"><a href="dplyrrename.html#cb370-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="dplyrrename.html#cb371-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span></span>
+<span id="cb371-2"><a href="dplyrrename.html#cb371-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">State =</span> <span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb371-3"><a href="dplyrrename.html#cb371-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
    `Población Total` Rango_edad Población State              
                &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;              

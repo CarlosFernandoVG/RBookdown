@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -243,47 +244,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="if-if-else" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> If &amp; If-else</h3>
 <p>La estructura <code>if()</code> permite la ejecución de un cierto bloque de código si el parámetro booleano que recibe tiene por valor <code>TRUE</code>, lo cual indicaría que la condición necesaria para la ejecución del bloque es válida. Recordemos que un valor <code>TRUE</code>, y en general un booleano, se puede obtener mediante diferentes expresiones usando operadores lógicos.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb125-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb125-1" aria-hidden="true"></a><span class="kw">if</span>(<span class="dt">boolean</span>) {</span>
-<span id="cb125-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb125-2" aria-hidden="true"></a>  código</span>
-<span id="cb125-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb125-3" aria-hidden="true"></a>} </span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb126-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-1" aria-hidden="true"></a><span class="kw">if</span>(<span class="dt">boolean</span>) {</span>
+<span id="cb126-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-2" aria-hidden="true"></a>  código</span>
+<span id="cb126-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-3" aria-hidden="true"></a>} </span></code></pre></div>
 <p>Ahora, suponiendo que se desea tratar el simple problema de determinar si un usuario, de acuerdo a su edad, puede ver cierto contenido. Se puede actuar de la siguiente manera</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb126-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
-<span id="cb126-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-2" aria-hidden="true"></a>  Permitir_contenido</span>
-<span id="cb126-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-3" aria-hidden="true"></a>}</span>
-<span id="cb126-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-4" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">17</span>){</span>
-<span id="cb126-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-5" aria-hidden="true"></a>  No_permitir_contenido</span>
-<span id="cb126-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-6" aria-hidden="true"></a>}</span>
-<span id="cb126-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-7" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">16</span>){</span>
-<span id="cb126-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-8" aria-hidden="true"></a>  No_permitir_contenido</span>
-<span id="cb126-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-9" aria-hidden="true"></a>}</span>
-<span id="cb126-10"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-10" aria-hidden="true"></a>.</span>
-<span id="cb126-11"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-11" aria-hidden="true"></a>.</span>
-<span id="cb126-12"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-12" aria-hidden="true"></a>.</span>
-<span id="cb126-13"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-13" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">0</span>){</span>
-<span id="cb126-14"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-14" aria-hidden="true"></a>  No_permitir_contenido</span>
-<span id="cb126-15"><a href="sentencias-de-control-ciclos-y-funciones.html#cb126-15" aria-hidden="true"></a>}</span></code></pre></div>
-<p>O bien de la siguiente manera</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb127-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
 <span id="cb127-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-2" aria-hidden="true"></a>  Permitir_contenido</span>
 <span id="cb127-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-3" aria-hidden="true"></a>}</span>
-<span id="cb127-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-4" aria-hidden="true"></a><span class="kw">if</span>(edad &lt; <span class="dv">18</span>){</span>
+<span id="cb127-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-4" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">17</span>){</span>
 <span id="cb127-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-5" aria-hidden="true"></a>  No_permitir_contenido</span>
-<span id="cb127-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-6" aria-hidden="true"></a>}</span></code></pre></div>
-<p>En cualquiera de los dos casos es necesario tratar el complemento con otra sentencia <code>if()</code> lo cual no es recomendable cuando no se tenga certeza de todos los casos contrarios a la condición en el primer <code>if</code>. Por lo cual, para tomar el complemento, se tiene la sentencia <code>if-else</code>; donde si sucede la condición, se ejecuta el código dentro de los delimitadores del <code>if</code> y en caso contrario (<code>else</code>) se ejecuta lo correspondiente para el complemento de la condición.</p>
+<span id="cb127-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-6" aria-hidden="true"></a>}</span>
+<span id="cb127-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-7" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">16</span>){</span>
+<span id="cb127-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-8" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb127-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-9" aria-hidden="true"></a>}</span>
+<span id="cb127-10"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-10" aria-hidden="true"></a>.</span>
+<span id="cb127-11"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-11" aria-hidden="true"></a>.</span>
+<span id="cb127-12"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-12" aria-hidden="true"></a>.</span>
+<span id="cb127-13"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-13" aria-hidden="true"></a><span class="kw">if</span>(edad == <span class="dv">0</span>){</span>
+<span id="cb127-14"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-14" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb127-15"><a href="sentencias-de-control-ciclos-y-funciones.html#cb127-15" aria-hidden="true"></a>}</span></code></pre></div>
+<p>O bien de la siguiente manera</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb128-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
 <span id="cb128-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-2" aria-hidden="true"></a>  Permitir_contenido</span>
-<span id="cb128-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-3" aria-hidden="true"></a>}<span class="kw">else</span>{</span>
-<span id="cb128-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-4" aria-hidden="true"></a>  No_permitir_contenido</span>
-<span id="cb128-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-5" aria-hidden="true"></a>}</span></code></pre></div>
+<span id="cb128-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-3" aria-hidden="true"></a>}</span>
+<span id="cb128-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-4" aria-hidden="true"></a><span class="kw">if</span>(edad &lt; <span class="dv">18</span>){</span>
+<span id="cb128-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-5" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb128-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb128-6" aria-hidden="true"></a>}</span></code></pre></div>
+<p>En cualquiera de los dos casos es necesario tratar el complemento con otra sentencia <code>if()</code> lo cual no es recomendable cuando no se tenga certeza de todos los casos contrarios a la condición en el primer <code>if</code>. Por lo cual, para tomar el complemento, se tiene la sentencia <code>if-else</code>; donde si sucede la condición, se ejecuta el código dentro de los delimitadores del <code>if</code> y en caso contrario (<code>else</code>) se ejecuta lo correspondiente para el complemento de la condición.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb129-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-1" aria-hidden="true"></a><span class="kw">if</span>(edad&gt;=<span class="dv">18</span>) {</span>
+<span id="cb129-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-2" aria-hidden="true"></a>  Permitir_contenido</span>
+<span id="cb129-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-3" aria-hidden="true"></a>}<span class="kw">else</span>{</span>
+<span id="cb129-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-4" aria-hidden="true"></a>  No_permitir_contenido</span>
+<span id="cb129-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-5" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Existe en R la función <code>ifelse()</code> la cual permite trabajar de manera vectorial. Véase el siguiente ejemplo</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-1" aria-hidden="true"></a><span class="co">#Se crea un vector con 15 edades de personas de manera &quot;aleatoria&quot;</span></span>
-<span id="cb129-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb129-2" aria-hidden="true"></a>(edades &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">90</span>, <span class="dt">replace =</span> T, <span class="dt">size =</span> <span class="dv">15</span>))</span></code></pre></div>
-<pre><code> [1] 24 21 70 10 52 79 84 79 48 61 46 53 60 14 27</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb131-1" aria-hidden="true"></a><span class="kw">ifelse</span>(edades<span class="op">&lt;</span><span class="dv">18</span>, <span class="dt">yes =</span> <span class="st">&quot;Menor de edad&quot;</span>, <span class="dt">no =</span> <span class="st">&quot;Mayor de edad&quot;</span>)</span></code></pre></div>
-<pre><code> [1] &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Menor de edad&quot;
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb130-1" aria-hidden="true"></a><span class="co">#Se crea un vector con 15 edades de personas de manera &quot;aleatoria&quot;</span></span>
+<span id="cb130-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb130-2" aria-hidden="true"></a>(edades &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">90</span>, <span class="dt">replace =</span> T, <span class="dt">size =</span> <span class="dv">15</span>))</span></code></pre></div>
+<pre><code> [1] 85 22 58 49 20 18 83 81 36 57 37 77 71 46 87</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb132-1" aria-hidden="true"></a><span class="kw">ifelse</span>(edades<span class="op">&lt;</span><span class="dv">18</span>, <span class="dt">yes =</span> <span class="st">&quot;Menor de edad&quot;</span>, <span class="dt">no =</span> <span class="st">&quot;Mayor de edad&quot;</span>)</span></code></pre></div>
+<pre><code> [1] &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot;
  [5] &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot;
  [9] &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot;
-[13] &quot;Mayor de edad&quot; &quot;Menor de edad&quot; &quot;Mayor de edad&quot;</code></pre>
+[13] &quot;Mayor de edad&quot; &quot;Mayor de edad&quot; &quot;Mayor de edad&quot;</code></pre>
 <p>Es decir, que en cada entrada del vector evalúa la expresión dada y en caso de ser cierta la condición, se devuelve, en este caso, el caracter “Menor de edad” y en caso contrario “Mayor de edad”. Véase que la función <code>ifelse()</code> regresa un vector.</p>
 <hr />
 </div>
@@ -291,25 +292,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.4.2</span> For, While y Repeat</h3>
 <p>Cuando un programador ve que un proceso se debe repetir una cantidad de veces, automáticamente piensa en un bucle. En el caso de R se tienen los ciclos <code>for()</code>, <code>while()</code> y <code>repeat()</code>.</p>
 <p>Recordando que en Java los primeros dos bucles tenían una estructura similar a la siguiente:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb133-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-1" aria-hidden="true"></a><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++){</span>
-<span id="cb133-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-2" aria-hidden="true"></a>  Ejecución del código n veces</span>
-<span id="cb133-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-3" aria-hidden="true"></a>}</span>
-<span id="cb133-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-4" aria-hidden="true"></a></span>
-<span id="cb133-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-5" aria-hidden="true"></a><span class="kw">while</span>(<span class="dt">boolean</span>){</span>
-<span id="cb133-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-6" aria-hidden="true"></a>  Ejecución del código hasta que el booleano sea <span class="kw">false</span></span>
-<span id="cb133-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb133-7" aria-hidden="true"></a>}</span></code></pre></div>
-<p>En el caso de R se tendrá una estructura un poco diferente ya que se iterará directamente sobre un objeto y no usando una variable auxiliar que evalué una expresión para obtener un booleano y determine si el ciclo termino. En el caso del ciclo while se tiene la misma sintaxis.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb134-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-1" aria-hidden="true"></a><span class="kw">for</span>(elementos in objeto){</span>
-<span id="cb134-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-2" aria-hidden="true"></a>  Ejecución_del_código</span>
+<div class="sourceCode" id="cb134"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb134-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-1" aria-hidden="true"></a><span class="kw">for</span>(<span class="dt">int</span> i = <span class="dv">0</span>; i&lt;n; i++){</span>
+<span id="cb134-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-2" aria-hidden="true"></a>  Ejecución del código n veces</span>
 <span id="cb134-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-3" aria-hidden="true"></a>}</span>
 <span id="cb134-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-4" aria-hidden="true"></a></span>
 <span id="cb134-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-5" aria-hidden="true"></a><span class="kw">while</span>(<span class="dt">boolean</span>){</span>
-<span id="cb134-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-6" aria-hidden="true"></a>  Ejecución_del_código</span>
+<span id="cb134-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-6" aria-hidden="true"></a>  Ejecución del código hasta que el booleano sea <span class="kw">false</span></span>
 <span id="cb134-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb134-7" aria-hidden="true"></a>}</span></code></pre></div>
+<p>En el caso de R se tendrá una estructura un poco diferente ya que se iterará directamente sobre un objeto y no usando una variable auxiliar que evalué una expresión para obtener un booleano y determine si el ciclo termino. En el caso del ciclo while se tiene la misma sintaxis.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb135-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-1" aria-hidden="true"></a><span class="kw">for</span>(elementos in objeto){</span>
+<span id="cb135-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-2" aria-hidden="true"></a>  Ejecución_del_código</span>
+<span id="cb135-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-3" aria-hidden="true"></a>}</span>
+<span id="cb135-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-4" aria-hidden="true"></a></span>
+<span id="cb135-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-5" aria-hidden="true"></a><span class="kw">while</span>(<span class="dt">boolean</span>){</span>
+<span id="cb135-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-6" aria-hidden="true"></a>  Ejecución_del_código</span>
+<span id="cb135-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-7" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Véase los siguientes ejemplos</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-1" aria-hidden="true"></a><span class="cf">for</span>(number <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
-<span id="cb135-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-2" aria-hidden="true"></a>  <span class="kw">print</span>(number <span class="op">+</span><span class="st"> </span><span class="dv">1</span>);</span>
-<span id="cb135-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb135-3" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb136-1" aria-hidden="true"></a><span class="cf">for</span>(number <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
+<span id="cb136-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb136-2" aria-hidden="true"></a>  <span class="kw">print</span>(number <span class="op">+</span><span class="st"> </span><span class="dv">1</span>);</span>
+<span id="cb136-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb136-3" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>[1] 2
 [1] 3
 [1] 4
@@ -319,27 +320,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>¿Funcionará con una lista o una matriz?</li>
 </ul>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb137-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]){</span>
-<span id="cb137-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb137-2" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Letra &quot;</span>, letra))</span>
-<span id="cb137-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb137-3" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb138-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]){</span>
+<span id="cb138-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb138-2" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Letra &quot;</span>, letra))</span>
+<span id="cb138-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb138-3" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;Letra  a&quot;
 [1] &quot;Letra  b&quot;
 [1] &quot;Letra  c&quot;
 [1] &quot;Letra  d&quot;
 [1] &quot;Letra  e&quot;</code></pre>
 <p>En el anterior código se esta usando otro vector, el cual es no numérico, dando un mejor ejemplo de que el iterador no esta dependiendo de valores numéricos.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-1" aria-hidden="true"></a>edad &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">41</span>,<span class="dv">17</span>,<span class="dv">20</span>)</span>
-<span id="cb139-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-2" aria-hidden="true"></a>n_cliente &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb139-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-3" aria-hidden="true"></a>control_parental &lt;-<span class="st"> </span><span class="ot">TRUE</span></span>
-<span id="cb139-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-4" aria-hidden="true"></a><span class="cf">while</span>(control_parental){</span>
-<span id="cb139-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-5" aria-hidden="true"></a>  <span class="cf">if</span>(edad[n_cliente]<span class="op">&gt;=</span><span class="dv">18</span>){</span>
-<span id="cb139-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-6" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;Apto para la película&quot;</span>)</span>
-<span id="cb139-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-7" aria-hidden="true"></a>    n_cliente &lt;-<span class="st"> </span>n_cliente<span class="op">+</span><span class="dv">1</span></span>
-<span id="cb139-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-8" aria-hidden="true"></a>  }<span class="cf">else</span>{</span>
-<span id="cb139-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-9" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;Menor de edad&quot;</span>)</span>
-<span id="cb139-10"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-10" aria-hidden="true"></a>    control_parental &lt;-<span class="st"> </span>F</span>
-<span id="cb139-11"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-11" aria-hidden="true"></a>  }</span>
-<span id="cb139-12"><a href="sentencias-de-control-ciclos-y-funciones.html#cb139-12" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-1" aria-hidden="true"></a>edad &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">41</span>,<span class="dv">17</span>,<span class="dv">20</span>)</span>
+<span id="cb140-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-2" aria-hidden="true"></a>n_cliente &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb140-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-3" aria-hidden="true"></a>control_parental &lt;-<span class="st"> </span><span class="ot">TRUE</span></span>
+<span id="cb140-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-4" aria-hidden="true"></a><span class="cf">while</span>(control_parental){</span>
+<span id="cb140-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-5" aria-hidden="true"></a>  <span class="cf">if</span>(edad[n_cliente]<span class="op">&gt;=</span><span class="dv">18</span>){</span>
+<span id="cb140-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-6" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;Apto para la película&quot;</span>)</span>
+<span id="cb140-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-7" aria-hidden="true"></a>    n_cliente &lt;-<span class="st"> </span>n_cliente<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb140-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-8" aria-hidden="true"></a>  }<span class="cf">else</span>{</span>
+<span id="cb140-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-9" aria-hidden="true"></a>    <span class="kw">print</span>(<span class="st">&quot;Menor de edad&quot;</span>)</span>
+<span id="cb140-10"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-10" aria-hidden="true"></a>    control_parental &lt;-<span class="st"> </span>F</span>
+<span id="cb140-11"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-11" aria-hidden="true"></a>  }</span>
+<span id="cb140-12"><a href="sentencias-de-control-ciclos-y-funciones.html#cb140-12" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;Apto para la película&quot;
 [1] &quot;Apto para la película&quot;
 [1] &quot;Apto para la película&quot;
@@ -350,20 +351,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>¿Existe algo equivalente al <code>switch-case</code> visto en Java?</li>
 </ul>
 <p>Para estos dos ciclos se puede hacer uso de las sentencias <code>break</code> y <code>next</code>, las cuales permiten la interrupción de un ciclo y la exclusión de alguna iteración.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters){</span>
-<span id="cb141-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-2" aria-hidden="true"></a>  <span class="cf">if</span>(letra <span class="op">==</span><span class="st"> &quot;f&quot;</span>) <span class="cf">break</span></span>
-<span id="cb141-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-3" aria-hidden="true"></a>  <span class="kw">print</span>(letra)</span>
-<span id="cb141-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb141-4" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb142-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters){</span>
+<span id="cb142-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb142-2" aria-hidden="true"></a>  <span class="cf">if</span>(letra <span class="op">==</span><span class="st"> &quot;f&quot;</span>) <span class="cf">break</span></span>
+<span id="cb142-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb142-3" aria-hidden="true"></a>  <span class="kw">print</span>(letra)</span>
+<span id="cb142-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb142-4" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;a&quot;
 [1] &quot;b&quot;
 [1] &quot;c&quot;
 [1] &quot;d&quot;
 [1] &quot;e&quot;</code></pre>
 <p>Cuando se ejecuta <code>repeat</code> el ciclo termina sin importar la existencia de más iteraciones sobre el objeto.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters){</span>
-<span id="cb143-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-2" aria-hidden="true"></a>  <span class="cf">if</span>(<span class="kw">any</span>(letra <span class="op">==</span><span class="st"> </span>letters[<span class="dv">4</span><span class="op">:</span><span class="dv">24</span>])) <span class="cf">next</span></span>
-<span id="cb143-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-3" aria-hidden="true"></a>  <span class="kw">print</span>(letra)</span>
-<span id="cb143-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb143-4" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb144-1" aria-hidden="true"></a><span class="cf">for</span>(letra <span class="cf">in</span> letters){</span>
+<span id="cb144-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb144-2" aria-hidden="true"></a>  <span class="cf">if</span>(<span class="kw">any</span>(letra <span class="op">==</span><span class="st"> </span>letters[<span class="dv">4</span><span class="op">:</span><span class="dv">24</span>])) <span class="cf">next</span></span>
+<span id="cb144-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb144-3" aria-hidden="true"></a>  <span class="kw">print</span>(letra)</span>
+<span id="cb144-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb144-4" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;a&quot;
 [1] &quot;b&quot;
 [1] &quot;c&quot;
@@ -371,24 +372,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [1] &quot;z&quot;</code></pre>
 <p>Para el caso de <code>next</code>, véase que se saltó ciertas iteraciones más no termino el ciclo.</p>
 <p>Finalmente, R proporciona la estructura <code>break</code>, en la cual puede encontrarse cierta similitud con un ciclo <code>while</code> o <code>do-while</code>.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-1" aria-hidden="true"></a>repeat{</span>
-<span id="cb145-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-2" aria-hidden="true"></a>  .</span>
-<span id="cb145-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-3" aria-hidden="true"></a>  .</span>
-<span id="cb145-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-4" aria-hidden="true"></a>  ejecución_código</span>
-<span id="cb145-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-5" aria-hidden="true"></a>  .</span>
-<span id="cb145-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-6" aria-hidden="true"></a>  .</span>
-<span id="cb145-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-7" aria-hidden="true"></a>  <span class="cf">break</span></span>
-<span id="cb145-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb145-8" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb146-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-1" aria-hidden="true"></a>repeat{</span>
+<span id="cb146-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-2" aria-hidden="true"></a>  .</span>
+<span id="cb146-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-3" aria-hidden="true"></a>  .</span>
+<span id="cb146-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-4" aria-hidden="true"></a>  ejecución_código</span>
+<span id="cb146-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-5" aria-hidden="true"></a>  .</span>
+<span id="cb146-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-6" aria-hidden="true"></a>  .</span>
+<span id="cb146-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-7" aria-hidden="true"></a>  <span class="cf">break</span></span>
+<span id="cb146-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-8" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Este bucle se detiene cuando se encuentra a la sentencia <code>break</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-1" aria-hidden="true"></a>n_saludos &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb146-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-2" aria-hidden="true"></a><span class="cf">repeat</span>{</span>
-<span id="cb146-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-3" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">rep</span>(<span class="st">&quot;Hola&quot;</span>, n_saludos))</span>
-<span id="cb146-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-4" aria-hidden="true"></a>  <span class="co">#Se detiene el repeat cuando n_saludos sea igual a 1</span></span>
-<span id="cb146-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-5" aria-hidden="true"></a>  <span class="cf">if</span>(n_saludos<span class="op">==</span><span class="dv">1</span>){</span>
-<span id="cb146-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-6" aria-hidden="true"></a>    <span class="cf">break</span></span>
-<span id="cb146-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-7" aria-hidden="true"></a>  }</span>
-<span id="cb146-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-8" aria-hidden="true"></a>  n_saludos &lt;-<span class="st"> </span>n_saludos<span class="dv">-1</span></span>
-<span id="cb146-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb146-9" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-1" aria-hidden="true"></a>n_saludos &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb147-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-2" aria-hidden="true"></a><span class="cf">repeat</span>{</span>
+<span id="cb147-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-3" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="kw">rep</span>(<span class="st">&quot;Hola&quot;</span>, n_saludos))</span>
+<span id="cb147-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-4" aria-hidden="true"></a>  <span class="co">#Se detiene el repeat cuando n_saludos sea igual a 1</span></span>
+<span id="cb147-5"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-5" aria-hidden="true"></a>  <span class="cf">if</span>(n_saludos<span class="op">==</span><span class="dv">1</span>){</span>
+<span id="cb147-6"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-6" aria-hidden="true"></a>    <span class="cf">break</span></span>
+<span id="cb147-7"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-7" aria-hidden="true"></a>  }</span>
+<span id="cb147-8"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-8" aria-hidden="true"></a>  n_saludos &lt;-<span class="st"> </span>n_saludos<span class="dv">-1</span></span>
+<span id="cb147-9"><a href="sentencias-de-control-ciclos-y-funciones.html#cb147-9" aria-hidden="true"></a>}</span></code></pre></div>
 <pre><code>[1] &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot;
 [1] &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot;
 [1] &quot;Hola&quot; &quot;Hola&quot; &quot;Hola&quot;
@@ -402,31 +403,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Como ya se había mencionado, R es un lenguaje de programación orientado a objetos aunque también tiene ciertas características de un lenguaje funcional ya que las funciones en R pueden considerarse <a href="https://en.wikipedia.org/wiki/First-class_function">funciones de primera clase</a>; es decir que pueden ser asignadas a variables, ser almacenadas en ciertas estructuras como las listas, servir como parámetros de otras funciones y ser el retorno de otras funciones. Aunque estas no pueden ser consideradas, como bien dice Handley Wickham en su libro RAdvance, puras; es decir <a href="https://en.wikipedia.org/wiki/Higher-order_function">funciones de orden superior</a> ya que, para que una función sea considerada de orden superior, de acuerdo a un input dado, se debe tener una única salida (inyectividad) lo cual no sucede con muchas funciones en R como <code>sample()</code>, <code>runif()</code>, <code>print()</code> y hasta en <code>&lt;-()</code>.</p>
 <p>Sin importar que las funciones no sean de orden superior, lo cual otorga cierta flexibilidad, es indudable la importancia de crear funciones para optimizar el trabajo, dar estructura, limpieza e incluso claridad; ya que al usar una función, el resultado será algo esperado sin importar su comportamiento interno; en cambio al visualizar un ciclo, este puede no quedar claro en su funcionamiento.</p>
 <p>La creación de funciones es sencilla</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb148-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb148-1" aria-hidden="true"></a>nombre_function &lt;- <span class="fu">function</span>(parámetros){</span>
-<span id="cb148-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb148-2" aria-hidden="true"></a>  código</span>
-<span id="cb148-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb148-3" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb149-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-1" aria-hidden="true"></a>nombre_function &lt;- <span class="fu">function</span>(parámetros){</span>
+<span id="cb149-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-2" aria-hidden="true"></a>  código</span>
+<span id="cb149-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-3" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li>Los parámetros pueden ser cualquier objeto e incluso funciones. En este último caso, a estas funciones se les llama <strong><em>funcionales</em></strong>.</li>
 <li>El retorno de una función puede quedar explícitamente dado con la función <code>return()</code> aunque si no se utiliza esta función, la última línea de código en la función es considerada como el retorno de la función. El retorno puede ser cualquier tipo de objeto e incluso pueden devolver funciones. En este último caso, a estas funciones se les llama <strong><em>function factory</em></strong>.</li>
 <li>Cuando una función tiene como valor de retorno un booleano, a esta función se le conoce como <strong><em>predicate</em></strong> y cuando una función acepta una o más funciones como parámetros y a su vez regresa funciones, se les conoce a estas funciones como <strong><em>function operator</em></strong>.</li>
 </ul>
 <p>Los parámetros de una función pueden tener valores por defecto, los cuales pueden ser reescritos cuando se den explícitamente otros valores.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-1" aria-hidden="true"></a>suma &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)){</span>
-<span id="cb149-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-2" aria-hidden="true"></a>  <span class="kw">sum</span>(v1, v2)</span>
-<span id="cb149-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-3" aria-hidden="true"></a>}</span>
-<span id="cb149-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb149-4" aria-hidden="true"></a><span class="kw">suma</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb150-1" aria-hidden="true"></a>suma &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)){</span>
+<span id="cb150-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb150-2" aria-hidden="true"></a>  <span class="kw">sum</span>(v1, v2)</span>
+<span id="cb150-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb150-3" aria-hidden="true"></a>}</span>
+<span id="cb150-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb150-4" aria-hidden="true"></a><span class="kw">suma</span>()</span></code></pre></div>
 <pre><code>[1] 10</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb151-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="dt">v1 =</span> <span class="dv">4</span>, <span class="dt">v2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb152-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="dt">v1 =</span> <span class="dv">4</span>, <span class="dt">v2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span></code></pre></div>
 <pre><code>[1] 214</code></pre>
 <p>Algo interesante de las funciones en R, al igual que en Python, es que se pueden dar una cantidad indeterminada de parámetros si así se indica en la función con el argumento <code>...</code>. Véase el siguiente ejemplo.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-1" aria-hidden="true"></a><span class="co">#v1 y v2 vectores numéricos</span></span>
-<span id="cb153-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-2" aria-hidden="true"></a>suma &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2, ...){</span>
-<span id="cb153-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-3" aria-hidden="true"></a>  <span class="kw">sum</span>(v1, v2, ...)</span>
-<span id="cb153-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb153-4" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb154-1" aria-hidden="true"></a><span class="co">#v1 y v2 vectores numéricos</span></span>
+<span id="cb154-2"><a href="sentencias-de-control-ciclos-y-funciones.html#cb154-2" aria-hidden="true"></a>suma &lt;-<span class="st"> </span><span class="cf">function</span>(v1, v2, ...){</span>
+<span id="cb154-3"><a href="sentencias-de-control-ciclos-y-funciones.html#cb154-3" aria-hidden="true"></a>  <span class="kw">sum</span>(v1, v2, ...)</span>
+<span id="cb154-4"><a href="sentencias-de-control-ciclos-y-funciones.html#cb154-4" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Es decir, que se está considerando <code>...</code> como un parámetro más de la función aunque nótese que no es necesario agregar más de dos variables en la función.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb154-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb155-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>[1] 13</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb156-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="sentencias-de-control-ciclos-y-funciones.html#cb157-1" aria-hidden="true"></a><span class="kw">suma</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span></code></pre></div>
 <pre><code>[1] 223</code></pre>
 <hr />
 <div id="ejercicios-2" class="section level4 unnumbered">

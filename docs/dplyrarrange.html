@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -239,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dplyrarrange" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> dplyr::arrange()</h2>
 <p>Para ordenar una variable de forma ascendente o descendente se utiliza la función <code>dplyr::arrange()</code>. Al ordenar una variable, se ordenan todos los datos de acuerdo a esa variable de referencia.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="dplyrarrange.html#cb330-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="dplyrarrange.html#cb331-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
    `Entidad Federativa` `Población Total` Rango_edad Porcentaje
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
@@ -255,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Aguascalientes                 1066233 45 a 49          5.49
 # … with 438 more rows</code></pre>
 <p>Además, se pueden ordenar los registros por múltiples variables. En este ejemplo se ordenan los datos de la población mexicana por la Entidad Federativa y, de manera descendente, el porcentaje de la población total por grupos quinquenales de edad.</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="dplyrarrange.html#cb332-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="kw">desc</span>(Porcentaje))</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="dplyrarrange.html#cb333-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="kw">desc</span>(Porcentaje))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
    `Entidad Federativa` `Población Total` Rango_edad Porcentaje
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;

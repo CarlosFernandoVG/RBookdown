@@ -94,9 +94,6 @@ typeof(5 + 7i) ,sep = "\n"))
 En la siguiente tabla se muestra las posibles salidas con todas las variables de prueba.
 
 ```{r, echo=FALSE}
-library(knitr)
-library(kableExtra)
-library(tidyverse)
 dt_types_data <- data_frame(" "= c("TRUE", "5", "5.4", "5L", "word", "charToRaw(\"5\")", "5 + 7i"),
                             "typeof()" = c(typeof(TRUE), 
                                            typeof(5),
@@ -1643,8 +1640,6 @@ En resumen, al modificar algún elemento dentro de un vector, se creó una copia
 Cuando se hace algún ciclo donde se este agregando o modificando algún vector, internamente se realizarán copias de todo el vector aunque sólo un elemento sea alterado; en ese caso los ciclos iterativos son lentos, pero cuando se utiliza una lista en lugar de un vector el rendimiento mejora bastante. Hay que recordar que R no fue diseñado para ser rápido, aunque usando listas el rendimiento obtenido será mejor al usar un ciclo.
 
 ```{r}
-library(bench)
-library(knitr)
 data <- data.frame(matrix(1:100000, ncol = 100))
 plus2_byVector <- function(x){
   #Al usar m[[n]] cuando m es un data.frame, véase que se estan tomando vectores
@@ -2066,7 +2061,6 @@ abline(v = max(pressure$temperature),#v es especial para líneas horizontales
 A la función `abline()` también se le puede dar la información en la forma $ax+b$ donde el argumento `a` sirve para establecer la pendiente y `b` para el intercepto. Véase que las rectas dibujadas con la función `abline()` cubren todo el rango de ambos ejes y en este caso se desea que estas terminen cuando lleguen a la coordenada específica, para eso se utilizará la función `segments()` donde sus argumentos indican las coordenadas de inicio y de final. Además el diseño de la flecha puede mejorar con `shape::Arrows`.
 
 ```{r, class.source = "scroll-300"}
-library(shape)
 plot(pressure ~ temperature, data=pressure,
      main = "Gráfico de dispersión y Lineas: Presión VS Temperatura", # Título principal
      col.main = "#0e608f", # Color para el título
@@ -2486,7 +2480,6 @@ pairs(iris, col = c("#865fd4", "#b34769", "#a19f4c")[ifelse(iris$Species=="setos
 + Histograma, Gráfico de densidad, Pie Chart y Boxplot
 
 ```{r}
-library(wesanderson)
 set.seed(20)
 datos_fic <- c(sample(seq(1,2,by = 0.01), replace = T, size = 1000))
 datos_fic_1 <- sample(1:5, replace = T, size = 100)

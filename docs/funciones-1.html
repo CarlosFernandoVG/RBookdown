@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -240,19 +241,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.5</span> Funciones</h2>
 <p>El tema de las funciones es algo extenso, por lo que se dará de manera resumida el contenido necesario para entender gran parte del funcionamiento de estas en R. Una de las mejores fuentes de información la pueden encontrar en el libro <a href="https://adv-r.hadley.nz">Advance R</a>, específicamente en los capítulos 6 y 7; para explorar más sobre este tema se puede consultar la segunda parte de la misma referencia. Finalmente, se verá como usar vectorización, una de las fuertes habilidades de R, y por último una serie de funciones que podrían ser de gran utilidad en ciertos temas.</p>
 <p>Particularmente en la programación con R, será de mucha utilidad aprender a crear funciones:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="funciones-1.html#cb158-1" aria-hidden="true"></a>funcionfactorial&lt;-<span class="cf">function</span>(a){</span>
-<span id="cb158-2"><a href="funciones-1.html#cb158-2" aria-hidden="true"></a>  res &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb158-3"><a href="funciones-1.html#cb158-3" aria-hidden="true"></a>  <span class="cf">if</span>(a<span class="op">&lt;</span><span class="dv">0</span>){</span>
-<span id="cb158-4"><a href="funciones-1.html#cb158-4" aria-hidden="true"></a>    <span class="kw">return</span>(<span class="st">&quot;No existen factoriales de números negativos.&quot;</span>)</span>
-<span id="cb158-5"><a href="funciones-1.html#cb158-5" aria-hidden="true"></a>  } <span class="cf">else</span> <span class="cf">if</span>(a<span class="op">==</span><span class="dv">0</span>){</span>
-<span id="cb158-6"><a href="funciones-1.html#cb158-6" aria-hidden="true"></a>    <span class="kw">return</span>(res)</span>
-<span id="cb158-7"><a href="funciones-1.html#cb158-7" aria-hidden="true"></a>  } <span class="cf">else</span>{</span>
-<span id="cb158-8"><a href="funciones-1.html#cb158-8" aria-hidden="true"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>a){</span>
-<span id="cb158-9"><a href="funciones-1.html#cb158-9" aria-hidden="true"></a>      res &lt;-<span class="st"> </span>res<span class="op">*</span>i</span>
-<span id="cb158-10"><a href="funciones-1.html#cb158-10" aria-hidden="true"></a>    }</span>
-<span id="cb158-11"><a href="funciones-1.html#cb158-11" aria-hidden="true"></a>    <span class="kw">return</span>(res)</span>
-<span id="cb158-12"><a href="funciones-1.html#cb158-12" aria-hidden="true"></a>  }</span>
-<span id="cb158-13"><a href="funciones-1.html#cb158-13" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="funciones-1.html#cb159-1" aria-hidden="true"></a>funcionfactorial&lt;-<span class="cf">function</span>(a){</span>
+<span id="cb159-2"><a href="funciones-1.html#cb159-2" aria-hidden="true"></a>  res &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb159-3"><a href="funciones-1.html#cb159-3" aria-hidden="true"></a>  <span class="cf">if</span>(a<span class="op">&lt;</span><span class="dv">0</span>){</span>
+<span id="cb159-4"><a href="funciones-1.html#cb159-4" aria-hidden="true"></a>    <span class="kw">return</span>(<span class="st">&quot;No existen factoriales de números negativos.&quot;</span>)</span>
+<span id="cb159-5"><a href="funciones-1.html#cb159-5" aria-hidden="true"></a>  } <span class="cf">else</span> <span class="cf">if</span>(a<span class="op">==</span><span class="dv">0</span>){</span>
+<span id="cb159-6"><a href="funciones-1.html#cb159-6" aria-hidden="true"></a>    <span class="kw">return</span>(res)</span>
+<span id="cb159-7"><a href="funciones-1.html#cb159-7" aria-hidden="true"></a>  } <span class="cf">else</span>{</span>
+<span id="cb159-8"><a href="funciones-1.html#cb159-8" aria-hidden="true"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>a){</span>
+<span id="cb159-9"><a href="funciones-1.html#cb159-9" aria-hidden="true"></a>      res &lt;-<span class="st"> </span>res<span class="op">*</span>i</span>
+<span id="cb159-10"><a href="funciones-1.html#cb159-10" aria-hidden="true"></a>    }</span>
+<span id="cb159-11"><a href="funciones-1.html#cb159-11" aria-hidden="true"></a>    <span class="kw">return</span>(res)</span>
+<span id="cb159-12"><a href="funciones-1.html#cb159-12" aria-hidden="true"></a>  }</span>
+<span id="cb159-13"><a href="funciones-1.html#cb159-13" aria-hidden="true"></a>}</span></code></pre></div>
 <hr />
 <div id="funciones-2" class="section level3" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Funciones</h3>
@@ -261,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>¿Qué tipo de estructuras o qué tipo de objetos regresan las anteriores funciones?</li>
 <li>¿Cuáles son los tres componentes en la siguiente función?</li>
 </ul>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="funciones-1.html#cb159-1" aria-hidden="true"></a>myStrangeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>,<span class="dt">b =</span> <span class="dv">4</span>,c,...) <span class="kw">sum</span>(<span class="kw">prod</span>(a,b), c, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="funciones-1.html#cb160-1" aria-hidden="true"></a>myStrangeFunction &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">a =</span> <span class="dv">1</span>,<span class="dt">b =</span> <span class="dv">4</span>,c,...) <span class="kw">sum</span>(<span class="kw">prod</span>(a,b), c, ...)</span></code></pre></div>
 <p>Como ya se mencionó, este lenguaje toma ciertas características de un lenguaje funcional, por lo que al tratar a las funciones como objetos es de esperarse la incorporación de atributos a estas. Uno de estos atributos es el llamado <strong><em>srcref</em></strong> (source reference), la cual imprime mejor el cuerpo de alguna función.</p>
 <ul>
 <li>¿Con qué función se agregaría un atributo a una función?</li>
@@ -286,50 +287,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Todas las funciones se pueden llamar a manera de prefijo.</li>
 </ul>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="funciones-1.html#cb162-1" aria-hidden="true"></a><span class="kw">myFunction</span>(a,b,c)</span>
-<span id="cb162-2"><a href="funciones-1.html#cb162-2" aria-hidden="true"></a></span>
-<span id="cb162-3"><a href="funciones-1.html#cb162-3" aria-hidden="true"></a><span class="st">`</span><span class="dt">+</span><span class="st">`</span>(a,b)</span>
-<span id="cb162-4"><a href="funciones-1.html#cb162-4" aria-hidden="true"></a></span>
-<span id="cb162-5"><a href="funciones-1.html#cb162-5" aria-hidden="true"></a><span class="st">`</span><span class="dt">colnames&lt;-</span><span class="st">`</span>(df, names)</span>
-<span id="cb162-6"><a href="funciones-1.html#cb162-6" aria-hidden="true"></a></span>
-<span id="cb162-7"><a href="funciones-1.html#cb162-7" aria-hidden="true"></a><span class="cf">for</span>(name <span class="cf">in</span> names) <span class="kw">print</span>(name)</span>
-<span id="cb162-8"><a href="funciones-1.html#cb162-8" aria-hidden="true"></a><span class="st">`</span><span class="dt">for</span><span class="st">`</span>(name, names, <span class="kw">print</span>(name))</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="funciones-1.html#cb163-1" aria-hidden="true"></a><span class="kw">myFunction</span>(a,b,c)</span>
+<span id="cb163-2"><a href="funciones-1.html#cb163-2" aria-hidden="true"></a></span>
+<span id="cb163-3"><a href="funciones-1.html#cb163-3" aria-hidden="true"></a><span class="st">`</span><span class="dt">+</span><span class="st">`</span>(a,b)</span>
+<span id="cb163-4"><a href="funciones-1.html#cb163-4" aria-hidden="true"></a></span>
+<span id="cb163-5"><a href="funciones-1.html#cb163-5" aria-hidden="true"></a><span class="st">`</span><span class="dt">colnames&lt;-</span><span class="st">`</span>(df, names)</span>
+<span id="cb163-6"><a href="funciones-1.html#cb163-6" aria-hidden="true"></a></span>
+<span id="cb163-7"><a href="funciones-1.html#cb163-7" aria-hidden="true"></a><span class="cf">for</span>(name <span class="cf">in</span> names) <span class="kw">print</span>(name)</span>
+<span id="cb163-8"><a href="funciones-1.html#cb163-8" aria-hidden="true"></a><span class="st">`</span><span class="dt">for</span><span class="st">`</span>(name, names, <span class="kw">print</span>(name))</span></code></pre></div>
 <ul>
 <li>Como <code>+</code> es una función, es posible crear operadores usando <code>%</code> al inicio y al final del operador. Todos los operadores de R se pueden encontrar ejecutando <code>?Syntax</code>.</li>
 </ul>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="funciones-1.html#cb163-1" aria-hidden="true"></a><span class="st">`</span><span class="dt">%mixOperations%</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="cf">function</span>(a,b) a<span class="op">+</span>b<span class="op">*</span>a<span class="op">/</span>b</span>
-<span id="cb163-2"><a href="funciones-1.html#cb163-2" aria-hidden="true"></a><span class="dv">4</span> <span class="op">%mixOperations%</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="funciones-1.html#cb164-1" aria-hidden="true"></a><span class="st">`</span><span class="dt">%mixOperations%</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="cf">function</span>(a,b) a<span class="op">+</span>b<span class="op">*</span>a<span class="op">/</span>b</span>
+<span id="cb164-2"><a href="funciones-1.html#cb164-2" aria-hidden="true"></a><span class="dv">4</span> <span class="op">%mixOperations%</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
 <pre><code>[1] 8</code></pre>
 <ul>
 <li><p>Algunas funciones útiles de este estilo son <code>%%</code>, <code>%*%</code>, <code>%/%</code>, <code>%in%</code>, <code>%o%</code> y <code>%x%</code>. ¿Qué hacen cada una de ellas?</p></li>
 <li><p>Es análogo la sintaxis para crear funciones de asignación aunque es necesario tener el formal <code>value</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="funciones-1.html#cb165-1" aria-hidden="true"></a><span class="st">`</span><span class="dt">indexNames&lt;-</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="cf">function</span>(a, value) {</span>
-<span id="cb165-2"><a href="funciones-1.html#cb165-2" aria-hidden="true"></a>    <span class="kw">names</span>(a) &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">seq_along</span>(a)<span class="op">+</span>value) </span>
-<span id="cb165-3"><a href="funciones-1.html#cb165-3" aria-hidden="true"></a>    a</span>
-<span id="cb165-4"><a href="funciones-1.html#cb165-4" aria-hidden="true"></a>  }</span>
-<span id="cb165-5"><a href="funciones-1.html#cb165-5" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></span>
-<span id="cb165-6"><a href="funciones-1.html#cb165-6" aria-hidden="true"></a><span class="kw">indexNames</span>(x) &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb165-7"><a href="funciones-1.html#cb165-7" aria-hidden="true"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="funciones-1.html#cb166-1" aria-hidden="true"></a><span class="st">`</span><span class="dt">indexNames&lt;-</span><span class="st">`</span> &lt;-<span class="st"> </span><span class="cf">function</span>(a, value) {</span>
+<span id="cb166-2"><a href="funciones-1.html#cb166-2" aria-hidden="true"></a>    <span class="kw">names</span>(a) &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">seq_along</span>(a)<span class="op">+</span>value) </span>
+<span id="cb166-3"><a href="funciones-1.html#cb166-3" aria-hidden="true"></a>    a</span>
+<span id="cb166-4"><a href="funciones-1.html#cb166-4" aria-hidden="true"></a>  }</span>
+<span id="cb166-5"><a href="funciones-1.html#cb166-5" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></span>
+<span id="cb166-6"><a href="funciones-1.html#cb166-6" aria-hidden="true"></a><span class="kw">indexNames</span>(x) &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb166-7"><a href="funciones-1.html#cb166-7" aria-hidden="true"></a>x</span></code></pre></div>
 <pre><code> 4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 
  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 </code></pre>
 <p>Ahora, véase la siguiente función</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="funciones-1.html#cb167-1" aria-hidden="true"></a>ignoringParameters &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="st">&quot;Hello!&quot;</span></span>
-<span id="cb167-2"><a href="funciones-1.html#cb167-2" aria-hidden="true"></a><span class="kw">ignoringParameters</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="funciones-1.html#cb168-1" aria-hidden="true"></a>ignoringParameters &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="st">&quot;Hello!&quot;</span></span>
+<span id="cb168-2"><a href="funciones-1.html#cb168-2" aria-hidden="true"></a><span class="kw">ignoringParameters</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>)</span></code></pre></div>
 <pre><code>[1] &quot;Hello!&quot;</code></pre>
 <p>Sea cual sea el objeto que se de como parámetro al llamar la función, se devolverá el mismo resultado. Esto es posible porque las funciones en R trabajan de manera “perezosa” con sus argumentos, a esto se le llama <strong><em>lazy evaluation</em></strong>. Básicamente, si no es llamado en algún momento un argumento de la función, este no es utilizado y solo cuando se llame al argumento, hasta ese momento se hará el acceso a él.</p>
 <p>Esto es gracias a la técnica de evaluación <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a> que utiliza R al usar una estructura de datos llamada <a href="https://en.wikipedia.org/wiki/Futures_and_promises">promise</a> donde, básicamente las variables son evaluadas mediante un ambiente hasta que una expresión las utilice y este valor es guardado (<em>cached</em>), por ejemplo</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="funciones-1.html#cb169-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="dv">7</span></span>
-<span id="cb169-2"><a href="funciones-1.html#cb169-2" aria-hidden="true"></a>lazilyEvaluated &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">lazy_var =</span> y<span class="op">*</span>a){</span>
-<span id="cb169-3"><a href="funciones-1.html#cb169-3" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="st">&quot;Hi!&quot;</span>)</span>
-<span id="cb169-4"><a href="funciones-1.html#cb169-4" aria-hidden="true"></a>  y &lt;-<span class="st"> </span><span class="dv">50</span></span>
-<span id="cb169-5"><a href="funciones-1.html#cb169-5" aria-hidden="true"></a>  a &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb169-6"><a href="funciones-1.html#cb169-6" aria-hidden="true"></a>  <span class="kw">print</span>(lazy_var)</span>
-<span id="cb169-7"><a href="funciones-1.html#cb169-7" aria-hidden="true"></a>  x<span class="op">*</span><span class="dv">2</span></span>
-<span id="cb169-8"><a href="funciones-1.html#cb169-8" aria-hidden="true"></a>}</span>
-<span id="cb169-9"><a href="funciones-1.html#cb169-9" aria-hidden="true"></a>doubleVector &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">c</span>(x,x)</span>
-<span id="cb169-10"><a href="funciones-1.html#cb169-10" aria-hidden="true"></a></span>
-<span id="cb169-11"><a href="funciones-1.html#cb169-11" aria-hidden="true"></a><span class="kw">doubleVector</span>(<span class="kw">lazilyEvaluated</span>(y))</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="funciones-1.html#cb170-1" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="dv">7</span></span>
+<span id="cb170-2"><a href="funciones-1.html#cb170-2" aria-hidden="true"></a>lazilyEvaluated &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">lazy_var =</span> y<span class="op">*</span>a){</span>
+<span id="cb170-3"><a href="funciones-1.html#cb170-3" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="st">&quot;Hi!&quot;</span>)</span>
+<span id="cb170-4"><a href="funciones-1.html#cb170-4" aria-hidden="true"></a>  y &lt;-<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb170-5"><a href="funciones-1.html#cb170-5" aria-hidden="true"></a>  a &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb170-6"><a href="funciones-1.html#cb170-6" aria-hidden="true"></a>  <span class="kw">print</span>(lazy_var)</span>
+<span id="cb170-7"><a href="funciones-1.html#cb170-7" aria-hidden="true"></a>  x<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb170-8"><a href="funciones-1.html#cb170-8" aria-hidden="true"></a>}</span>
+<span id="cb170-9"><a href="funciones-1.html#cb170-9" aria-hidden="true"></a>doubleVector &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">c</span>(x,x)</span>
+<span id="cb170-10"><a href="funciones-1.html#cb170-10" aria-hidden="true"></a></span>
+<span id="cb170-11"><a href="funciones-1.html#cb170-11" aria-hidden="true"></a><span class="kw">doubleVector</span>(<span class="kw">lazilyEvaluated</span>(y))</span></code></pre></div>
 <pre><code>[1] &quot;Hi!&quot;
 [1] 150</code></pre>
 <pre><code>[1] 14 14</code></pre>
@@ -340,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>¿Por qué sólo se imprimió una vez el <code>"Hi!"</code> y el valor de <code>lazy_var</code>? Por el valor calculado y guardado en la <em>promise</em>.</li>
 </ul>
 <p>Otra forma de llamar a una función es usando la función <code>do.call()</code>, la cual permite agregar una lista de parámetros.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="funciones-1.html#cb172-1" aria-hidden="true"></a><span class="kw">do.call</span>(myStrangeFunction, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>, <span class="dt">c =</span> <span class="dv">4</span>, <span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="funciones-1.html#cb173-1" aria-hidden="true"></a><span class="kw">do.call</span>(myStrangeFunction, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">3</span>, <span class="dt">c =</span> <span class="dv">4</span>, <span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>))</span></code></pre></div>
 <pre><code>[1] 40</code></pre>
 <p><br /></p>
 <p>Los objetos que guardemos o asignemos en nuestros flujos de trabajo serán almacenados en un espacio de memoria que se llama <em>ambiente</em> o en inglés <em>environment</em>. Desde RStudio podremos ver lo que se guardado en este espacio de memoria en el panel <em>Environment</em>. Este tema es un poco extenso por lo que hay que entender sólo algunas cosas.</p>
@@ -351,41 +352,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>En un ambiente todos los nombres son únicos y no están ordenados (recordar que los nombres están asociados a las variables o valores para un uso posterior, por ejemplo: <code>var &lt;- c(1,2)</code>). Para crear un ambiente se utiliza la función <code>new.env()</code>.</li>
 <li>La función <code>ls()</code> permite ver todos los elementos de un ambiente. Se utiliza la función <code>assign()</code> para agregar un nuevo elemento a un ambiente dado y para obtener alguno de los elementos se puede acceder con el operando <code>$</code>, como en una lista o con la función <code>get()</code> (si no se encuentra la variable con el nombre dado, get buscará en los ambientes padres). Para preguntar si existe alguna variale con un nombre dado en un ambiente se utiliza la función <code>exists()</code> y para eliminar una o varias referencias de variables en un ambiente se usa la función <code>rm()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="funciones-1.html#cb174-1" aria-hidden="true"></a>env_test &lt;-<span class="st"> </span><span class="kw">new.env</span>()</span>
-<span id="cb174-2"><a href="funciones-1.html#cb174-2" aria-hidden="true"></a><span class="kw">assign</span>(<span class="st">&quot;new_variable&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">envir =</span> env_test) </span>
-<span id="cb174-3"><a href="funciones-1.html#cb174-3" aria-hidden="true"></a><span class="kw">ls</span>(env_test)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="funciones-1.html#cb175-1" aria-hidden="true"></a>env_test &lt;-<span class="st"> </span><span class="kw">new.env</span>()</span>
+<span id="cb175-2"><a href="funciones-1.html#cb175-2" aria-hidden="true"></a><span class="kw">assign</span>(<span class="st">&quot;new_variable&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">envir =</span> env_test) </span>
+<span id="cb175-3"><a href="funciones-1.html#cb175-3" aria-hidden="true"></a><span class="kw">ls</span>(env_test)</span></code></pre></div>
 <pre><code>[1] &quot;new_variable&quot;</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="funciones-1.html#cb176-1" aria-hidden="true"></a>env_test<span class="op">$</span>new_variable</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="funciones-1.html#cb177-1" aria-hidden="true"></a>env_test<span class="op">$</span>new_variable</span></code></pre></div>
 <pre><code>[1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="funciones-1.html#cb178-1" aria-hidden="true"></a><span class="co"># get(&quot;new_variable&quot;, envir = env_test)</span></span>
-<span id="cb178-2"><a href="funciones-1.html#cb178-2" aria-hidden="true"></a><span class="kw">exists</span>(<span class="st">&quot;new_variable&quot;</span>, <span class="dt">envir =</span> env_test)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="funciones-1.html#cb179-1" aria-hidden="true"></a><span class="co"># get(&quot;new_variable&quot;, envir = env_test)</span></span>
+<span id="cb179-2"><a href="funciones-1.html#cb179-2" aria-hidden="true"></a><span class="kw">exists</span>(<span class="st">&quot;new_variable&quot;</span>, <span class="dt">envir =</span> env_test)</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="funciones-1.html#cb180-1" aria-hidden="true"></a><span class="kw">rm</span>(<span class="st">&quot;new_variable&quot;</span>, <span class="dt">envir =</span> env_test)</span>
-<span id="cb180-2"><a href="funciones-1.html#cb180-2" aria-hidden="true"></a><span class="kw">ls</span>(env_test)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="funciones-1.html#cb181-1" aria-hidden="true"></a><span class="kw">rm</span>(<span class="st">&quot;new_variable&quot;</span>, <span class="dt">envir =</span> env_test)</span>
+<span id="cb181-2"><a href="funciones-1.html#cb181-2" aria-hidden="true"></a><span class="kw">ls</span>(env_test)</span></code></pre></div>
 <pre><code>character(0)</code></pre>
 <p>Más ejemplos</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="funciones-1.html#cb182-1" aria-hidden="true"></a><span class="co">## Muestra los nombres de los objetos en memoria</span></span>
-<span id="cb182-2"><a href="funciones-1.html#cb182-2" aria-hidden="true"></a><span class="kw">ls</span>()</span>
-<span id="cb182-3"><a href="funciones-1.html#cb182-3" aria-hidden="true"></a></span>
-<span id="cb182-4"><a href="funciones-1.html#cb182-4" aria-hidden="true"></a><span class="co">## Muestra las variables con cierta serie de caracteres en su nombre</span></span>
-<span id="cb182-5"><a href="funciones-1.html#cb182-5" aria-hidden="true"></a><span class="kw">ls</span>(<span class="dt">pat=</span><span class="st">&quot;m&quot;</span>)</span>
-<span id="cb182-6"><a href="funciones-1.html#cb182-6" aria-hidden="true"></a></span>
-<span id="cb182-7"><a href="funciones-1.html#cb182-7" aria-hidden="true"></a><span class="co">## Muestra las variables las cuales su nombre empieza con el caracter dado</span></span>
-<span id="cb182-8"><a href="funciones-1.html#cb182-8" aria-hidden="true"></a><span class="kw">ls</span>(<span class="dt">pat=</span><span class="st">&quot;^m&quot;</span>)</span>
-<span id="cb182-9"><a href="funciones-1.html#cb182-9" aria-hidden="true"></a></span>
-<span id="cb182-10"><a href="funciones-1.html#cb182-10" aria-hidden="true"></a><span class="co">## Muestra detalles de los objetos en memoria</span></span>
-<span id="cb182-11"><a href="funciones-1.html#cb182-11" aria-hidden="true"></a><span class="kw">ls.str</span>()</span>
-<span id="cb182-12"><a href="funciones-1.html#cb182-12" aria-hidden="true"></a></span>
-<span id="cb182-13"><a href="funciones-1.html#cb182-13" aria-hidden="true"></a><span class="co">## Eliminar todas las variables de &#39;Global Environment&#39;</span></span>
-<span id="cb182-14"><a href="funciones-1.html#cb182-14" aria-hidden="true"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
-<span id="cb182-15"><a href="funciones-1.html#cb182-15" aria-hidden="true"></a></span>
-<span id="cb182-16"><a href="funciones-1.html#cb182-16" aria-hidden="true"></a><span class="co">## Eliminar únicamente variables que empiezan con la letra m</span></span>
-<span id="cb182-17"><a href="funciones-1.html#cb182-17" aria-hidden="true"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>(<span class="dt">pat=</span><span class="st">&quot;^m&quot;</span>))</span>
-<span id="cb182-18"><a href="funciones-1.html#cb182-18" aria-hidden="true"></a></span>
-<span id="cb182-19"><a href="funciones-1.html#cb182-19" aria-hidden="true"></a><span class="co">## Tipo de elementos del objeto v</span></span>
-<span id="cb182-20"><a href="funciones-1.html#cb182-20" aria-hidden="true"></a><span class="kw">mode</span>(v)</span>
-<span id="cb182-21"><a href="funciones-1.html#cb182-21" aria-hidden="true"></a><span class="co">## Longitud del objeto v</span></span>
-<span id="cb182-22"><a href="funciones-1.html#cb182-22" aria-hidden="true"></a><span class="kw">length</span>(v)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="funciones-1.html#cb183-1" aria-hidden="true"></a><span class="co">## Muestra los nombres de los objetos en memoria</span></span>
+<span id="cb183-2"><a href="funciones-1.html#cb183-2" aria-hidden="true"></a><span class="kw">ls</span>()</span>
+<span id="cb183-3"><a href="funciones-1.html#cb183-3" aria-hidden="true"></a></span>
+<span id="cb183-4"><a href="funciones-1.html#cb183-4" aria-hidden="true"></a><span class="co">## Muestra las variables con cierta serie de caracteres en su nombre</span></span>
+<span id="cb183-5"><a href="funciones-1.html#cb183-5" aria-hidden="true"></a><span class="kw">ls</span>(<span class="dt">pat=</span><span class="st">&quot;m&quot;</span>)</span>
+<span id="cb183-6"><a href="funciones-1.html#cb183-6" aria-hidden="true"></a></span>
+<span id="cb183-7"><a href="funciones-1.html#cb183-7" aria-hidden="true"></a><span class="co">## Muestra las variables las cuales su nombre empieza con el caracter dado</span></span>
+<span id="cb183-8"><a href="funciones-1.html#cb183-8" aria-hidden="true"></a><span class="kw">ls</span>(<span class="dt">pat=</span><span class="st">&quot;^m&quot;</span>)</span>
+<span id="cb183-9"><a href="funciones-1.html#cb183-9" aria-hidden="true"></a></span>
+<span id="cb183-10"><a href="funciones-1.html#cb183-10" aria-hidden="true"></a><span class="co">## Muestra detalles de los objetos en memoria</span></span>
+<span id="cb183-11"><a href="funciones-1.html#cb183-11" aria-hidden="true"></a><span class="kw">ls.str</span>()</span>
+<span id="cb183-12"><a href="funciones-1.html#cb183-12" aria-hidden="true"></a></span>
+<span id="cb183-13"><a href="funciones-1.html#cb183-13" aria-hidden="true"></a><span class="co">## Eliminar todas las variables de &#39;Global Environment&#39;</span></span>
+<span id="cb183-14"><a href="funciones-1.html#cb183-14" aria-hidden="true"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb183-15"><a href="funciones-1.html#cb183-15" aria-hidden="true"></a></span>
+<span id="cb183-16"><a href="funciones-1.html#cb183-16" aria-hidden="true"></a><span class="co">## Eliminar únicamente variables que empiezan con la letra m</span></span>
+<span id="cb183-17"><a href="funciones-1.html#cb183-17" aria-hidden="true"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>(<span class="dt">pat=</span><span class="st">&quot;^m&quot;</span>))</span>
+<span id="cb183-18"><a href="funciones-1.html#cb183-18" aria-hidden="true"></a></span>
+<span id="cb183-19"><a href="funciones-1.html#cb183-19" aria-hidden="true"></a><span class="co">## Tipo de elementos del objeto v</span></span>
+<span id="cb183-20"><a href="funciones-1.html#cb183-20" aria-hidden="true"></a><span class="kw">mode</span>(v)</span>
+<span id="cb183-21"><a href="funciones-1.html#cb183-21" aria-hidden="true"></a><span class="co">## Longitud del objeto v</span></span>
+<span id="cb183-22"><a href="funciones-1.html#cb183-22" aria-hidden="true"></a><span class="kw">length</span>(v)</span></code></pre></div>
 <ul>
 <li>En un ambiente se pueden acceder a las variables que están enlazas en el mismo mediante su nombre, lo cual garantiza que, si dado una variable en otro ambiente con un mismo nombre a alguna variable en el ambiente actual, estas no sean confundidas y se obtengan resultados inesperados.</li>
 <li>Cada ambiente tiene un padre, lo cual permite que existan enlaces entre las librerías, permitiendo la inclusión de funciones en distintos paquetes. Para ver el ambiente padre se utiliza la función <code>parent.env()</code> dando como parámetro un ambiente. Véase la siguiente imagen</li>
@@ -420,26 +421,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Dado lo anterior, ¿Se puede obtener la suma por renglones o columnas en una matriz? ¿Se puede hacer lo mismo en un data frame o una lista? ¿Se puede aplicar una función particular que trabaje de manera vectorial por renglones o columnas en un data frame? La respuesta a todo esto es ¡Sí! y se puede realizar todo con la familia de funciones <code>apply</code>.</p>
 <p>La familia apply es un conjunto de funciones que ayudan en la aplicación vectorial de funciones sobre ciertas estructuras de datos. Para ver a detalle el funcionamiento de cada una de estas y otras funciones, puede consultarse el tutorial de DataCamp <a href="https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#family">Tutorial on the R Apply Family</a> y los enlaces que se dejan al final de esta sub-sección. Mientras tanto, véase los siguientes ejemplos y funciones.</p>
 <p>La función <code>apply(X, MARGIN, FUN, ...)</code> ejecuta una función en un arreglo o una matriz <code>X</code>. El atributo <code>MARGIN</code> es utilizado para determinar si la aplicación vectorial será por renglones o columnas (<code>MARGIN = 1</code> aplicará <code>FUN</code> sobre renglones, <code>MARGIN = 2</code> sobre columnas y <code>MARGIN=c(1,2)</code> para ambos)</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="funciones-1.html#cb183-1" aria-hidden="true"></a>seq_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb183-2"><a href="funciones-1.html#cb183-2" aria-hidden="true"></a>sum_n_times &lt;-<span class="st"> </span><span class="cf">function</span>(x, n) <span class="kw">sum</span>(x<span class="op">*</span>n)</span>
-<span id="cb183-3"><a href="funciones-1.html#cb183-3" aria-hidden="true"></a><span class="kw">apply</span>(seq_matrix, <span class="dt">MARGIN =</span> <span class="dv">1</span>, sum)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="funciones-1.html#cb184-1" aria-hidden="true"></a>seq_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb184-2"><a href="funciones-1.html#cb184-2" aria-hidden="true"></a>sum_n_times &lt;-<span class="st"> </span><span class="cf">function</span>(x, n) <span class="kw">sum</span>(x<span class="op">*</span>n)</span>
+<span id="cb184-3"><a href="funciones-1.html#cb184-3" aria-hidden="true"></a><span class="kw">apply</span>(seq_matrix, <span class="dt">MARGIN =</span> <span class="dv">1</span>, sum)</span></code></pre></div>
 <pre><code>[1] 15 18 21 24</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="funciones-1.html#cb185-1" aria-hidden="true"></a><span class="kw">apply</span>(seq_matrix, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> sum_n_times, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="funciones-1.html#cb186-1" aria-hidden="true"></a><span class="kw">apply</span>(seq_matrix, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> sum_n_times, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>[1]  50 130 210</code></pre>
 <p>En el código anterior se utilizó la función <code>sum_n_times</code>, la cual puede solo usarse para este caso y en ninguna otra ocasión. Esto puede suceder cuando se requiera un resultado especial y único, por lo que declarar y reservar un espacio en memoria para una función y todo lo que implica podría ser un uso inadecuado del espacio disponible. Para estos casos se puede utilizar una función anónima, las cuales son conocidas como <strong><em>funciones lambda</em></strong>.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="funciones-1.html#cb187-1" aria-hidden="true"></a>seq_data_frame &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">13</span>)</span>
-<span id="cb187-2"><a href="funciones-1.html#cb187-2" aria-hidden="true"></a><span class="kw">apply</span>(seq_data_frame, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(x) <span class="kw">sum</span>(x<span class="op">*</span><span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="funciones-1.html#cb188-1" aria-hidden="true"></a>seq_data_frame &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">13</span>)</span>
+<span id="cb188-2"><a href="funciones-1.html#cb188-2" aria-hidden="true"></a><span class="kw">apply</span>(seq_data_frame, <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> <span class="cf">function</span>(x) <span class="kw">sum</span>(x<span class="op">*</span><span class="dv">5</span>))</span></code></pre></div>
 <pre><code>  x   y 
 390 450 </code></pre>
 <p>Véase que se utilizo un data frame en la función apply anterior. Esto funciona pero no es la manera correcta de hacer vectorización con data frames. En otro momento se verá el porqué de esto.</p>
 <p>La función <code>lapply</code> acepta arreglos, data frames, vectores y listas y tiene la peculiaridad de regresar una lista.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="funciones-1.html#cb189-1" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>), sum)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="funciones-1.html#cb190-1" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>), sum)</span></code></pre></div>
 <pre><code>$a
 [1] 210
 
 $b
 [1] 464</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="funciones-1.html#cb191-1" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">b =</span> <span class="kw">list</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">c =</span> <span class="kw">list</span>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)), <span class="dt">FUN =</span> <span class="st">&quot;[&quot;</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="funciones-1.html#cb192-1" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">b =</span> <span class="kw">list</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="dt">c =</span> <span class="kw">list</span>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)), <span class="dt">FUN =</span> <span class="st">&quot;[&quot;</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>$a
 $a[[1]]
 [1] 2
@@ -453,7 +454,7 @@ $b[[1]]
 $c
 $c[[1]]
 [1] 8</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="funciones-1.html#cb193-1" aria-hidden="true"></a><span class="kw">lapply</span>(seq_matrix[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)], <span class="st">&quot;[&quot;</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="funciones-1.html#cb194-1" aria-hidden="true"></a><span class="kw">lapply</span>(seq_matrix[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)], <span class="st">&quot;[&quot;</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>[[1]]
 [1] 1
 
@@ -465,7 +466,7 @@ $c[[1]]
 
 [[4]]
 [1] 6</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="funciones-1.html#cb195-1" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> seq_matrix, <span class="dt">b =</span> seq_matrix<span class="op">+</span><span class="dv">1</span>, <span class="dt">c =</span> seq_matrix<span class="op">+</span><span class="dv">3</span>), <span class="dt">FUN =</span> <span class="st">&quot;[&quot;</span>, <span class="dv">1</span>,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="funciones-1.html#cb196-1" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> seq_matrix, <span class="dt">b =</span> seq_matrix<span class="op">+</span><span class="dv">1</span>, <span class="dt">c =</span> seq_matrix<span class="op">+</span><span class="dv">3</span>), <span class="dt">FUN =</span> <span class="st">&quot;[&quot;</span>, <span class="dv">1</span>,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>$a
 [1] 5
 
@@ -481,10 +482,10 @@ $c
 <li>¿Qué se obtiene en el último ejemplo?</li>
 </ul>
 <p>Otra de las funciones más utilizadas es <code>sapply()</code>. Esta función devuelve una salida con la estructura más básica posible, por lo que es común obtener vectores con esta función. <code>sapply()</code> es una versión amigable de <code>lapply()</code> por el tipo de salida, aunque modificando el parámetro <code>simplify</code> a <code>FALSE</code>, <code>sapply</code> tiene el mismo comportamiento que <code>lapply()</code>.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="funciones-1.html#cb197-1" aria-hidden="true"></a><span class="kw">sapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>), <span class="cf">function</span>(x) <span class="kw">sqrt</span>(<span class="kw">sum</span>(x)))</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="funciones-1.html#cb198-1" aria-hidden="true"></a><span class="kw">sapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>), <span class="cf">function</span>(x) <span class="kw">sqrt</span>(<span class="kw">sum</span>(x)))</span></code></pre></div>
 <pre><code>       a        b 
 14.49138 21.54066 </code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="funciones-1.html#cb199-1" aria-hidden="true"></a><span class="kw">sapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>), <span class="cf">function</span>(x) <span class="kw">sqrt</span>(<span class="kw">sum</span>(x)) , <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="funciones-1.html#cb200-1" aria-hidden="true"></a><span class="kw">sapply</span>(<span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">b =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">30</span>), <span class="cf">function</span>(x) <span class="kw">sqrt</span>(<span class="kw">sum</span>(x)) , <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>$a
 [1] 14.49138
 
@@ -524,16 +525,16 @@ $b
 <ul>
 <li>Instalación directa:</li>
 </ul>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="funciones-1.html#cb201-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb201-2"><a href="funciones-1.html#cb201-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;file:///source&quot;</span>, <span class="dt">repos=</span><span class="ot">NULL</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="funciones-1.html#cb202-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb202-2"><a href="funciones-1.html#cb202-2" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;file:///source&quot;</span>, <span class="dt">repos=</span><span class="ot">NULL</span>)</span></code></pre></div>
 <ul>
 <li>Mediante RStudio: Tools &gt; Install.Packages …</li>
 </ul>
 <p>Regularmente, los paquetes usarán en su codificación funciones de otros paquetes, por lo que será necesario instalar todas los paquetes de los que depende para su correcto uso. Para evitar instalar uno por uno los paquetes de los que dependa alguno, se agrega el argumento <code>dependences=TRUE</code> a la función <code>install.packages()</code>: <code>install.packages(...,dependeces = TRUE)</code>.</p>
 <p>Lo anterior sirve para aquellos paquetes que están en el CRAN, pero si no lo están o se desea instalar otra versión de los paquetes, se puede usar <code>devtools</code>, el cual permite instalar un paquete directamente desde su fuente, como es el caso de algunos localizados en github.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="funciones-1.html#cb202-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb202-2"><a href="funciones-1.html#cb202-2" aria-hidden="true"></a><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb202-3"><a href="funciones-1.html#cb202-3" aria-hidden="true"></a><span class="kw">install_github</span>(<span class="st">&quot;hadley/emo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="funciones-1.html#cb203-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb203-2"><a href="funciones-1.html#cb203-2" aria-hidden="true"></a><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb203-3"><a href="funciones-1.html#cb203-3" aria-hidden="true"></a><span class="kw">install_github</span>(<span class="st">&quot;hadley/emo&quot;</span>)</span></code></pre></div>
 <p>Al instalar un paquete, este es guardado en el ordenador; ya que los paquetes no son más que archivos y carpetas que pueden contener funciones en Scripts, archivos .Rsd (Bases de datos de R) entre otros.</p>
 <center>
 <!-- <img src ="../Images/full.png" width="650" height="300" /> -->
@@ -544,11 +545,11 @@ Ejemplo para el paquete <code>actuar</code>
 </center>
 <p>La ubicación donde el paquete es guardado se le llama <strong><em>library</em></strong> y para identificar donde empieza la busqueda R al cargar un paquete se utiliza el comando <code>.libPaths()</code>. ¿Qué sucede al ejecutar <code>lapply(.libPaths(), dir)</code>?</p>
 <p>Para cargar un paquete se puede utilizar las funciones <code>library()</code> y <code>require</code>. Ambas funciones cargan lo contenido en los paquetes aunque existen pequeñas diferencias entre ambas. Al querer cargar un paquete que no esta instalado, <code>library</code> devolverá un error y <code>require</code> una advertencia, además <code>require</code> regresa un valor booleano dependiendo si se encuentra o no la librería para cargar dicho paquete; esto puede ser útil dentro de funciones para preparar el workspace y sus enlaces. Por ejemplo, en la siguiente función se instala el paquete <code>dplyr</code> en caso de no se tenga la librería o se carga el paquete en caso contrario.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="funciones-1.html#cb203-1" aria-hidden="true"></a>preparation &lt;-<span class="st"> </span><span class="cf">function</span>(){</span>
-<span id="cb203-2"><a href="funciones-1.html#cb203-2" aria-hidden="true"></a>  <span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;dplyr&quot;</span>)){</span>
-<span id="cb203-3"><a href="funciones-1.html#cb203-3" aria-hidden="true"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb203-4"><a href="funciones-1.html#cb203-4" aria-hidden="true"></a>  }</span>
-<span id="cb203-5"><a href="funciones-1.html#cb203-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="funciones-1.html#cb204-1" aria-hidden="true"></a>preparation &lt;-<span class="st"> </span><span class="cf">function</span>(){</span>
+<span id="cb204-2"><a href="funciones-1.html#cb204-2" aria-hidden="true"></a>  <span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;dplyr&quot;</span>)){</span>
+<span id="cb204-3"><a href="funciones-1.html#cb204-3" aria-hidden="true"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb204-4"><a href="funciones-1.html#cb204-4" aria-hidden="true"></a>  }</span>
+<span id="cb204-5"><a href="funciones-1.html#cb204-5" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Al momento de querer usar una función de algún paquete se puede llamar como cualquier función, aunque puede darse el caso de que existan los mismos nombres entre dos o más librerías para una función o hasta el mismo nombre para una función que creó el usuario. En tal caso se puede especificar el paquete con el operador <code>::</code>; por ejemplo <code>stats::chisq.test()</code>.</p>
 <ul>
 <li>¿Para qué sirve la función <code>attach()</code> y <code>detach</code>?</li>
@@ -586,15 +587,15 @@ Ejemplo para el paquete <code>actuar</code>
 <h4><span class="header-section-number">3.5.4.3</span> Lectura y escritura</h4>
 <p>En cuanto a archivos externos, en general se utilizan archivos con extensión .csv y .txt; sin embargo R no está limitado a este tipo de archivos. Existen una amplia variedad de formatos que se pueden leer a través de paquetes diseñados específicamente para ese fin.</p>
 <p>El siguiente ejemplo muestra cómo se haría la lectura de un archivo con extensión .txt:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="funciones-1.html#cb204-1" aria-hidden="true"></a>datos&lt;-<span class="kw">read.table</span>(<span class="st">&quot;data.txt&quot;</span>, <span class="co"># nombre del archivo (con extensión) entre comillas</span></span>
-<span id="cb204-2"><a href="funciones-1.html#cb204-2" aria-hidden="true"></a>                  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="co"># TRUE o FALSE, indicando si el archivo tiene como primer renglón el nombre de las columnas</span></span>
-<span id="cb204-3"><a href="funciones-1.html#cb204-3" aria-hidden="true"></a>                  <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span> <span class="co"># separador de los campos</span></span>
-<span id="cb204-4"><a href="funciones-1.html#cb204-4" aria-hidden="true"></a>                  )</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="funciones-1.html#cb205-1" aria-hidden="true"></a>datos&lt;-<span class="kw">read.table</span>(<span class="st">&quot;data.txt&quot;</span>, <span class="co"># nombre del archivo (con extensión) entre comillas</span></span>
+<span id="cb205-2"><a href="funciones-1.html#cb205-2" aria-hidden="true"></a>                  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="co"># TRUE o FALSE, indicando si el archivo tiene como primer renglón el nombre de las columnas</span></span>
+<span id="cb205-3"><a href="funciones-1.html#cb205-3" aria-hidden="true"></a>                  <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span> <span class="co"># separador de los campos</span></span>
+<span id="cb205-4"><a href="funciones-1.html#cb205-4" aria-hidden="true"></a>                  )</span></code></pre></div>
 <p>Una vez que leemos el archivo externo en R, el objeto donde se almacenará la información será de tipo <code>data.frame</code>.</p>
 <p>Muchas veces será de nuestro interés exportar objetos <code>data.frame</code> a archivos externos, tal objetivo lo podemos lograr con alguna de las siguientes dos opciones:</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="funciones-1.html#cb205-1" aria-hidden="true"></a><span class="kw">write.table</span>(datos, <span class="st">&quot;toma.txt&quot;</span>, <span class="dt">append=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb205-2"><a href="funciones-1.html#cb205-2" aria-hidden="true"></a></span>
-<span id="cb205-3"><a href="funciones-1.html#cb205-3" aria-hidden="true"></a><span class="kw">write.csv</span>(datos, <span class="st">&quot;toma2.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="funciones-1.html#cb206-1" aria-hidden="true"></a><span class="kw">write.table</span>(datos, <span class="st">&quot;toma.txt&quot;</span>, <span class="dt">append=</span>F, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb206-2"><a href="funciones-1.html#cb206-2" aria-hidden="true"></a></span>
+<span id="cb206-3"><a href="funciones-1.html#cb206-3" aria-hidden="true"></a><span class="kw">write.csv</span>(datos, <span class="st">&quot;toma2.csv&quot;</span>)</span></code></pre></div>
 <p>N:B. Como en la lectura de datos, R no está limitado a exportar archivos .csv o .txt también existe una amplia variedad de formatos que podemos generar. En la siguiente lista se aclaran algunas funciones utilizadas y se añaden otras que pueden ser de interés.</p>
 <ul>
 <li><code>base::read.csv()</code>, <code>base::read.delim()</code>, <code>base::read.table()</code> y <code>base::readLines()</code>: Diferentes funciones para leer archivos de texto en distintos formatos.</li>
@@ -615,13 +616,13 @@ Ejemplo para el paquete <code>actuar</code>
 <li><code>base::range()</code>: rango.</li>
 <li><code>base::quantile()</code>: cuantiles.</li>
 </ul>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="funciones-1.html#cb206-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb206-2"><a href="funciones-1.html#cb206-2" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">v =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb206-3"><a href="funciones-1.html#cb206-3" aria-hidden="true"></a>                   <span class="dt">w =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb206-4"><a href="funciones-1.html#cb206-4" aria-hidden="true"></a>                   <span class="dt">x =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb206-5"><a href="funciones-1.html#cb206-5" aria-hidden="true"></a>                   <span class="dt">y =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb206-6"><a href="funciones-1.html#cb206-6" aria-hidden="true"></a>                   <span class="dt">z =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T))</span>
-<span id="cb206-7"><a href="funciones-1.html#cb206-7" aria-hidden="true"></a><span class="kw">head</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="funciones-1.html#cb207-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb207-2"><a href="funciones-1.html#cb207-2" aria-hidden="true"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">v =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb207-3"><a href="funciones-1.html#cb207-3" aria-hidden="true"></a>                   <span class="dt">w =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb207-4"><a href="funciones-1.html#cb207-4" aria-hidden="true"></a>                   <span class="dt">x =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb207-5"><a href="funciones-1.html#cb207-5" aria-hidden="true"></a>                   <span class="dt">y =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb207-6"><a href="funciones-1.html#cb207-6" aria-hidden="true"></a>                   <span class="dt">z =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="ot">NA</span>), <span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb207-7"><a href="funciones-1.html#cb207-7" aria-hidden="true"></a><span class="kw">head</span>(data)</span></code></pre></div>
 <pre><code>   v  w  x  y  z
 1  6  1 17 NA 13
 2 11 15  8 11 22
@@ -629,12 +630,12 @@ Ejemplo para el paquete <code>actuar</code>
 4  2  2 11  8 20
 5 25  6  7  3 19
 6  2 10 18 25 24</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="funciones-1.html#cb208-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="dt">Sd =</span> <span class="kw">sapply</span>(data, sd, <span class="dt">na.rm =</span> T), </span>
-<span id="cb208-2"><a href="funciones-1.html#cb208-2" aria-hidden="true"></a>           <span class="dt">Varianza =</span> <span class="kw">sapply</span>(data, var, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
-<span id="cb208-3"><a href="funciones-1.html#cb208-3" aria-hidden="true"></a>           <span class="dt">Min =</span> <span class="kw">sapply</span>(data, min, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
-<span id="cb208-4"><a href="funciones-1.html#cb208-4" aria-hidden="true"></a>           <span class="dt">Max =</span> <span class="kw">sapply</span>(data, max, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
-<span id="cb208-5"><a href="funciones-1.html#cb208-5" aria-hidden="true"></a>           <span class="dt">Mediana =</span> <span class="kw">sapply</span>(data, median, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
-<span id="cb208-6"><a href="funciones-1.html#cb208-6" aria-hidden="true"></a>           <span class="dt">MissingValues =</span> <span class="kw">sapply</span>(data, <span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x))))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="funciones-1.html#cb209-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="dt">Sd =</span> <span class="kw">sapply</span>(data, sd, <span class="dt">na.rm =</span> T), </span>
+<span id="cb209-2"><a href="funciones-1.html#cb209-2" aria-hidden="true"></a>           <span class="dt">Varianza =</span> <span class="kw">sapply</span>(data, var, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb209-3"><a href="funciones-1.html#cb209-3" aria-hidden="true"></a>           <span class="dt">Min =</span> <span class="kw">sapply</span>(data, min, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb209-4"><a href="funciones-1.html#cb209-4" aria-hidden="true"></a>           <span class="dt">Max =</span> <span class="kw">sapply</span>(data, max, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb209-5"><a href="funciones-1.html#cb209-5" aria-hidden="true"></a>           <span class="dt">Mediana =</span> <span class="kw">sapply</span>(data, median, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </span>
+<span id="cb209-6"><a href="funciones-1.html#cb209-6" aria-hidden="true"></a>           <span class="dt">MissingValues =</span> <span class="kw">sapply</span>(data, <span class="cf">function</span>(x) <span class="kw">sum</span>(<span class="kw">is.na</span>(x))))</span></code></pre></div>
 <pre><code>        Sd Varianza Min Max Mediana MissingValues
 v 7.359459 54.16163   2  25    14.0             0
 w 7.845289 61.54857   1  25     8.0             3
@@ -674,7 +675,7 @@ z 7.176597 51.50355   1  25    14.5             2</code></pre>
 <li><code>package:rlang</code>: Las funciones de este paquete están diseñadas para trabajar con ambientes.</li>
 <li><code>package:profvis</code> y <code>package:bench</code>: Cuando se desea optimizar el funcionamiento del código, es común utilizar funciones para evaluar la rápidez de las funciones o rutinas con las que se trabaja; estos paquetes ayudan a realizar un perfilamiento del código y a realizar microbenchmark en funciones pequeñas. Véase el siguiente <a href="https://www.alexejgossmann.com/benchmarking_r/">enlace</a> para más funciones.</li>
 </ul>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="funciones-1.html#cb210-1" aria-hidden="true"></a>var</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="funciones-1.html#cb211-1" aria-hidden="true"></a>var</span></code></pre></div>
 <pre><code>function (x, y = NULL, na.rm = FALSE, use) 
 {
     if (missing(use)) 
@@ -693,7 +694,7 @@ z 7.176597 51.50355   1  25    14.5             2</code></pre>
     else stopifnot(is.atomic(y))
     .Call(C_cov, x, y, na.method, FALSE)
 }
-&lt;bytecode: 0x7fd57c95d4c8&gt;
+&lt;bytecode: 0x7fda87e61128&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 <p>La función anterior calcula la varianza de una variable, en este caso un vector. Véase que al final de la descripción se menciona la palabra <code>bytecode</code>, la cual resulta familiar cuando ya se trabajo en el lenguaje de programación Java. A partir de la versión 2.14 de R, todas las funciones estándar y paquetes fueron pre compilados en bytecode, lo cual otorga rapidez.</p>
 <ul>
@@ -708,8 +709,8 @@ z 7.176597 51.50355   1  25    14.5             2</code></pre>
 <li><p>Comparar la función del ejercicio <a href="estructuras-de-datos.html#20">20</a> con la función <code>sum()</code> con <code>bench::mark()</code>.</p></li>
 <li><p>Obtener la unión, intersección y diferencia del siguiente conjunto de letras.</p></li>
 </ol>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="funciones-1.html#cb212-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb212-2"><a href="funciones-1.html#cb212-2" aria-hidden="true"></a>MixLetters &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(LETTERS, letters),<span class="dt">size =</span> <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="funciones-1.html#cb213-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb213-2"><a href="funciones-1.html#cb213-2" aria-hidden="true"></a>MixLetters &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(LETTERS, letters),<span class="dt">size =</span> <span class="dv">30</span>)</span></code></pre></div>
 <ol start="48" style="list-style-type: decimal">
 <li><p>Buscar algún data frame del paquete <code>datasets</code>. Guardar en una variable los primeros 10 registros y en otra los últimos 10.</p></li>
 <li><p>Verifica el siguiente resultado usando la función <code>integrate()</code>.</p></li>

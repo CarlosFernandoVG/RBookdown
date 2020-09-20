@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -239,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dplyrmutate" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> dplyr::mutate()</h2>
 <p>La función <code>arrange()</code> modificó de una forma sutil los datos, sólo el orden; pero en el caso de que se desee modificar o agregar una nueva variable, ya sea en función de los valores de otra o nuevos valores independientes, se utiliza la función <code>dplyr::mutate()</code>.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="dplyrmutate.html#cb334-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Var_fake =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dt">size =</span> <span class="dv">448</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="dplyrmutate.html#cb335-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Var_fake =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dt">size =</span> <span class="dv">448</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 5
    `Entidad Federativa` `Población Total` Rango_edad Porcentaje Var_fake
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;    &lt;int&gt;
@@ -258,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Se modifica el porcentaje en términos correctos.</li>
 </ul>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="dplyrmutate.html#cb336-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="dplyrmutate.html#cb337-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
    `Entidad Federativa` `Población Total` Rango_edad Porcentaje
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
@@ -276,9 +277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Se obtiene el porcentaje de población que tiene cada entidad federativa correspondiente a toda la población del país. (Recordar que la población total es 103,498,524)</li>
 </ul>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="dplyrmutate.html#cb338-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb338-2"><a href="dplyrmutate.html#cb338-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje_entidad =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span><span class="op">/</span><span class="dv">103498524</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb338-3"><a href="dplyrmutate.html#cb338-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>, Porcentaje_entidad))</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="dplyrmutate.html#cb339-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb339-2"><a href="dplyrmutate.html#cb339-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje_entidad =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span><span class="op">/</span><span class="dv">103498524</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb339-3"><a href="dplyrmutate.html#cb339-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>, Porcentaje_entidad))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 3
    `Entidad Federativa` `Población Total` Porcentaje_entidad
    &lt;chr&gt;                            &lt;dbl&gt;              &lt;dbl&gt;
@@ -296,11 +297,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Se obtiene el porcentaje de la población total que hay por grupo quinquenal.</li>
 </ul>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="dplyrmutate.html#cb340-1" aria-hidden="true"></a><span class="kw">library</span>(scales)</span>
-<span id="cb340-2"><a href="dplyrmutate.html#cb340-2" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb340-3"><a href="dplyrmutate.html#cb340-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje_entidad =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span><span class="op">/</span><span class="dv">103498524</span>, </span>
-<span id="cb340-4"><a href="dplyrmutate.html#cb340-4" aria-hidden="true"></a>         <span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb340-5"><a href="dplyrmutate.html#cb340-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje_quinquenal_P =</span> <span class="kw">percent</span>(Porcentaje<span class="op">*</span>Porcentaje_entidad, <span class="dt">accuracy =</span> <span class="fl">0.01</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, Porcentaje_quinquenal_P)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="dplyrmutate.html#cb341-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb341-2"><a href="dplyrmutate.html#cb341-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje_entidad =</span> <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span><span class="op">/</span><span class="dv">103498524</span>, </span>
+<span id="cb341-3"><a href="dplyrmutate.html#cb341-3" aria-hidden="true"></a>         <span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb341-4"><a href="dplyrmutate.html#cb341-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje_quinquenal_P =</span> <span class="kw">percent</span>(Porcentaje<span class="op">*</span>Porcentaje_entidad, <span class="dt">accuracy =</span> <span class="fl">0.01</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, Porcentaje_quinquenal_P)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 3
    `Entidad Federativa` Rango_edad Porcentaje_quinquenal_P
    &lt;chr&gt;                &lt;chr&gt;      &lt;chr&gt;                  
@@ -318,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Uso de funciones</li>
 </ul>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="dplyrmutate.html#cb342-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Sobresaliente =</span> <span class="kw">if_else</span>(Calificaciones<span class="op">&gt;=</span><span class="dv">9</span>, T, F))</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="dplyrmutate.html#cb343-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Sobresaliente =</span> <span class="kw">if_else</span>(Calificaciones<span class="op">&gt;=</span><span class="dv">9</span>, T, F))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 10 x 4
    Nombre  Asignatura Calificaciones Sobresaliente
    &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;          &lt;lgl&gt;        
@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Agregar un índice a los datos</li>
 </ul>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="dplyrmutate.html#cb344-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">index =</span> <span class="kw">row_number</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="dplyrmutate.html#cb345-1" aria-hidden="true"></a>Student_grades <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">index =</span> <span class="kw">row_number</span>())</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 10 x 4
    Nombre  Asignatura Calificaciones index
    &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;          &lt;int&gt;
@@ -349,9 +349,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8 Luis    Q          8                  8
  9 Allison Q          9                  9
 10 Leticia Q          9                 10</code></pre>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="dplyrmutate.html#cb346-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb346-2"><a href="dplyrmutate.html#cb346-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb346-3"><a href="dplyrmutate.html#cb346-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="dplyrmutate.html#cb347-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb347-2"><a href="dplyrmutate.html#cb347-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb347-3"><a href="dplyrmutate.html#cb347-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 5
    `Entidad Federativa` `Población Total` Rango_edad Porcentaje Población
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;
@@ -367,9 +367,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Durango                        1509025 0 a 4          0.0997   150485 
 # … with 438 more rows</code></pre>
 <p>En este último ejemplo se modifico la base de datos de la población donde puede notarse que la anterior función no elimina las variables con las que se opera, esto podría hacerse con la función <code>select()</code>, o bien con la función <code>dplyr::transmute()</code>, aunque elimina también aquellas columnas que no se utilizan.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="dplyrmutate.html#cb348-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb348-2"><a href="dplyrmutate.html#cb348-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb348-3"><a href="dplyrmutate.html#cb348-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">transmute</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="dplyrmutate.html#cb349-1" aria-hidden="true"></a>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb349-2"><a href="dplyrmutate.html#cb349-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb349-3"><a href="dplyrmutate.html#cb349-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">transmute</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 1
    Población
        &lt;dbl&gt;
@@ -385,9 +385,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10   150485 
 # … with 438 more rows</code></pre>
 <p>Así que se hará lo siguiente</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="dplyrmutate.html#cb350-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb350-2"><a href="dplyrmutate.html#cb350-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb350-3"><a href="dplyrmutate.html#cb350-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Porcentaje))</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="dplyrmutate.html#cb351-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb351-2"><a href="dplyrmutate.html#cb351-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb351-3"><a href="dplyrmutate.html#cb351-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Porcentaje))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 4
    `Entidad Federativa` `Población Total` Rango_edad Población
    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;

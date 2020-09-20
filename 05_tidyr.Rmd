@@ -42,9 +42,6 @@ Con lo anterior establecido y suponiendo que se esta analizando una pequeña bas
 + Colocando las observaciones respecto a los nombres
 
 ```{r, echo = FALSE}
-library(knitr)
-library(kableExtra)
-library(tidyverse)
 fake_1 <- data_frame(" "= c("Juan", "Carlos", "Luis", "Allison", "Leticia"),
                      "Matemáticas" = c(8,9,7,9,8), 
                      "Química" = c(9,7,8,9,9))

@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="gráficos.html"/>
-
+<link rel="next" href="comentarios.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -248,51 +249,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="ejemplo-1" class="section level4 unnumbered">
 <h4>Ejemplo</h4>
-<p>Usando los mismos datos de exportación díaria de aguacate. Realizaremos una representación gráfica del volumen de exportación de aguacate observada en 2019 para cada país destino.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="gráfico-circular.html#cb429-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb429-2"><a href="gráfico-circular.html#cb429-2" aria-hidden="true"></a></span>
-<span id="cb429-3"><a href="gráfico-circular.html#cb429-3" aria-hidden="true"></a>paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MYANMAR (BIRMANIA)&quot;</span>,<span class="st">&quot;BANGLADESH&quot;</span>,<span class="st">&quot;HONG KONG&quot;</span>,<span class="st">&quot;JAPON&quot;</span>,<span class="st">&quot;ARABIA SAUDITA&quot;</span>, <span class="st">&quot;EMIRATOS ÁRABES UNIDOS&quot;</span>, <span class="st">&quot;REINO UNIDO&quot;</span>, <span class="st">&quot;PAÍSES BAJOS (HOLANDA)&quot;</span>, <span class="st">&quot;SINGAPUR&quot;</span>,<span class="st">&quot;ESTADOS UNIDOS&quot;</span>)</span>
-<span id="cb429-4"><a href="gráfico-circular.html#cb429-4" aria-hidden="true"></a></span>
-<span id="cb429-5"><a href="gráfico-circular.html#cb429-5" aria-hidden="true"></a>vol &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">304734.62</span>, <span class="fl">125240.00</span>, <span class="fl">74578.50</span>, <span class="fl">68925.24</span>,<span class="fl">55285.20</span>,<span class="fl">51517.44</span>, <span class="fl">43760.00</span>, <span class="fl">32092.50</span>, <span class="fl">29610.00</span>, <span class="fl">11481.36</span>)</span>
-<span id="cb429-6"><a href="gráfico-circular.html#cb429-6" aria-hidden="true"></a></span>
-<span id="cb429-7"><a href="gráfico-circular.html#cb429-7" aria-hidden="true"></a>D1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(paises,vol)</span>
-<span id="cb429-8"><a href="gráfico-circular.html#cb429-8" aria-hidden="true"></a></span>
-<span id="cb429-9"><a href="gráfico-circular.html#cb429-9" aria-hidden="true"></a><span class="kw">ggplot</span>(D1, <span class="kw">aes</span>(<span class="dt">x =</span> paises, <span class="dt">y =</span> vol)) <span class="op">+</span></span>
-<span id="cb429-10"><a href="gráfico-circular.html#cb429-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Paises de Destino&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Volumen en Kg&quot;</span>, <span class="dt">title=</span><span class="st">&quot;Volumen de exportación de aguacate por pais de destino en 2019&quot;</span>)<span class="op">+</span></span>
-<span id="cb429-11"><a href="gráfico-circular.html#cb429-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;#f68060&quot;</span>)<span class="op">+</span></span>
-<span id="cb429-12"><a href="gráfico-circular.html#cb429-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>)) <span class="op">+</span></span>
-<span id="cb429-13"><a href="gráfico-circular.html#cb429-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>number)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p>Usando los mismos datos de exportación diaria de aguacate. Realizaremos una representación gráfica del volumen de exportación de aguacate observada en 2019 para cada país destino.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="gráfico-circular.html#cb430-1" aria-hidden="true"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb430-2"><a href="gráfico-circular.html#cb430-2" aria-hidden="true"></a></span>
+<span id="cb430-3"><a href="gráfico-circular.html#cb430-3" aria-hidden="true"></a>paises &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MYANMAR (BIRMANIA)&quot;</span>,<span class="st">&quot;BANGLADESH&quot;</span>,<span class="st">&quot;HONG KONG&quot;</span>,<span class="st">&quot;JAPON&quot;</span>,<span class="st">&quot;ARABIA SAUDITA&quot;</span>, <span class="st">&quot;EMIRATOS ÁRABES UNIDOS&quot;</span>, <span class="st">&quot;REINO UNIDO&quot;</span>, <span class="st">&quot;PAÍSES BAJOS (HOLANDA)&quot;</span>, <span class="st">&quot;SINGAPUR&quot;</span>,<span class="st">&quot;ESTADOS UNIDOS&quot;</span>)</span>
+<span id="cb430-4"><a href="gráfico-circular.html#cb430-4" aria-hidden="true"></a></span>
+<span id="cb430-5"><a href="gráfico-circular.html#cb430-5" aria-hidden="true"></a>vol &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">304734.62</span>, <span class="fl">125240.00</span>, <span class="fl">74578.50</span>, <span class="fl">68925.24</span>,<span class="fl">55285.20</span>,<span class="fl">51517.44</span>, <span class="fl">43760.00</span>, <span class="fl">32092.50</span>, <span class="fl">29610.00</span>, <span class="fl">11481.36</span>)</span>
+<span id="cb430-6"><a href="gráfico-circular.html#cb430-6" aria-hidden="true"></a></span>
+<span id="cb430-7"><a href="gráfico-circular.html#cb430-7" aria-hidden="true"></a>D1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(paises,vol)</span>
+<span id="cb430-8"><a href="gráfico-circular.html#cb430-8" aria-hidden="true"></a></span>
+<span id="cb430-9"><a href="gráfico-circular.html#cb430-9" aria-hidden="true"></a><span class="kw">ggplot</span>(D1, <span class="kw">aes</span>(<span class="dt">x =</span> paises, <span class="dt">y =</span> vol)) <span class="op">+</span></span>
+<span id="cb430-10"><a href="gráfico-circular.html#cb430-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Paises de Destino&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Volumen en Kg&quot;</span>, <span class="dt">title=</span><span class="st">&quot;Volumen de exportación de aguacate por pais de destino en 2019&quot;</span>)<span class="op">+</span></span>
+<span id="cb430-11"><a href="gráfico-circular.html#cb430-11" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;#f68060&quot;</span>)<span class="op">+</span></span>
+<span id="cb430-12"><a href="gráfico-circular.html#cb430-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>)) <span class="op">+</span></span>
+<span id="cb430-13"><a href="gráfico-circular.html#cb430-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>number)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p>Y también presentaremos gráficamente la tabla de producción de aguacate por estado de la república que presentamos en la sección de tablas.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="gráfico-circular.html#cb430-1" aria-hidden="true"></a>edo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JALISCO&quot;</span>,<span class="st">&quot;MICHOACAN&quot;</span>,<span class="st">&quot;GUANAJUATO&quot;</span>)	</span>
-<span id="cb430-2"><a href="gráfico-circular.html#cb430-2" aria-hidden="true"></a>vol &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;417,730&quot;</span>,<span class="st">&quot;286,299&quot;</span>,<span class="st">&quot;96,916&quot;</span>)</span>
-<span id="cb430-3"><a href="gráfico-circular.html#cb430-3" aria-hidden="true"></a>por &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">52</span>,<span class="dv">36</span>,	<span class="dv">12</span>)</span>
-<span id="cb430-4"><a href="gráfico-circular.html#cb430-4" aria-hidden="true"></a>D1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(edo,vol,por)</span>
-<span id="cb430-5"><a href="gráfico-circular.html#cb430-5" aria-hidden="true"></a></span>
-<span id="cb430-6"><a href="gráfico-circular.html#cb430-6" aria-hidden="true"></a><span class="kw">ggplot</span>(D1, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>por, <span class="dt">fill=</span>edo)) <span class="op">+</span></span>
-<span id="cb430-7"><a href="gráfico-circular.html#cb430-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">width=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
-<span id="cb430-8"><a href="gráfico-circular.html#cb430-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span><span class="dv">0</span>)<span class="op">+</span></span>
-<span id="cb430-9"><a href="gráfico-circular.html#cb430-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>()<span class="op">+</span></span>
-<span id="cb430-10"><a href="gráfico-circular.html#cb430-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> vol,<span class="dt">x =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">size=</span><span class="dv">4</span>,</span>
-<span id="cb430-11"><a href="gráfico-circular.html#cb430-11" aria-hidden="true"></a>            <span class="dt">position =</span> <span class="kw">position_stack</span>(<span class="dt">vjust =</span> <span class="fl">0.5</span>))<span class="op">+</span></span>
-<span id="cb430-12"><a href="gráfico-circular.html#cb430-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set2&quot;</span>)<span class="op">+</span></span>
-<span id="cb430-13"><a href="gráfico-circular.html#cb430-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Producción de aguacate por estado en 2019&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
-
-<div id="refs" class="references hanging-indent">
-<div>
-<p>The R Fundation. n.d. “What Is R?” <a href="https://www.r-project.org/about.html">https://www.r-project.org/about.html</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley. 2019. <em>Advanced R</em>. 2nd ed. CRC press. <a href="https://adv-r.hadley.nz">https://adv-r.hadley.nz</a>.</p>
-</div>
-<div>
-<p>Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. " O’Reilly Media, Inc.". <a href="https://r4ds.had.co.nz">https://r4ds.had.co.nz</a>.</p>
-</div>
-<div>
-<p>Wikipedia contributors. 2020. “R (Programming Language) — Wikipedia, the Free Encyclopedia.” <a href="https://en.wikipedia.org/w/index.php?title=R_(programming_language)&amp;oldid=978636340">https://en.wikipedia.org/w/index.php?title=R_(programming_language)&amp;oldid=978636340</a>.</p>
-</div>
-</div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="gráfico-circular.html#cb431-1" aria-hidden="true"></a>edo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;JALISCO&quot;</span>,<span class="st">&quot;MICHOACAN&quot;</span>,<span class="st">&quot;GUANAJUATO&quot;</span>)	</span>
+<span id="cb431-2"><a href="gráfico-circular.html#cb431-2" aria-hidden="true"></a>vol &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;417,730&quot;</span>,<span class="st">&quot;286,299&quot;</span>,<span class="st">&quot;96,916&quot;</span>)</span>
+<span id="cb431-3"><a href="gráfico-circular.html#cb431-3" aria-hidden="true"></a>por &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">52</span>,<span class="dv">36</span>,	<span class="dv">12</span>)</span>
+<span id="cb431-4"><a href="gráfico-circular.html#cb431-4" aria-hidden="true"></a>D1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(edo,vol,por)</span>
+<span id="cb431-5"><a href="gráfico-circular.html#cb431-5" aria-hidden="true"></a></span>
+<span id="cb431-6"><a href="gráfico-circular.html#cb431-6" aria-hidden="true"></a><span class="kw">ggplot</span>(D1, <span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span>por, <span class="dt">fill=</span>edo)) <span class="op">+</span></span>
+<span id="cb431-7"><a href="gráfico-circular.html#cb431-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">width=</span><span class="dv">1</span>,<span class="dt">color=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb431-8"><a href="gráfico-circular.html#cb431-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="dt">start=</span><span class="dv">0</span>)<span class="op">+</span></span>
+<span id="cb431-9"><a href="gráfico-circular.html#cb431-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">theme_void</span>()<span class="op">+</span></span>
+<span id="cb431-10"><a href="gráfico-circular.html#cb431-10" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> vol,<span class="dt">x =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">size=</span><span class="dv">4</span>,</span>
+<span id="cb431-11"><a href="gráfico-circular.html#cb431-11" aria-hidden="true"></a>            <span class="dt">position =</span> <span class="kw">position_stack</span>(<span class="dt">vjust =</span> <span class="fl">0.5</span>))<span class="op">+</span></span>
+<span id="cb431-12"><a href="gráfico-circular.html#cb431-12" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set2&quot;</span>)<span class="op">+</span></span>
+<span id="cb431-13"><a href="gráfico-circular.html#cb431-13" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Producción de aguacate por estado en 2019&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 </div>
 </div>
 <!-- </div> -->
@@ -301,8 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="gráficos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="gráficos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comentarios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

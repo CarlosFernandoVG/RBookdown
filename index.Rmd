@@ -19,11 +19,25 @@ description: "Material para el aprendizaje de R como lenguaje de programación p
 # Prefacio {-}
 
 ```{r include = FALSE}
-# source("common.R")
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 library(tidyverse)
 library(devtools)
-# library(DT)
+library(knitr)
+library(emo)
+library(kableExtra)
+library(bench)
+library(shape)
+library(wesanderson)
+library(magrittr)
+library(readr)
+library(tibble)
+library(readxl)
+library(scales)
+library(patchwork)
+library(plotly)
+library("scatterplot3d")
+library(gganimate)
+library(gapminder)
 knitr::opts_chunk$set(
       comment = NA,
       message = FALSE, 
@@ -46,6 +60,18 @@ Este libro se compone de tres diferentes secciones y a medida que estas son abar
 De acuerdo a las necesidades del lector, los capítulos pueden ser estudiados de manera independiente aunque es recomendable tener el conocimiento previo que se tiene en el temario, ya que se puede hacer uso de funciones o conocimiento previo en secciones avanzadas. Gran parte del contenido en este libro esta basado en las publicaciones [basicr](https://rpubs.com/CarlosFVG/basicr) y [EfficientR](https://rpubs.com/CarlosFVG/CourseTidyveR) de [Rpubs](https://rpubs.com).
 
 ### Detalles técnicos {-}
+
+Para la creación de este material se hizo uso de varios sistemas de software como $\LaTeX$ y CSS para el diseño de ciertos elementos. Todos los cálculos y gráficas fue creado con el lenguaje de programación `R` ya sea con el uso del paquete `base` o algún otro de los paquetes que se mencionan a continuación. 
+
+```{css, echo=FALSE}
+.scroll-300 {
+  max-height: 300px;
+}
+```
+
+```{r message = FALSE, warning = FALSE, echo = FALSE, class.output = "scroll-300"}
+sessionInfo()
+```
 
 Este libro fue escrito con [bookdown](http://bookdown.org/) usando [RStudio](http://www.rstudio.com/ide/).
 

@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -245,24 +246,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Aquí se verán solo algunos de los paquetes que componen todo este “universo limpio” y se comenzará con un operador fundamental proporcionado por el paquete <code>magritt</code>: <code>%&gt;%</code>, el cual se podrá utilizar casi siempre en R.</p>
 <p>Dicho operador tiene por nombre <code>pipe</code>, el cual tiene un uso similar al dado en otros lenguajes de programación como Python: <code>.</code> y bash: <code>|</code>. Este tiene como objetivo encadenar procesos de tal forma que el resultado dado en la cadena sirve como input del siguiente eslabón en dicha cadena, lo cual ayuda a evitar el anidamiento de funciones, minimizar la cantidad de objetos locales y facilitar la lectura e implementación de una secuencia de operaciones.</p>
 <p>Supongase que se desea resolver la tarea sencilla de aplicar una cantidad definida de operaciones sobre un número; por ejemplo, obtener la raíz cuadrada del logaritmo natural de un número multiplicado por el cuadrado de otro, a dicho valor sumarlo con los primeros 10 naturales y, finalmente, obtener la raíz cuadrada de dicho resultado. Esto se puede resolver de la siguiente manera; supongamos que los números son 10 y 20.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="tidyverse.html#cb254-1" aria-hidden="true"></a><span class="kw">sqrt</span>(<span class="kw">sum</span>(<span class="kw">sqrt</span>(<span class="kw">log</span>(<span class="kw">prod</span>(<span class="dv">10</span>, <span class="dv">20</span><span class="op">^</span><span class="dv">2</span>))), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="tidyverse.html#cb255-1" aria-hidden="true"></a><span class="kw">sqrt</span>(<span class="kw">sum</span>(<span class="kw">sqrt</span>(<span class="kw">log</span>(<span class="kw">prod</span>(<span class="dv">10</span>, <span class="dv">20</span><span class="op">^</span><span class="dv">2</span>))), <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</span></code></pre></div>
 <pre><code>[1] 7.607887</code></pre>
 <p>En tal caso se tuvo que anidar las funciones para aplicar estas cada resultado obtenido. Con <code>%&gt;%</code> la solución se ve de esta forma</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="tidyverse.html#cb256-1" aria-hidden="true"></a><span class="kw">library</span>(magrittr)</span>
-<span id="cb256-2"><a href="tidyverse.html#cb256-2" aria-hidden="true"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 10</span></span>
-<span id="cb256-3"><a href="tidyverse.html#cb256-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">prod</span>(<span class="dv">20</span><span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#se multiplica por 20^2</span></span>
-<span id="cb256-4"><a href="tidyverse.html#cb256-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">log</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#se obtiene el logaritmo de dicho número</span></span>
-<span id="cb256-5"><a href="tidyverse.html#cb256-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se obtiene la raíz cuadrada</span></span>
-<span id="cb256-6"><a href="tidyverse.html#cb256-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#A eso se le suman los primeros 10 naturales</span></span>
-<span id="cb256-7"><a href="tidyverse.html#cb256-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">sqrt</span>() <span class="co">#Se obtiene la raíz cuadrada.</span></span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tidyverse.html#cb257-1" aria-hidden="true"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb257-2"><a href="tidyverse.html#cb257-2" aria-hidden="true"></a><span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 10</span></span>
+<span id="cb257-3"><a href="tidyverse.html#cb257-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">prod</span>(<span class="dv">20</span><span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#se multiplica por 20^2</span></span>
+<span id="cb257-4"><a href="tidyverse.html#cb257-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">log</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#se obtiene el logaritmo de dicho número</span></span>
+<span id="cb257-5"><a href="tidyverse.html#cb257-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se obtiene la raíz cuadrada</span></span>
+<span id="cb257-6"><a href="tidyverse.html#cb257-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#A eso se le suman los primeros 10 naturales</span></span>
+<span id="cb257-7"><a href="tidyverse.html#cb257-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">sqrt</span>() <span class="co">#Se obtiene la raíz cuadrada.</span></span></code></pre></div>
 <pre><code>[1] 7.607887</code></pre>
 <p>La anterior solución tiene una estructura más fiel a como se fue resolviendo el problema poco a poco sin tiene que escribir hacia la izquierda para aplicar resultados de funciones anidadas. Más adelante se verá que el uso de dicho operador resulta fundamental para ahorra tiempo al momento de escribir código.</p>
 <p>Otro ejemplo:</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="tidyverse.html#cb258-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">5</span>, <span class="dt">byrow =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Creación de una matriz con los primeros 100 naturales.</span></span>
-<span id="cb258-2"><a href="tidyverse.html#cb258-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">rowSums</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se suma por renglón añadiendo 10 unidades a dicho resultado.</span></span>
-<span id="cb258-3"><a href="tidyverse.html#cb258-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">as.matrix</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se convierte dicho resultado a matriz.</span></span>
-<span id="cb258-4"><a href="tidyverse.html#cb258-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se normalizan los datos.</span></span>
-<span id="cb258-5"><a href="tidyverse.html#cb258-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">sum</span>() <span class="co">#Se comprueba que estos sumen media cero.</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="tidyverse.html#cb259-1" aria-hidden="true"></a><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">5</span>, <span class="dt">byrow =</span> <span class="dv">20</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Creación de una matriz con los primeros 100 naturales.</span></span>
+<span id="cb259-2"><a href="tidyverse.html#cb259-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">rowSums</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se suma por renglón añadiendo 10 unidades a dicho resultado.</span></span>
+<span id="cb259-3"><a href="tidyverse.html#cb259-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">as.matrix</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se convierte dicho resultado a matriz.</span></span>
+<span id="cb259-4"><a href="tidyverse.html#cb259-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Se normalizan los datos.</span></span>
+<span id="cb259-5"><a href="tidyverse.html#cb259-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">sum</span>() <span class="co">#Se comprueba que estos sumen media cero.</span></span></code></pre></div>
 <pre><code>[1] 0</code></pre>
 <p>Como la mayoría de la información que se utilizará se tendrá que cargar con alguna librería, aquí se dejan algunos ejemplos de algunas funciones útiles en la lectura de información.</p>
 <p>La función <code>read_csv()</code> es una de las más comunes para leer archivos separados por comas, en la cual se puede dar el path del archivo o la dirección URL de dichos datos. En este caso se esta utilizando unos datos donde se relaciona la información sobre exceso de velocidad de ciertos automóviles y señales de advertencia. Para más información consúltese el siguiente <a href="https://vincentarelbundock.github.io/Rdatasets/doc/boot/amis.html">enlace</a>.</p>
@@ -271,9 +272,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   max-height: 300px;
 }
 </style>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="tidyverse.html#cb260-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
-<span id="cb260-2"><a href="tidyverse.html#cb260-2" aria-hidden="true"></a><span class="kw">library</span>(tibble)</span>
-<span id="cb260-3"><a href="tidyverse.html#cb260-3" aria-hidden="true"></a>(amis &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;Data/amis.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="tidyverse.html#cb261-1" aria-hidden="true"></a><span class="kw">library</span>(readr)</span>
+<span id="cb261-2"><a href="tidyverse.html#cb261-2" aria-hidden="true"></a><span class="kw">library</span>(tibble)</span>
+<span id="cb261-3"><a href="tidyverse.html#cb261-3" aria-hidden="true"></a>(amis &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;Data/amis.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 10 x 5
       X1 speed period warning  pair
    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -287,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  8     8    28      1       1     1
  9     9    28      1       1     1
 10    10    29      1       1     1</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="tidyverse.html#cb262-1" aria-hidden="true"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/boot/amis.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tidyverse.html#cb263-1" aria-hidden="true"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/boot/amis.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(<span class="dv">10</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 10 x 5
       X1 speed period warning  pair
    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -302,8 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9     9    28      1       1     1
 10    10    29      1       1     1</code></pre>
 <p>En caso de que se desee leer un archivo por algún otro delimitador, se puede usar la función <code>read_delim()</code> y en el caso de tener archivos donde el delimitador sea “\t” usar la función <code>read_tsv()</code>. Los datos que se utilizan son proporcionados por el US Census Bureau, los cuales fueron indirectamente obtenidos del siguiente <a href="https://github.com/nsgrantham/uspops">enlance</a>.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tidyverse.html#cb264-1" aria-hidden="true"></a><span class="kw">library</span>(readxl)</span>
-<span id="cb264-2"><a href="tidyverse.html#cb264-2" aria-hidden="true"></a>(US_Census_Bureau &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_delim</span>(<span class="st">&quot;Data/US Census Bureau.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="tidyverse.html#cb265-1" aria-hidden="true"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb265-2"><a href="tidyverse.html#cb265-2" aria-hidden="true"></a>(US_Census_Bureau &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_delim</span>(<span class="st">&quot;Data/US Census Bureau.txt&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;|&quot;</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 54 x 11
    X1      `1900` `1901` `1902` `1903` `1904` `1905` `1906` `1907` `1908` `1909`
    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
@@ -318,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 CA        1490   1550   1623   1702   1792   1893   1976   2054   2161 2,282 
 10 CO         543    581    621    652    659    680    707    733    757 775   
 # … with 44 more rows</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tidyverse.html#cb266-1" aria-hidden="true"></a><span class="kw">read_tsv</span>(<span class="st">&quot;Data/US Census Bureautsv.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="tidyverse.html#cb267-1" aria-hidden="true"></a><span class="kw">read_tsv</span>(<span class="st">&quot;Data/US Census Bureautsv.txt&quot;</span>)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 54 x 11
    X1      `1900` `1901` `1902` `1903` `1904` `1905` `1906` `1907` `1908` `1909`
    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; 
@@ -334,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 CO         543    581    621    652    659    680    707    733    757 775   
 # … with 44 more rows</code></pre>
 <p>El paquete <code>readxl</code> esta diseño para leer archivos excel. La siguiente información proporciona la población por sexo y entidad federativa según grupos de edad quinquenales de acuerdo a los <a href="http://www.conapo.gob.mx/es/CONAPO/Tabulados_basicos">tabulados básicos</a> de la CONAPO.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tidyverse.html#cb268-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B5:Q38&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="tidyverse.html#cb269-1" aria-hidden="true"></a>(Population_FEntity &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B5:Q38&quot;</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 33 x 16
    ...1    ...2 `0 a 4` `5 a 9` `10 a 14` `15 a 19` `20 a 24` `25 a 29`
    &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -352,19 +353,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #   `40 a 44` &lt;dbl&gt;, `45 a 49` &lt;dbl&gt;, `50 a 54` &lt;dbl&gt;, `55 a 59` &lt;dbl&gt;, `60 y
 #   más` &lt;dbl&gt;, NE &lt;dbl&gt;</code></pre>
 <p>Algo que hay que tener en cuenta al trabajar con los paquetes del tidyverse es el uso de <em>tibbles</em> en lugar de <em>data frames</em>.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tidyverse.html#cb270-1" aria-hidden="true"></a><span class="kw">class</span>(amis)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="tidyverse.html#cb271-1" aria-hidden="true"></a><span class="kw">class</span>(amis)</span></code></pre></div>
 <pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <p>Un <em>tibble</em> es una versión moderna de un <em>data frame</em> que trabaja de manera perezosa (es decir, que realiza menos operaciones) evitando problemas comunes y supuestos que un data frame puede llegar a asumir. Por ejemplo, los tibbles no coercionan automáticamente los caracteres a factores, no crean nombres para las observaciones y no cambia los nombres de columnas que sean nombres no sintácticos, por ejemplo</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="tidyverse.html#cb272-1" aria-hidden="true"></a><span class="kw">tibble</span>(<span class="st">&quot;:)&quot;</span> =<span class="st"> &quot;feliz&quot;</span>, <span class="st">&quot;:(&quot;</span>=<span class="st">&quot;triste&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="tidyverse.html#cb273-1" aria-hidden="true"></a><span class="kw">tibble</span>(<span class="st">&quot;:)&quot;</span> =<span class="st"> &quot;feliz&quot;</span>, <span class="st">&quot;:(&quot;</span>=<span class="st">&quot;triste&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 2
   `:)`  `:(`  
   &lt;chr&gt; &lt;chr&gt; 
 1 feliz triste</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="tidyverse.html#cb274-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="st">&quot;:)&quot;</span> =<span class="st"> &quot;feliz&quot;</span>, <span class="st">&quot;:(&quot;</span>=<span class="st">&quot;triste&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="tidyverse.html#cb275-1" aria-hidden="true"></a><span class="kw">data.frame</span>(<span class="st">&quot;:)&quot;</span> =<span class="st"> &quot;feliz&quot;</span>, <span class="st">&quot;:(&quot;</span>=<span class="st">&quot;triste&quot;</span>)</span></code></pre></div>
 <pre><code>    X..  X...1
 1 feliz triste</code></pre>
 <p>Se pueden utilizar variables desde la construcción del tibble</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="tidyverse.html#cb276-1" aria-hidden="true"></a>(t &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">y =</span> x<span class="dv">-1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="tidyverse.html#cb277-1" aria-hidden="true"></a>(t &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">y =</span> x<span class="dv">-1</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 20 x 2
        x     y
    &lt;int&gt; &lt;dbl&gt;
@@ -392,18 +393,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>¿Qué sucede al ejecutar <code>data.frame(x = 1:20, y = x-1)</code>?</li>
 </ul>
 <p>Además se tienen diferencias respecto a la impresión entre un tibble y un data frame, un tibble permite agregar listas directamente sin tener que usar la función <code>I()</code> y los tibbles nunca hacen emparejamiento parcial.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="tidyverse.html#cb278-1" aria-hidden="true"></a>t2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">xy=</span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span>
-<span id="cb278-2"><a href="tidyverse.html#cb278-2" aria-hidden="true"></a>d2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">xy =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span>
-<span id="cb278-3"><a href="tidyverse.html#cb278-3" aria-hidden="true"></a><span class="kw">str</span>(t2<span class="op">$</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="tidyverse.html#cb279-1" aria-hidden="true"></a>t2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">xy=</span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span>
+<span id="cb279-2"><a href="tidyverse.html#cb279-2" aria-hidden="true"></a>d2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">xy =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>)</span>
+<span id="cb279-3"><a href="tidyverse.html#cb279-3" aria-hidden="true"></a><span class="kw">str</span>(t2<span class="op">$</span>x)</span></code></pre></div>
 <pre><code> NULL</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tidyverse.html#cb280-1" aria-hidden="true"></a><span class="kw">str</span>(d2<span class="op">$</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="tidyverse.html#cb281-1" aria-hidden="true"></a><span class="kw">str</span>(d2<span class="op">$</span>x)</span></code></pre></div>
 <pre><code> int [1:20] 1 2 3 4 5 6 7 8 9 10 ...</code></pre>
 <p>Finalmente, los tibbles permiten hacer substracciones con el operador pipe.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="tidyverse.html#cb282-1" aria-hidden="true"></a><span class="co">#t$x</span></span>
-<span id="cb282-2"><a href="tidyverse.html#cb282-2" aria-hidden="true"></a>t <span class="op">%&gt;%</span><span class="st"> </span>.<span class="op">$</span>x</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="tidyverse.html#cb283-1" aria-hidden="true"></a><span class="co">#t$x</span></span>
+<span id="cb283-2"><a href="tidyverse.html#cb283-2" aria-hidden="true"></a>t <span class="op">%&gt;%</span><span class="st"> </span>.<span class="op">$</span>x</span></code></pre></div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="tidyverse.html#cb284-1" aria-hidden="true"></a><span class="co">#t[[&quot;x&quot;]]</span></span>
-<span id="cb284-2"><a href="tidyverse.html#cb284-2" aria-hidden="true"></a>t <span class="op">%&gt;%</span><span class="st"> </span>.[[<span class="st">&quot;x&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="tidyverse.html#cb285-1" aria-hidden="true"></a><span class="co">#t[[&quot;x&quot;]]</span></span>
+<span id="cb285-2"><a href="tidyverse.html#cb285-2" aria-hidden="true"></a>t <span class="op">%&gt;%</span><span class="st"> </span>.[[<span class="st">&quot;x&quot;</span>]]</span></code></pre></div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 <ul>
 <li>¿Qué hace la función <code>tribble()</code>?</li>

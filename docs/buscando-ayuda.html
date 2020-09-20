@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -240,17 +241,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.1</span> Buscando ayuda</h2>
 <p>Por sí mismo, R cuenta con funciones que nos permitirán obtener ayuda sobre R en general pero también sobre las diferentes funciones que estemos usando para resolver algún problema.</p>
 <p>Para mostrar un manual de ayuda general en formato HTML corremos el siguiente código en la consola:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="buscando-ayuda.html#cb5-1" aria-hidden="true"></a><span class="kw">help.start</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="buscando-ayuda.html#cb6-1" aria-hidden="true"></a><span class="kw">help.start</span>()</span></code></pre></div>
 <p>El manual será mostrado en el panel de ayuda dentro de RStudio pero puede abrirse con el navegador en caso de que así lo deseemos.</p>
 <p>Supongamos ahora que dentro de nuestro flujo de trabajo estamos utilizando la funcíón <code>log()</code> sin embargo no estamos familiarizados con ella y deseamos obtener ayuda sobre el uso de la función.</p>
 <p>Para a tener acceso a la documentación de la función podemos usar alguna de las siguientes líneas de código:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="buscando-ayuda.html#cb6-1" aria-hidden="true"></a><span class="kw">help</span>(log)</span>
-<span id="cb6-2"><a href="buscando-ayuda.html#cb6-2" aria-hidden="true"></a>?log</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="buscando-ayuda.html#cb7-1" aria-hidden="true"></a><span class="kw">help</span>(log)</span>
+<span id="cb7-2"><a href="buscando-ayuda.html#cb7-2" aria-hidden="true"></a>?log</span></code></pre></div>
 <p>En el caso particular de RStudio, existe un atajo con el que podemos abrir la documentación de cualquier función sin necesidad de correr alguna de las líneas anteriores en la consola.</p>
 <p>El atajo consiste de colocar el cursor de texto entre cualesquiera caractéres de la función y presionar el botón F1 de nuestro teclado.</p>
 <p>Adicionalmente tenemos las siguientes funciones:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="buscando-ayuda.html#cb7-1" aria-hidden="true"></a><span class="kw">apropos</span>(<span class="st">&quot;plot&quot;</span>)</span>
-<span id="cb7-2"><a href="buscando-ayuda.html#cb7-2" aria-hidden="true"></a><span class="kw">help.search</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="buscando-ayuda.html#cb8-1" aria-hidden="true"></a><span class="kw">apropos</span>(<span class="st">&quot;plot&quot;</span>)</span>
+<span id="cb8-2"><a href="buscando-ayuda.html#cb8-2" aria-hidden="true"></a><span class="kw">help.search</span>(<span class="st">&quot;plot&quot;</span>)</span></code></pre></div>
 <p><code>apropos()</code> nos ayudará a encontrar las funciones que incluyan el texto (en este caso <em>plot</em>) en su nombre.</p>
 <p>Por otro lado, <code>help.search()</code> nos mostrará la documentación de las funciones que incluyan el texto, en este caso <em>plot</em>.</p>
 <p>Como se indica, cualquiera de esas opciones te permitirá tener acceso a la documentación de la funciones donde podrás encontrar: para qué se usan, qué argumentos necesitan, lo que regresan y algunos ejemplos del uso de las mismas. En el caso de buscar información sobre algún paquete instalado, se pueden usar los comandos <code>vignette(package = "some_package")</code> o <code>vignette("some_package")</code>, al igual que <code>?library</code>.</p>

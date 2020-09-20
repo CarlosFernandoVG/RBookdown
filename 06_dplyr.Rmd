@@ -127,7 +127,6 @@ Population_FEntity %>%
 + Se obtiene el porcentaje de la población total que hay por grupo quinquenal.
 
 ```{r, class.output = "scroll-300"}
-library(scales)
 Population_FEntity %>% 
   mutate(Porcentaje_entidad = `Población Total`/103498524, 
          Porcentaje = Porcentaje/100) %>% 

@@ -216,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="gráfico-circular.html"><a href="gráfico-circular.html"><i class="fa fa-check"></i><b>11.1</b> Gráfico circular</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="comentarios.html"><a href="comentarios.html"><i class="fa fa-check"></i><b>12</b> Comentarios</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -240,12 +241,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.7</span> Joins y Set Operations</h2>
 <p>Anteriormente ya se había mencionado la unión entre matrices, por renglón o columna y de la función <code>base::merge()</code>, las cuales tienen su optimización por parte de dplyr.</p>
 <p>Por parte de las funciones que unen registros o variables, se tienen las funciones <code>dplyr::bind_rows()</code> y <code>bind_cols()</code>. Las mismas reglas que <code>cbind()</code> y <code>rbind()</code> se deben respetar.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="joins-y-set-operations.html#cb372-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb372-2"><a href="joins-y-set-operations.html#cb372-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">One_Two =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb372-3"><a href="joins-y-set-operations.html#cb372-3" aria-hidden="true"></a>            <span class="dt">Three_Four=</span> <span class="kw">sample</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb372-4"><a href="joins-y-set-operations.html#cb372-4" aria-hidden="true"></a>            <span class="dt">Five_Six =</span> <span class="kw">sample</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
-<span id="cb372-5"><a href="joins-y-set-operations.html#cb372-5" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">One_Two =</span> <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">Three_Four =</span> <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">3</span>), <span class="dt">Five_Six =</span> <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
-<span id="cb372-6"><a href="joins-y-set-operations.html#cb372-6" aria-hidden="true"></a><span class="kw">bind_rows</span>(x,y)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="joins-y-set-operations.html#cb373-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb373-2"><a href="joins-y-set-operations.html#cb373-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">One_Two =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb373-3"><a href="joins-y-set-operations.html#cb373-3" aria-hidden="true"></a>            <span class="dt">Three_Four=</span> <span class="kw">sample</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb373-4"><a href="joins-y-set-operations.html#cb373-4" aria-hidden="true"></a>            <span class="dt">Five_Six =</span> <span class="kw">sample</span>(<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb373-5"><a href="joins-y-set-operations.html#cb373-5" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">One_Two =</span> <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">Three_Four =</span> <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">3</span>), <span class="dt">Five_Six =</span> <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb373-6"><a href="joins-y-set-operations.html#cb373-6" aria-hidden="true"></a><span class="kw">bind_rows</span>(x,y)</span></code></pre></div>
 <pre><code># A tibble: 8 x 3
   One_Two Three_Four Five_Six
     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -257,8 +258,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 6       2          4        5
 7       2          4        5
 8       2          4        5</code></pre>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="joins-y-set-operations.html#cb374-1" aria-hidden="true"></a>z &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">One_Eigth =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>)</span>
-<span id="cb374-2"><a href="joins-y-set-operations.html#cb374-2" aria-hidden="true"></a><span class="kw">bind_cols</span>(<span class="kw">bind_rows</span>(x,y), z)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="joins-y-set-operations.html#cb375-1" aria-hidden="true"></a>z &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">One_Eigth =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb375-2"><a href="joins-y-set-operations.html#cb375-2" aria-hidden="true"></a><span class="kw">bind_cols</span>(<span class="kw">bind_rows</span>(x,y), z)</span></code></pre></div>
 <pre><code># A tibble: 8 x 4
   One_Two Three_Four Five_Six One_Eigth
     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;
@@ -271,12 +272,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 7       2          4        5         7
 8       2          4        5         8</code></pre>
 <p>Respecto a las operaciones de conjuntos se tienen las funciones <code>dplyr::interset()</code>, <code>dplyr::union</code> y <code>dplyr::setdiff()</code>.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="joins-y-set-operations.html#cb376-1" aria-hidden="true"></a><span class="kw">intersect</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="joins-y-set-operations.html#cb377-1" aria-hidden="true"></a><span class="kw">intersect</span>(x, y)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   One_Two Three_Four Five_Six
     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 1       2          4        5</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="joins-y-set-operations.html#cb378-1" aria-hidden="true"></a><span class="kw">union</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="joins-y-set-operations.html#cb379-1" aria-hidden="true"></a><span class="kw">union</span>(x, y)</span></code></pre></div>
 <pre><code># A tibble: 4 x 3
   One_Two Three_Four Five_Six
     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -284,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2       1          4        5
 3       1          3        5
 4       2          4        5</code></pre>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="joins-y-set-operations.html#cb380-1" aria-hidden="true"></a><span class="kw">setdiff</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="joins-y-set-operations.html#cb381-1" aria-hidden="true"></a><span class="kw">setdiff</span>(x, y)</span></code></pre></div>
 <pre><code># A tibble: 3 x 3
   One_Two Three_Four Five_Six
     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -299,12 +300,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>dplyr::full_join(a, b, by = x)</code>: Une las bases de datos de acuerdo a la variable x sin ninguna preferencia, por lo que contiene todos los datos posibles.</li>
 </ul>
 <p>Para ver más claro esto, véase los siguientes ejemplos.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="joins-y-set-operations.html#cb382-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb382-2"><a href="joins-y-set-operations.html#cb382-2" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">L =</span> <span class="kw">sample</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb382-3"><a href="joins-y-set-operations.html#cb382-3" aria-hidden="true"></a>            <span class="dt">N =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
-<span id="cb382-4"><a href="joins-y-set-operations.html#cb382-4" aria-hidden="true"></a>b &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">L =</span> <span class="kw">sample</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
-<span id="cb382-5"><a href="joins-y-set-operations.html#cb382-5" aria-hidden="true"></a>            <span class="dt">Lo =</span> <span class="kw">sample</span>(<span class="kw">c</span>(T, F), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
-<span id="cb382-6"><a href="joins-y-set-operations.html#cb382-6" aria-hidden="true"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="joins-y-set-operations.html#cb383-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">20</span>)</span>
+<span id="cb383-2"><a href="joins-y-set-operations.html#cb383-2" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">L =</span> <span class="kw">sample</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb383-3"><a href="joins-y-set-operations.html#cb383-3" aria-hidden="true"></a>            <span class="dt">N =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb383-4"><a href="joins-y-set-operations.html#cb383-4" aria-hidden="true"></a>b &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">L =</span> <span class="kw">sample</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T), </span>
+<span id="cb383-5"><a href="joins-y-set-operations.html#cb383-5" aria-hidden="true"></a>            <span class="dt">Lo =</span> <span class="kw">sample</span>(<span class="kw">c</span>(T, F), <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> T))</span>
+<span id="cb383-6"><a href="joins-y-set-operations.html#cb383-6" aria-hidden="true"></a>a</span></code></pre></div>
 <pre><code># A tibble: 5 x 2
   L         N
   &lt;chr&gt; &lt;int&gt;
@@ -313,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 A        45
 4 B        41
 5 E        67</code></pre>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="joins-y-set-operations.html#cb384-1" aria-hidden="true"></a>b</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="joins-y-set-operations.html#cb385-1" aria-hidden="true"></a>b</span></code></pre></div>
 <pre><code># A tibble: 5 x 2
   L     Lo   
   &lt;chr&gt; &lt;lgl&gt;
@@ -322,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 E     TRUE 
 4 B     TRUE 
 5 D     FALSE</code></pre>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="joins-y-set-operations.html#cb386-1" aria-hidden="true"></a><span class="kw">left_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="joins-y-set-operations.html#cb387-1" aria-hidden="true"></a><span class="kw">left_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   L         N Lo   
   &lt;chr&gt; &lt;int&gt; &lt;lgl&gt;
@@ -332,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4 B        41 TRUE 
 5 E        67 TRUE 
 6 E        67 TRUE </code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="joins-y-set-operations.html#cb388-1" aria-hidden="true"></a><span class="kw">right_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="joins-y-set-operations.html#cb389-1" aria-hidden="true"></a><span class="kw">right_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   L         N Lo   
   &lt;chr&gt; &lt;int&gt; &lt;lgl&gt;
@@ -342,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4 E        67 TRUE 
 5 E        67 TRUE 
 6 D        NA FALSE</code></pre>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="joins-y-set-operations.html#cb390-1" aria-hidden="true"></a><span class="kw">inner_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="joins-y-set-operations.html#cb391-1" aria-hidden="true"></a><span class="kw">inner_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 5 x 3
   L         N Lo   
   &lt;chr&gt; &lt;int&gt; &lt;lgl&gt;
@@ -351,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 B        41 TRUE 
 4 E        67 TRUE 
 5 E        67 TRUE </code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="joins-y-set-operations.html#cb392-1" aria-hidden="true"></a><span class="kw">full_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="joins-y-set-operations.html#cb393-1" aria-hidden="true"></a><span class="kw">full_join</span>(a, b, <span class="dt">by =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 7 x 3
   L         N Lo   
   &lt;chr&gt; &lt;int&gt; &lt;lgl&gt;
@@ -363,17 +364,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 6 E        67 TRUE 
 7 D        NA FALSE</code></pre>
 <p>Y un ejemplo práctico: Tomando la base de datos de la población mexicana, se puede obtener los datos para los hombres y mujeres y modificarlos para que tengan un estructura similar a <code>Population_FEntity</code>.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="joins-y-set-operations.html#cb394-1" aria-hidden="true"></a>normalization &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
-<span id="cb394-2"><a href="joins-y-set-operations.html#cb394-2" aria-hidden="true"></a>  <span class="kw">colnames</span>(data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>, <span class="kw">unique</span>(Population_FEntity<span class="op">$</span>Rango_edad))</span>
-<span id="cb394-3"><a href="joins-y-set-operations.html#cb394-3" aria-hidden="true"></a>  data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb394-4"><a href="joins-y-set-operations.html#cb394-4" aria-hidden="true"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, </span>
-<span id="cb394-5"><a href="joins-y-set-operations.html#cb394-5" aria-hidden="true"></a>           <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb394-6"><a href="joins-y-set-operations.html#cb394-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb394-7"><a href="joins-y-set-operations.html#cb394-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb394-8"><a href="joins-y-set-operations.html#cb394-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Porcentaje, <span class="op">-</span><span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>)</span>
-<span id="cb394-9"><a href="joins-y-set-operations.html#cb394-9" aria-hidden="true"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="joins-y-set-operations.html#cb395-1" aria-hidden="true"></a>Population_FEntity_M &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B43:Q74&quot;</span>, <span class="dt">col_names =</span> F)</span>
-<span id="cb395-2"><a href="joins-y-set-operations.html#cb395-2" aria-hidden="true"></a>(Population_FEntity_M &lt;-<span class="st"> </span><span class="kw">normalization</span>(Population_FEntity_M))</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="joins-y-set-operations.html#cb395-1" aria-hidden="true"></a>normalization &lt;-<span class="st"> </span><span class="cf">function</span>(data){</span>
+<span id="cb395-2"><a href="joins-y-set-operations.html#cb395-2" aria-hidden="true"></a>  <span class="kw">colnames</span>(data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>, <span class="kw">unique</span>(Population_FEntity<span class="op">$</span>Rango_edad))</span>
+<span id="cb395-3"><a href="joins-y-set-operations.html#cb395-3" aria-hidden="true"></a>  data &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-4"><a href="joins-y-set-operations.html#cb395-4" aria-hidden="true"></a><span class="st">    </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, </span>
+<span id="cb395-5"><a href="joins-y-set-operations.html#cb395-5" aria-hidden="true"></a>           <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-6"><a href="joins-y-set-operations.html#cb395-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-7"><a href="joins-y-set-operations.html#cb395-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb395-8"><a href="joins-y-set-operations.html#cb395-8" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>Porcentaje, <span class="op">-</span><span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>)</span>
+<span id="cb395-9"><a href="joins-y-set-operations.html#cb395-9" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="joins-y-set-operations.html#cb396-1" aria-hidden="true"></a>Population_FEntity_M &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B43:Q74&quot;</span>, <span class="dt">col_names =</span> F)</span>
+<span id="cb396-2"><a href="joins-y-set-operations.html#cb396-2" aria-hidden="true"></a>(Population_FEntity_M &lt;-<span class="st"> </span><span class="kw">normalization</span>(Population_FEntity_M))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 3
    `Entidad Federativa` Rango_edad Población
    &lt;chr&gt;                &lt;chr&gt;          &lt;dbl&gt;
@@ -388,8 +389,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 Distrito Federal     0 a 4        462096.
 10 Durango              0 a 4         76977.
 # … with 438 more rows</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="joins-y-set-operations.html#cb397-1" aria-hidden="true"></a>Population_FEntity_F &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B79:Q110&quot;</span>, <span class="dt">col_names =</span> F)</span>
-<span id="cb397-2"><a href="joins-y-set-operations.html#cb397-2" aria-hidden="true"></a>(Population_FEntity_F &lt;-<span class="st"> </span><span class="kw">normalization</span>(Population_FEntity_F))</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="joins-y-set-operations.html#cb398-1" aria-hidden="true"></a>Population_FEntity_F &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B79:Q110&quot;</span>, <span class="dt">col_names =</span> F)</span>
+<span id="cb398-2"><a href="joins-y-set-operations.html#cb398-2" aria-hidden="true"></a>(Population_FEntity_F &lt;-<span class="st"> </span><span class="kw">normalization</span>(Population_FEntity_F))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 3
    `Entidad Federativa` Rango_edad Población
    &lt;chr&gt;                &lt;chr&gt;          &lt;dbl&gt;
@@ -405,10 +406,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 10 Durango              0 a 4         68470 
 # … with 438 more rows</code></pre>
 <p>Así es fácil crear un sólo conjunto de datos donde se reúna toda la información relevante</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="joins-y-set-operations.html#cb399-1" aria-hidden="true"></a>Population_FEntity &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>)</span>
-<span id="cb399-2"><a href="joins-y-set-operations.html#cb399-2" aria-hidden="true"></a>Population_FEntityWS &lt;-<span class="st"> </span><span class="kw">left_join</span>(Population_FEntity, Population_FEntity_M, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Rango_edad&quot;</span>))</span>
-<span id="cb399-3"><a href="joins-y-set-operations.html#cb399-3" aria-hidden="true"></a>(Population_FEntityWS &lt;-<span class="st"> </span><span class="kw">left_join</span>(Population_FEntityWS, Population_FEntity_F, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Rango_edad&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb399-4"><a href="joins-y-set-operations.html#cb399-4" aria-hidden="true"></a><span class="st">    </span><span class="kw">rename</span>( <span class="st">&quot;Población Total&quot;</span> =<span class="st"> &quot;Población.x&quot;</span>, <span class="st">&quot;PoblaciónM&quot;</span> =<span class="st"> &quot;Población.y&quot;</span>, <span class="st">&quot;PoblaciónF&quot;</span> =<span class="st"> &quot;Población&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="joins-y-set-operations.html#cb400-1" aria-hidden="true"></a>Population_FEntity &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span><span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>)</span>
+<span id="cb400-2"><a href="joins-y-set-operations.html#cb400-2" aria-hidden="true"></a>Population_FEntityWS &lt;-<span class="st"> </span><span class="kw">left_join</span>(Population_FEntity, Population_FEntity_M, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Rango_edad&quot;</span>))</span>
+<span id="cb400-3"><a href="joins-y-set-operations.html#cb400-3" aria-hidden="true"></a>(Population_FEntityWS &lt;-<span class="st"> </span><span class="kw">left_join</span>(Population_FEntityWS, Population_FEntity_F, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Rango_edad&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb400-4"><a href="joins-y-set-operations.html#cb400-4" aria-hidden="true"></a><span class="st">    </span><span class="kw">rename</span>( <span class="st">&quot;Población Total&quot;</span> =<span class="st"> &quot;Población.x&quot;</span>, <span class="st">&quot;PoblaciónM&quot;</span> =<span class="st"> &quot;Población.y&quot;</span>, <span class="st">&quot;PoblaciónF&quot;</span> =<span class="st"> &quot;Población&quot;</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 5
    `Entidad Federativa` Rango_edad `Población Total` PoblaciónM PoblaciónF
    &lt;chr&gt;                &lt;chr&gt;                  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
@@ -426,9 +427,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Por rango de edad ¿Qué sexo predomina en cada población?</li>
 </ul>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="joins-y-set-operations.html#cb401-1" aria-hidden="true"></a>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb401-2"><a href="joins-y-set-operations.html#cb401-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb401-3"><a href="joins-y-set-operations.html#cb401-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, PPredominante)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="joins-y-set-operations.html#cb402-1" aria-hidden="true"></a>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb402-2"><a href="joins-y-set-operations.html#cb402-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb402-3"><a href="joins-y-set-operations.html#cb402-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, PPredominante)</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 448 x 3
    `Entidad Federativa` Rango_edad PPredominante
    &lt;chr&gt;                &lt;chr&gt;      &lt;chr&gt;        
@@ -446,11 +447,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Por rango de edad ¿Qué sexo predomina y en que estado se encuentra dicho resultado?</li>
 </ul>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="joins-y-set-operations.html#cb403-1" aria-hidden="true"></a>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb403-2"><a href="joins-y-set-operations.html#cb403-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb403-3"><a href="joins-y-set-operations.html#cb403-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">S =</span> <span class="kw">if_else</span>(SPredominante <span class="op">==</span><span class="st"> &quot;M&quot;</span>, PoblaciónM, PoblaciónF)) <span class="op">%&gt;%</span></span>
-<span id="cb403-4"><a href="joins-y-set-operations.html#cb403-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb403-5"><a href="joins-y-set-operations.html#cb403-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, S) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, SPredominante)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="joins-y-set-operations.html#cb404-1" aria-hidden="true"></a>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb404-2"><a href="joins-y-set-operations.html#cb404-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SPredominante =</span> <span class="kw">if_else</span>(PoblaciónM<span class="op">&gt;=</span>PoblaciónF, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb404-3"><a href="joins-y-set-operations.html#cb404-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">S =</span> <span class="kw">if_else</span>(SPredominante <span class="op">==</span><span class="st"> &quot;M&quot;</span>, PoblaciónM, PoblaciónF)) <span class="op">%&gt;%</span></span>
+<span id="cb404-4"><a href="joins-y-set-operations.html#cb404-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb404-5"><a href="joins-y-set-operations.html#cb404-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">1</span>, S) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad, SPredominante)</span></code></pre></div>
 <pre><code># A tibble: 14 x 3
 # Groups:   Rango_edad [14]
    `Entidad Federativa` Rango_edad SPredominante
@@ -472,30 +473,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>¿Cuál estado tiene el mayor número de mujeres y cuál el de hombres?</li>
 </ul>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="joins-y-set-operations.html#cb405-1" aria-hidden="true"></a>Population_by_sex_Mexico &lt;-<span class="st"> </span>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb405-2"><a href="joins-y-set-operations.html#cb405-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">SMasculino =</span> <span class="kw">sum</span>(PoblaciónM), </span>
-<span id="cb405-3"><a href="joins-y-set-operations.html#cb405-3" aria-hidden="true"></a>            <span class="dt">SFemenino =</span> <span class="kw">sum</span>(PoblaciónF))</span>
-<span id="cb405-4"><a href="joins-y-set-operations.html#cb405-4" aria-hidden="true"></a><span class="kw">full_join</span>(</span>
-<span id="cb405-5"><a href="joins-y-set-operations.html#cb405-5" aria-hidden="true"></a>  Population_by_sex_Mexico <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(SMasculino)) <span class="op">%&gt;%</span></span>
-<span id="cb405-6"><a href="joins-y-set-operations.html#cb405-6" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>SFemenino),</span>
-<span id="cb405-7"><a href="joins-y-set-operations.html#cb405-7" aria-hidden="true"></a>  Population_by_sex_Mexico <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(SFemenino)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb405-8"><a href="joins-y-set-operations.html#cb405-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>SMasculino), </span>
-<span id="cb405-9"><a href="joins-y-set-operations.html#cb405-9" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;Entidad Federativa&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="joins-y-set-operations.html#cb406-1" aria-hidden="true"></a>Population_by_sex_Mexico &lt;-<span class="st"> </span>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb406-2"><a href="joins-y-set-operations.html#cb406-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">SMasculino =</span> <span class="kw">sum</span>(PoblaciónM), </span>
+<span id="cb406-3"><a href="joins-y-set-operations.html#cb406-3" aria-hidden="true"></a>            <span class="dt">SFemenino =</span> <span class="kw">sum</span>(PoblaciónF))</span>
+<span id="cb406-4"><a href="joins-y-set-operations.html#cb406-4" aria-hidden="true"></a><span class="kw">full_join</span>(</span>
+<span id="cb406-5"><a href="joins-y-set-operations.html#cb406-5" aria-hidden="true"></a>  Population_by_sex_Mexico <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(SMasculino)) <span class="op">%&gt;%</span></span>
+<span id="cb406-6"><a href="joins-y-set-operations.html#cb406-6" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>SFemenino),</span>
+<span id="cb406-7"><a href="joins-y-set-operations.html#cb406-7" aria-hidden="true"></a>  Population_by_sex_Mexico <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(SFemenino)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb406-8"><a href="joins-y-set-operations.html#cb406-8" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>SMasculino), </span>
+<span id="cb406-9"><a href="joins-y-set-operations.html#cb406-9" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;Entidad Federativa&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   `Entidad Federativa` SMasculino SFemenino
   &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;
 1 México                 6871269.   7305419</code></pre>
 <p>¿Cuál es el rango de edad con mayor población en mujeres y hombres?</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="joins-y-set-operations.html#cb407-1" aria-hidden="true"></a>Population_by_sex_age_Mexico &lt;-<span class="st"> </span>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb407-2"><a href="joins-y-set-operations.html#cb407-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb407-3"><a href="joins-y-set-operations.html#cb407-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(PoblaciónF =<span class="st"> </span><span class="kw">sum</span>(PoblaciónF), PoblaciónM =<span class="st"> </span><span class="kw">sum</span>(PoblaciónM))</span>
-<span id="cb407-4"><a href="joins-y-set-operations.html#cb407-4" aria-hidden="true"></a></span>
-<span id="cb407-5"><a href="joins-y-set-operations.html#cb407-5" aria-hidden="true"></a><span class="kw">full_join</span>(</span>
-<span id="cb407-6"><a href="joins-y-set-operations.html#cb407-6" aria-hidden="true"></a>  Population_by_sex_age_Mexico  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(PoblaciónM)) <span class="op">%&gt;%</span></span>
-<span id="cb407-7"><a href="joins-y-set-operations.html#cb407-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>PoblaciónF),</span>
-<span id="cb407-8"><a href="joins-y-set-operations.html#cb407-8" aria-hidden="true"></a>  Population_by_sex_age_Mexico  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(PoblaciónF)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb407-9"><a href="joins-y-set-operations.html#cb407-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>PoblaciónM), </span>
-<span id="cb407-10"><a href="joins-y-set-operations.html#cb407-10" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;Rango_edad&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="joins-y-set-operations.html#cb408-1" aria-hidden="true"></a>Population_by_sex_age_Mexico &lt;-<span class="st"> </span>Population_FEntityWS <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb408-2"><a href="joins-y-set-operations.html#cb408-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">group_by</span>(Rango_edad) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb408-3"><a href="joins-y-set-operations.html#cb408-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">summarise</span>(PoblaciónF =<span class="st"> </span><span class="kw">sum</span>(PoblaciónF), PoblaciónM =<span class="st"> </span><span class="kw">sum</span>(PoblaciónM))</span>
+<span id="cb408-4"><a href="joins-y-set-operations.html#cb408-4" aria-hidden="true"></a></span>
+<span id="cb408-5"><a href="joins-y-set-operations.html#cb408-5" aria-hidden="true"></a><span class="kw">full_join</span>(</span>
+<span id="cb408-6"><a href="joins-y-set-operations.html#cb408-6" aria-hidden="true"></a>  Population_by_sex_age_Mexico  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(PoblaciónM)) <span class="op">%&gt;%</span></span>
+<span id="cb408-7"><a href="joins-y-set-operations.html#cb408-7" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>PoblaciónF),</span>
+<span id="cb408-8"><a href="joins-y-set-operations.html#cb408-8" aria-hidden="true"></a>  Population_by_sex_age_Mexico  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(PoblaciónF)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb408-9"><a href="joins-y-set-operations.html#cb408-9" aria-hidden="true"></a><span class="st">    </span><span class="kw">head</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>PoblaciónM), </span>
+<span id="cb408-10"><a href="joins-y-set-operations.html#cb408-10" aria-hidden="true"></a>  <span class="dt">by =</span> <span class="st">&quot;Rango_edad&quot;</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   Rango_edad PoblaciónM PoblaciónF
   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;
@@ -509,13 +510,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Una sola observación esta en múltiples tablas.</li>
 </ol>
 <p>En el ejemplo que se ha tomado de la población mexicana tiene el primer defecto, ya que la población total bien podría quedar en una sola tabla junto con el nombre de la entidad y en otra los porcentajes de acuerdo a los rangos de edad. En general en este punto se debe tener en cuenta que cada unidad observacional debe tener su propia tabla, así logrando un técnica en bases de datos llamada normalización. Para este caso, se tendrían dos tablas</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="joins-y-set-operations.html#cb409-1" aria-hidden="true"></a>Population_FEntity &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B5:Q38&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb409-2"><a href="joins-y-set-operations.html#cb409-2" aria-hidden="true"></a><span class="kw">colnames</span>(Population_FEntity)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)</span>
-<span id="cb409-3"><a href="joins-y-set-operations.html#cb409-3" aria-hidden="true"></a>Population_FEntity &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, </span>
-<span id="cb409-4"><a href="joins-y-set-operations.html#cb409-4" aria-hidden="true"></a>           <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb409-5"><a href="joins-y-set-operations.html#cb409-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb409-6"><a href="joins-y-set-operations.html#cb409-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>)</span>
-<span id="cb409-7"><a href="joins-y-set-operations.html#cb409-7" aria-hidden="true"></a>(t1 &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="joins-y-set-operations.html#cb410-1" aria-hidden="true"></a>Population_FEntity &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_xls</span>(<span class="st">&quot;Data/Population_Sex_FEntity.xls&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;B5:Q38&quot;</span>, <span class="dt">col_names =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb410-2"><a href="joins-y-set-operations.html#cb410-2" aria-hidden="true"></a><span class="kw">colnames</span>(Population_FEntity)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)</span>
+<span id="cb410-3"><a href="joins-y-set-operations.html#cb410-3" aria-hidden="true"></a>Population_FEntity &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;Rango_edad&quot;</span>, </span>
+<span id="cb410-4"><a href="joins-y-set-operations.html#cb410-4" aria-hidden="true"></a>           <span class="dt">value =</span> <span class="st">&quot;Porcentaje&quot;</span>, <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;Entidad Federativa&quot;</span>, <span class="st">&quot;Población Total&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb410-5"><a href="joins-y-set-operations.html#cb410-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Porcentaje =</span> Porcentaje<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb410-6"><a href="joins-y-set-operations.html#cb410-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">&quot;Población&quot;</span> =<span class="st"> </span>Porcentaje <span class="op">*</span><span class="st"> `</span><span class="dt">Población Total</span><span class="st">`</span>)</span>
+<span id="cb410-7"><a href="joins-y-set-operations.html#cb410-7" aria-hidden="true"></a>(t1 &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, <span class="st">`</span><span class="dt">Población Total</span><span class="st">`</span>))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 462 x 2
    `Entidad Federativa` `Población Total`
    &lt;chr&gt;                            &lt;dbl&gt;
@@ -530,7 +531,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  9 Chihuahua                      3241513
 10 Distrito Federal               8737172
 # … with 452 more rows</code></pre>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="joins-y-set-operations.html#cb411-1" aria-hidden="true"></a>(t2 &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad,  Población))</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="joins-y-set-operations.html#cb412-1" aria-hidden="true"></a>(t2 &lt;-<span class="st"> </span>Population_FEntity <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">`</span><span class="dt">Entidad Federativa</span><span class="st">`</span>, Rango_edad,  Población))</span></code></pre></div>
 <pre class="scroll-300"><code># A tibble: 462 x 3
    `Entidad Federativa` Rango_edad Población
    &lt;chr&gt;                &lt;chr&gt;          &lt;dbl&gt;
@@ -552,7 +553,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Recordar que la función <code>dplyr::near()</code> compara dos elementos numéricos en punto flotante.</p></li>
 <li><p>La función <code>dplyr::case_when()</code> es una versión equivalente a <code>dplyr::if_else()</code> pero más general</p></li>
 </ul>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="joins-y-set-operations.html#cb413-1" aria-hidden="true"></a><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">new_variable =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Hola&quot;</span>, x <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Adios&quot;</span>, <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(x)))</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="joins-y-set-operations.html#cb414-1" aria-hidden="true"></a><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">new_variable =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Hola&quot;</span>, x <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Adios&quot;</span>, <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(x)))</span></code></pre></div>
 <pre><code># A tibble: 5 x 2
       x new_variable
   &lt;int&gt; &lt;chr&gt;       

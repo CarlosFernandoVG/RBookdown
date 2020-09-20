@@ -77,7 +77,6 @@ En la siguiente página: [Ggplot title, Subtitle and caption](https://www.datano
 Tal vez sea tedioso estar modificando manualmente cada aspecto estético de la gráfica, por lo que se han dado algunos temas predefinidos para hacer de dicha tarea algo sencillo, estos se pueden obtener con el prefijo `theme_`; aquí se dejan un par de ejemplos.
 
 ```{r}
-library(patchwork)
 (graph_population+
   labs(x = "Rango de edad", y = "Población total", 
        caption = "Datos obtenidos de los tabulados básicos de la CONAPO (2020)")+
@@ -170,7 +169,6 @@ Hay muchas más otras funciones y geometrías que se podrían explorar y que har
   - Plotly
   
 ```{r, class.source = "scroll-300"}
-library(plotly)
 graph_example_interactive <- Population_FEntityWS %>% 
   mutate(SPredominante = if_else(PoblaciónM>=PoblaciónF, "M", "F")) %>% 
   mutate(S = if_else(SPredominante == "M", PoblaciónM, PoblaciónF)) %>%
@@ -206,7 +204,6 @@ ggplotly(graph_population_per)
   - [Scatterplot3d](http://math.furman.edu/~dcs/courses/math47/R/library/scatterplot3d/doc/s3d.pdf).
 
 ```{r}
-library("scatterplot3d")
 scatterplot3d(iris[,1:3])
 ```
 
@@ -217,7 +214,6 @@ scatterplot3d(iris[,1:3])
   - [gganimate](https://gganimate.com). El el siguiente [enlace](https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/) se pueden ver algunas variaciones del siguiente ejemplo.
   
 ```{r}
-library(gganimate)
 library(gapminder) #Para obtener la base de datos gapminder: Extracto de los datos de Gapminder sobre esperanza de vida, PIB per cápita y población por país.
 ggplot(
   gapminder, 

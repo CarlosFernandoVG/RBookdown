@@ -132,7 +132,7 @@ En particular para los gráficos circulares se recomienda:
 
 #### Ejemplo {-}
 
-Usando los mismos datos de exportación díaria de aguacate. Realizaremos una representación gráfica del volumen de exportación de aguacate observada en 2019 para cada país destino. 
+Usando los mismos datos de exportación diaria de aguacate. Realizaremos una representación gráfica del volumen de exportación de aguacate observada en 2019 para cada país destino. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 library(ggplot2)
@@ -166,5 +166,12 @@ ggplot(D1, aes(x="", y=por, fill=edo)) +
             position = position_stack(vjust = 0.5))+
   scale_fill_brewer(palette="Set2")+
   labs(title="Producción de aguacate por estado en 2019")
-  
 ```
+
+# Comentarios
+
+En este trabajo se han abordado muchos conceptos y aplicaciones que se puede lograr con el uso de los paquetes que se tienen por defecto al instalar R así como el uso de varios paquetes para optimizar el trabajo y lograr un código y resultados visuales eficientes.
+
+Uno de tales paquetes son [Shiny](https://shiny.rstudio.com) y sus derivados como [FlexDashboard](https://rmarkdown.rstudio.com/flexdashboard/). Nosotros recomendamos ampliamente aumentar las habilidades del lector para transmitir información mediante el uso de estos paquetes. Referente a esto, uno de los autores de este libro (David Alberto Mateos Montes de Oca) ha creado una serie de videos en el canal de Youtube [StatsDSc](https://www.youtube.com/channel/UCROkbMGpa1jQhfbY785fL1A) donde se explica el uso, ventaja y creación del dashboars y aplicaciones en Shiny.
+
+Dado lo anterior, es importante mencionar que aún falta mucho por abordar y, en particular para esta parte del libro referente al contenido visual, mucho por estudiar y aprender y no sólo referente a todo lo que ofrece la gran diversidad de paquetes para R.  Por ejemplo, en el libro [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) se dan recomendaciones tales como las que se dieron en esta parte de una manera más profesional al igual que en [Data Visualization. A practical introduction](https://socviz.co). No sin olvidar que la creación de contenido visual siempre puede mejorarse con otros sistemas de Software, ya sea con otro lenguaje de programación o framework destinado a estos objetivos como [Tableau](https://www.tableau.com).
